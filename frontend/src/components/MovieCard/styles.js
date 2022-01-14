@@ -33,7 +33,7 @@ export const Title = styled.h3`
   font-weight: 700;
   font-size: 18px;
   line-height: 22px;
-  color: ${(props) => props.theme.colors.dark}; 
+  color: ${(props) => props.theme.colors.dark};
 `;
 
 export const Description = styled.p`
@@ -54,5 +54,5 @@ export const ProgressBarWrapper = styled.div`
     line-height: 15px;
     dominant-baseline: middle;
     text-anchor: middle;
-}
+  }
 `;

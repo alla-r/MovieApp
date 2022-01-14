@@ -17,11 +17,11 @@ const HomePage = () => {
   const trendingsData = useSelector(selectors.trendingsData);
   const trendingsError = useSelector(selectors.trendingsError);
   const isNextPageAvailable = useSelector(selectors.trendingsIsNextPageAvailable);
-  
+
   console.log(store.getState(), trendingsError, isNextPageAvailable);
 
   useEffect(() => {
-    dispatch(actions.getTrendingsMedia(pageNumber));    
+    dispatch(actions.getTrendingsMedia(pageNumber));
   }, []);
 
   const formatMovieData = (item) => {
@@ -31,11 +31,11 @@ const HomePage = () => {
       title: item.title || item.name,
       description: item.overview,
       voteAvg: item.vote_average,
-      poster: `https://image.tmdb.org/t/p/original${item.poster_path}`
+      poster: `https://image.tmdb.org/t/p/original${item.poster_path}`,
     };
 
     return formattedItem;
-  }
+  };
 
   const cards = trendingsData?.map((movie) => (
     <MovieCard
@@ -46,20 +46,19 @@ const HomePage = () => {
   ));
 
   return (
-    <div className='homepage'>
-      <Header headerItems={constants.HEADER_ITEMS} profileDropdownData={constants.PROFILE_DROPDOWN_DATA} />
+    <div className="homepage">
+      <Header
+        headerItems={constants.HEADER_ITEMS}
+        profileDropdownData={constants.PROFILE_DROPDOWN_DATA}
+      />
       <div className="container">
-        {trendingsLoading && (<Loader />)}
-        {trendingsData && (
-           <div className="card-container">
-            {cards}
-          </div>
-        )}
+        {trendingsLoading && <Loader />}
+        {trendingsData && <div className="card-container">{cards}</div>}
       </div>
-      
+
       <Footer />
     </div>
   );
-}
+};
 
 export default HomePage;

@@ -15,7 +15,7 @@ const App = () => {
         <HomePage />
       </StyledEngineProvider>
     </ThemeProvider>
-  )
+  );
 };
 
 export default App;
