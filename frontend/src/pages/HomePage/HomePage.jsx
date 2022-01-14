@@ -1,29 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector, useStore } from 'react-redux';
 import axios from 'axios'; 
+import Loader from '../../components/Loader';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import MovieCard from '../../components/MovieCard';
 import * as actions from './actions';
 import * as constants from './constants';
+import { selectors } from './reducer';
 import './HomePage.scss';
 
 const HomePage = () => {
-  const [moviesData, setMovieData] = useState([]);
+  const [pageNumber, setPageNumber] = useState(3);
   const dispatch = useDispatch();
   const store = useStore();
+  const trendingsLoading = useSelector(selectors.trendingsLoading);
+  const trendingsData = useSelector(selectors.trendingsData);
+  const trendingsError = useSelector(selectors.trendingsError);
+  const isNextPageAvailable = useSelector(selectors.trendingsIsNextPageAvailable);
+  // console.log(loading);
   console.log(store.getState());
 
   useEffect(() => {
-    console.log(process.env.REACT_APP_API_KEY);
-    dispatch(actions.getTrendingsRequest(1));
-    axios.get(`https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}`)
-      .then((response) => {
-        setMovieData(response.data.results);
-      })
-
-      console.log(store.getState());
-    
+    dispatch(actions.getTrendingsMedia(pageNumber));    
   }, []);
 
   const formatMovieData = (item) => {
@@ -39,23 +38,24 @@ const HomePage = () => {
     return formattedItem;
   }
 
-  const cards = moviesData.map((movie) => {
-    return (
-      <MovieCard
-        key={movie.id}
-        onClickHandler={() => console.log('card ' + movie.id)}
-        data={formatMovieData(movie)}
-      />
-    )
-  });
+  const cards = trendingsData?.map((movie) => (
+    <MovieCard
+      key={movie.id}
+      onClickHandler={() => console.log('card ' + movie.id)}
+      data={formatMovieData(movie)}
+    />
+  ));
 
   return (
     <div className='homepage'>
       <Header headerItems={constants.HEADER_ITEMS} profileDropdownData={constants.PROFILE_DROPDOWN_DATA} />
       <div className="container">
-        <div className="card-container">
-          {cards}
-        </div>
+        {trendingsLoading && (<Loader />)}
+        {trendingsData && (
+           <div className="card-container">
+            {cards}
+          </div>
+        )}
       </div>
       
       <Footer />

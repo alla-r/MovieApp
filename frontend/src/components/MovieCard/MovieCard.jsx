@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CardContainer, ImageAndBarContainer, ImageWrapper, ContentContainer, Title, Description, ProgressBarWrapper } from './styles';
-import theme from '../../theme';
 import {
   CircularProgressbar,
   buildStyles
 } from "react-circular-progressbar";
+import { CardContainer, ImageAndBarContainer, ImageWrapper, ContentContainer, Title, Description, ProgressBarWrapper } from './styles';
+import theme from '../../theme';
 
 const BAR_COLORS = [
   {
