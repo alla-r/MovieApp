@@ -29,9 +29,7 @@ const BAR_COLORS = [
 ];
 
 const MovieCard = ({ data, onClickHandler }) => {
-  const getPercentageValue = (value, maxValue) => {
-    return value * 100 / maxValue;
-  }
+  const getPercentageValue = (value, maxValue) => value * 100 / maxValue;
   const percentage = getPercentageValue(data.voteAvg, 10);
 
   const getFormattedDate = (dateString) => {
@@ -90,6 +88,12 @@ MovieCard.defaultProps = {
 
 MovieCard.propTypes = {
   onClickHandler: PropTypes.func.isRequired,
+  data: PropTypes.shape({
+    voteAvg: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default MovieCard;

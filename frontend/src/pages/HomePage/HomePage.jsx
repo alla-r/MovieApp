@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector, useStore } from 'react-redux';
-import axios from 'axios'; 
 import Loader from '../../components/Loader';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -18,8 +17,8 @@ const HomePage = () => {
   const trendingsData = useSelector(selectors.trendingsData);
   const trendingsError = useSelector(selectors.trendingsError);
   const isNextPageAvailable = useSelector(selectors.trendingsIsNextPageAvailable);
-  // console.log(loading);
-  console.log(store.getState());
+  
+  console.log(store.getState(), trendingsError, isNextPageAvailable);
 
   useEffect(() => {
     dispatch(actions.getTrendingsMedia(pageNumber));    
