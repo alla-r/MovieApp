@@ -18,19 +18,21 @@ const ContentContainer = ({ loading, data, error }) => {
     return formattedItem;
   };
 
-  const items = data?.map((media) => (
-    <MovieCard
-      key={media.id}
-      onClickHandler={() => console.log('item ' + media.id)}
-      data={formatMediaData(media)}
-    />
-  ));
+  const items =
+    data &&
+    data.map((media) => (
+      <MovieCard
+        key={media.id}
+        onClickHandler={() => console.log('item ' + media.id)}
+        data={formatMediaData(media)}
+      />
+    ));
 
   return (
-    <Container className='container'>
+    <Container className="container">
       {loading && <Loader />}
       {data && <ItemsContainer className="items-container">{items}</ItemsContainer>}
-      {error && <Error>Something went wrong. Couldn't fetch data.</Error>}
+      {error.status && <Error>{error.message}</Error>}
     </Container>
   );
 };
@@ -39,14 +41,19 @@ ContentContainer.defaultProps = {};
 
 ContentContainer.propTypes = {
   loading: PropTypes.bool,
-  data: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    voteAvg: PropTypes.number,
-    title: PropTypes.string,
-    date: PropTypes.string,
-    poster: PropTypes.string,
-  })),
-  error: PropTypes.string,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      voteAvg: PropTypes.number,
+      title: PropTypes.string,
+      date: PropTypes.string,
+      poster: PropTypes.string,
+    }),
+  ),
+  error: PropTypes.shape({
+    status: PropTypes.bool,
+    message: PropTypes.string,
+  }),
 };
 
 export default ContentContainer;

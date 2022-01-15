@@ -1,4 +1,3 @@
-// import * as actions from './actions';
 import * as constants from './constants';
 
 const initialState = {
@@ -19,9 +18,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
-        // currentPage: action.payload.page,
-        // totalPages: action.payload.total_pages,
-        // data: action.payload.results
       };
     case constants.GET_TRENDINGS_SUCCESS:
       return {
@@ -29,6 +25,7 @@ const reducer = (state = initialState, action) => {
         currentPage: action.payload.page,
         totalPages: action.payload.total_pages,
         data: action.payload.results,
+        error: null,
         loading: false,
       };
     case constants.GET_TRENDINGS_ERROR:
