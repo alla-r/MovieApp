@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Loader from '../Loader';
 import MovieCard from '../MovieCard';
+import Button from '../Button';
 import { Container, ItemsContainer, Error } from './styles';
 
-const ContentContainer = ({ loading, data, error }) => {
+const ContentContainer = ({ loading, data, error, paginationBtn }) => {
   const formatMediaData = (item) => {
     const formattedItem = {
       id: item.id,
@@ -30,9 +31,19 @@ const ContentContainer = ({ loading, data, error }) => {
 
   return (
     <Container className="container">
-      {loading && <Loader />}
       {data && <ItemsContainer className="items-container">{items}</ItemsContainer>}
+      {loading && <Loader />}
       {error.status && <Error>{error.message}</Error>}
+      {paginationBtn.status && (
+        <Button 
+          onClickHandler={paginationBtn.onClickHandler}
+          btnText={paginationBtn.text}
+          className="pagination-btn"
+          btnStyles={{
+            color: "secondary"
+          }}
+        />
+      )}
     </Container>
   );
 };
@@ -53,6 +64,11 @@ ContentContainer.propTypes = {
   error: PropTypes.shape({
     status: PropTypes.bool,
     message: PropTypes.string,
+  }),
+  paginationBtn: PropTypes.shape({
+    status: PropTypes.bool,
+    text: PropTypes.string,
+    onClickHandler: PropTypes.func,
   }),
 };
 

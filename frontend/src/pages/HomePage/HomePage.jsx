@@ -18,7 +18,9 @@ const HomePage = () => {
 
   useEffect(() => {
     dispatch(actions.getTrendingsMedia(pageNumber));
-  }, []);
+  }, [pageNumber]);
+
+  const paginationBtnClickHandler = () => setPageNumber(pageNumber + 1);
 
   return (
     <div className="homepage">
@@ -33,6 +35,11 @@ const HomePage = () => {
         error={{
           status: !!trendingsError,
           message: constants.errorMessage,
+        }}
+        paginationBtn={{
+          text: constants.paginationBtnText,
+          status: isNextPageAvailable,
+          onClickHandler: paginationBtnClickHandler
         }}
       />
       <Footer />

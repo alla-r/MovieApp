@@ -1,10 +1,11 @@
 import * as constants from './constants';
 
 const initialState = {
+  isNextPageAvailable: false,
   currentPage: null,
   totalPages: null,
   loading: false,
-  data: null,
+  data: [],
   error: null,
 };
 
@@ -18,13 +19,15 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+        isNextPageAvailable: false,
       };
     case constants.GET_TRENDINGS_SUCCESS:
       return {
         ...state,
         currentPage: action.payload.page,
         totalPages: action.payload.total_pages,
-        data: action.payload.results,
+        isNextPageAvailable: action.payload.page < action.payload.total_pages,
+        data: [...state.data, ...action.payload.results],
         error: null,
         loading: false,
       };
@@ -42,8 +45,7 @@ const reducer = (state = initialState, action) => {
 const trendingsLoading = (state) => state.homePageReducer.loading;
 const trendingsData = (state) => state.homePageReducer.data;
 const trendingsError = (state) => state.homePageReducer.error;
-const trendingsIsNextPageAvailable = (state) =>
-  state.homePageReducer.page < state.homePageReducer.totalPages;
+const trendingsIsNextPageAvailable = (state) => state.homePageReducer.isNextPageAvailable;
 
 const selectors = {
   trendingsLoading,
