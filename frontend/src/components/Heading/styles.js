@@ -5,6 +5,8 @@ export const Container = styled.div`
 `;
 
 export const HeadingContent = styled.h2`
+  margin-left: 10px;
   font-size: 36px;
   line-height: 44px;
+  color: ${(props) => props.theme.colors.dark};
 `;
