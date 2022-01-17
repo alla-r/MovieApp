@@ -1,66 +1,50 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector, useStore } from 'react-redux';
-import axios from 'axios'; 
+import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import MovieCard from '../../components/MovieCard';
+import ContentContainer from '../../components/ContentContainer';
+import Heading from '../../components/Heading';
 import * as actions from './actions';
 import * as constants from './constants';
-import './HomePage.scss';
+import { selectors } from './reducer';
 
 const HomePage = () => {
-  const [moviesData, setMovieData] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
   const dispatch = useDispatch();
-  const store = useStore();
-  console.log(store.getState());
+  const trendingsLoading = useSelector(selectors.trendingsLoading);
+  const trendingsData = useSelector(selectors.trendingsData);
+  const trendingsError = useSelector(selectors.trendingsError);
+  const isNextPageAvailable = useSelector(selectors.trendingsIsNextPageAvailable);
 
   useEffect(() => {
-    console.log(process.env.REACT_APP_API_KEY);
-    dispatch(actions.getTrendingsRequest(1));
-    axios.get(`https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}`)
-      .then((response) => {
-        setMovieData(response.data.results);
-      })
+    dispatch(actions.getTrendingsMedia(pageNumber));
+  }, [pageNumber]);
 
-      console.log(store.getState());
-    
-  }, []);
-
-  const formatMovieData = (item) => {
-    const formattedItem = {
-      id: item.id,
-      date: item.release_date || item.first_air_date,
-      title: item.title || item.name,
-      description: item.overview,
-      voteAvg: item.vote_average,
-      poster: `https://image.tmdb.org/t/p/original${item.poster_path}`
-    };
-
-    return formattedItem;
-  }
-
-  const cards = moviesData.map((movie) => {
-    return (
-      <MovieCard
-        key={movie.id}
-        onClickHandler={() => console.log('card ' + movie.id)}
-        data={formatMovieData(movie)}
-      />
-    )
-  });
+  const paginationBtnClickHandler = () => setPageNumber(pageNumber + 1);
 
   return (
-    <div className='homepage'>
-      <Header headerItems={constants.HEADER_ITEMS} profileDropdownData={constants.PROFILE_DROPDOWN_DATA} />
-      <div className="container">
-        <div className="card-container">
-          {cards}
-        </div>
-      </div>
-      
+    <div className="homepage">
+      <Header
+        headerItems={constants.HEADER_ITEMS}
+        profileDropdownData={constants.PROFILE_DROPDOWN_DATA}
+      />
+      <Heading content={constants.trendingsHeading} />
+      <ContentContainer
+        data={trendingsData}
+        loading={trendingsLoading}
+        error={{
+          status: !!trendingsError,
+          message: constants.errorMessage,
+        }}
+        paginationBtn={{
+          text: constants.paginationBtnText,
+          status: isNextPageAvailable,
+          onClickHandler: paginationBtnClickHandler,
+        }}
+      />
       <Footer />
     </div>
   );
-}
+};
 
 export default HomePage;
