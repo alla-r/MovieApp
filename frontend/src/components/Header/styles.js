@@ -10,7 +10,7 @@ export const Background = styled.div`
 export const Container = styled.div`
   margin: 0 auto;
   width: 90%;
-  max-width: 1320px;
+  max-width: 1460px;
   height: 100%;
   display: flex;
   justify-content: space-between;
