@@ -35,12 +35,12 @@ const ContentContainer = ({ loading, data, error, paginationBtn }) => {
       {loading && <Loader />}
       {error.status && <Error>{error.message}</Error>}
       {paginationBtn.status && (
-        <Button 
+        <Button
           onClickHandler={paginationBtn.onClickHandler}
           btnText={paginationBtn.text}
           className="pagination-btn"
           btnStyles={{
-            color: "secondary"
+            color: 'secondary',
           }}
         />
       )}
@@ -48,7 +48,12 @@ const ContentContainer = ({ loading, data, error, paginationBtn }) => {
   );
 };
 
-ContentContainer.defaultProps = {};
+ContentContainer.defaultProps = {
+  loading: false,
+  data: [],
+  error: null,
+  paginationBtn: null,
+};
 
 ContentContainer.propTypes = {
   loading: PropTypes.bool,

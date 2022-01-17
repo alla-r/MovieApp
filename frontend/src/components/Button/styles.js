@@ -4,10 +4,10 @@ import styled from 'styled-components';
 export const ButtonWrapper = styled.button`
   padding: 12px 44px;
   height: 50px;
-  color: ${({fontColor}) => fontColor};
-  background: ${({backgroundColor}) => backgroundColor};
+  color: ${({ fontColor }) => fontColor};
+  background: ${({ backgroundColor }) => backgroundColor};
   border-radius: 50px;
-  border: ${({borderColor}) => `2px solid ${borderColor}`};
+  border: ${({ borderColor }) => `2px solid ${borderColor}`};
   box-sizing: border-box;
   text-align: center;
   text-transform: uppercase;
@@ -23,14 +23,12 @@ export const ButtonWrapper = styled.button`
   }
 
   &.outline:hover {
-    background: ${({borderColor}) => borderColor};
-    color: ${(props) => props.theme.colors.light}
+    background: ${({ borderColor }) => borderColor};
+    color: ${(props) => props.theme.colors.light};
   }
 
   &.filled:hover {
     background: transparent;
-    color: ${({borderColor}) => borderColor};
+    color: ${({ borderColor }) => borderColor};
   }
 `;
-
-// background-color: ${(props) => props.theme.colors.secondary};

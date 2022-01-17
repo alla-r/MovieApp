@@ -39,7 +39,7 @@ const HomePage = () => {
         paginationBtn={{
           text: constants.paginationBtnText,
           status: isNextPageAvailable,
-          onClickHandler: paginationBtnClickHandler
+          onClickHandler: paginationBtnClickHandler,
         }}
       />
       <Footer />

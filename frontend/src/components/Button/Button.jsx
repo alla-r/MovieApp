@@ -5,20 +5,20 @@ import theme from '../../theme';
 
 const Button = ({ onClickHandler, btnText, isBtnDisabled, btnStyles, className }) => {
   const { isFilled, color } = btnStyles;
-  const classNamesArray = [isFilled ? "filled" : "outline"];
+  const classNamesArray = [isFilled ? 'filled' : 'outline'];
 
   if (isBtnDisabled) {
-    classNamesArray.push("disabled");
+    classNamesArray.push('disabled');
   }
 
   const btnProps = {
     fontColor: isFilled ? theme.colors.light : theme.colors[color],
-    backgroundColor: isFilled ? theme.colors[color] : "transparent",
-    borderColor: theme.colors[color]
-  }
+    backgroundColor: isFilled ? theme.colors[color] : 'transparent',
+    borderColor: theme.colors[color],
+  };
 
   return (
-    <ButtonWrapper 
+    <ButtonWrapper
       className={`${className} ${classNamesArray.join(' ')}`}
       onClick={isBtnDisabled ? () => {} : onClickHandler}
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -34,7 +34,7 @@ Button.defaultProps = {
   isBtnDisabled: false,
   btnStyles: {
     isFilled: false,
-    color: "primary",
+    color: 'primary',
   },
 };
 

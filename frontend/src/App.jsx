@@ -19,15 +19,3 @@ const App = () => {
 };
 
 export default App;
-
-/* 
-
-<Router>
-  <Switch>
-    <StyledEngineProvider injectFirst>
-      <InitComponent />
-    </StyledEngineProvider>
-  </Switch>
-</Router>
-
-*/
