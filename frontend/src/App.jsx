@@ -17,7 +17,7 @@ const App = () => {
       <StyledEngineProvider injectFirst>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/details/:id" element={<DetailsPage />} />
+          <Route path="/:type/:id" element={<DetailsPage />} />
         </Routes>
       </StyledEngineProvider>
     </ThemeProvider>

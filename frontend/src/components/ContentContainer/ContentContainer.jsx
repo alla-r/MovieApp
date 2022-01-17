@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Loader from '../Loader';
 import MovieCard from '../MovieCard';
@@ -7,9 +7,12 @@ import Button from '../Button';
 import { Container, ItemsContainer, Error } from './styles';
 
 const ContentContainer = ({ loading, data, error, paginationBtn }) => {
+  const navigate = useNavigate();
+
   const formatMediaData = (item) => {
     const formattedItem = {
       id: item.id,
+      type: item.media_type,
       date: item.release_date || item.first_air_date,
       title: item.title || item.name,
       description: item.overview,
@@ -22,16 +25,20 @@ const ContentContainer = ({ loading, data, error, paginationBtn }) => {
 
   const items =
     data &&
-    data.map((media) => (
-      <Link 
-        to={`details/${media.id}`}
-        key={media.id}
-      >
-        <MovieCard
-          data={formatMediaData(media)}
-        />
-      </Link>
-    ));
+    data.map((item) => {
+      const formattedItem = formatMediaData(item);
+      const { type, id } = formattedItem;
+
+      return (
+      <MovieCard
+        key={id}
+        data={formattedItem}
+        onClickHandler={() => {
+          navigate(`${type}/${id}`)
+        }}
+      />
+     )
+    });
 
   return (
     <Container className="container">

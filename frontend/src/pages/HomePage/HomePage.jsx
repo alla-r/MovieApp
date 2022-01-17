@@ -10,13 +10,18 @@ import { selectors } from './reducer';
 
 const HomePage = () => {
   const [pageNumber, setPageNumber] = useState(1);
+
   const dispatch = useDispatch();
+  
   const trendingsLoading = useSelector(selectors.trendingsLoading);
   const trendingsData = useSelector(selectors.trendingsData);
   const trendingsError = useSelector(selectors.trendingsError);
   const isNextPageAvailable = useSelector(selectors.trendingsIsNextPageAvailable);
 
   useEffect(() => {
+    if (pageNumber === 1) {
+      dispatch(actions.trendingsClearData());
+    }
     dispatch(actions.getTrendingsMedia(pageNumber));
   }, [pageNumber]);
 

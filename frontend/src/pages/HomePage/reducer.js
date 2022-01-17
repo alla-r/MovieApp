@@ -37,6 +37,15 @@ const reducer = (state = initialState, action) => {
         error: action.payload.message,
         loading: false,
       };
+    case constants.TRENDINGS_CLEAR_DATA:
+      return {
+        isNextPageAvailable: false,
+        currentPage: null,
+        totalPages: null,
+        loading: false,
+        data: [],
+        error: null,
+      };
     default:
       return state;
   }
