@@ -33,7 +33,7 @@ const BAR_COLORS = [
   },
 ];
 
-const MovieCard = ({ data, onClickHandler }) => {
+const MovieCard = ({ data }) => {
   const getPercentageValue = (value, maxValue) => (value * 100) / maxValue;
   const percentage = getPercentageValue(data.voteAvg, 10);
 
@@ -69,7 +69,7 @@ const MovieCard = ({ data, onClickHandler }) => {
   };
 
   return (
-    <CardContainer onClick={onClickHandler}>
+    <CardContainer>
       <ImageAndBarContainer>
         <ImageWrapper ImageSrc={data.poster} />
         <ProgressBarWrapper>
@@ -100,7 +100,6 @@ const MovieCard = ({ data, onClickHandler }) => {
 MovieCard.defaultProps = {};
 
 MovieCard.propTypes = {
-  onClickHandler: PropTypes.func.isRequired,
   data: PropTypes.shape({
     voteAvg: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,

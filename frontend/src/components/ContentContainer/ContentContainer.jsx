@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Loader from '../Loader';
 import MovieCard from '../MovieCard';
@@ -22,11 +23,14 @@ const ContentContainer = ({ loading, data, error, paginationBtn }) => {
   const items =
     data &&
     data.map((media) => (
-      <MovieCard
+      <Link 
+        to={`details/${media.id}`}
         key={media.id}
-        onClickHandler={() => console.log('item ' + media.id)}
-        data={formatMediaData(media)}
-      />
+      >
+        <MovieCard
+          data={formatMediaData(media)}
+        />
+      </Link>
     ));
 
   return (
