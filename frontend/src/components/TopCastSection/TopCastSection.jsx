@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Loader from '../Loader';
 import Heading from '../Heading';
@@ -10,30 +10,28 @@ import { Container, ItemsContainer } from './styles';
 const TopCastSection = ({ data, btnShowMoreContent }) => {
   const onPersonClickHandler = (id) => {
     console.log(id);
-  }
+  };
 
-  const items = data?.slice(0, 10).map(item => 
-    <PersonItem
-      key={item.id}
-      data={getFormattedCastItem(item)}
-      onClickHandler={() => onPersonClickHandler(item.id)}
-    />
-  );
+  const items = data
+    ?.slice(0, 10)
+    .map((item) => (
+      <PersonItem
+        key={item.id}
+        data={getFormattedCastItem(item)}
+        onClickHandler={() => onPersonClickHandler(item.id)}
+      />
+    ));
 
   return (
     <Container className="container">
       <Heading content="Top cast" />
       {!data && <Loader />}
+      {data && <ItemsContainer className="items-container">{items}</ItemsContainer>}
       {data && (
-        <ItemsContainer className="items-container">
-          {items}
-        </ItemsContainer>
-      )}
-      {data && (
-        <Link 
-          className='btn-full-credits-list' 
-          to="/" 
-          // fullCreditsList={data} 
+        <Link
+          className="btn-full-credits-list"
+          to="/"
+          // fullCreditsList={data}
         >
           {btnShowMoreContent}
         </Link>
@@ -43,8 +41,8 @@ const TopCastSection = ({ data, btnShowMoreContent }) => {
 };
 
 TopCastSection.defaultProps = {
-  btnShowMoreContent: "Show More",
-  data: []
+  btnShowMoreContent: 'Show More',
+  data: [],
 };
 
 TopCastSection.propTypes = {

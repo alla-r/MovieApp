@@ -30,7 +30,10 @@ const DetailsPage = () => {
       />
       {mediaDetailsLoading && <Loader />}
       {mediaDetailsData && <div>Details</div>}
-      <TopCastSection data={mediaDetailsData.credits?.cast} btnShowMoreContent={constants.btnShowMoreContent} />
+      <TopCastSection
+        data={mediaDetailsData.credits?.cast}
+        btnShowMoreContent={constants.btnShowMoreContent}
+      />
 
       <Footer />
     </div>

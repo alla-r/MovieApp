@@ -8,7 +8,7 @@ export const PersonContainer = styled.div`
   cursor: pointer;
 `;
 
-export const ImageWrapper = styled.div`  
+export const ImageWrapper = styled.div`
   height: 140px;
   width: 110px;
   overflow: hidden;

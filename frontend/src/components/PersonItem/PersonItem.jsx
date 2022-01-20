@@ -1,12 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { 
-  PersonContainer,
-  ImageWrapper,
-  ContentWrapper,
-  Name,
-  Character,
-} from './styles';
+import { PersonContainer, ImageWrapper, ContentWrapper, Name, Character } from './styles';
 
 const PersonItem = ({ data, onClickHandler }) => {
   const { name, character, poster } = data;
