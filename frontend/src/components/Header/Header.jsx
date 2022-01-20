@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Logo from '../Logo';
 import HeaderItem from './components/HeaderItem';
@@ -7,8 +8,10 @@ import SearchField from './components/SearchField';
 import { Background, Container, FirstColumn, SecondColumn } from './styles';
 
 const Header = ({ isUserAuthorized = false, headerItems, profileDropdownData }) => {
+  const navigate = useNavigate();
+  
   const onLogoClickHandler = () => {
-    console.log('logo');
+    navigate("/");
   };
   const onSignInClickHandler = () => {
     console.log('sign in');
