@@ -40,6 +40,5 @@ export const HEADER_ITEMS = [
   },
 ];
 
-// export const trendingsHeading = 'What’s Popular';
 // export const errorMessage = "Something went wrong. Couldn't fetch data.";
-// export const paginationBtnText = 'Load More';
+export const btnShowMoreContent = 'Full Cast & Crew';

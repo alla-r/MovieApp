@@ -12,6 +12,18 @@ export const getFormattedItem = (item) => {
   return formattedItem;
 };
 
+export const getFormattedCastItem = (item) => {
+  const formattedItem = {
+    id: item.id,
+    department: item.known_for_department,
+    name: item.name,
+    character: item.character,
+    poster: `https://image.tmdb.org/t/p/original${item.profile_path}`,
+  };
+
+  return formattedItem;
+};
+
 const BAR_COLORS = [
   {
     minValue: 70,
