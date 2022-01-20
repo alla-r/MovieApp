@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const CardContainer = styled.div`
   padding-bottom: 15px;
-  margin: 0px 10px 50px 10px;
+  margin: 0px 20px 50px 0px;
   width: 268px;
   background-color: ${(props) => props.theme.colors.light};
   border-radius: 10px;
