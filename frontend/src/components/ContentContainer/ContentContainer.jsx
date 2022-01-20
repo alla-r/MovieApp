@@ -4,31 +4,31 @@ import PropTypes from 'prop-types';
 import Loader from '../Loader';
 import MovieCard from '../MovieCard';
 import Button from '../Button';
+import Heading from '../Heading';
 import { Container, ItemsContainer, Error } from './styles';
 import { getFormattedItem } from '../../global/helpers';
 
-const ContentContainer = ({ loading, data, error, paginationBtn }) => {
+const ContentContainer = ({ loading, data, error, paginationBtn, heading }) => {
   const navigate = useNavigate();
 
-  const items =
-    data &&
-    data.map((item) => {
-      const formattedItem = getFormattedItem(item);
-      const { type, id } = formattedItem;
+  const items = data?.map((item) => {
+    const formattedItem = getFormattedItem(item);
+    const { type, id } = formattedItem;
 
-      return (
-        <MovieCard
-          key={id}
-          data={formattedItem}
-          onClickHandler={() => {
-            navigate(`${type}/${id}`);
-          }}
-        />
-      );
-    });
+    return (
+      <MovieCard
+        key={id}
+        data={formattedItem}
+        onClickHandler={() => {
+          navigate(`${type}/${id}`);
+        }}
+      />
+    );
+  });
 
   return (
     <Container className="container">
+      {heading && <Heading content={heading} />}
       {data && <ItemsContainer className="items-container">{items}</ItemsContainer>}
       {loading && <Loader />}
       {error.status && <Error>{error.message}</Error>}
@@ -47,6 +47,7 @@ const ContentContainer = ({ loading, data, error, paginationBtn }) => {
 };
 
 ContentContainer.defaultProps = {
+  heading: null,
   loading: false,
   data: [],
   error: null,
@@ -54,6 +55,7 @@ ContentContainer.defaultProps = {
 };
 
 ContentContainer.propTypes = {
+  heading: PropTypes.string,
   loading: PropTypes.bool,
   data: PropTypes.arrayOf(
     PropTypes.shape({

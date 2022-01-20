@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ContentContainer from '../../components/ContentContainer';
-import Heading from '../../components/Heading';
 import * as actions from './actions';
 import * as constants from './constants';
 import { selectors } from './reducer';
@@ -33,8 +32,8 @@ const HomePage = () => {
         headerItems={constants.HEADER_ITEMS}
         profileDropdownData={constants.PROFILE_DROPDOWN_DATA}
       />
-      <Heading content={constants.trendingsHeading} />
       <ContentContainer
+        heading={constants.trendingsHeading}
         data={trendingsData}
         loading={trendingsLoading}
         error={{
