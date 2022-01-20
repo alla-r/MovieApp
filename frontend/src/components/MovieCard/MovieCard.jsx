@@ -17,7 +17,7 @@ const MovieCard = ({ data, onClickHandler }) => {
   const percentage = getPercentageValue(data.voteAvg, 10);
 
   return (
-    <CardContainer onClick={onClickHandler} >
+    <CardContainer onClick={onClickHandler}>
       <ImageAndBarContainer>
         <ImageWrapper ImageSrc={data.poster} />
         <ProgressBarWrapper>

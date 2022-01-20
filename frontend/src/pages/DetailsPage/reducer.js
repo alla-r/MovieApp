@@ -7,7 +7,7 @@ const initialState = {
   recommendations: [],
   cast: [],
   crew: [],
-  data: []
+  data: {},
 };
 
 const reducer = (state = initialState, action) => {
@@ -24,7 +24,7 @@ const reducer = (state = initialState, action) => {
     case constants.GET_MEDIA_DETAILS_SUCCESS:
       return {
         ...state,
-        data: {...state.data, ...action.payload},
+        data: action.payload,
         error: null,
         loading: false,
       };
@@ -42,7 +42,6 @@ const reducer = (state = initialState, action) => {
 const mediaDetailsLoading = (state) => state.detailsPageReducer.loading;
 const mediaDetailsData = (state) => state.detailsPageReducer.data;
 const mediaDetailsError = (state) => state.detailsPageReducer.error;
-
 
 const selectors = {
   mediaDetailsLoading,

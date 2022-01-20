@@ -12,7 +12,7 @@ const HomePage = () => {
   const [pageNumber, setPageNumber] = useState(1);
 
   const dispatch = useDispatch();
-  
+
   const trendingsLoading = useSelector(selectors.trendingsLoading);
   const trendingsData = useSelector(selectors.trendingsData);
   const trendingsError = useSelector(selectors.trendingsError);

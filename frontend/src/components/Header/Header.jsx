@@ -9,9 +9,9 @@ import { Background, Container, FirstColumn, SecondColumn } from './styles';
 
 const Header = ({ isUserAuthorized = false, headerItems, profileDropdownData }) => {
   const navigate = useNavigate();
-  
+
   const onLogoClickHandler = () => {
-    navigate("/");
+    navigate('/');
   };
   const onSignInClickHandler = () => {
     console.log('sign in');

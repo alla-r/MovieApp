@@ -30,14 +30,14 @@ const ContentContainer = ({ loading, data, error, paginationBtn }) => {
       const { type, id } = formattedItem;
 
       return (
-      <MovieCard
-        key={id}
-        data={formattedItem}
-        onClickHandler={() => {
-          navigate(`${type}/${id}`)
-        }}
-      />
-     )
+        <MovieCard
+          key={id}
+          data={formattedItem}
+          onClickHandler={() => {
+            navigate(`${type}/${id}`);
+          }}
+        />
+      );
     });
 
   return (
