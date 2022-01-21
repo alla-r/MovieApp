@@ -1,3 +1,9 @@
+import getFormattedMediaDetails from "./getFormattedMediaDetails";
+
+export {
+  getFormattedMediaDetails
+}
+
 export const getFormattedItem = (item) => {
   const formattedItem = {
     id: item.id,
@@ -7,18 +13,6 @@ export const getFormattedItem = (item) => {
     description: item.overview,
     voteAvg: item.vote_average,
     poster: `https://image.tmdb.org/t/p/original${item.poster_path}`,
-  };
-
-  return formattedItem;
-};
-
-export const getFormattedCastItem = (item) => {
-  const formattedItem = {
-    id: item.id,
-    department: item.known_for_department,
-    name: item.name,
-    character: item.character,
-    poster: `https://image.tmdb.org/t/p/original${item.profile_path}`,
   };
 
   return formattedItem;

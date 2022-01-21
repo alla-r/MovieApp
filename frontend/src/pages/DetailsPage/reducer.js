@@ -7,7 +7,6 @@ const initialState = {
   recommendations: [],
   cast: [],
   crew: [],
-  data: {},
 };
 
 const reducer = (state = initialState, action) => {
@@ -24,7 +23,10 @@ const reducer = (state = initialState, action) => {
     case constants.GET_MEDIA_DETAILS_SUCCESS:
       return {
         ...state,
-        data: action.payload,
+        details: action.payload.details,
+        cast: action.payload.cast,
+        crew: action.payload.crew,
+        recommendations: action.payload.recommendations,
         error: null,
         loading: false,
       };
@@ -33,20 +35,30 @@ const reducer = (state = initialState, action) => {
         ...state,
         error: action.payload.message,
         loading: false,
+        details: [],
+        recommendations: [],
+        cast: [],
+        crew: [],
       };
     default:
       return state;
   }
 };
 
-const mediaDetailsLoading = (state) => state.detailsPageReducer.loading;
-const mediaDetailsData = (state) => state.detailsPageReducer.data;
-const mediaDetailsError = (state) => state.detailsPageReducer.error;
+const detailsLoading = (state) => state.detailsPageReducer.loading;
+const detailsData = (state) => state.detailsPageReducer.details;
+const detailsCastList = (state) => state.detailsPageReducer.cast;
+const detailsCrewList = (state) => state.detailsPageReducer.crew;
+const detailsRecommendationsList = (state) => state.detailsPageReducer.recommendations;
+const detailsError = (state) => state.detailsPageReducer.error;
 
 const selectors = {
-  mediaDetailsLoading,
-  mediaDetailsData,
-  mediaDetailsError,
+  detailsLoading,
+  detailsData,
+  detailsCastList,
+  detailsCrewList,
+  detailsRecommendationsList,
+  detailsError,
 };
 
 export { selectors };

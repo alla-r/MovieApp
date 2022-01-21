@@ -40,5 +40,5 @@ export const HEADER_ITEMS = [
   },
 ];
 
-// export const errorMessage = "Something went wrong. Couldn't fetch data.";
+export const errorMessage = "Something went wrong. Couldn't fetch data.";
 export const btnShowMoreContent = 'Full Cast & Crew';

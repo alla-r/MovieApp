@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Loader from '../Loader';
 import Heading from '../Heading';
 import PersonItem from '../PersonItem';
-import { getFormattedCastItem } from '../../global/helpers';
 import { Container, ItemsContainer } from './styles';
 
 const TopCastSection = ({ data, btnShowMoreContent }) => {
@@ -17,7 +16,7 @@ const TopCastSection = ({ data, btnShowMoreContent }) => {
     .map((item) => (
       <PersonItem
         key={item.id}
-        data={getFormattedCastItem(item)}
+        data={item}
         onClickHandler={() => onPersonClickHandler(item.id)}
       />
     ));
@@ -25,9 +24,13 @@ const TopCastSection = ({ data, btnShowMoreContent }) => {
   return (
     <Container className="container">
       <Heading content="Top cast" />
-      {!data && <Loader />}
-      {data && <ItemsContainer className="items-container">{items}</ItemsContainer>}
-      {data && (
+      {data.length === 0 && <Loader />}
+      {data.length > 0  && (
+        <ItemsContainer className="items-container">
+          {items}
+        </ItemsContainer>
+      )}
+      {data.length > 0  && (
         <Link
           className="btn-full-credits-list"
           to="/"
@@ -42,13 +45,12 @@ const TopCastSection = ({ data, btnShowMoreContent }) => {
 
 TopCastSection.defaultProps = {
   btnShowMoreContent: 'Show More',
-  data: [],
 };
 
 TopCastSection.propTypes = {
   btnShowMoreContent: PropTypes.string,
   // eslint-disable-next-line react/forbid-prop-types
-  data: PropTypes.array,
+  data: PropTypes.array.isRequired,
 };
 
 export default TopCastSection;
