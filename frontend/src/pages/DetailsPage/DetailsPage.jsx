@@ -37,7 +37,7 @@ const DetailsPage = () => {
       />
       {detailsLoading && <Loader />}
       {detailsError && <div>{constants.errorMessage}</div>}
-      {detailsData && <div>Details</div>}
+      {/* {detailsData && <div>Details</div>} */}
 
       <HeroSection data={detailsData} />
       <div className="cast-and-details-container container">

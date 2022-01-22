@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin: 50px auto 50px;
+  margin: 0px auto;
   @media only screen and (max-width: 768px) {
     margin: 0px;
   }

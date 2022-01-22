@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Background = styled.div`
   padding: 150px 0px;
-  background: ${(props) => props.theme.colors.dark};
+  background: #1F1F1F;
 
   @media only screen and (max-width: 1280px) {
     padding: 100px;
