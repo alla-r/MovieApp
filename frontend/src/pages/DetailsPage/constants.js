@@ -43,27 +43,33 @@ export const HEADER_ITEMS = [
 export const DETAILS_LIST_MAPPING = [
   {
     title: "Original Title",
-    value: "originalTitle"
+    value: "originalTitle",
+    type: "text"
   },
   {
     title: "Status",
-    value: "status"
+    value: "status",
+    type: "text"
   },
   {
     title: "Production Countries",
-    value: "productionCountries"
+    value: "productionCountries",
+    type: "array"
   },
   {
     title: "Production Companies",
-    value: "productionCompanies"
+    value: "productionCompanies",
+    type: "array"
   },
   {
     title: "Budget",
-    value: "budget"
+    value: "budget",
+    type: "money"
   },
   {
     title: "Revenue",
-    value: "revenue"
+    value: "revenue",
+    type: "money"
   },
 ];
 

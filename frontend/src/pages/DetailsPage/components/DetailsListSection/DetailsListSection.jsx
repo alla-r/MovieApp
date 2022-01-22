@@ -1,17 +1,34 @@
 import React from 'react';
+import NumberFormat from 'react-number-format';
 import PropTypes from 'prop-types';
 import Loader from '../../../../components/Loader';
 import Heading from '../../../../components/Heading';
 import { Container, ItemsContainer, ItemWrapper, ItemTitle, ItemValue } from './styles';
 
 const DetailsListSection = ({ mappingConfig, data }) => {
-  const items = mappingConfig.map(({ title, value }, index) => {
+  const items = mappingConfig.map(({ title, value, type }, index) => {
     let itemValues;
 
-    if (Array.isArray(data[value])) {
-      itemValues = data[value].map((item) => <ItemValue>{item}</ItemValue>);
-    } else {
+    if (type === "array") {
+      // eslint-disable-next-line react/no-array-index-key
+      itemValues = data[value]?.map((item, i) => <ItemValue key={i}>{item}</ItemValue>);
+    }
+
+    if (type === "text") {
       itemValues = <ItemValue>{data[value]}</ItemValue>;
+    }
+
+    if (type === "money") {
+      itemValues = (
+        <ItemValue>
+          <NumberFormat 
+            value={data[value]} 
+            displayType='text'
+            thousandSeparator
+            prefix='$ '
+          />
+        </ItemValue>
+      );
     }
 
     return (
@@ -43,6 +60,7 @@ DetailsListSection.propTypes = {
     PropTypes.shape({
       title: PropTypes.string,
       value: PropTypes.string,
+      type: PropTypes.string,
     })
   ).isRequired
 };
