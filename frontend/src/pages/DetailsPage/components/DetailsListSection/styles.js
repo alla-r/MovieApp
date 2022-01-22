@@ -16,10 +16,10 @@ export const ItemWrapper = styled.div`
 `;
 
 export const ItemTitle = styled.p`
+  margin-bottom: 10px;
   font-weight: 700;
 `;
 
 export const ItemValue = styled.p`
-  margin-top: 10px;
   font-weight: 400;
 `;

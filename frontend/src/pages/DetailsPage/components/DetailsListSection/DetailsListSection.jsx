@@ -5,13 +5,23 @@ import Heading from '../../../../components/Heading';
 import { Container, ItemsContainer, ItemWrapper, ItemTitle, ItemValue } from './styles';
 
 const DetailsListSection = ({ mappingConfig, data }) => {
-  const items = mappingConfig.map(({ title, value }, index) => (
-    // eslint-disable-next-line react/no-array-index-key
-    <ItemWrapper key={index} >
-      <ItemTitle>{title}</ItemTitle>
-      <ItemValue>{data[value]}</ItemValue>
-    </ItemWrapper>
-  ));
+  const items = mappingConfig.map(({ title, value }, index) => {
+    let itemValues;
+
+    if (Array.isArray(data[value])) {
+      itemValues = data[value].map((item) => <ItemValue>{item}</ItemValue>);
+    } else {
+      itemValues = <ItemValue>{data[value]}</ItemValue>;
+    }
+
+    return (
+      // eslint-disable-next-line react/no-array-index-key
+      <ItemWrapper key={index} >
+        <ItemTitle>{title}</ItemTitle>
+        {itemValues}
+      </ItemWrapper>
+    )
+});
 
   return (
     <Container className="container">
@@ -20,14 +30,10 @@ const DetailsListSection = ({ mappingConfig, data }) => {
       {data && (
         <ItemsContainer className="items-container">
           {items}
-          
         </ItemsContainer>
       )}
     </Container>
   );
-};
-
-DetailsListSection.defaultProps = {
 };
 
 DetailsListSection.propTypes = {

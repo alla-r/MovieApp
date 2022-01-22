@@ -40,11 +40,7 @@ const getFormattedMediaDetails = (type, data) => {
       voteAvg: data.vote_average,
       status: data.status,
       poster: `https://image.tmdb.org/t/p/original${data.poster_path}`,
-      productionCompanies: data.production_companies.map(item => ({
-        id: item.id,
-        logo: `https://image.tmdb.org/t/p/original${item.logo_path}`,
-        name: item.name,
-      })),
+      productionCompanies: data.production_companies.map(item => item.name),
       productionCountries: data.production_countries.map(item => item.name),
       duration: data.runtime,
       revenue: data.revenue,
