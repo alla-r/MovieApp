@@ -2,5 +2,9 @@
   .cast-and-details-container {
     display: flex;
     margin: 0 auto;
+
+    @media only screen and (max-width: 768px) {
+      flex-direction: column-reverse;
+    }
   }
 }

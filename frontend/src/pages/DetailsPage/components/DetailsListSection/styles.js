@@ -2,10 +2,13 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   margin: 50px auto 50px;
+  @media only screen and (max-width: 768px) {
+    margin: 0px;
+  }
 `;
 
 export const ItemsContainer = styled.div`
-  max-width: 250px;
+  max-width: 270px;
 `;
 
 export const ItemWrapper = styled.div`

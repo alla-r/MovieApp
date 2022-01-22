@@ -44,7 +44,7 @@ const DetailsPage = () => {
         />
         <DetailsListSection 
           data={detailsData}
-          mappingConfig={constants.DETAILS_LIST_MAPPING}
+          mappingConfig={detailsData.type === "movie" ? constants.DETAILS_MOVIE_LIST_MAPPING : constants.DETAILS_TV_LIST_MAPPING}
         />
       </div>
       

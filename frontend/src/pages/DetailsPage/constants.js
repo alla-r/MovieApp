@@ -40,7 +40,7 @@ export const HEADER_ITEMS = [
   },
 ];
 
-export const DETAILS_LIST_MAPPING = [
+export const DETAILS_MOVIE_LIST_MAPPING = [
   {
     title: "Original Title",
     value: "originalTitle",
@@ -70,6 +70,29 @@ export const DETAILS_LIST_MAPPING = [
     title: "Revenue",
     value: "revenue",
     type: "money"
+  },
+];
+
+export const DETAILS_TV_LIST_MAPPING = [
+  {
+    title: "Original Title",
+    value: "originalTitle",
+    type: "text"
+  },
+  {
+    title: "Status",
+    value: "status",
+    type: "text"
+  },
+  {
+    title: "Production Countries",
+    value: "productionCountries",
+    type: "array"
+  },
+  {
+    title: "Production Companies",
+    value: "productionCompanies",
+    type: "array"
   },
 ];
 
