@@ -9,46 +9,37 @@ const DetailsListSection = ({ mappingConfig, data }) => {
   const items = mappingConfig.map(({ title, value, type }, index) => {
     let itemValues;
 
-    if (type === "array") {
+    if (type === 'array') {
       // eslint-disable-next-line react/no-array-index-key
       itemValues = data[value]?.map((item, i) => <ItemValue key={i}>{item}</ItemValue>);
     }
 
-    if (type === "text") {
+    if (type === 'text') {
       itemValues = <ItemValue>{data[value]}</ItemValue>;
     }
 
-    if (type === "money") {
+    if (type === 'money') {
       itemValues = (
         <ItemValue>
-          <NumberFormat 
-            value={data[value]} 
-            displayType='text'
-            thousandSeparator
-            prefix='$ '
-          />
+          <NumberFormat value={data[value]} displayType="text" thousandSeparator prefix="$ " />
         </ItemValue>
       );
     }
 
     return (
       // eslint-disable-next-line react/no-array-index-key
-      <ItemWrapper key={index} >
+      <ItemWrapper key={index}>
         <ItemTitle>{title}</ItemTitle>
         {itemValues}
       </ItemWrapper>
-    )
-});
+    );
+  });
 
   return (
     <Container>
       <Heading content="Details" />
       {!data && <Loader />}
-      {data && (
-        <ItemsContainer className="items-container">
-          {items}
-        </ItemsContainer>
-      )}
+      {data && <ItemsContainer className="items-container">{items}</ItemsContainer>}
     </Container>
   );
 };
@@ -61,8 +52,8 @@ DetailsListSection.propTypes = {
       title: PropTypes.string,
       value: PropTypes.string,
       type: PropTypes.string,
-    })
-  ).isRequired
+    }),
+  ).isRequired,
 };
 
 export default DetailsListSection;

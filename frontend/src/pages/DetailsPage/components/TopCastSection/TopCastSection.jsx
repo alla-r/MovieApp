@@ -14,23 +14,15 @@ const TopCastSection = ({ data, btnShowMoreContent }) => {
   const items = data
     ?.slice(0, 10)
     .map((item) => (
-      <PersonItem
-        key={item.id}
-        data={item}
-        onClickHandler={() => onPersonClickHandler(item.id)}
-      />
+      <PersonItem key={item.id} data={item} onClickHandler={() => onPersonClickHandler(item.id)} />
     ));
 
   return (
     <Container>
       <Heading content="Top cast" />
       {data.length === 0 && <Loader />}
-      {data.length > 0  && (
-        <ItemsContainer className="items-container">
-          {items}
-        </ItemsContainer>
-      )}
-      {data.length > 0  && (
+      {data.length > 0 && <ItemsContainer className="items-container">{items}</ItemsContainer>}
+      {data.length > 0 && (
         <Link
           className="btn-full-credits-list"
           to="/"

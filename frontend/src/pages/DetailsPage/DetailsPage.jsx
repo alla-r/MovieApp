@@ -37,17 +37,18 @@ const DetailsPage = () => {
       {detailsLoading && <Loader />}
       {detailsError && <div>{constants.errorMessage}</div>}
       {detailsData && <div>Details</div>}
-      <div className='cast-and-details-container container'>
-        <TopCastSection
-          data={detailsCastList}
-          btnShowMoreContent={constants.btnShowMoreContent}
-        />
-        <DetailsListSection 
+      <div className="cast-and-details-container container">
+        <TopCastSection data={detailsCastList} btnShowMoreContent={constants.btnShowMoreContent} />
+        <DetailsListSection
           data={detailsData}
-          mappingConfig={detailsData.type === "movie" ? constants.DETAILS_MOVIE_LIST_MAPPING : constants.DETAILS_TV_LIST_MAPPING}
+          mappingConfig={
+            detailsData.type === 'movie'
+              ? constants.DETAILS_MOVIE_LIST_MAPPING
+              : constants.DETAILS_TV_LIST_MAPPING
+          }
         />
       </div>
-      
+
       <Footer />
     </div>
   );

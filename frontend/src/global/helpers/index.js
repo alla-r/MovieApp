@@ -1,8 +1,6 @@
-import getFormattedMediaDetails from "./getFormattedMediaDetails";
+import getFormattedMediaDetails from './getFormattedMediaDetails';
 
-export {
-  getFormattedMediaDetails
-}
+export { getFormattedMediaDetails };
 
 export const getFormattedItem = (item) => {
   const formattedItem = {
