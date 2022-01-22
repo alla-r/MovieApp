@@ -22,7 +22,7 @@ const TopCastSection = ({ data, btnShowMoreContent }) => {
     ));
 
   return (
-    <Container className="container">
+    <Container>
       <Heading content="Top cast" />
       {data.length === 0 && <Loader />}
       {data.length > 0  && (

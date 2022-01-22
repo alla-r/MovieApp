@@ -9,6 +9,7 @@ import DetailsListSection from './components/DetailsListSection';
 import * as actions from './actions';
 import * as constants from './constants';
 import { selectors } from './reducer';
+import './DetailsPage.scss';
 
 const DetailsPage = () => {
   const dispatch = useDispatch();
@@ -36,14 +37,17 @@ const DetailsPage = () => {
       {detailsLoading && <Loader />}
       {detailsError && <div>{constants.errorMessage}</div>}
       {detailsData && <div>Details</div>}
-      <TopCastSection
-        data={detailsCastList}
-        btnShowMoreContent={constants.btnShowMoreContent}
-      />
-      <DetailsListSection 
-        data={detailsData}
-        mappingConfig={constants.DETAILS_LIST_MAPPING}
-      />
+      <div className='cast-and-details-container container'>
+        <TopCastSection
+          data={detailsCastList}
+          btnShowMoreContent={constants.btnShowMoreContent}
+        />
+        <DetailsListSection 
+          data={detailsData}
+          mappingConfig={constants.DETAILS_LIST_MAPPING}
+        />
+      </div>
+      
       <Footer />
     </div>
   );

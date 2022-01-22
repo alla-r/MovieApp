@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin: 50px auto 50px;
+  margin: 50px 0 50px;
 
   .btn-full-credits-list {
     font-weight: 700;
@@ -16,7 +16,7 @@ export const Container = styled.div`
 `;
 
 export const ItemsContainer = styled.div`
-  max-width: 840px;
+  width: 840px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

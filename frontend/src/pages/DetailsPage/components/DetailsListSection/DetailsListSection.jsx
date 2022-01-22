@@ -41,7 +41,7 @@ const DetailsListSection = ({ mappingConfig, data }) => {
 });
 
   return (
-    <Container className="container">
+    <Container>
       <Heading content="Details" />
       {!data && <Loader />}
       {data && (
