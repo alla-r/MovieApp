@@ -6,6 +6,7 @@ import Footer from '../../components/Footer';
 import Loader from '../../components/Loader';
 import TopCastSection from './components/TopCastSection';
 import DetailsListSection from './components/DetailsListSection';
+import HeroSection from './components/HeroSection';
 import * as actions from './actions';
 import * as constants from './constants';
 import { selectors } from './reducer';
@@ -37,7 +38,10 @@ const DetailsPage = () => {
       {detailsLoading && <Loader />}
       {detailsError && <div>{constants.errorMessage}</div>}
       {detailsData && <div>Details</div>}
+
+      <HeroSection data={detailsData} />
       <div className="cast-and-details-container container">
+        
         <TopCastSection data={detailsCastList} btnShowMoreContent={constants.btnShowMoreContent} />
         <DetailsListSection
           data={detailsData}

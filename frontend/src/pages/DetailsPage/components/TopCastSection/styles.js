@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin: 50px 0 50px;
+  margin: 0px 0 50px;
 
   .btn-full-credits-list {
     font-weight: 700;
