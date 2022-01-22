@@ -40,5 +40,32 @@ export const HEADER_ITEMS = [
   },
 ];
 
+export const DETAILS_LIST_MAPPING = [
+  {
+    title: "Original Title",
+    value: "originalTitle"
+  },
+  {
+    title: "Status",
+    value: "status"
+  },
+  {
+    title: "Production Countries",
+    value: "productionCountries"
+  },
+  {
+    title: "Production Companies",
+    value: "productionCompanies"
+  },
+  {
+    title: "Budget",
+    value: "budget"
+  },
+  {
+    title: "Revenue",
+    value: "revenue"
+  },
+];
+
 export const errorMessage = "Something went wrong. Couldn't fetch data.";
 export const btnShowMoreContent = 'Full Cast & Crew';

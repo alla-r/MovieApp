@@ -23,6 +23,7 @@ export const getMediaDetails = (mediaType, id) => async (dispatch) => {
       `/${mediaType}/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&append_to_response=recommendations,credits`,
     );
     const formattedData = getFormattedMediaDetails(mediaType, response.data);
+    
     dispatch(getMediaDetailsSuccess(formattedData));
   } catch (error) {
     dispatch(getMediaDetailsError(error));

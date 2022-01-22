@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Loader from '../Loader';
-import Heading from '../Heading';
-import PersonItem from '../PersonItem';
+import Loader from '../../../../components/Loader';
+import Heading from '../../../../components/Heading';
+import PersonItem from '../../../../components/PersonItem';
 import { Container, ItemsContainer } from './styles';
 
 const TopCastSection = ({ data, btnShowMoreContent }) => {
