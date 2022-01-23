@@ -5,18 +5,15 @@ import DetailsBlock from './components/DetailsBlock';
 import LinksBlock from './components/LinksBlock';
 import { Background, Container, ImageWrapper } from './styles';
 
-const HeroSection = ({ data }) => {
-
-  return (
-    <Background>
-      <Container className='container'>
-        <ImageWrapper ImageSrc={data.poster} />
-        <DetailsBlock />
-        <LinksBlock />
-      </Container>
-    </Background>
-  );
-};
+const HeroSection = ({ data }) => (
+  <Background>
+    <Container className='container'>
+      <ImageWrapper ImageSrc={data.poster} />
+      <DetailsBlock data={data} />
+      <LinksBlock />
+    </Container>
+  </Background>
+);
 
 HeroSection.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
