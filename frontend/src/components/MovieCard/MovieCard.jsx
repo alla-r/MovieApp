@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import { getPercentageValue, getBarColor, getFormattedDate } from '../../global/helpers';
+import { getPercentageValue, getFormattedDate } from '../../global/helpers';
+import CircleProgressBar from '../CircleProgressBar';
 import {
   CardContainer,
   ImageAndBarContainer,
@@ -11,7 +11,6 @@ import {
   Description,
   ProgressBarWrapper,
 } from './styles';
-import theme from '../../theme';
 
 const MovieCard = ({ data, onClickHandler }) => {
   const percentage = getPercentageValue(data.voteAvg, 10);
@@ -21,19 +20,7 @@ const MovieCard = ({ data, onClickHandler }) => {
       <ImageAndBarContainer>
         <ImageWrapper ImageSrc={data.poster} />
         <ProgressBarWrapper>
-          <CircularProgressbar
-            value={percentage}
-            text={Number.isInteger(data.voteAvg) ? `${data.voteAvg}.0` : data.voteAvg}
-            strokeWidth={4}
-            background
-            backgroundPadding={4}
-            styles={buildStyles({
-              backgroundColor: `${theme.colors.dark}`,
-              textColor: `${theme.colors.light}`,
-              pathColor: `${getBarColor('path', percentage)}`,
-              trailColor: `${getBarColor('trail', percentage)}`,
-            })}
-          />
+          <CircleProgressBar voteAvg={data.voteAvg} percentage={percentage} />
         </ProgressBarWrapper>
       </ImageAndBarContainer>
 
