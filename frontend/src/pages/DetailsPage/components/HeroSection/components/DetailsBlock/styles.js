@@ -62,3 +62,7 @@ export const OverviewTitle = styled.p`
 
 export const OverviewContent = styled.p``;
 
+export const GenreWrapper = styled.div`
+  margin-top: 60px;
+`;
+

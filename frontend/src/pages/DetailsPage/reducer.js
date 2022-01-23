@@ -3,7 +3,7 @@ import * as constants from './constants';
 const initialState = {
   loading: false,
   error: null,
-  details: {},
+  details: null,
   recommendations: [],
   cast: [],
   crew: [],
@@ -35,7 +35,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         error: action.payload.message,
         loading: false,
-        details: {},
+        details: null,
         recommendations: [],
         cast: [],
         crew: [],

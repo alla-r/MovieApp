@@ -12,7 +12,7 @@ const TopCastSection = ({ data, btnShowMoreContent }) => {
   };
 
   const items = data
-    ?.slice(0, 10)
+    .slice(0, 10)
     .map((item) => (
       <PersonItem key={item.id} data={item} onClickHandler={() => onPersonClickHandler(item.id)} />
     ));
