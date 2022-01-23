@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import { getBarColor } from '../../global/helpers';
 import theme from '../../theme';
+import './CircleProgressBar.scss';
 
 const CircleProgressBar = ({ voteAvg, percentage }) => (
   <CircularProgressbar

@@ -48,11 +48,4 @@ export const ProgressBarWrapper = styled.div`
   bottom: -25px;
   left: 5%;
   width: 50px;
-  .CircularProgressbar .CircularProgressbar-text {
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 15px;
-    dominant-baseline: middle;
-    text-anchor: middle;
-  }
 `;
