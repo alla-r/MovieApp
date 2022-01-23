@@ -4,12 +4,13 @@ import Loader from '../../../../components/Loader';
 import DetailsBlock from './components/DetailsBlock';
 import LinksBlock from './components/LinksBlock';
 import { Background, Container, ImageWrapper } from './styles';
+import * as constants from'../../constants';
 
 const HeroSection = ({ data }) => (
   <Background>
     <Container className='container'>
       <ImageWrapper ImageSrc={data.poster} />
-      <DetailsBlock data={data} />
+      <DetailsBlock data={data} circularBtnConfig={constants.CIRCULAR_BUTTONS_CONFIG} />
       <LinksBlock />
     </Container>
   </Background>

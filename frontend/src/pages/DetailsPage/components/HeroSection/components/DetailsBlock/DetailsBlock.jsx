@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CircleProgressBar from '../../../../../../components/CircleProgressBar';
+import CircularButton from '../../../../../../components/CircularButton';
 import { Container, Title, ButtonsWrapper, ProgressBarWrapper, ProgressBarDescription, OverviewWrapper, OverviewTitle, OverviewContent, GenreWrapper } from './styles';
 import GenreItem from '../../../../../../components/GenreItem';
 import { getPercentageValue } from '../../../../../../global/helpers';
 
-const DetailsBlock = ({ data }) => {
+const DetailsBlock = ({ data, circularBtnConfig }) => {
   console.log(data)
   const percentage = getPercentageValue(data.voteAvg, 10);
 
@@ -14,6 +15,15 @@ const DetailsBlock = ({ data }) => {
   const genres = data.genres.map(({ id, name }) => (
     <GenreItem key={id} genre={name} onClickHandler={() => onGenreClickHandler(id)} />
   ));
+
+  const buttons = circularBtnConfig.map(({ id, iconSrc, onClickHandler, isActive }) => (
+    <CircularButton
+      key={id}
+      iconSrc={iconSrc}
+      onClickHandler={onClickHandler}
+      isActive={isActive}
+    />
+  ))
 
   return (
     <Container>
@@ -27,6 +37,7 @@ const DetailsBlock = ({ data }) => {
             <ProgressBarDescription>
               Vote Average
             </ProgressBarDescription>
+            {buttons}
           </ButtonsWrapper>
           <OverviewWrapper>
             <OverviewTitle>

@@ -1,3 +1,7 @@
+import HeartIcon from '../../global/images/heart-icon.svg';
+import StarIcon from '../../global/images/star-icon.svg';
+import WatchlistIcon from '../../global/images/watchlist-icon.svg';
+
 export const GET_MEDIA_DETAILS_REQUEST = 'GET_MEDIA_DETAILS_REQUEST';
 export const GET_MEDIA_DETAILS_SUCCESS = 'GET_MEDIA_DETAILS_SUCCESS';
 export const GET_MEDIA_DETAILS_ERROR = 'GET_MEDIA_DETAILS_ERROR';
@@ -93,6 +97,27 @@ export const DETAILS_TV_LIST_MAPPING = [
     title: 'Production Companies',
     value: 'productionCompanies',
     type: 'array',
+  },
+];
+
+export const CIRCULAR_BUTTONS_CONFIG = [
+  {
+    iconSrc: HeartIcon,
+    id: "favorite",
+    isActive: true,
+    onClickHandler: () => console.log('add to favorites')
+  },
+  {
+    iconSrc: WatchlistIcon,
+    id: "watchlist",
+    isActive: false,
+    onClickHandler: () => console.log('watchlist')
+  },
+  {
+    iconSrc: StarIcon,
+    id: "rate",
+    isActive: false,
+    onClickHandler: () => console.log('rate')
   },
 ];
 
