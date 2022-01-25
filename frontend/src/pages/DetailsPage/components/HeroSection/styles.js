@@ -35,7 +35,7 @@ export const ImageWrapper = styled.div`
 
   @media only screen and (max-width: 1280px) {
     width: 37%;
-    height: 500px;
+    /* height: 500px; */
   }
 
   @media only screen and (max-width: 768px) {
@@ -43,32 +43,3 @@ export const ImageWrapper = styled.div`
     height: 300px;
   }
 `;
-
-// export const DetailsWrapper = styled.div`
-//   width: 45%;
-//   height: 600px;
-//   border-radius: 10px;
-//   background-color: red;
-
-//   @media only screen and (max-width: 1280px) {
-//     width: 57%;
-//     height: 500px;
-//   }
-
-//   @media only screen and (max-width: 768px) {
-//     width: 100%;
-//     margin-top: 50px;
-//   }
-// `;
-
-// export const LinksWrapper = styled.div`
-//   width: 200px;
-//   height: 600px;
-//   background-color: green;
-//   @media only screen and (max-width: 1280px) {
-//     margin-top: 50px;
-//     width: 100%;
-//   }
-//   @media only screen and (max-width: 768px) {
-//   }
-// `;

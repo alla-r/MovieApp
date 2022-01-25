@@ -5,19 +5,10 @@ import CrewItem from './components/CrewItem';
 
 const LinksBlock = ({ crewList }) => {
   const items = crewList.map(({ id, job, name }) => (
-    <CrewItem
-      key={id}
-      role={job}
-      name={name}
-      onClickHandler={() => console.log(id)}
-    />
-  ))
+    <CrewItem key={id} role={job} name={name} onClickHandler={() => console.log(id)} />
+  ));
 
-  return (
-    <Container>
-      {items}    
-    </Container>
-  )
+  return <Container>{items}</Container>;
 };
 
 LinksBlock.propTypes = {
@@ -25,9 +16,9 @@ LinksBlock.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
-      job: PropTypes.string.isRequired
-    })
-  ).isRequired
+      job: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
 };
 
 export default LinksBlock;

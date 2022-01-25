@@ -9,7 +9,9 @@ import { getCrewListWithUniqueItems } from '../../../../global/helpers';
 
 const HeroSection = ({ data, crew }) => {
   const { type } = data;
-  const filteredCrew = crew.filter(({ job }) => constants.MOVIE_JOBS_TO_DISPLAY_LIST.indexOf(job) !== -1);
+  const filteredCrew = crew.filter(
+    ({ job }) => constants.MOVIE_JOBS_TO_DISPLAY_LIST.indexOf(job) !== -1,
+  );
   const crewList = getCrewListWithUniqueItems(filteredCrew);
 
   return (
@@ -17,10 +19,10 @@ const HeroSection = ({ data, crew }) => {
       <Container className="container">
         <ImageWrapper ImageSrc={data.poster} />
         <DetailsBlock data={data} circularBtnConfig={constants.CIRCULAR_BUTTONS_CONFIG} />
-        <LinksBlock crewList={type === "tv" ? data.createdBy : crewList} />
+        <LinksBlock crewList={type === 'tv' ? data.createdBy : crewList} />
       </Container>
     </Background>
-  )
+  );
 };
 
 HeroSection.propTypes = {

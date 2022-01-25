@@ -76,16 +76,14 @@ export const getCrewListWithUniqueItems = (list) => {
 
   // eslint-disable-next-line no-restricted-syntax
   for (const uniqueName of names) {
-    const jobsArray = list
-      .filter(({ name }) => name === uniqueName)
-      .map(({ job }) => job);
+    const jobsArray = list.filter(({ name }) => name === uniqueName).map(({ job }) => job);
     const { id } = list.find(({ name }) => name === uniqueName);
     uniqueList.push({
       id,
       job: jobsArray.join(', '),
-      name: uniqueName
+      name: uniqueName,
     });
   }
 
   return uniqueList;
-}
+};

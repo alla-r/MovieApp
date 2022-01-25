@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Container,
-  Title,
-  Name
-} from './styles';
+import { Container, Title, Name } from './styles';
 
 const CrewItem = ({ name, role, onClickHandler }) => (
   <Container>
