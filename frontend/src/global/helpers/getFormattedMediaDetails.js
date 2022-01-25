@@ -1,6 +1,7 @@
 const getFormattedCreditsItem = (item) => {
   const formattedItem = {
     id: item.id,
+    job: item.job || "",
     department: item.department || item.known_for_department,
     name: item.name,
     character: item.character,
@@ -71,6 +72,7 @@ const getFormattedMediaDetails = (type, data) => {
       createdBy: data.created_by.map((creator) => ({
         id: creator.id,
         name: creator.name,
+        job: "Created By"
       })),
       numberOfSeasons: data.number_of_seasons,
       duration: data.episode_run_time[0],

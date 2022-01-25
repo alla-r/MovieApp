@@ -37,23 +37,19 @@ const DetailsBlock = ({ data, circularBtnConfig }) => {
 
   return (
     <Container>
-      {data && (
-        <>
-          <Title>{data.title}</Title>
-          <ButtonsWrapper>
-            <ProgressBarWrapper>
-              <CircleProgressBar voteAvg={data.voteAvg} percentage={percentage} />
-            </ProgressBarWrapper>
-            <ProgressBarDescription>Vote Average</ProgressBarDescription>
-            {buttons}
-          </ButtonsWrapper>
-          <OverviewWrapper>
-            <OverviewTitle>Overview</OverviewTitle>
-            <OverviewContent>{data.overview}</OverviewContent>
-          </OverviewWrapper>
-          <GenreWrapper>{genres}</GenreWrapper>
-        </>
-      )}
+      <Title>{data.title}</Title>
+      <ButtonsWrapper>
+        <ProgressBarWrapper>
+          <CircleProgressBar voteAvg={data.voteAvg} percentage={percentage} />
+        </ProgressBarWrapper>
+        <ProgressBarDescription>Vote Average</ProgressBarDescription>
+        {buttons}
+      </ButtonsWrapper>
+      <OverviewWrapper>
+        <OverviewTitle>Overview</OverviewTitle>
+        <OverviewContent>{data.overview}</OverviewContent>
+      </OverviewWrapper>
+      <GenreWrapper>{genres}</GenreWrapper>
     </Container>
   );
 };

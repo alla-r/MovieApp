@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
+// eslint-disable-next-line import/prefer-default-export
 export const Container = styled.div`
   width: 200px;
-  height: 600px;
-  background-color: green;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
   @media only screen and (max-width: 1280px) {
     margin-top: 50px;
     width: 100%;

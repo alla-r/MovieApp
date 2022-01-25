@@ -4,10 +4,10 @@ export const Container = styled.div`
   width: 45%;
   height: 600px;
   border-radius: 10px;
-  background-color: red;
+  /* background-color: red; */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   color: ${(props) => props.theme.colors.light};
 
   @media only screen and (max-width: 1280px) {

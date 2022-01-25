@@ -40,7 +40,7 @@ const DetailsPage = () => {
 
       {detailsData && (
         <>
-          <HeroSection data={detailsData} />
+          <HeroSection data={detailsData} crew={detailsCrewList} />
           <div className="cast-and-details-container container">
             <TopCastSection
               data={detailsCastList}

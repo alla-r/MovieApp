@@ -69,3 +69,23 @@ export const getFormattedDate = (dateString) => {
 };
 
 export const getPercentageValue = (value, maxValue) => (value * 100) / maxValue;
+
+export const getCrewListWithUniqueItems = (list) => {
+  const names = new Set(list.map(({ name }) => name));
+  const uniqueList = [];
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const uniqueName of names) {
+    const jobsArray = list
+      .filter(({ name }) => name === uniqueName)
+      .map(({ job }) => job);
+    const { id } = list.find(({ name }) => name === uniqueName);
+    uniqueList.push({
+      id,
+      job: jobsArray.join(', '),
+      name: uniqueName
+    });
+  }
+
+  return uniqueList;
+}

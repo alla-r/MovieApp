@@ -17,6 +17,7 @@ export const Container = styled.div`
   margin: 0px auto;
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   @media only screen and (max-width: 1280px) {
     flex-wrap: wrap;
   }

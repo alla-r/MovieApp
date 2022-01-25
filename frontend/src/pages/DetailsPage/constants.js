@@ -121,5 +121,7 @@ export const CIRCULAR_BUTTONS_CONFIG = [
   },
 ];
 
+export const MOVIE_JOBS_TO_DISPLAY_LIST = ["Characters", "Director", "Writer", "Screenplay"];
+
 export const errorMessage = "Something went wrong. Couldn't fetch data.";
 export const btnShowMoreContent = 'Full Cast & Crew';
