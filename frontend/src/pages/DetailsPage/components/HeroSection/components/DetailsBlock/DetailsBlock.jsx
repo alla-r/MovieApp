@@ -12,12 +12,14 @@ import {
   OverviewTitle,
   OverviewContent,
   GenreWrapper,
+  DetailsWrapper,
+  Item,
+  Divider,
 } from './styles';
 import GenreItem from '../../../../../../components/GenreItem';
-import { getPercentageValue } from '../../../../../../global/helpers';
+import { getPercentageValue, getFormattedYears, getDuration } from '../../../../../../global/helpers';
 
 const DetailsBlock = ({ data, circularBtnConfig }) => {
-  console.log(data);
   const percentage = getPercentageValue(data.voteAvg, 10);
 
   const onGenreClickHandler = (id) => console.log(id);
@@ -38,6 +40,11 @@ const DetailsBlock = ({ data, circularBtnConfig }) => {
   return (
     <Container>
       <Title>{data.title}</Title>
+      <DetailsWrapper>
+        <Item>{getFormattedYears(data)}</Item>
+        <Divider />
+        <Item>{getDuration(data)}</Item>
+      </DetailsWrapper>
       <ButtonsWrapper>
         <ProgressBarWrapper>
           <CircleProgressBar voteAvg={data.voteAvg} percentage={percentage} />

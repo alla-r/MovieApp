@@ -28,6 +28,25 @@ export const Title = styled.h1`
   color: ${(props) => props.theme.colors.light};
 `;
 
+export const DetailsWrapper = styled.div`
+  display: flex;
+  margin-top: 10px;
+`;
+
+export const Divider = styled.div`
+  margin: auto 12px;
+  height: 3px;
+  width: 3px;
+  background-color: ${(props) => props.theme.colors.light};
+  border-radius: 50%;
+`;
+
+export const Item = styled.div`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+`;
+
 export const ButtonsWrapper = styled.div`
   margin: 60px 0px;
   display: flex;
