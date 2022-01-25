@@ -7,6 +7,7 @@ import Loader from '../../components/Loader';
 import TopCastSection from './components/TopCastSection';
 import DetailsListSection from './components/DetailsListSection';
 import HeroSection from './components/HeroSection';
+import Recommendations from './components/Recommendations';
 import * as actions from './actions';
 import * as constants from './constants';
 import { selectors } from './reducer';
@@ -55,6 +56,7 @@ const DetailsPage = () => {
               }
             />
           </div>
+          <Recommendations data={detailsRecommendationsList} />
         </>
       )}
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Loader from '../../../../components/Loader';
 import Heading from '../../../../components/Heading';
 import PersonItem from '../../../../components/PersonItem';
 import { Container, ItemsContainer } from './styles';
@@ -20,9 +19,7 @@ const TopCastSection = ({ data, btnShowMoreContent }) => {
   return (
     <Container>
       <Heading content="Top cast" />
-      {data.length === 0 && <Loader />}
-      {data.length > 0 && <ItemsContainer className="items-container">{items}</ItemsContainer>}
-      {data.length > 0 && (
+      <ItemsContainer className="items-container">{items}</ItemsContainer>
         <Link
           className="btn-full-credits-list"
           to="/"
@@ -30,7 +27,6 @@ const TopCastSection = ({ data, btnShowMoreContent }) => {
         >
           {btnShowMoreContent}
         </Link>
-      )}
     </Container>
   );
 };
