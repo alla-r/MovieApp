@@ -1,3 +1,3 @@
-import DetailsBlock from "./DetailsBlock";
+import DetailsBlock from './DetailsBlock';
 
 export default DetailsBlock;

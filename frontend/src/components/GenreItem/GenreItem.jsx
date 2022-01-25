@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import { GenreItemWrapper } from './styles';
 
 const GenreItem = ({ onClickHandler, genre }) => (
-  <GenreItemWrapper onClick={onClickHandler}>
-    {genre}
-  </GenreItemWrapper>
+  <GenreItemWrapper onClick={onClickHandler}>{genre}</GenreItemWrapper>
 );
 
 GenreItem.propTypes = {

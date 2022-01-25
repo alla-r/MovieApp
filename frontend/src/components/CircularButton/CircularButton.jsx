@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ButtonWrapper, Image } from './styles';
 
 const CircularButton = ({ onClickHandler, isActive, iconSrc }) => {
-  const classNames = isActive ? "active" : "";
+  const classNames = isActive ? 'active' : '';
 
   return (
     <ButtonWrapper onClick={onClickHandler}>
@@ -13,7 +13,7 @@ const CircularButton = ({ onClickHandler, isActive, iconSrc }) => {
 };
 
 CircularButton.defaultProps = {
-  isActive: false
+  isActive: false,
 };
 
 CircularButton.propTypes = {

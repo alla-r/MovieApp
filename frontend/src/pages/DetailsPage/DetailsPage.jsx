@@ -42,8 +42,10 @@ const DetailsPage = () => {
         <>
           <HeroSection data={detailsData} />
           <div className="cast-and-details-container container">
-            
-            <TopCastSection data={detailsCastList} btnShowMoreContent={constants.btnShowMoreContent} />
+            <TopCastSection
+              data={detailsCastList}
+              btnShowMoreContent={constants.btnShowMoreContent}
+            />
             <DetailsListSection
               data={detailsData}
               mappingConfig={

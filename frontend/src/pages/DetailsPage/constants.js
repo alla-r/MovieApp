@@ -103,21 +103,21 @@ export const DETAILS_TV_LIST_MAPPING = [
 export const CIRCULAR_BUTTONS_CONFIG = [
   {
     iconSrc: HeartIcon,
-    id: "favorite",
+    id: 'favorite',
     isActive: true,
-    onClickHandler: () => console.log('add to favorites')
+    onClickHandler: () => console.log('add to favorites'),
   },
   {
     iconSrc: WatchlistIcon,
-    id: "watchlist",
+    id: 'watchlist',
     isActive: false,
-    onClickHandler: () => console.log('watchlist')
+    onClickHandler: () => console.log('watchlist'),
   },
   {
     iconSrc: StarIcon,
-    id: "rate",
+    id: 'rate',
     isActive: false,
-    onClickHandler: () => console.log('rate')
+    onClickHandler: () => console.log('rate'),
   },
 ];
 

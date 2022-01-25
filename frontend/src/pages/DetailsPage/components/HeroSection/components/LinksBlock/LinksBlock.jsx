@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 import { Container } from './styles';
 
 const LinksBlock = () => {
-
-  return (
-      <Container>
-      </Container>
-  );
+  return <Container></Container>;
 };
 
 LinksBlock.propTypes = {
