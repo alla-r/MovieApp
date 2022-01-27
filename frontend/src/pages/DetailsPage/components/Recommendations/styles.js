@@ -2,16 +2,23 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   margin: 0px auto 50px;
-  @media only screen and (max-width: 768px) {
-    margin: 0px;
+
+  .swiper-scrollbar {
+    background-color: rgba(133, 202, 212, 0.2);
+    width: 100%;
+    left: 0;
+  }
+
+  .swiper-scrollbar-drag {
+    background-color: rgba(133, 202, 212, 1);
   }
 `;
 
 export const CardItem = styled.div`
-  width: 300px;
+  padding-bottom: 35px;
+  width: 100%;
+  cursor: pointer;
 `;
-
-// export const ImageWrapper = styled.div``;
 
 export const ImageWrapper = styled.div`
   width: 100%;

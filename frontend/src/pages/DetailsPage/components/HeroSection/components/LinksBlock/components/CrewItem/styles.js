@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 400px;
+  width: 300px;
   margin-bottom: 34px;
   color: ${(props) => props.theme.colors.light};
   font-weight: 400;

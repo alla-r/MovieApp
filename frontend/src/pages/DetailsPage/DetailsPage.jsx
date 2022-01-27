@@ -28,7 +28,7 @@ const DetailsPage = () => {
 
   useEffect(() => {
     dispatch(actions.getMediaDetails(params.type, params.id));
-  }, []);
+  }, [params]);
 
   return (
     <div className="detailsPage">
