@@ -17,7 +17,11 @@ import {
   Divider,
 } from './styles';
 import GenreItem from '../../../../../../components/GenreItem';
-import { getPercentageValue, getFormattedYears, getDuration } from '../../../../../../global/helpers';
+import {
+  getPercentageValue,
+  getFormattedYears,
+  getDuration,
+} from '../../../../../../global/helpers';
 
 const DetailsBlock = ({ data, circularBtnConfig }) => {
   const percentage = getPercentageValue(data.voteAvg, 10);

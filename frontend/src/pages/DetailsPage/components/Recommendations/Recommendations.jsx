@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -11,7 +12,7 @@ import { Container, CardItem, ImageWrapper, Title } from './styles';
 const Recommendations = ({ data }) => {
   SwiperCore.use([Scrollbar]);
   const navigate = useNavigate();
-  console.log(data);
+  // console.log(data);
 
   const slides = data.map(({ type, backdrop, title, id }) => (
     <SwiperSlide key={id}>
@@ -23,34 +24,34 @@ const Recommendations = ({ data }) => {
   ));
 
   return (
-    <Container className='container'>
+    <Container className="container">
       <Heading content="More like this" />
       <Swiper
         breakpoints={{
           320: {
             slidesPerView: 1.5,
-            spaceBetween: 10
+            spaceBetween: 10,
           },
           580: {
             slidesPerView: 2.5,
-            spaceBetween: 20
+            spaceBetween: 20,
           },
           920: {
             slidesPerView: 3.5,
-            spaceBetween: 30
+            spaceBetween: 30,
           },
           1280: {
             slidesPerView: 4.5,
-            spaceBetween: 30
+            spaceBetween: 30,
           },
           1500: {
             slidesPerView: 4.5,
-            spaceBetween: 50
+            spaceBetween: 50,
           },
         }}
-        scrollbar={{ 
+        scrollbar={{
           draggable: true,
-          dragSize: 80
+          dragSize: 80,
         }}
       >
         {slides}

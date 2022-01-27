@@ -20,13 +20,13 @@ const TopCastSection = ({ data, btnShowMoreContent }) => {
     <Container>
       <Heading content="Top cast" />
       <ItemsContainer className="items-container">{items}</ItemsContainer>
-        <Link
-          className="btn-full-credits-list"
-          to="/"
-          // fullCreditsList={data}
-        >
-          {btnShowMoreContent}
-        </Link>
+      <Link
+        className="btn-full-credits-list"
+        to="/"
+        // fullCreditsList={data}
+      >
+        {btnShowMoreContent}
+      </Link>
     </Container>
   );
 };

@@ -92,18 +92,18 @@ export const getCrewListWithUniqueItems = (list) => {
 export const getFormattedYears = ({ type, date, firstAirDate, lastAirDate }) => {
   let formattedDate;
 
-  if (type === "movie") {
-    formattedDate = date.slice(0,4);
+  if (type === 'movie') {
+    formattedDate = date.slice(0, 4);
   }
 
-  if (type === "tv") {
-    const startYear = firstAirDate.slice(0,4);
-    const endYear = lastAirDate?.slice(0,4) || "...";
+  if (type === 'tv') {
+    const startYear = firstAirDate.slice(0, 4);
+    const endYear = lastAirDate?.slice(0, 4) || '...';
     formattedDate = `${startYear} - ${endYear}`;
   }
 
-  return  formattedDate;
-}
+  return formattedDate;
+};
 
 export const getDuration = ({ duration }) => {
   const hours = Math.trunc(duration / 60);
@@ -120,4 +120,4 @@ export const getDuration = ({ duration }) => {
   }
 
   return formattedDuration;
-}
+};
