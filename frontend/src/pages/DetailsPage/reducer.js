@@ -40,6 +40,15 @@ const reducer = (state = initialState, action) => {
         cast: [],
         crew: [],
       };
+    case constants.MEDIA_DETAILS_CLEAR_DATA:
+      return {
+        loading: true,
+        error: null,
+        details: null,
+        recommendations: [],
+        cast: [],
+        crew: [],
+      };
     default:
       return state;
   }

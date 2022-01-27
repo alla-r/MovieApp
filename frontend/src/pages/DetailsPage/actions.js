@@ -29,3 +29,7 @@ export const getMediaDetails = (mediaType, id) => async (dispatch) => {
     dispatch(getMediaDetailsError(error));
   }
 };
+
+export const mediaDetailsClearData = () => ({
+  type: constants.MEDIA_DETAILS_CLEAR_DATA,
+});

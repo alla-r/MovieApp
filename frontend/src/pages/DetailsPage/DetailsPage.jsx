@@ -24,10 +24,12 @@ const DetailsPage = () => {
   const detailsRecommendationsList = useSelector(selectors.detailsRecommendationsList);
   const detailsError = useSelector(selectors.detailsError);
 
-  // console.log(detailsData);
+  // console.log(detailsLoading);
 
   useEffect(() => {
     dispatch(actions.getMediaDetails(params.type, params.id));
+
+    return dispatch(actions.mediaDetailsClearData());
   }, [params]);
 
   return (
