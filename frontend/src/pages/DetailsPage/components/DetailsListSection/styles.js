@@ -34,12 +34,17 @@ export const ItemWrapper = styled.div`
 
   @media only screen and (max-width: 768px) {
     width: 100%;
+    font-size: 14px;
+    line-height: 16px;
   }
 `;
 
 export const ItemTitle = styled.p`
   margin-bottom: 10px;
   font-weight: 700;
+  @media only screen and (max-width: 768px) {
+    margin-bottom: 5px;
+  }
 `;
 
 export const ItemValue = styled.p`

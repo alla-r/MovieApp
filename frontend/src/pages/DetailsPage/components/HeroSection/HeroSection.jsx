@@ -17,7 +17,7 @@ const HeroSection = ({ data, crew }) => {
   return (
     <Background>
       <Container className="container">
-        <ImageWrapper ImageSrc={data.poster} />
+        <ImageWrapper ImageSrc={data.poster} ImageBackdrop={data.backdrop} />
         <DetailsBlock data={data} circularBtnConfig={constants.CIRCULAR_BUTTONS_CONFIG} />
         <LinksBlock crewList={type === 'tv' ? data.createdBy : crewList} />
       </Container>

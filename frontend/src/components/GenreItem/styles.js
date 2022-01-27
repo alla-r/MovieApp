@@ -18,4 +18,9 @@ export const GenreItemWrapper = styled.button`
     background-color: ${(props) => props.theme.colors.secondary};
     color: ${(props) => props.theme.colors.light};
   }
+
+  @media only screen and (max-width: 768px) {
+    font-size: 12px;
+    line-height: 15px;
+  }
 `;

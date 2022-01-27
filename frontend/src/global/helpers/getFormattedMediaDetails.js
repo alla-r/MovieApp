@@ -42,6 +42,7 @@ const getFormattedMediaDetails = (type, data) => {
       voteAvg: data.vote_average,
       status: data.status,
       poster: `https://image.tmdb.org/t/p/original${data.poster_path}`,
+      backdrop: `https://image.tmdb.org/t/p/original${data.backdrop_path}`,
       productionCompanies: data.production_companies.map((item) => item.name),
       productionCountries: data.production_countries.map((item) => item.name),
       duration: data.runtime,
@@ -67,6 +68,7 @@ const getFormattedMediaDetails = (type, data) => {
       voteAvg: data.vote_average,
       status: data.status,
       poster: `https://image.tmdb.org/t/p/original${data.poster_path}`,
+      backdrop: `https://image.tmdb.org/t/p/original${data.backdrop_path}`,
       productionCompanies: data.production_companies.map((item) => item.name),
       productionCountries: data.production_countries.map((item) => item.name),
       createdBy: data.created_by.map((creator) => ({

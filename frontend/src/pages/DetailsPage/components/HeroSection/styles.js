@@ -21,24 +21,24 @@ export const Container = styled.div`
   @media only screen and (max-width: 1200px) {
     flex-wrap: wrap;
   }
-  @media only screen and (max-width: 768px) {
-  }
 `;
 
 export const ImageWrapper = styled.div`
   width: 400px;
   height: 600px;
+  margin-right: 2%;
   border-radius: 10px;
   background-image: url(${(props) => props.ImageSrc});
   background-size: cover;
   background-position: center center;
 
   @media only screen and (max-width: 1200px) {
-    width: 37%;
+    width: 36%;
   }
 
   @media only screen and (max-width: 768px) {
     width: 100%;
     height: 300px;
+    background-image: url(${(props) => props.ImageBackdrop});
   }
 `;
