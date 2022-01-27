@@ -2,10 +2,26 @@ import styled from 'styled-components';
 
 export const PersonContainer = styled.div`
   width: 400px;
-  margin: 0px 20px 50px 0px;
+  margin-bottom: 50px;
   display: flex;
   align-items: center;
   cursor: pointer;
+
+  &:nth-child(odd) {
+    margin-right: 20px;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    width: 45%;
+
+    &:nth-child(odd) {
+      margin-right: 10%;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const ImageWrapper = styled.div`

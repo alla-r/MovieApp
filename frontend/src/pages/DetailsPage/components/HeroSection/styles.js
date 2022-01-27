@@ -4,12 +4,12 @@ export const Background = styled.div`
   padding: 150px 0px;
   background: #1f1f1f;
 
-  @media only screen and (max-width: 1280px) {
-    padding: 100px;
+  @media only screen and (max-width: 1200px) {
+    padding: 100px 0px;
   }
 
   @media only screen and (max-width: 768px) {
-    padding: 50px;
+    padding: 50px 0px;
   }
 `;
 
@@ -18,7 +18,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  @media only screen and (max-width: 1280px) {
+  @media only screen and (max-width: 1200px) {
     flex-wrap: wrap;
   }
   @media only screen and (max-width: 768px) {
@@ -33,9 +33,8 @@ export const ImageWrapper = styled.div`
   background-size: cover;
   background-position: center center;
 
-  @media only screen and (max-width: 1280px) {
+  @media only screen and (max-width: 1200px) {
     width: 37%;
-    /* height: 500px; */
   }
 
   @media only screen and (max-width: 768px) {

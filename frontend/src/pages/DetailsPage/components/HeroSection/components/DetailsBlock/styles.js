@@ -10,7 +10,7 @@ export const Container = styled.div`
   justify-content: flex-start;
   color: ${(props) => props.theme.colors.light};
 
-  @media only screen and (max-width: 1280px) {
+  @media only screen and (max-width: 1200px) {
     width: 57%;
     height: 500px;
   }

@@ -7,7 +7,7 @@ export const Container = styled.div`
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: flex-start;
-  @media only screen and (max-width: 1280px) {
+  @media only screen and (max-width: 1200px) {
     margin-top: 50px;
     width: 100%;
   }

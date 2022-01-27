@@ -40,7 +40,7 @@ const Recommendations = ({ data }) => {
             slidesPerView: 3.5,
             spaceBetween: 30,
           },
-          1280: {
+          1200: {
             slidesPerView: 4.5,
             spaceBetween: 30,
           },

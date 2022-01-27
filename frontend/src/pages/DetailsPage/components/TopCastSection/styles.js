@@ -20,6 +20,8 @@ export const ItemsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-`;
 
-export const Error = styled.div``;
+  @media only screen and (max-width: 1200px) {
+    width: 100%;
+  }
+`;
