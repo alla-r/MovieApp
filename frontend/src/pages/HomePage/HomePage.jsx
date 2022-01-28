@@ -6,6 +6,7 @@ import ContentContainer from '../../components/ContentContainer';
 import * as actions from './actions';
 import * as constants from './constants';
 import { selectors } from './reducer';
+import withLayout from '../../global/hoc/Layout';
 
 const HomePage = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -28,10 +29,6 @@ const HomePage = () => {
 
   return (
     <div className="homepage">
-      <Header
-        headerItems={constants.HEADER_ITEMS}
-        profileDropdownData={constants.PROFILE_DROPDOWN_DATA}
-      />
       <ContentContainer
         heading={constants.trendingsHeading}
         data={trendingsData}
@@ -46,9 +43,8 @@ const HomePage = () => {
           onClickHandler: paginationBtnClickHandler,
         }}
       />
-      <Footer />
     </div>
   );
 };
 
-export default HomePage;
+export default withLayout(HomePage);

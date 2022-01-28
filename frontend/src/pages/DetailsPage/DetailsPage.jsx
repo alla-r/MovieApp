@@ -11,6 +11,7 @@ import Recommendations from './components/Recommendations';
 import * as actions from './actions';
 import * as constants from './constants';
 import { selectors } from './reducer';
+import withLayout from '../../global/hoc/Layout';
 import './DetailsPage.scss';
 
 const DetailsPage = () => {
@@ -34,10 +35,6 @@ const DetailsPage = () => {
 
   return (
     <div className="detailsPage">
-      <Header
-        headerItems={constants.HEADER_ITEMS}
-        profileDropdownData={constants.PROFILE_DROPDOWN_DATA}
-      />
       {detailsLoading && <Loader />}
       {detailsError && <div>{constants.errorMessage}</div>}
 
@@ -61,10 +58,8 @@ const DetailsPage = () => {
           <Recommendations data={detailsRecommendationsList} />
         </>
       )}
-
-      <Footer />
     </div>
   );
 };
 
-export default DetailsPage;
+export default withLayout(DetailsPage);
