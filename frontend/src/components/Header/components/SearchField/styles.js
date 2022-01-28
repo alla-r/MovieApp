@@ -8,10 +8,10 @@ export const TextFieldWrapper = styled.div`
 
 export const TextField = styled.input`
   padding: 0 55px 0 21px;
-  width: 27vw;
-  min-width: 415px;
+  width: 23vw;
+  min-width: 360px;
   max-width: 470px;
-  height: 54px;
+  height: 50px;
   background-color: transparent;
   border: 2px solid #85cad4;
   border-radius: 50px;
@@ -20,6 +20,7 @@ export const TextField = styled.input`
   line-height: 22px;
 
   &::placeholder {
+    font-size: 14px;
     color: rgba(234, 234, 234, 0.5);
   }
 
@@ -30,8 +31,8 @@ export const TextField = styled.input`
 
 export const IconButton = styled.button`
   position: absolute;
-  right: 21px;
-  top: 12px;
+  right: 18px;
+  top: 10px;
   width: 30px;
   height: 30px;
   background-color: transparent;

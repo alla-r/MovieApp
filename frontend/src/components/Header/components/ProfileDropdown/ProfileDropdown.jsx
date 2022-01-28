@@ -8,7 +8,7 @@ const ProfileDropdown = ({ avatarContent, data }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
-  const onClickHandler = (event) => {
+  const onIconClickHandler = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -16,7 +16,7 @@ const ProfileDropdown = ({ avatarContent, data }) => {
     setAnchorEl(null);
   };
 
-  const menuItems = data.map(({ content, clickHandler }) => (
+  const dropdownMenuItems = data.map(({ content, clickHandler }) => (
     <MenuItem key={content} onClick={clickHandler}>
       {content}
     </MenuItem>
@@ -25,7 +25,7 @@ const ProfileDropdown = ({ avatarContent, data }) => {
   return (
     <ProfileWrapper>
       <IconButton
-        onClick={onClickHandler}
+        onClick={onIconClickHandler}
         aria-controls={open ? 'account-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
@@ -41,7 +41,7 @@ const ProfileDropdown = ({ avatarContent, data }) => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        {menuItems}
+        {dropdownMenuItems}
       </Menu>
     </ProfileWrapper>
   );

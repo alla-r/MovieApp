@@ -6,6 +6,8 @@ export const Item = styled.div`
   line-height: 24px;
   color: ${(props) => props.theme.colors.light};
   cursor: pointer;
+  white-space: nowrap;
+
   &:hover {
     color: ${(props) => props.theme.colors.secondary};
   }

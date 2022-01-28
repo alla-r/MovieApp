@@ -1,14 +1,31 @@
-import React from 'react';
+/* eslint-disable no-undef */
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Logo from '../Logo';
 import HeaderItem from './components/HeaderItem';
 import ProfileDropdown from './components/ProfileDropdown';
 import SearchField from './components/SearchField';
-import { Background, Container, FirstColumn, SecondColumn } from './styles';
+import { Background, NavContainer, NavMenu, SecondColumn } from './styles';
 
 const Header = ({ isUserAuthorized = false, headerItems, profileDropdownData }) => {
   const navigate = useNavigate();
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    let timeoutId = null;
+
+    const handleResize = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => setWindowWidth(window.innerWidth), 150);
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // console.log(windowWidth);
+  const isMobile = windowWidth <= 640;
 
   const onLogoClickHandler = () => {
     navigate('/');
@@ -20,25 +37,25 @@ const Header = ({ isUserAuthorized = false, headerItems, profileDropdownData }) 
     console.log(searchedValue);
   };
 
-  const items = headerItems.map(({ content, clickHandler }) => (
-    <HeaderItem key={content} content={content} onClickHandler={clickHandler} />
+  const items = headerItems.map(({ content, path }) => (
+    <HeaderItem key={content} content={content} path={path} />
   ));
 
   return (
     <Background>
-      <Container>
-        <FirstColumn>
-          <Logo size={36} onClickHandler={onLogoClickHandler} />
+      <NavContainer>
+        <Logo size={36} onClickHandler={onLogoClickHandler} />
+        <NavMenu>
           {items}
-        </FirstColumn>
+        </NavMenu>
         <SecondColumn>
           <SearchField onSearchIconClickHandler={onSearchClickHandler} />
-          {isUserAuthorized && (
+          {!isUserAuthorized && (
             <HeaderItem content="Sign In" onClickHandler={onSignInClickHandler} />
           )}
-          {!isUserAuthorized && <ProfileDropdown avatarContent="AN" data={profileDropdownData} />}
+          {isUserAuthorized && <ProfileDropdown avatarContent="AN" data={profileDropdownData} />}
         </SecondColumn>
-      </Container>
+      </NavContainer>
     </Background>
   );
 };
