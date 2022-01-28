@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import SearchIcon from '../../../../global/images/Header/search-icon.svg';
 
-export const TextFieldWrapper = styled.div`
+export const TextFieldWrapper = styled.form`
   position: relative;
   margin-right: 10px;
 `;

@@ -2,28 +2,34 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { IconButton, TextField, TextFieldWrapper } from './styles';
 
-const SearchField = ({ onSearchIconClickHandler }) => {
+const SearchField = ({ submitHandler }) => {
   const [value, setValue] = useState(null);
+
+  const onSubmitHandler = (event) => {
+    console.log(event)
+    event.preventDefault();
+    submitHandler(value);
+  }
 
   const handleChange = (event) => {
     setValue(event.target.value);
   };
 
   return (
-    <TextFieldWrapper>
+    <TextFieldWrapper onSubmit={(e) => onSubmitHandler(e)}>
       <TextField
         type="text"
         placeholder="Search for a movie, tv show, person ..."
         name="search"
         onChange={handleChange}
       />
-      <IconButton onClick={() => onSearchIconClickHandler(value)} />
+      <IconButton type="submit" />
     </TextFieldWrapper>
   );
 };
 
 SearchField.propTypes = {
-  onSearchIconClickHandler: PropTypes.func.isRequired,
+  submitHandler: PropTypes.func.isRequired,
 };
 
 export default SearchField;

@@ -16,8 +16,8 @@ const ProfileDropdown = ({ avatarContent, data }) => {
     setAnchorEl(null);
   };
 
-  const dropdownMenuItems = data.map(({ content, clickHandler }) => (
-    <MenuItem key={content} onClick={clickHandler}>
+  const dropdownMenuItems = data.map(({ content, onClickHandler }) => (
+    <MenuItem key={content} onClick={onClickHandler}>
       {content}
     </MenuItem>
   ));
@@ -52,7 +52,7 @@ ProfileDropdown.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
       content: PropTypes.string.isRequired,
-      clickHandler: PropTypes.func.isRequired,
+      onClickHandler: PropTypes.func.isRequired,
     }),
   ).isRequired,
 };
