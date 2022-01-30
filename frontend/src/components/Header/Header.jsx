@@ -37,9 +37,11 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
   const onLogoClickHandler = () => {
     navigate('/');
   };
+
   const onSignInClickHandler = () => {
     console.log('sign in');
   };
+
   const searchSubmitHandler = (searchedValue) => {
     console.log(searchedValue);
   };
@@ -48,16 +50,16 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
     setIsSearchBarOpen(!isSearchBarOpen);
   }
 
+  const getMobileItems = (data) => {
+    const mobileItems = data.map(({ content, onClickHandler }) => (
+      <HeaderItem key={content} content={content} onClickHandler={() => menuItemsClickHandler(onClickHandler)} />
+    ));
+
+    return mobileItems;
+  }
+
   const items = headerItems.map(({ content, onClickHandler }) => (
     <HeaderItem key={content} content={content} onClickHandler={onClickHandler} />
-  ));
-
-  const menuItems = headerItems.map(({ content, onClickHandler }) => (
-    <HeaderItem key={content} content={content} onClickHandler={() => menuItemsClickHandler(onClickHandler)} />
-  ));
-
-  const dropdownMenuItems = profileDropdownData.map(({ content, onClickHandler }) => (
-    <HeaderItem key={content} content={content} onClickHandler={() => menuItemsClickHandler(onClickHandler)} />
   ));
 
   const signInItem = <HeaderItem content="Sign In" onClickHandler={() => menuItemsClickHandler(onSignInClickHandler)} />;
@@ -76,8 +78,8 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
             isOpen={isMenuOpen}  
             onStateChange={({ isOpen }) => setIsMenuOpen(isOpen)}
           >
-            {menuItems}
-            {isUserAuthorized ? dropdownMenuItems : signInItem}
+            {getMobileItems(headerItems)}
+            {isUserAuthorized ? getMobileItems(profileDropdownData) : signInItem}
           </BurgerMenu>
         </>
       )}
@@ -89,9 +91,7 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
           </NavMenu>
           <SecondColumn>
             <SearchField submitHandler={searchSubmitHandler} />
-            {!isUserAuthorized && (
-              <HeaderItem content="Sign In" onClickHandler={onSignInClickHandler} />
-            )}
+            {!isUserAuthorized && <HeaderItem content="Sign In" onClickHandler={onSignInClickHandler} />}
             {isUserAuthorized && <ProfileDropdown avatarContent="AN" data={profileDropdownData} />}
           </SecondColumn>
         </NavContainer>
