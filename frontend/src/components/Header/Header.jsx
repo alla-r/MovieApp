@@ -50,6 +50,10 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
     setIsSearchBarOpen(!isSearchBarOpen);
   }
 
+  const closeSearchInput = () => {
+    setIsSearchBarOpen(false);
+  }
+
   const getMobileItems = (data) => {
     const mobileItems = data.map(({ content, onClickHandler }) => (
       <HeaderItem key={content} content={content} onClickHandler={() => menuItemsClickHandler(onClickHandler)} />
@@ -66,7 +70,13 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
 
   return (
     <Background>
-      {isSearchBarOpen && <SearchField submitHandler={searchSubmitHandler} />}
+      {isMobile && isSearchBarOpen && (
+        <SearchField 
+          submitHandler={searchSubmitHandler} 
+          isMobileMode
+          closeBtnClickHandler={closeSearchInput}
+        />
+      )}
       {isMobile && !isSearchBarOpen && (
         <>
           <div className='container'>
