@@ -3,7 +3,6 @@ import styled from 'styled-components';
 // eslint-disable-next-line import/prefer-default-export
 export const ButtonWrapper = styled.button`
   padding: 12px 44px;
-  height: 50px;
   color: ${({ fontColor }) => fontColor};
   background: ${({ backgroundColor }) => backgroundColor};
   border-radius: 50px;
@@ -30,5 +29,17 @@ export const ButtonWrapper = styled.button`
   &.filled:hover {
     background: transparent;
     color: ${({ borderColor }) => borderColor};
+  }
+
+  @media only screen and (max-width: 768px) {
+    padding: 10px 40px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  @media only screen and (max-width: 450px) {
+    padding: 8px 36px;
+    font-size: 14px;
+    line-height: 18px;
   }
 `;

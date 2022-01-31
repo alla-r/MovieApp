@@ -1,36 +1,34 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Loader from '../Loader';
 import MovieCard from '../MovieCard';
 import Button from '../Button';
+import Heading from '../Heading';
 import { Container, ItemsContainer, Error } from './styles';
+import { getFormattedItem } from '../../global/helpers';
 
-const ContentContainer = ({ loading, data, error, paginationBtn }) => {
-  const formatMediaData = (item) => {
-    const formattedItem = {
-      id: item.id,
-      date: item.release_date || item.first_air_date,
-      title: item.title || item.name,
-      description: item.overview,
-      voteAvg: item.vote_average,
-      poster: `https://image.tmdb.org/t/p/original${item.poster_path}`,
-    };
+const ContentContainer = ({ loading, data, error, paginationBtn, heading }) => {
+  const navigate = useNavigate();
 
-    return formattedItem;
-  };
+  const items = data?.map((item) => {
+    const formattedItem = getFormattedItem(item);
+    const { type, id } = formattedItem;
 
-  const items =
-    data &&
-    data.map((media) => (
+    return (
       <MovieCard
-        key={media.id}
-        onClickHandler={() => console.log('item ' + media.id)}
-        data={formatMediaData(media)}
+        key={id}
+        data={formattedItem}
+        onClickHandler={() => {
+          navigate(`${type}/${id}`);
+        }}
       />
-    ));
+    );
+  });
 
   return (
     <Container className="container">
+      {heading && <Heading content={heading} />}
       {data && <ItemsContainer className="items-container">{items}</ItemsContainer>}
       {loading && <Loader />}
       {error.status && <Error>{error.message}</Error>}
@@ -49,6 +47,7 @@ const ContentContainer = ({ loading, data, error, paginationBtn }) => {
 };
 
 ContentContainer.defaultProps = {
+  heading: null,
   loading: false,
   data: [],
   error: null,
@@ -56,6 +55,7 @@ ContentContainer.defaultProps = {
 };
 
 ContentContainer.propTypes = {
+  heading: PropTypes.string,
   loading: PropTypes.bool,
   data: PropTypes.arrayOf(
     PropTypes.shape({

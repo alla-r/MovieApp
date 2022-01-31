@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, HeadingContent } from './styles';
+import { Container, HeadingContent, Line } from './styles';
 
 const Heading = ({ content }) => (
-  <Container className="container">
+  <Container>
+    <Line />
     <HeadingContent>{content}</HeadingContent>
   </Container>
 );

@@ -1,4 +1,2 @@
-export const SHOW_LOADER = 'SHOW_LOADER';
-export const HIDE_LOADER = 'HIDE_LOADER';
-
+// eslint-disable-next-line import/prefer-default-export
 export const BASE_URL = 'https://api.themoviedb.org/3';

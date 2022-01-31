@@ -15,6 +15,10 @@ export const getTrendingsRequest = () => ({
   type: constants.GET_TRENDINGS_REQUEST,
 });
 
+export const trendingsClearData = () => ({
+  type: constants.TRENDINGS_CLEAR_DATA,
+});
+
 export const getTrendingsMedia = (pageNumber) => async (dispatch) => {
   dispatch(getTrendingsRequest());
   try {

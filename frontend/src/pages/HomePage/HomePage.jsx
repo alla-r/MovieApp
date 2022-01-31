@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import ContentContainer from '../../components/ContentContainer';
-import Heading from '../../components/Heading';
 import * as actions from './actions';
 import * as constants from './constants';
 import { selectors } from './reducer';
+import withLayout from '../../global/hoc/Layout';
 
 const HomePage = () => {
   const [pageNumber, setPageNumber] = useState(1);
+
   const dispatch = useDispatch();
+
   const trendingsLoading = useSelector(selectors.trendingsLoading);
   const trendingsData = useSelector(selectors.trendingsData);
   const trendingsError = useSelector(selectors.trendingsError);
   const isNextPageAvailable = useSelector(selectors.trendingsIsNextPageAvailable);
 
   useEffect(() => {
+    if (pageNumber === 1) {
+      dispatch(actions.trendingsClearData());
+    }
     dispatch(actions.getTrendingsMedia(pageNumber));
   }, [pageNumber]);
 
@@ -24,12 +27,8 @@ const HomePage = () => {
 
   return (
     <div className="homepage">
-      <Header
-        headerItems={constants.HEADER_ITEMS}
-        profileDropdownData={constants.PROFILE_DROPDOWN_DATA}
-      />
-      <Heading content={constants.trendingsHeading} />
       <ContentContainer
+        heading={constants.trendingsHeading}
         data={trendingsData}
         loading={trendingsLoading}
         error={{
@@ -42,9 +41,8 @@ const HomePage = () => {
           onClickHandler: paginationBtnClickHandler,
         }}
       />
-      <Footer />
     </div>
   );
 };
 
-export default HomePage;
+export default withLayout(HomePage);
