@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import Loader from '../../components/Loader';
 import TopCastSection from './components/TopCastSection';
 import DetailsListSection from './components/DetailsListSection';

@@ -42,7 +42,7 @@ export const Background = styled.div`
     height: 24px;
     right: 10%;
     top: 38px;
-    
+
     .bm-burger-bars {
       background-color: ${(props) => props.theme.colors.light};
       border-radius: 10px;

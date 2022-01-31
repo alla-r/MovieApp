@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import ContentContainer from '../../components/ContentContainer';
 import * as actions from './actions';
 import * as constants from './constants';

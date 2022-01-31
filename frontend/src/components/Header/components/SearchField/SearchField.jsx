@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import { IconButton, TextField, TextFieldWrapper, TextFieldMobile, CloseButton } from './styles';
 
 const SearchField = ({ submitHandler, isMobileMode, closeBtnClickHandler }) => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
     submitHandler(value);
-  }
+  };
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -17,11 +17,11 @@ const SearchField = ({ submitHandler, isMobileMode, closeBtnClickHandler }) => {
 
   const inputProps = {
     value,
-    type: "text",
-    placeholder: "Search for a movie, tv show, person ...",
-    name: "search",
-    onChange: handleChange
-  }
+    type: 'text',
+    placeholder: 'Search for a movie, tv show, person ...',
+    name: 'search',
+    onChange: handleChange,
+  };
 
   return (
     <TextFieldWrapper onSubmit={(e) => onSubmitHandler(e)}>
@@ -42,13 +42,13 @@ const SearchField = ({ submitHandler, isMobileMode, closeBtnClickHandler }) => {
 
 SearchField.defaultProps = {
   isMobileMode: false,
-  closeBtnClickHandler: () => {}
+  closeBtnClickHandler: () => {},
 };
 
 SearchField.propTypes = {
   submitHandler: PropTypes.func.isRequired,
   isMobileMode: PropTypes.bool,
-  closeBtnClickHandler: PropTypes.func
+  closeBtnClickHandler: PropTypes.func,
 };
 
 export default SearchField;

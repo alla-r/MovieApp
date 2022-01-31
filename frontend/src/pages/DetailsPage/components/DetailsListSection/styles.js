@@ -27,9 +27,9 @@ export const ItemWrapper = styled.div`
   @media only screen and (max-width: 1200px) {
     width: 45%;
 
-    &:nth-child(2n+1) {
+    &:nth-child(2n + 1) {
       margin-right: 10%;
-    }    
+    }
   }
 
   @media only screen and (max-width: 768px) {

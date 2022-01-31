@@ -18,7 +18,7 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
   const menuItemsClickHandler = (customClickHandler) => {
     setIsMenuOpen(false);
     customClickHandler();
-  }
+  };
 
   useEffect(() => {
     let timeoutId = null;
@@ -26,10 +26,10 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
     const handleResize = () => {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => setWindowWidth(window.innerWidth), 150);
-    }
+    };
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const isMobile = windowWidth <= 1080;
@@ -48,44 +48,53 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
 
   const showSearchInput = () => {
     setIsSearchBarOpen(!isSearchBarOpen);
-  }
+  };
 
   const closeSearchInput = () => {
     setIsSearchBarOpen(false);
-  }
+  };
 
   const getMobileItems = (data) => {
     const mobileItems = data.map(({ content, onClickHandler }) => (
-      <HeaderItem key={content} content={content} onClickHandler={() => menuItemsClickHandler(onClickHandler)} />
+      <HeaderItem
+        key={content}
+        content={content}
+        onClickHandler={() => menuItemsClickHandler(onClickHandler)}
+      />
     ));
 
     return mobileItems;
-  }
+  };
 
   const items = headerItems.map(({ content, onClickHandler }) => (
     <HeaderItem key={content} content={content} onClickHandler={onClickHandler} />
   ));
 
-  const signInItem = <HeaderItem content="Sign In" onClickHandler={() => menuItemsClickHandler(onSignInClickHandler)} />;
+  const signInItem = (
+    <HeaderItem
+      content="Sign In"
+      onClickHandler={() => menuItemsClickHandler(onSignInClickHandler)}
+    />
+  );
 
   return (
     <Background>
       {isMobile && isSearchBarOpen && (
-        <SearchField 
-          submitHandler={searchSubmitHandler} 
+        <SearchField
+          submitHandler={searchSubmitHandler}
           isMobileMode
           closeBtnClickHandler={closeSearchInput}
         />
       )}
       {isMobile && !isSearchBarOpen && (
         <>
-          <div className='container'>
+          <div className="container">
             <Logo size={36} onClickHandler={onLogoClickHandler} />
           </div>
           <SearchIconButton onClick={showSearchInput} />
-          <BurgerMenu 
-            right 
-            isOpen={isMenuOpen}  
+          <BurgerMenu
+            right
+            isOpen={isMenuOpen}
             onStateChange={({ isOpen }) => setIsMenuOpen(isOpen)}
           >
             {getMobileItems(headerItems)}
@@ -96,12 +105,12 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
       {!isMobile && (
         <NavContainer>
           <Logo size={36} onClickHandler={onLogoClickHandler} />
-          <NavMenu>
-            {items}
-          </NavMenu>
+          <NavMenu>{items}</NavMenu>
           <SecondColumn>
             <SearchField submitHandler={searchSubmitHandler} />
-            {!isUserAuthorized && <HeaderItem content="Sign In" onClickHandler={onSignInClickHandler} />}
+            {!isUserAuthorized && (
+              <HeaderItem content="Sign In" onClickHandler={onSignInClickHandler} />
+            )}
             {isUserAuthorized && <ProfileDropdown avatarContent="AN" data={profileDropdownData} />}
           </SecondColumn>
         </NavContainer>

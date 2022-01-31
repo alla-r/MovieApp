@@ -38,15 +38,13 @@ export const HEADER_ITEMS = [
   },
 ];
 
-const withLayout = Page => () => (
-  <>
-    <Header
-      headerItems={HEADER_ITEMS}
-      profileDropdownData={PROFILE_DROPDOWN_DATA}
-    />
-    <Page />
-    <Footer />
-  </>
-)
+const withLayout = (Page) => () =>
+  (
+    <>
+      <Header headerItems={HEADER_ITEMS} profileDropdownData={PROFILE_DROPDOWN_DATA} />
+      <Page />
+      <Footer />
+    </>
+  );
 
 export default withLayout;
