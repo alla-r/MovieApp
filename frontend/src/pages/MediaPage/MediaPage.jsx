@@ -11,7 +11,7 @@ const MediaPage = () => {
   const dispatch = useDispatch();
   const { type } = useParams();
   const [pageNumber, setPageNumber] = useState(1);
-  
+
   const storedMediaType = useSelector(selectors.mediaType);
   const genres = useSelector(selectors.genresData);
   const loading = useSelector(selectors.loading);
@@ -19,19 +19,19 @@ const MediaPage = () => {
   const filteredDataError = useSelector(selectors.filteredDataError);
   const isNextPageAvailable = useSelector(selectors.isNextPageAvailable);
 
-  useEffect(() =>  {
+  useEffect(() => {
     dispatch(actions.changeMediaType(type));
     dispatch(actions.getGenres());
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (storedMediaType && storedMediaType !== type) {
-      setPageNumber(1)
+      setPageNumber(1);
       dispatch(actions.clearFilteredMedia());
       dispatch(actions.changeMediaType(type));
     }
-    
-    dispatch(actions.getFilteredMedia(type, pageNumber))
+
+    dispatch(actions.getFilteredMedia(type, pageNumber));
   }, [pageNumber, type]);
 
   const paginationBtnClickHandler = () => setPageNumber(pageNumber + 1);

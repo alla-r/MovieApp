@@ -26,7 +26,7 @@ export const getTrendingsMedia = (pageNumber) => async (dispatch) => {
     const response = await axios.get(
       `/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}&page=${pageNumber}`,
     );
-    
+
     const formattedData = getFormattedListData(response.data);
     dispatch(getTrendingsSuccess(formattedData));
   } catch (error) {

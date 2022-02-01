@@ -1,4 +1,8 @@
-import { getFormattedMediaDetails, getFormattedGenreList, getFormattedListData } from './dataFormatters';
+import {
+  getFormattedMediaDetails,
+  getFormattedGenreList,
+  getFormattedListData,
+} from './dataFormatters';
 import ScrollToTop from './ScrollToTop';
 
 export { getFormattedMediaDetails, ScrollToTop, getFormattedGenreList, getFormattedListData };

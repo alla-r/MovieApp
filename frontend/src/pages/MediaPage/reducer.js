@@ -19,8 +19,8 @@ const reducer = (state = initialState, action) => {
     case constants.CHANGE_MEDIA_TYPE:
       return {
         ...state,
-        mediaType: action.payload
-      }
+        mediaType: action.payload,
+      };
     case constants.GET_GENRES:
       return {
         ...state,
@@ -28,7 +28,7 @@ const reducer = (state = initialState, action) => {
     case constants.GET_GENRES_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case constants.GET_GENRES_SUCCESS:
       return {
@@ -36,8 +36,8 @@ const reducer = (state = initialState, action) => {
         loading: false,
         genres: {
           ...state.genres,
-          data: action.payload
-        }
+          data: action.payload,
+        },
       };
     case constants.GET_GENRES_ERROR:
       return {
@@ -45,13 +45,13 @@ const reducer = (state = initialState, action) => {
         loading: false,
         genres: {
           ...state.genres,
-          error: action.payload.message
-        }
+          error: action.payload.message,
+        },
       };
     case constants.GET_FILTERED_MEDIA:
       return {
         ...state,
-      }
+      };
     case constants.GET_FILTERED_MEDIA_REQUEST:
       return {
         ...state,
@@ -66,7 +66,7 @@ const reducer = (state = initialState, action) => {
         filteredData: {
           ...state.filteredData,
           data: [...state.filteredData.data, ...action.payload.results],
-        }
+        },
       };
     case constants.GET_FILTERED_MEDIA_ERROR:
       return {
@@ -77,7 +77,7 @@ const reducer = (state = initialState, action) => {
           error: action.payload.message,
         },
       };
-    case constants.CLEAR_FILTERED_MEDIA: 
+    case constants.CLEAR_FILTERED_MEDIA:
       return {
         mediaType: null,
         isNextPageAvailable: false,

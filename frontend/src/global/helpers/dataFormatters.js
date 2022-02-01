@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const getFormattedCreditsItem = (item) => {
   const formattedItem = {
     id: item.id,
@@ -28,8 +29,6 @@ const getFormattedRecommendationItem = (item) => {
 
 const getFormattedMediaDetails = (type, data) => {
   const formattedData = {};
-  // console.log(type);
-  // console.log(data);
 
   if (type === 'movie') {
     formattedData.details = {
@@ -99,7 +98,7 @@ const getFormattedGenreList = (genreList) => {
   }));
 
   return formattedGenreList;
-}
+};
 
 const getFormattedItem = (item, type) => {
   const formattedItem = {
@@ -118,16 +117,11 @@ const getFormattedItem = (item, type) => {
 const getFormattedListData = ({ page, total_pages, results }, mediaType) => {
   const formattedData = {
     page,
-    // eslint-disable-next-line camelcase
     totalPages: total_pages,
-    results: results.map(item => getFormattedItem(item, mediaType))
+    results: results.map((item) => getFormattedItem(item, mediaType)),
   };
 
   return formattedData;
-}
-
-export {
-  getFormattedMediaDetails,
-  getFormattedGenreList,
-  getFormattedListData,
 };
+
+export { getFormattedMediaDetails, getFormattedGenreList, getFormattedListData };
