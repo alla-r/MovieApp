@@ -5,6 +5,7 @@ import StyledEngineProvider from '@mui/material/StyledEngineProvider';
 import { ThemeProvider } from 'styled-components';
 import HomePage from './pages/HomePage';
 import DetailsPage from './pages/DetailsPage';
+import MediaPage from './pages/MediaPage';
 import theme from './theme';
 import * as constants from './constants';
 import './global/styles/index.scss';
@@ -17,6 +18,7 @@ const App = () => {
       <StyledEngineProvider injectFirst>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/:type" element={<MediaPage />} />
           <Route path="/:type/:id" element={<DetailsPage />} />
         </Routes>
       </StyledEngineProvider>

@@ -2,8 +2,6 @@ import * as constants from './constants';
 
 const initialState = {
   isNextPageAvailable: false,
-  currentPage: null,
-  totalPages: null,
   loading: false,
   data: [],
   error: null,
@@ -24,9 +22,7 @@ const reducer = (state = initialState, action) => {
     case constants.GET_TRENDINGS_SUCCESS:
       return {
         ...state,
-        currentPage: action.payload.page,
-        totalPages: action.payload.total_pages,
-        isNextPageAvailable: action.payload.page < action.payload.total_pages,
+        isNextPageAvailable: action.payload.page < action.payload.totalPages,
         data: [...state.data, ...action.payload.results],
         error: null,
         loading: false,
@@ -40,8 +36,6 @@ const reducer = (state = initialState, action) => {
     case constants.TRENDINGS_CLEAR_DATA:
       return {
         isNextPageAvailable: false,
-        currentPage: null,
-        totalPages: null,
         loading: false,
         data: [],
         error: null,

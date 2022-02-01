@@ -1,12 +1,24 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
-export const Item = styled.div`
+export const Item = styled(NavLink)`
   margin: 0 15px;
   font-size: 18px;
   line-height: 24px;
+  text-decoration: none;
   color: ${(props) => props.theme.colors.light};
   cursor: pointer;
   white-space: nowrap;
+
+  .line {
+    display: none;
+  }
+
+  &.active {
+    .line {
+      display: block;
+    }
+  }
 
   &:hover {
     color: ${(props) => props.theme.colors.secondary};

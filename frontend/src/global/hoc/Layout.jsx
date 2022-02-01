@@ -26,12 +26,14 @@ export const PROFILE_DROPDOWN_DATA = [
 export const HEADER_ITEMS = [
   {
     content: 'Movies',
+    path: '/movies',
     onClickHandler: () => {
       console.log('Movies');
     },
   },
   {
     content: 'TV Shows',
+    path: '/tv-shows',
     onClickHandler: () => {
       console.log('TV Shows');
     },

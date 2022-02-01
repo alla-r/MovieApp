@@ -66,8 +66,8 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
     return mobileItems;
   };
 
-  const items = headerItems.map(({ content, onClickHandler }) => (
-    <HeaderItem key={content} content={content} onClickHandler={onClickHandler} />
+  const items = headerItems.map(({ content, onClickHandler, path }) => (
+    <HeaderItem key={content} content={content} onClickHandler={onClickHandler} path={path} />
   ));
 
   const signInItem = (

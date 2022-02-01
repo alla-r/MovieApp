@@ -2,22 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Item, Line } from './styles';
 
-const HeaderItem = ({ content, onClickHandler, isActive }) => (
-  <Item onClick={onClickHandler}>
+const HeaderItem = ({ content, onClickHandler, path }) => (
+  <Item 
+    onClick={onClickHandler} 
+    to={path} 
+  >
     {content}
-    {isActive && <Line />}
+    <Line className="line" />
   </Item>
 );
 
 HeaderItem.defaultProps = {
   onClickHandler: () => {},
-  isActive: false,
+  path: '',
 };
 
 HeaderItem.propTypes = {
   content: PropTypes.string.isRequired,
+  path: PropTypes.string,
   onClickHandler: PropTypes.func,
-  isActive: PropTypes.bool,
 };
 
 export default HeaderItem;
