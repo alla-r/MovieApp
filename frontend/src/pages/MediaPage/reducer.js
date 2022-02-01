@@ -56,6 +56,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+        isNextPageAvailable: false,
       };
     case constants.GET_FILTERED_MEDIA_SUCCESS:
       return {
@@ -78,6 +79,8 @@ const reducer = (state = initialState, action) => {
       };
     case constants.CLEAR_FILTERED_MEDIA: 
       return {
+        mediaType: null,
+        isNextPageAvailable: false,
         loading: false,
         genres: {
           data: [],

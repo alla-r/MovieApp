@@ -10,41 +10,29 @@ import withLayout from '../../global/hoc/Layout';
 const MediaPage = () => {
   const dispatch = useDispatch();
   const { type } = useParams();
-
   const [pageNumber, setPageNumber] = useState(1);
   
-  const mediaType = useSelector(selectors.mediaType);
+  const storedMediaType = useSelector(selectors.mediaType);
   const genres = useSelector(selectors.genresData);
   const loading = useSelector(selectors.loading);
   const filteredData = useSelector(selectors.filteredData);
   const filteredDataError = useSelector(selectors.filteredDataError);
   const isNextPageAvailable = useSelector(selectors.isNextPageAvailable);
 
+  useEffect(() =>  {
+    dispatch(actions.changeMediaType(type));
+    dispatch(actions.getGenres());
+  }, [])
+
   useEffect(() => {
-    if (mediaType !== type) {
-      dispatch(actions.changeMediaType(type));
-      // setPageNumber(1);
-    }
-
-    if (pageNumber === 1) {
+    if (storedMediaType && storedMediaType !== type) {
+      setPageNumber(1)
       dispatch(actions.clearFilteredMedia());
-    }
-
-    if (genres.length === 0) {
-      dispatch(actions.getGenres());
+      dispatch(actions.changeMediaType(type));
     }
     
     dispatch(actions.getFilteredMedia(type, pageNumber))
   }, [pageNumber, type]);
-
-  // console.log(genres);
-  // console.log(filteredData);
-  // useEffect(() => {
-  //   if (pageNumber === 1) {
-  //     dispatch(actions.trendingsClearData());
-  //   }
-  //   dispatch(actions.getTrendingsMedia(pageNumber));
-  // }, [pageNumber]);
 
   const paginationBtnClickHandler = () => setPageNumber(pageNumber + 1);
 
