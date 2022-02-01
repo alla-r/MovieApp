@@ -18,7 +18,7 @@ const ContentContainer = ({ loading, data, error, paginationBtn, heading }) => {
         key={id}
         data={item}
         onClickHandler={() => {
-          navigate(`${type}/${id}`);
+          navigate(`/${type}/${id}`);
         }}
       />
     );

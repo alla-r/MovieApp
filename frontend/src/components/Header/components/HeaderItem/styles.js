@@ -10,16 +10,6 @@ export const Item = styled(NavLink)`
   cursor: pointer;
   white-space: nowrap;
 
-  .line {
-    display: none;
-  }
-
-  &.active {
-    .line {
-      display: block;
-    }
-  }
-
   &:hover {
     color: ${(props) => props.theme.colors.secondary};
   }

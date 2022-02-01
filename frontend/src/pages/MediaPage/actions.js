@@ -45,7 +45,6 @@ export const getFilteredMediaRequest = () => ({
 });
 
 export const getFilteredMedia = (mediaType = "movie", pageNumber, genreList = ["all"]) => async (dispatch) => {
-  console.log(mediaType)
   dispatch(getGenresRequest());
   try {
     const response = await axios.get(

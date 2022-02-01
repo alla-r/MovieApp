@@ -9,9 +9,7 @@ import withLayout from '../../global/hoc/Layout';
 
 const MediaPage = () => {
   const dispatch = useDispatch();
-  const params = useParams();
-
-  const type = params.type === "movies" ? "movie" : "tv";
+  const { type } = useParams();
 
   const [pageNumber, setPageNumber] = useState(1);
   
@@ -37,7 +35,7 @@ const MediaPage = () => {
     }
     
     dispatch(actions.getFilteredMedia(type, pageNumber))
-  }, [pageNumber, params]);
+  }, [pageNumber, type]);
 
   // console.log(genres);
   // console.log(filteredData);
