@@ -70,7 +70,7 @@ export const getFormattedDate = (dateString) => {
     'December',
   ];
 
-  return `${months[month - 1].slice(0, 3)} ${day}, ${year}`;
+  return dateString ? `${months[month - 1].slice(0, 3)} ${day}, ${year}` : "";
 };
 
 export const getPercentageValue = (value, maxValue) => (value * 100) / maxValue;
@@ -97,13 +97,14 @@ export const getFormattedYears = ({ type, date, firstAirDate, lastAirDate }) => 
   let formattedDate;
 
   if (type === 'movie') {
-    formattedDate = date.slice(0, 4);
+    formattedDate = date ? date.slice(0, 4) : null;
   }
 
   if (type === 'tv') {
-    const startYear = firstAirDate.slice(0, 4);
-    const endYear = lastAirDate?.slice(0, 4) || '...';
-    formattedDate = `${startYear} - ${endYear}`;
+    const startYear = firstAirDate ? firstAirDate.slice(0, 4) : null;
+
+    const endYear = lastAirDate ? lastAirDate.slice(0, 4) : '...';
+    formattedDate = startYear ? `${startYear} - ${endYear}` : "";
   }
 
   return formattedDate;

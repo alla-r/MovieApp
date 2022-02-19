@@ -41,12 +41,14 @@ const DetailsBlock = ({ data, circularBtnConfig }) => {
     />
   ));
 
+  const formattedYears = getFormattedYears(data);
+
   return (
     <Container>
       <Title>{data.title}</Title>
       <DetailsWrapper>
-        <Item>{getFormattedYears(data)}</Item>
-        <Divider />
+        <Item>{formattedYears}</Item>
+        {formattedYears && <Divider />}
         <Item>{getDuration(data)}</Item>
       </DetailsWrapper>
       <ButtonsWrapper>
