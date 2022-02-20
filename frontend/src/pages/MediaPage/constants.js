@@ -9,7 +9,7 @@ export const GET_FILTERED_MEDIA_ERROR = 'GET_FILTERED_MEDIA_ERROR';
 export const GET_FILTERED_MEDIA = 'GET_FILTERED_MEDIA';
 export const CLEAR_FILTERED_MEDIA = 'CLEAR_FILTERED_MEDIA';
 
-export const CHANGE_MEDIA_TYPE = 'CHANGE_MEDIA_TYPE';
+export const UPDATE_GENRE_LIST = 'UPDATE_GENRE_LIST';
 
 export const errorMessage = "Something went wrong. Couldn't fetch data.";
 export const paginationBtnText = 'Load More';

@@ -16,11 +16,11 @@ export const getGenresRequest = () => ({
   type: constants.GET_GENRES_REQUEST,
 });
 
-export const getGenres = () => async (dispatch) => {
+export const getGenres = (type) => async (dispatch) => {
   dispatch(getGenresRequest());
   try {
     const response = await axios.get(
-      `/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
+      `/genre/${type}/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
     );
 
     const formattedGenreList = getFormattedGenreList(response.data.genres);
@@ -44,10 +44,17 @@ export const getFilteredMediaRequest = () => ({
   type: constants.GET_FILTERED_MEDIA_REQUEST,
 });
 
+export const clearFilteredMedia = () => ({
+  type: constants.CLEAR_FILTERED_MEDIA,
+});
+
 export const getFilteredMedia =
   (mediaType = 'movie', pageNumber, genreList = ['all']) =>
   async (dispatch) => {
-    dispatch(getGenresRequest());
+    if (pageNumber === 1) {
+      dispatch(clearFilteredMedia());
+    }
+    dispatch(getFilteredMediaRequest());
     try {
       const response = await axios.get(
         `/discover/${mediaType}?api_key=${
@@ -64,11 +71,7 @@ export const getFilteredMedia =
     }
   };
 
-export const clearFilteredMedia = () => ({
-  type: constants.CLEAR_FILTERED_MEDIA,
-});
-
-export const changeMediaType = (mediaType) => ({
-  type: constants.CHANGE_MEDIA_TYPE,
-  payload: mediaType,
-});
+export const updateGenreList = (newGenreList) => ({
+  type: constants.UPDATE_GENRE_LIST,
+  payload: newGenreList
+})

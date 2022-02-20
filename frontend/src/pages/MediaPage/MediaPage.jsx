@@ -2,17 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ContentContainer from '../../components/ContentContainer';
+import GenreItem from '../../components/GenreItem';
 import * as actions from './actions';
 import * as constants from './constants';
 import { selectors } from './reducer';
 import withLayout from '../../global/hoc/Layout';
+import './MediaPage.scss';
 
 const MediaPage = () => {
   const dispatch = useDispatch();
   const { type } = useParams();
   const [pageNumber, setPageNumber] = useState(1);
+  // const [genreList, setGenreList] = useState(null);
 
-  const storedMediaType = useSelector(selectors.mediaType);
   const genres = useSelector(selectors.genresData);
   const loading = useSelector(selectors.loading);
   const filteredData = useSelector(selectors.filteredData);
@@ -20,24 +22,65 @@ const MediaPage = () => {
   const isNextPageAvailable = useSelector(selectors.isNextPageAvailable);
 
   useEffect(() => {
-    dispatch(actions.changeMediaType(type));
-    dispatch(actions.getGenres());
-  }, []);
+    dispatch(actions.getGenres(type));
+    dispatch(actions.getFilteredMedia(type, pageNumber));
+
+    return () => dispatch(actions.clearFilteredMedia());
+  }, [type]);
 
   useEffect(() => {
-    if (storedMediaType && storedMediaType !== type) {
-      setPageNumber(1);
-      dispatch(actions.clearFilteredMedia());
-      dispatch(actions.changeMediaType(type));
+    if (pageNumber !== 1) {
+      dispatch(actions.getFilteredMedia(type, pageNumber));
     }
+  }, [pageNumber]);
 
-    dispatch(actions.getFilteredMedia(type, pageNumber));
-  }, [pageNumber, type]);
+  const paginationBtnClickHandler = () => {
+    setPageNumber(pageNumber + 1);
+  }
 
-  const paginationBtnClickHandler = () => setPageNumber(pageNumber + 1);
+  const onGenreClickHandler = (genreId) => {
+    console.log(genreId)
+    const newGenreList = genres.map((genre) => {
+      let newGenreItem = genre;
+      if (genreId === genre.id ) {
+        newGenreItem = {
+          ...genre,
+          isChosen: !genre.isChosen,
+        }
+      }
+      
+      return newGenreItem;
+    });
+
+    const searchGenres = newGenreList
+      .map(({id, isChosen}) => isChosen ? id : null)
+      .filter(genre => genre);
+
+    dispatch(actions.updateGenreList(newGenreList))
+    setPageNumber(1);
+    dispatch(actions.getFilteredMedia(type, pageNumber, searchGenres));
+  }
+
+  const genreItems = genres.map(({ id, name, isChosen }) => (
+    <GenreItem 
+      key={id} 
+      genre={name} 
+      isActive={isChosen} 
+      onClickHandler={() => onGenreClickHandler(id)} 
+    />)
+  )
+  
 
   return (
-    <div className="moviespage">
+    <div className="movies-page">
+      <div className="filters-section-bg">
+        <div className="filters-section container">
+          <div className='genre-list'>
+            {genreItems}
+          </div>
+        </div>
+      </div>
+      
       <ContentContainer
         data={filteredData}
         loading={loading}

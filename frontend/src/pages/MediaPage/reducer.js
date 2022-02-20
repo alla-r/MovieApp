@@ -1,7 +1,6 @@
 import * as constants from './constants';
 
 const initialState = {
-  mediaType: null,
   isNextPageAvailable: false,
   loading: false,
   genres: {
@@ -16,15 +15,18 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case constants.CHANGE_MEDIA_TYPE:
-      return {
-        ...state,
-        mediaType: action.payload,
-      };
     case constants.GET_GENRES:
       return {
         ...state,
       };
+    case constants.UPDATE_GENRE_LIST:
+      return {
+        ...state,
+        genres: {
+          ...state.genres,
+          data: action.payload,
+        }
+      }
     case constants.GET_GENRES_REQUEST:
       return {
         ...state,
@@ -79,13 +81,13 @@ const reducer = (state = initialState, action) => {
       };
     case constants.CLEAR_FILTERED_MEDIA:
       return {
-        mediaType: null,
+        ...state,
         isNextPageAvailable: false,
         loading: false,
-        genres: {
-          data: [],
-          error: null,
-        },
+        // genres: {
+        //   data: [],
+        //   error: null,
+        // },
         filteredData: {
           data: [],
           error: null,
@@ -96,8 +98,6 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-const mediaType = (state) => state.mediaPageReducer.mediaType;
-
 const loading = (state) => state.mediaPageReducer.loading;
 const genresData = (state) => state.mediaPageReducer.genres.data;
 const genresError = (state) => state.mediaPageReducer.genres.error;
@@ -107,7 +107,6 @@ const filteredDataError = (state) => state.mediaPageReducer.filteredData.error;
 const isNextPageAvailable = (state) => state.mediaPageReducer.isNextPageAvailable;
 
 const selectors = {
-  mediaType,
   loading,
   genresData,
   genresError,
