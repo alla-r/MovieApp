@@ -73,5 +73,5 @@ export const getFilteredMedia =
 
 export const updateGenreList = (newGenreList) => ({
   type: constants.UPDATE_GENRE_LIST,
-  payload: newGenreList
-})
+  payload: newGenreList,
+});

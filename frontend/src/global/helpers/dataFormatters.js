@@ -91,7 +91,7 @@ const getFormattedMediaDetails = (type, data) => {
 };
 
 const getFormattedGenreList = (genreList) => {
-  const formattedGenreList = genreList.map(({id, name}) => ({
+  const formattedGenreList = genreList.map(({ id, name }) => ({
     id,
     name,
     isChosen: false,
@@ -115,7 +115,8 @@ const getFormattedItem = (item, type) => {
 };
 
 const getFormattedListData = ({ page, total_pages, results }, mediaType) => {
-  const formattedResultsList = results.length > 0 ? results.map((item) => getFormattedItem(item, mediaType)) : results;
+  const formattedResultsList =
+    results.length > 0 ? results.map((item) => getFormattedItem(item, mediaType)) : results;
 
   const formattedData = {
     page,

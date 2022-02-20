@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { GenreItemWrapper } from './styles';
 
 const GenreItem = ({ onClickHandler, genre, isActive }) => (
-  <GenreItemWrapper onClick={onClickHandler} className={isActive ? "active" : ""}>{genre}</GenreItemWrapper>
+  <GenreItemWrapper onClick={onClickHandler} className={isActive ? 'active' : ''}>
+    {genre}
+  </GenreItemWrapper>
 );
 
 GenreItem.defaultProps = {
@@ -13,7 +15,7 @@ GenreItem.defaultProps = {
 GenreItem.propTypes = {
   onClickHandler: PropTypes.func.isRequired,
   genre: PropTypes.string.isRequired,
-  isActive: PropTypes.bool
+  isActive: PropTypes.bool,
 };
 
 export default GenreItem;

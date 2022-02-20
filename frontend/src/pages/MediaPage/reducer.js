@@ -25,8 +25,8 @@ const reducer = (state = initialState, action) => {
         genres: {
           ...state.genres,
           data: action.payload,
-        }
-      }
+        },
+      };
     case constants.GET_GENRES_REQUEST:
       return {
         ...state,

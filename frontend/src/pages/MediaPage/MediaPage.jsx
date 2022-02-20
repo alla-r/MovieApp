@@ -36,51 +36,48 @@ const MediaPage = () => {
 
   const paginationBtnClickHandler = () => {
     setPageNumber(pageNumber + 1);
-  }
+  };
 
   const onGenreClickHandler = (genreId) => {
-    console.log(genreId)
+    console.log(genreId);
     const newGenreList = genres.map((genre) => {
       let newGenreItem = genre;
-      if (genreId === genre.id ) {
+      if (genreId === genre.id) {
         newGenreItem = {
           ...genre,
           isChosen: !genre.isChosen,
-        }
+        };
       }
-      
+
       return newGenreItem;
     });
 
     const searchGenres = newGenreList
-      .map(({id, isChosen}) => isChosen ? id : null)
-      .filter(genre => genre);
+      .map(({ id, isChosen }) => (isChosen ? id : null))
+      .filter((genre) => genre);
 
-    dispatch(actions.updateGenreList(newGenreList))
+    dispatch(actions.updateGenreList(newGenreList));
     setPageNumber(1);
     dispatch(actions.getFilteredMedia(type, pageNumber, searchGenres));
-  }
+  };
 
   const genreItems = genres.map(({ id, name, isChosen }) => (
-    <GenreItem 
-      key={id} 
-      genre={name} 
-      isActive={isChosen} 
-      onClickHandler={() => onGenreClickHandler(id)} 
-    />)
-  )
-  
+    <GenreItem
+      key={id}
+      genre={name}
+      isActive={isChosen}
+      onClickHandler={() => onGenreClickHandler(id)}
+    />
+  ));
 
   return (
     <div className="movies-page">
       <div className="filters-section-bg">
         <div className="filters-section container">
-          <div className='genre-list'>
-            {genreItems}
-          </div>
+          <div className="genre-list">{genreItems}</div>
         </div>
       </div>
-      
+
       <ContentContainer
         data={filteredData}
         loading={loading}
