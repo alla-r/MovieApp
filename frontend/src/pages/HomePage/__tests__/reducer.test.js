@@ -99,7 +99,7 @@ describe('HomePage selectors', () => {
     homePageReducer: mockState,
   };
 
-  it('selectors work', () => {
+  it('should work', () => {
     expect(selectors.trendingsLoading(store)).toEqual(mockState.loading);
     expect(selectors.trendingsData(store)).toEqual(mockState.data);
     expect(selectors.trendingsError(store)).toEqual(mockState.error);
