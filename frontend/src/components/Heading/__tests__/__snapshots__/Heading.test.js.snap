@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Heading /> should match snapshot 1`] = `
+.c0 {
+  margin: 50px auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c1 {
+  width: 3px;
+  height: 44px;
+  background-color: #D6535D;
+}
+
+.c2 {
+  margin-left: 15px;
+  font-size: 36px;
+  line-height: 44px;
+  color: #1A191C;
+}
+
+@media only screen and (max-width:450px) {
+  .c0 {
+    margin: 35px auto;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c1 {
+    height: 36px;
+  }
+}
+
+@media only screen and (max-width:450px) {
+  .c1 {
+    height: 24px;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .c2 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+}
+
+@media only screen and (max-width:450px) {
+  .c2 {
+    margin-left: 10px;
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  />
+  <h2
+    className="c2 heading-content"
+  >
+    test
+  </h2>
+</div>
+`;
