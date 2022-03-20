@@ -62,7 +62,7 @@ exports[`<Heading /> should match snapshot 1`] = `
     className="c1"
   />
   <h2
-    className="c2 heading-content"
+    className="c2"
   >
     test
   </h2>
