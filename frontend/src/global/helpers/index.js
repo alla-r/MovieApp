@@ -3,9 +3,16 @@ import {
   getFormattedGenreList,
   getFormattedListData,
 } from './dataFormatters';
+import { wrapperWithTheme } from './jestHelpers';
 import ScrollToTop from './ScrollToTop';
 
-export { getFormattedMediaDetails, ScrollToTop, getFormattedGenreList, getFormattedListData };
+export { 
+  getFormattedMediaDetails, 
+  ScrollToTop, 
+  getFormattedGenreList, 
+  getFormattedListData, 
+  wrapperWithTheme 
+};
 
 export const getFormattedItem = (item) => {
   const formattedItem = {
