@@ -2,7 +2,6 @@ import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 import 'jest-styled-components';
 import Footer from '../Footer';
-import theme from '../../../theme';
 import { wrapperWithTheme } from '../../../global/helpers';
 
 describe('<Footer />', () => {
