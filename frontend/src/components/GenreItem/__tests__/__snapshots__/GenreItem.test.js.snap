@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GenreItem /> should match snapshot 1`] = `
+<button
+  className="sc-bdvvtL bDMMJq"
+  onClick={[Function]}
+>
+  Test
+</button>
+`;
