@@ -8,7 +8,7 @@ describe('<GenreItem />', () => {
 
   beforeEach(() => {
     defaultProps = {
-      onClickHandler: () => {},
+      onClickHandler: jest.fn(),
       isActive: false,
       genre: "Test"
     }

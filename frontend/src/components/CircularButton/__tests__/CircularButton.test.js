@@ -7,7 +7,7 @@ describe('<CircularButton />', () => {
 
   beforeEach(() => {
     defaultProps = {
-      onClickHandler: () => {},
+      onClickHandler: jest.fn(),
       isActive: false,
       iconSrc: HeartIcon
     }
