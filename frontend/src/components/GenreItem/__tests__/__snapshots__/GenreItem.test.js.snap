@@ -3,7 +3,7 @@
 exports[`<GenreItem /> should match snapshot 1`] = `
 <button
   className="sc-bdvvtL bDMMJq"
-  onClick={[Function]}
+  onClick={[MockFunction]}
 >
   Test
 </button>
