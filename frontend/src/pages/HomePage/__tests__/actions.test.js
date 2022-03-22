@@ -2,7 +2,7 @@ import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import * as actions from '../actions';
 import * as constants from '../constants';
-import TMDBservice from '../../../service';
+import TMDBservice from '../../../TMDBservice';
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
