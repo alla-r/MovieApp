@@ -1,8 +1,11 @@
 import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 import * as actions from '../actions';
 import * as constants from '../constants';
+import TMDBservice from '../../../service';
 
-const mockStore = configureStore();
+const middlewares = [thunk];
+const mockStore = configureStore(middlewares);
 const store = mockStore();
 
 describe('HomePage actions', () => {
@@ -49,5 +52,63 @@ describe('HomePage actions', () => {
     store.dispatch(actions.trendingsClearData());
     expect(store.getActions()).toEqual([expectedAction]);
   });
-
 });
+
+describe('getTrendingsMedia thunk', () => {
+  let expectedAction;
+  const getTrendingsMock = jest.spyOn(TMDBservice, "getTrendings");
+  const mockDispatch = jest.fn();
+
+  beforeEach(() => {
+    store.clearActions();
+  });
+
+  it ('should dispatch getTrendingsRequest', async () => {
+    expectedAction = {
+      type: constants.GET_TRENDINGS_REQUEST,
+    };
+
+    store.dispatch(actions.getTrendingsMedia());
+
+    expect(store.getActions()).toEqual([expectedAction]);
+  });
+
+  it('should dispatch correct actions on success', async () => {
+    const mockedResponseData = {
+      data: {
+        page: 1,
+        total_pages: 2,
+        results: [{
+          id: 1,
+        }]
+      }
+    }
+    const mockFormattedData = {
+      page: 1,
+      totalPages: 2,
+      results: [
+        {
+          id: 1,
+          type: undefined,
+          date: undefined,
+          description: undefined,
+          poster: "https://image.tmdb.org/t/p/originalundefined",
+          title: undefined,
+          voteAvg: 0
+        }
+      ]
+    }
+
+    getTrendingsMock.mockImplementationOnce(() => new Promise((resolve, reject) => resolve(mockedResponseData)));
+    await actions.getTrendingsMedia(1)(mockDispatch);
+
+    expect(mockDispatch).toHaveBeenLastCalledWith(actions.getTrendingsSuccess(mockFormattedData));
+  });
+
+  it('should dispatch correct actions on error', async () => {
+    getTrendingsMock.mockImplementationOnce(() => new Promise((resolve, reject) => reject("error")));
+    await actions.getTrendingsMedia(1)(mockDispatch);
+
+    expect(mockDispatch).toHaveBeenLastCalledWith(actions.getTrendingsError("error"));  
+  });
+})
