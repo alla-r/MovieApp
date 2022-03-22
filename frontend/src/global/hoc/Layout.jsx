@@ -27,16 +27,16 @@ export const HEADER_ITEMS = [
   {
     content: 'Movies',
     path: '/movie',
-    onClickHandler: () => {
-      console.log('Movies');
-    },
+    // onClickHandler: () => {
+    //   console.log('Movies');
+    // },
   },
   {
     content: 'TV Shows',
     path: '/tv',
-    onClickHandler: () => {
-      console.log('TV Shows');
-    },
+    // onClickHandler: () => {
+    //   console.log('TV Shows');
+    // },
   },
 ];
 
