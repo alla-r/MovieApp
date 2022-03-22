@@ -96,7 +96,7 @@ describe('<ContentContainer />', () => {
   it('should show pagination button', () => {
     defaultProps.paginationBtn = {
       status: true,
-      message: "Show more",
+      text: "Show more",
       onClickHandler: jest.fn()
     };
     const wrapper = component(defaultProps);
