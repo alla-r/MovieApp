@@ -1,6 +1,6 @@
-import axios from 'axios';
 import * as constants from './constants';
 import { getFormattedListData } from '../../global/helpers';
+import TMDBservice from '../../TMDBservice';
 
 export const getTrendingsSuccess = (data) => ({
   type: constants.GET_TRENDINGS_SUCCESS,
@@ -23,9 +23,7 @@ export const trendingsClearData = () => ({
 export const getTrendingsMedia = (pageNumber) => async (dispatch) => {
   dispatch(getTrendingsRequest());
   try {
-    const response = await axios.get(
-      `/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}&page=${pageNumber}`,
-    );
+    const response = await TMDBservice.getTrendings(pageNumber);
 
     const formattedData = getFormattedListData(response.data);
     dispatch(getTrendingsSuccess(formattedData));
