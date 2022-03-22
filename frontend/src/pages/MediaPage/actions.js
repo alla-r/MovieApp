@@ -1,6 +1,6 @@
-import axios from 'axios';
 import * as constants from './constants';
 import { getFormattedGenreList, getFormattedListData } from '../../global/helpers';
+import TMDBservice from '../../TMDBservice';
 
 export const getGenresSuccess = (data) => ({
   type: constants.GET_GENRES_SUCCESS,
@@ -19,9 +19,7 @@ export const getGenresRequest = () => ({
 export const getGenres = (type) => async (dispatch) => {
   dispatch(getGenresRequest());
   try {
-    const response = await axios.get(
-      `/genre/${type}/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
-    );
+    const response = await TMDBservice.getGenres(type);
 
     const formattedGenreList = getFormattedGenreList(response.data.genres);
     dispatch(getGenresSuccess(formattedGenreList));
@@ -56,13 +54,7 @@ export const getFilteredMedia =
     }
     dispatch(getFilteredMediaRequest());
     try {
-      const response = await axios.get(
-        `/discover/${mediaType}?api_key=${
-          process.env.REACT_APP_API_KEY
-        }&language=en-US&sort_by=popularity.desc&page=${pageNumber}&with_genres=${genreList.join(
-          ', ',
-        )}`,
-      );
+      const response = await TMDBservice.getFilteredMedia(mediaType, pageNumber, genreList);
 
       const formattedData = getFormattedListData(response.data, mediaType);
       dispatch(getFilteredMediaSuccess(formattedData));

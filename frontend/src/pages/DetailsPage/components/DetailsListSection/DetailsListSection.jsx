@@ -11,7 +11,7 @@ const DetailsListSection = ({ mappingConfig, data }) => {
 
     if (type === 'array') {
       // eslint-disable-next-line react/no-array-index-key
-      itemValues = data[value]?.map((item, i) => <ItemValue key={i}>{item}</ItemValue>);
+      itemValues = data[value].length > 0 ? data[value].map((item, i) => <ItemValue key={i}>{item}</ItemValue>) : null;
     }
 
     if (type === 'text') {
@@ -26,7 +26,7 @@ const DetailsListSection = ({ mappingConfig, data }) => {
       );
     }
 
-    return (
+    return itemValues && (
       // eslint-disable-next-line react/no-array-index-key
       <ItemWrapper key={index}>
         <ItemTitle>{title}</ItemTitle>

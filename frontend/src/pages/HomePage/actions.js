@@ -1,7 +1,6 @@
-import axios from 'axios';
 import * as constants from './constants';
 import { getFormattedListData } from '../../global/helpers';
-import TMDBservice from '../../service';
+import TMDBservice from '../../TMDBservice';
 
 export const getTrendingsSuccess = (data) => ({
   type: constants.GET_TRENDINGS_SUCCESS,

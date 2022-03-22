@@ -128,13 +128,15 @@ Header.propTypes = {
   headerItems: PropTypes.arrayOf(
     PropTypes.shape({
       content: PropTypes.string.isRequired,
-      onClickHandler: PropTypes.func.isRequired,
+      path: PropTypes.string,
+      onClickHandler: PropTypes.func,
     }),
   ).isRequired,
   profileDropdownData: PropTypes.arrayOf(
     PropTypes.shape({
       content: PropTypes.string.isRequired,
-      onClickHandler: PropTypes.func.isRequired,
+      path: PropTypes.string,
+      onClickHandler: PropTypes.func,
     }),
   ).isRequired,
 };
