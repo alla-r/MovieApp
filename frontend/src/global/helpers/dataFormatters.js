@@ -104,8 +104,8 @@ const getFormattedItem = (item, type) => {
   const formattedItem = {
     id: item.id,
     type: item.media_type || type,
-    date: item.release_date || item.first_air_date,
-    title: item.title || item.name,
+    date: item.release_date || item.first_air_date || "",
+    title: item.title || item.name || "",
     description: item.overview,
     voteAvg: item.vote_average || 0,
     poster: `https://image.tmdb.org/t/p/original${item.poster_path}`,

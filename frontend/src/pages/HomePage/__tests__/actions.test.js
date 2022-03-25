@@ -90,10 +90,10 @@ describe('getTrendingsMedia thunk', () => {
         {
           id: 1,
           type: undefined,
-          date: undefined,
+          date: "",
           description: undefined,
           poster: "https://image.tmdb.org/t/p/originalundefined",
-          title: undefined,
+          title: "",
           voteAvg: 0
         }
       ]
