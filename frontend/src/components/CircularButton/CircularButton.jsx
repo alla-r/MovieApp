@@ -10,15 +10,15 @@ const CircularButton = ({ onClickHandler, isActive, tooltipActive, tooltipInacti
   const StyledTooltip = styled(({ className, ...props }) => (
     // eslint-disable-next-line react/jsx-props-no-spreading
     <Tooltip {...props} arrow classes={{ popper: className }} />
-  ))(({
+  ))({
     [`& .${tooltipClasses.arrow}`]: {
-      color: "#313131",
+      color: '#313131',
     },
     [`& .${tooltipClasses.tooltip}`]: {
-      backgroundColor: "#313131",
+      backgroundColor: '#313131',
       padding: 10,
     },
-  }));
+  });
 
   return (
     <StyledTooltip title={isActive ? tooltipActive : tooltipInactive}>

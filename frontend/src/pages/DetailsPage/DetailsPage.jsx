@@ -31,11 +31,11 @@ const DetailsPage = () => {
   const watchlistCallback = () => setIsInWatchlist(!isInWatchList);
 
   constants.CIRCULAR_BUTTONS_CONFIG?.forEach((btnConfig) => {
-    if (btnConfig.id === "favorite") {
+    if (btnConfig.id === 'favorite') {
       btnConfig.onClickHandler = favoriteCallback;
       btnConfig.isActive = isInFavorite;
     }
-    if (btnConfig.id === "watchlist") {
+    if (btnConfig.id === 'watchlist') {
       btnConfig.onClickHandler = watchlistCallback;
       btnConfig.isActive = isInWatchList;
     }
