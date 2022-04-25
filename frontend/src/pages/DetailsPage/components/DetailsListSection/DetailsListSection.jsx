@@ -10,10 +10,10 @@ const DetailsListSection = ({ mappingConfig, data }) => {
     let itemValues;
 
     if (type === 'array') {
-      // eslint-disable-next-line react/no-array-index-key
       itemValues =
         data[value].length > 0
-          ? data[value].map((item, i) => <ItemValue key={i}>{item}</ItemValue>)
+          ? // eslint-disable-next-line react/no-array-index-key
+            data[value].map((item, i) => <ItemValue key={i}>{item}</ItemValue>)
           : null;
     }
 
