@@ -68,19 +68,21 @@ export const CIRCULAR_BUTTONS_CONFIG = [
   {
     iconSrc: HeartIcon,
     id: 'favorite',
-    isActive: true,
-    onClickHandler: () => console.log('add to favorites'),
+    tooltipActive: 'Remove from favorites',
+    tooltipInactive: 'Add to favorites',
   },
   {
     iconSrc: WatchlistIcon,
     id: 'watchlist',
-    isActive: false,
-    onClickHandler: () => console.log('watchlist'),
+    tooltipActive: 'Remove from watchlist',
+    tooltipInactive: 'Add to watchlist',
   },
   {
     iconSrc: StarIcon,
     id: 'rate',
     isActive: false,
+    tooltipActive: 'Change your rating',
+    tooltipInactive: 'Rate the movie',
     onClickHandler: () => console.log('rate'),
   },
 ];

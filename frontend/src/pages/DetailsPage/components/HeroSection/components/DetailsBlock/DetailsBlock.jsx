@@ -32,12 +32,14 @@ const DetailsBlock = ({ data, circularBtnConfig }) => {
     <GenreItem key={id} genre={name} onClickHandler={() => onGenreClickHandler(id)} />
   ));
 
-  const buttons = circularBtnConfig.map(({ id, iconSrc, onClickHandler, isActive }) => (
+  const buttons = circularBtnConfig.map(({ id, iconSrc, onClickHandler, isActive, tooltipActive, tooltipInactive }) => (
     <CircularButton
       key={id}
       iconSrc={iconSrc}
       onClickHandler={onClickHandler}
       isActive={isActive}
+      tooltipActive={tooltipActive}
+      tooltipInactive={tooltipInactive}
     />
   ));
 
