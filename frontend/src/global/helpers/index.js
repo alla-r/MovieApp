@@ -70,7 +70,7 @@ export const getFormattedDate = (dateString) => {
     'December',
   ];
 
-  return dateString ? `${months[month - 1].slice(0, 3)} ${day}, ${year}` : '';
+  return dateString !== "unknown" ? `${months[month - 1].slice(0, 3)} ${day}, ${year}` : '';
 };
 
 export const getPercentageValue = (value, maxValue) => (value * 100) / maxValue;
