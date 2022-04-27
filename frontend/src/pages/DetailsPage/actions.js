@@ -1,6 +1,7 @@
 import * as constants from './constants';
 import { getFormattedMediaDetails } from '../../global/helpers';
 import TMDBservice from '../../TMDBservice';
+import StorageService from '../../StorageService';
 
 export const getMediaDetailsSuccess = (data) => ({
   type: constants.GET_MEDIA_DETAILS_SUCCESS,
@@ -31,3 +32,18 @@ export const getMediaDetails = (mediaType, id) => async (dispatch) => {
 export const mediaDetailsClearData = () => ({
   type: constants.MEDIA_DETAILS_CLEAR_DATA,
 });
+
+export const getMediaCustomDetailsSuccess = (data) => ({
+  type: constants.GET_MEDIA_CUSTOM_DETAILS_SUCCESS,
+  payload: data,
+});
+
+export const getMediaCustomDetails = (mediaInfo) => (dispatch) => {
+  const mediaCustomDetails = StorageService.getMediaCustomDetails(mediaInfo);
+  dispatch(getMediaCustomDetailsSuccess(mediaCustomDetails));
+}
+
+export const changeMediaCustomDetails = (mediaInfo) => (dispatch) => {
+  StorageService.changeMediaCustomDetails(mediaInfo);
+  dispatch(getMediaCustomDetails(mediaInfo.mediaInfo));
+}

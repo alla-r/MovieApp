@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../components/Loader';
@@ -17,34 +17,51 @@ const DetailsPage = () => {
   const dispatch = useDispatch();
   const params = useParams();
 
-  const [isInFavorite, setIsInFavorite] = useState(false);
-  const [isInWatchList, setIsInWatchlist] = useState(false);
-
   const detailsLoading = useSelector(selectors.detailsLoading);
   const detailsData = useSelector(selectors.detailsData);
   const detailsCastList = useSelector(selectors.detailsCastList);
   const detailsCrewList = useSelector(selectors.detailsCrewList);
   const detailsRecommendationsList = useSelector(selectors.detailsRecommendationsList);
   const detailsError = useSelector(selectors.detailsError);
+  const mediaCustomDetails = useSelector(selectors.mediaCustomDetails);
 
-  const favoriteCallback = () => setIsInFavorite(!isInFavorite);
-  const watchlistCallback = () => setIsInWatchlist(!isInWatchList);
+  const favoriteCallback = () => dispatch(actions.changeMediaCustomDetails({
+    listName: "favorite", 
+    mediaInfo: {
+      id: params.id,
+      type: params.type,
+    },
+    action: mediaCustomDetails?.isInFavorite ? "remove" : "add",
+  }));
+  const watchlistCallback = () => dispatch(actions.changeMediaCustomDetails({
+    listName: "watchlist", 
+    mediaInfo: {
+      id: params.id,
+      type: params.type,
+    },
+    action: mediaCustomDetails?.isInWatchlist ? "remove" : "add",
+  }));
 
-  constants.CIRCULAR_BUTTONS_CONFIG?.forEach((btnConfig) => {
+  constants.CIRCULAR_BUTTONS_CONFIG.forEach((btnConfig) => {
     if (btnConfig.id === 'favorite') {
       btnConfig.onClickHandler = favoriteCallback;
-      btnConfig.isActive = isInFavorite;
+      btnConfig.isActive = mediaCustomDetails?.isInFavorite;
     }
     if (btnConfig.id === 'watchlist') {
       btnConfig.onClickHandler = watchlistCallback;
-      btnConfig.isActive = isInWatchList;
+      btnConfig.isActive = mediaCustomDetails?.isInWatchlist;
+    }
+    if (btnConfig.id === 'rate') {
+      // btnConfig.onClickHandler = rateCallback;
+      btnConfig.isActive = mediaCustomDetails?.isInRatingList;
     }
   });
 
   useEffect(() => {
     dispatch(actions.getMediaDetails(params.type, params.id));
+    dispatch(actions.getMediaCustomDetails({ id: params.id, type: params.type }))
 
-    return dispatch(actions.mediaDetailsClearData());
+    return () => dispatch(actions.mediaDetailsClearData());
   }, [params]);
 
   return (
