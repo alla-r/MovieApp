@@ -41,9 +41,9 @@ export const getMediaCustomDetailsSuccess = (data) => ({
 export const getMediaCustomDetails = (mediaInfo) => (dispatch) => {
   const mediaCustomDetails = StorageService.getMediaCustomDetails(mediaInfo);
   dispatch(getMediaCustomDetailsSuccess(mediaCustomDetails));
-}
+};
 
 export const changeMediaCustomDetails = (mediaInfo) => (dispatch) => {
   StorageService.changeMediaCustomDetails(mediaInfo);
   dispatch(getMediaCustomDetails(mediaInfo.mediaInfo));
-}
+};

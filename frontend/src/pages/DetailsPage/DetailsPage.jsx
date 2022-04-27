@@ -25,22 +25,28 @@ const DetailsPage = () => {
   const detailsError = useSelector(selectors.detailsError);
   const mediaCustomDetails = useSelector(selectors.mediaCustomDetails);
 
-  const favoriteCallback = () => dispatch(actions.changeMediaCustomDetails({
-    listName: "favorite", 
-    mediaInfo: {
-      id: params.id,
-      type: params.type,
-    },
-    action: mediaCustomDetails?.isInFavorite ? "remove" : "add",
-  }));
-  const watchlistCallback = () => dispatch(actions.changeMediaCustomDetails({
-    listName: "watchlist", 
-    mediaInfo: {
-      id: params.id,
-      type: params.type,
-    },
-    action: mediaCustomDetails?.isInWatchlist ? "remove" : "add",
-  }));
+  const favoriteCallback = () =>
+    dispatch(
+      actions.changeMediaCustomDetails({
+        listName: 'favorite',
+        mediaInfo: {
+          id: params.id,
+          type: params.type,
+        },
+        action: mediaCustomDetails?.isInFavorite ? 'remove' : 'add',
+      }),
+    );
+  const watchlistCallback = () =>
+    dispatch(
+      actions.changeMediaCustomDetails({
+        listName: 'watchlist',
+        mediaInfo: {
+          id: params.id,
+          type: params.type,
+        },
+        action: mediaCustomDetails?.isInWatchlist ? 'remove' : 'add',
+      }),
+    );
 
   constants.CIRCULAR_BUTTONS_CONFIG.forEach((btnConfig) => {
     if (btnConfig.id === 'favorite') {
@@ -59,7 +65,7 @@ const DetailsPage = () => {
 
   useEffect(() => {
     dispatch(actions.getMediaDetails(params.type, params.id));
-    dispatch(actions.getMediaCustomDetails({ id: params.id, type: params.type }))
+    dispatch(actions.getMediaCustomDetails({ id: params.id, type: params.type }));
 
     return () => dispatch(actions.mediaDetailsClearData());
   }, [params]);

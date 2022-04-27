@@ -3,12 +3,12 @@
 const defaultData = {
   favorite: [],
   watchlist: [],
-  rate: []
+  rate: [],
 };
 
 class StorageService {
   getMediaCustomDetails(mediaInfo) {
-    const customDetails = this.getItem("customDetails") || defaultData;
+    const customDetails = this.getItem('customDetails') || defaultData;
 
     const isInFavorite = this.getFilteredList(customDetails.favorite, mediaInfo).length > 0;
     const isInWatchlist = this.getFilteredList(customDetails.watchlist, mediaInfo).length > 0;
@@ -17,7 +17,7 @@ class StorageService {
     return {
       isInFavorite,
       isInWatchlist,
-      isInRatingList
+      isInRatingList,
     };
   }
 
@@ -26,27 +26,31 @@ class StorageService {
   }
 
   changeMediaCustomDetails({ listName, mediaInfo, action }) {
-    const customDetails = this.getItem("customDetails") || defaultData;
+    const customDetails = this.getItem('customDetails') || defaultData;
 
-    if (action === "add") {
+    if (action === 'add') {
       customDetails[listName].push(mediaInfo);
-      this.setItem("customDetails", customDetails);
+      this.setItem('customDetails', customDetails);
     }
 
-    if (action === "remove") {
-      customDetails[listName] = customDetails[listName].filter(({ id, type }) => id !== mediaInfo.id && type !== mediaInfo.type);
+    if (action === 'remove') {
+      customDetails[listName] = customDetails[listName].filter(
+        ({ id, type }) => id !== mediaInfo.id && type !== mediaInfo.type,
+      );
 
-      this.setItem("customDetails", customDetails);
+      this.setItem('customDetails', customDetails);
     }
 
     return customDetails;
   }
 
   getItem(key) {
+    // eslint-disable-next-line no-undef
     return JSON.parse(localStorage.getItem(key));
   }
 
   setItem(key, value) {
+    // eslint-disable-next-line no-undef
     localStorage.setItem(key, JSON.stringify(value));
   }
 }
