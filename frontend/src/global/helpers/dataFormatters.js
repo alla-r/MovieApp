@@ -104,7 +104,7 @@ const getFormattedItem = (item, type) => {
   const formattedItem = {
     id: item.id,
     type: item.media_type || type,
-    date: item.release_date || item.first_air_date,
+    date: item.release_date || item.first_air_date || "unknown",
     title: item.title || item.name,
     description: item.overview,
     voteAvg: item.vote_average || 0,

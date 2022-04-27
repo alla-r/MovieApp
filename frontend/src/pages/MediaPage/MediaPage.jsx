@@ -13,7 +13,6 @@ const MediaPage = () => {
   const dispatch = useDispatch();
   const { type } = useParams();
   const [pageNumber, setPageNumber] = useState(1);
-  // const [genreList, setGenreList] = useState(null);
 
   const genres = useSelector(selectors.genresData);
   const loading = useSelector(selectors.loading);
@@ -41,13 +40,10 @@ const MediaPage = () => {
   const onGenreClickHandler = (genreId) => {
     console.log(genreId);
     const newGenreList = genres.map((genre) => {
-      let newGenreItem = genre;
-      if (genreId === genre.id) {
-        newGenreItem = {
-          ...genre,
-          isChosen: !genre.isChosen,
-        };
-      }
+      const newGenreItem = {
+        ...genre,
+        isChosen: genreId === genre.id ? !genre.isChosen : genre.isChosen,
+      };
 
       return newGenreItem;
     });
