@@ -16,9 +16,7 @@ class TMDBservice {
     return axios.get(
       `/discover/${mediaType}?api_key=${
         process.env.REACT_APP_API_KEY
-      }&language=en-US&sort_by=popularity.desc&page=${pageNumber}&with_genres=${genreList.join(
-        ', ',
-      )}`,
+      }&language=en-US&sort_by=popularity.desc&page=${pageNumber}&with_genres=${genreList.join(', ')}`,
     );
   }
 

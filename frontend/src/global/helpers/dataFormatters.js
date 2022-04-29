@@ -90,11 +90,11 @@ const getFormattedMediaDetails = (type, data) => {
   return formattedData;
 };
 
-const getFormattedGenreList = (genreList) => {
+const getFormattedGenreList = (genreList, selectedGenresArr) => {
   const formattedGenreList = genreList.map(({ id, name }) => ({
     id,
     name,
-    isChosen: false,
+    isChosen: selectedGenresArr.includes(id.toString()),
   }));
 
   return formattedGenreList;

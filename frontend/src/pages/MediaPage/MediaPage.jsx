@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import ContentContainer from '../../components/ContentContainer';
 import GenreItem from '../../components/GenreItem';
 import * as actions from './actions';
@@ -13,6 +13,10 @@ const MediaPage = () => {
   const dispatch = useDispatch();
   const { type } = useParams();
   const [pageNumber, setPageNumber] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const selectedGenres = searchParams.get('genre') || '';
+  const selectedGenresArr = selectedGenres.split(',');  
 
   const genres = useSelector(selectors.genresData);
   const loading = useSelector(selectors.loading);
@@ -21,8 +25,8 @@ const MediaPage = () => {
   const isNextPageAvailable = useSelector(selectors.isNextPageAvailable);
 
   useEffect(() => {
-    dispatch(actions.getGenres(type));
-    dispatch(actions.getFilteredMedia(type, pageNumber));
+    dispatch(actions.getGenres(type, selectedGenresArr));
+    dispatch(actions.getFilteredMedia(type, pageNumber, selectedGenresArr));
 
     return () => dispatch(actions.clearFilteredMedia());
   }, [type]);
@@ -38,7 +42,6 @@ const MediaPage = () => {
   };
 
   const onGenreClickHandler = (genreId) => {
-    console.log(genreId);
     const newGenreList = genres.map((genre) => {
       const newGenreItem = {
         ...genre,
@@ -52,10 +55,14 @@ const MediaPage = () => {
       .map(({ id, isChosen }) => (isChosen ? id : null))
       .filter((genre) => genre);
 
+    setSearchParams({genre: searchGenres.join(',')});
+
     dispatch(actions.updateGenreList(newGenreList));
     setPageNumber(1);
     dispatch(actions.getFilteredMedia(type, pageNumber, searchGenres));
   };
+
+ 
 
   const genreItems = genres.map(({ id, name, isChosen }) => (
     <GenreItem

@@ -16,12 +16,12 @@ export const getGenresRequest = () => ({
   type: constants.GET_GENRES_REQUEST,
 });
 
-export const getGenres = (type) => async (dispatch) => {
+export const getGenres = (type, selectedGenresArr) => async (dispatch) => {
   dispatch(getGenresRequest());
   try {
     const response = await TMDBservice.getGenres(type);
 
-    const formattedGenreList = getFormattedGenreList(response.data.genres);
+    const formattedGenreList = getFormattedGenreList(response.data.genres, selectedGenresArr);
     dispatch(getGenresSuccess(formattedGenreList));
   } catch (error) {
     dispatch(getGenresError(error));
@@ -47,7 +47,7 @@ export const clearFilteredMedia = () => ({
 });
 
 export const getFilteredMedia =
-  (mediaType = 'movie', pageNumber, genreList = ['all']) =>
+  (mediaType = 'movie', pageNumber, genreList = []) =>
   async (dispatch) => {
     if (pageNumber === 1) {
       dispatch(clearFilteredMedia());
