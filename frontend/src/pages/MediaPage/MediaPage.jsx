@@ -16,7 +16,7 @@ const MediaPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const selectedGenres = searchParams.get('genre') || '';
-  const selectedGenresArr = selectedGenres.split(',');  
+  const selectedGenresArr = selectedGenres ? selectedGenres.split(',') : [];
 
   const genres = useSelector(selectors.genresData);
   const loading = useSelector(selectors.loading);
@@ -42,24 +42,17 @@ const MediaPage = () => {
   };
 
   const onGenreClickHandler = (genreId) => {
-    const newGenreList = genres.map((genre) => {
-      const newGenreItem = {
-        ...genre,
-        isChosen: genreId === genre.id ? !genre.isChosen : genre.isChosen,
-      };
+    selectedGenresArr.push(genreId.toString());
+    setSearchParams({genre: selectedGenresArr.join(',')});
 
-      return newGenreItem;
-    });
-
-    const searchGenres = newGenreList
-      .map(({ id, isChosen }) => (isChosen ? id : null))
-      .filter((genre) => genre);
-
-    setSearchParams({genre: searchGenres.join(',')});
+    const newGenreList = genres.map((genre) => ({
+      ...genre,
+      isChosen: selectedGenresArr.includes(genre.id.toString()),
+    }));
 
     dispatch(actions.updateGenreList(newGenreList));
     setPageNumber(1);
-    dispatch(actions.getFilteredMedia(type, pageNumber, searchGenres));
+    dispatch(actions.getFilteredMedia(type, pageNumber, selectedGenresArr));
   };
 
  
