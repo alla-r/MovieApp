@@ -28,12 +28,12 @@ const DetailsPage = () => {
   const favoriteCallback = () =>
     dispatch(
       actions.changeMediaCustomDetails({
-        listName: 'favorite',
+        listName: 'favorites',
         mediaInfo: {
           id: params.id,
           type: params.type,
         },
-        action: mediaCustomDetails?.isInFavorite ? 'remove' : 'add',
+        action: mediaCustomDetails?.isInFavorites ? 'remove' : 'add',
       }),
     );
   const watchlistCallback = () =>
@@ -51,7 +51,7 @@ const DetailsPage = () => {
   constants.CIRCULAR_BUTTONS_CONFIG.forEach((btnConfig) => {
     if (btnConfig.id === 'favorite') {
       btnConfig.onClickHandler = favoriteCallback;
-      btnConfig.isActive = mediaCustomDetails?.isInFavorite;
+      btnConfig.isActive = mediaCustomDetails?.isInFavorites;
     }
     if (btnConfig.id === 'watchlist') {
       btnConfig.onClickHandler = watchlistCallback;

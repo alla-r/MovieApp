@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 
 const defaultData = {
-  favorite: [],
+  favorites: [],
   watchlist: [],
   rate: [],
 };
@@ -10,15 +10,21 @@ class StorageService {
   getMediaCustomDetails(mediaInfo) {
     const customDetails = this.getItem('customDetails') || defaultData;
 
-    const isInFavorite = this.getFilteredList(customDetails.favorite, mediaInfo).length > 0;
+    const isInFavorites = this.getFilteredList(customDetails.favorites, mediaInfo).length > 0;
     const isInWatchlist = this.getFilteredList(customDetails.watchlist, mediaInfo).length > 0;
     const isInRatingList = this.getFilteredList(customDetails.rate, mediaInfo).length > 0;
 
     return {
-      isInFavorite,
+      isInFavorites,
       isInWatchlist,
       isInRatingList,
     };
+  }
+
+  getListData(listName) {
+    const customDetails = this.getItem('customDetails') || defaultData;
+
+    return customDetails[listName];
   }
 
   getFilteredList(list, data) {
