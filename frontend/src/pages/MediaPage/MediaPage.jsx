@@ -43,7 +43,7 @@ const MediaPage = () => {
 
   const onGenreClickHandler = (genreId) => {
     selectedGenresArr.push(genreId.toString());
-    setSearchParams({genre: selectedGenresArr.join(',')});
+    setSearchParams({ genre: selectedGenresArr.join(',') });
 
     const newGenreList = genres.map((genre) => ({
       ...genre,
@@ -54,8 +54,6 @@ const MediaPage = () => {
     setPageNumber(1);
     dispatch(actions.getFilteredMedia(type, pageNumber, selectedGenresArr));
   };
-
- 
 
   const genreItems = genres.map(({ id, name, isChosen }) => (
     <GenreItem

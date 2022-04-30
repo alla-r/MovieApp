@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
-const withLayout = (Page) => () =>{
+const withLayout = (Page) => () => {
   const navigate = useNavigate();
 
   const PROFILE_DROPDOWN_DATA = [
@@ -22,7 +22,7 @@ const withLayout = (Page) => () =>{
       },
     },
   ];
-  
+
   const HEADER_ITEMS = [
     {
       content: 'Movies',
@@ -41,6 +41,6 @@ const withLayout = (Page) => () =>{
       <Footer />
     </>
   );
-}
+};
 
 export default withLayout;

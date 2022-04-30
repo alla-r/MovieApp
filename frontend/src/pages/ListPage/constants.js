@@ -3,6 +3,6 @@ export const GET_LIST_DATA_SUCCESS = 'GET_LIST_DATA_SUCCESS';
 export const GET_LIST_DATA_ERROR = 'GET_LIST_DATA_ERROR';
 
 export const HEADINGS = {
-  watchlist: "Watchlist",
-  favorites: "Favorites"
-}
+  watchlist: 'Watchlist',
+  favorites: 'Favorites',
+};

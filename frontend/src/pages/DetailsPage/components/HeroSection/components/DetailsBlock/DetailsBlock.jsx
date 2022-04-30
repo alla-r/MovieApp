@@ -28,10 +28,11 @@ const DetailsBlock = ({ data, circularBtnConfig }) => {
   const navigate = useNavigate();
   const percentage = getPercentageValue(data.voteAvg, 10);
 
-  const onGenreClickHandler = (id) => navigate({
-    pathname:`/${data.type}`, 
-    search: `?${createSearchParams({genre: id})}`,
-  });
+  const onGenreClickHandler = (id) =>
+    navigate({
+      pathname: `/${data.type}`,
+      search: `?${createSearchParams({ genre: id })}`,
+    });
 
   const genres = data.genres.map(({ id, name }) => (
     <GenreItem key={id} genre={name} onClickHandler={() => onGenreClickHandler(id)} />

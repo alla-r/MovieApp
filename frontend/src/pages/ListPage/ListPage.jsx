@@ -17,8 +17,8 @@ const ListPage = () => {
   const listData = useSelector(selectors.listData);
   const listError = useSelector(selectors.listError);
 
-  console.log(listLoading, listData, listError)
-  
+  console.log(listLoading, listData, listError);
+
   console.log(list);
 
   useEffect(() => {
@@ -28,13 +28,13 @@ const ListPage = () => {
   }, [list]);
 
   const items = listData?.map(({ type, id }) => {
-    const test = "a";
-    return <ListItem 
-    key={id} 
-    onClick={() => navigate(`/${type}/${id}`)}>
-      {type}
-    </ListItem>
-  })
+    const test = 'a';
+    return (
+      <ListItem key={id} onClick={() => navigate(`/${type}/${id}`)}>
+        {type}
+      </ListItem>
+    );
+  });
 
   return (
     <Container className="listpage container">
