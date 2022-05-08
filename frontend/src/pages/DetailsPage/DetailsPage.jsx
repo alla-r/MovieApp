@@ -32,6 +32,7 @@ const DetailsPage = () => {
         mediaInfo: {
           id: params.id,
           type: params.type,
+          details: detailsData,
         },
         action: mediaCustomDetails?.isInFavorites ? 'remove' : 'add',
       }),
@@ -43,6 +44,7 @@ const DetailsPage = () => {
         mediaInfo: {
           id: params.id,
           type: params.type,
+          details: detailsData,
         },
         action: mediaCustomDetails?.isInWatchlist ? 'remove' : 'add',
       }),
