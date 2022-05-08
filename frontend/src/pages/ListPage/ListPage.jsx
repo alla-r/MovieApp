@@ -27,24 +27,29 @@ const ListPage = () => {
     // return () => dispatch(actions.clearFilteredMedia());
   }, [list]);
 
-  
-
   const items = listData?.map(({ type, id, details }) => {
     const navigateToDetails = () => navigate(`/${type}/${id}`);
 
     return (
       <ListItem key={id} onClick={navigateToDetails}>
         <div onClick={navigateToDetails}>
-          <img src={details.poster} alt="poster" className='poster' />
+          <img src={details.poster} alt="poster" className="poster" />
         </div>
-        
-        <div className='content-container'>
+
+        <div className="content-container">
           <div className="content">
-            <h6 className='title'>{details.title}</h6>
-            <p className='date'>{getFormattedDate(details.date || details.firstAirDate)}</p>
-            <p className='description'>{details.overview}</p>
+            <h6 className="title">{details.title}</h6>
+            <p className="date">{getFormattedDate(details.date || details.firstAirDate)}</p>
+            <p className="description">{details.overview}</p>
           </div>
-          <img src={CloseIcon} alt="close-icon" className='close-icon' onClick={() => {console.log("close")}} />      
+          <img
+            src={CloseIcon}
+            alt="close-icon"
+            className="close-icon"
+            onClick={() => {
+              console.log('close');
+            }}
+          />
         </div>
       </ListItem>
     );

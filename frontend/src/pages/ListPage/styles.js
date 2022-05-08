@@ -8,7 +8,7 @@ export const ListItem = styled.div`
   margin-bottom: 20px;
   height: 200px;
   display: flex;
-  box-shadow: 0 2px 8px rgb(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgb(0, 0, 0, 0.1);
   border: 1px solid rgba(227, 227, 227, 1);
   border-radius: 10px;
 
@@ -29,7 +29,8 @@ export const ListItem = styled.div`
 
     .close-icon {
       width: 15px;
-      filter: invert(98%) sepia(2%) saturate(1690%) hue-rotate(172deg) brightness(119%) contrast(78%);
+      filter: invert(98%) sepia(2%) saturate(1690%) hue-rotate(172deg) brightness(119%)
+        contrast(78%);
       cursor: pointer;
     }
 
