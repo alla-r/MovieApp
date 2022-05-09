@@ -42,6 +42,7 @@ export const ImageWrapper = styled.div`
 `;
 
 export const ContentWrapper = styled.div`
+  width: 265px;
   margin-left: 25px;
   font-size: 16px;
   line-height: 18px;
