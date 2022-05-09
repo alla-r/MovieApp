@@ -40,12 +40,10 @@ class StorageService {
     }
 
     if (action === 'remove') {
-      customDetails[listName] = customDetails[listName].filter(
-        ({ id, type }) => {
-          const trigger = id.toString() === mediaInfo.id.toString() && type === mediaInfo.type;
-          return !trigger;
-        }
-      );
+      customDetails[listName] = customDetails[listName].filter(({ id, type }) => {
+        const trigger = id.toString() === mediaInfo.id.toString() && type === mediaInfo.type;
+        return !trigger;
+      });
 
       this.setItem('customDetails', customDetails);
     }

@@ -10,17 +10,18 @@ const ListItem = ({ details, listName }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const navigateToDetails = () => navigate(`/${details.type}/${details.id}`);
-  const removeFromList = () => dispatch(
-    actions.removeItemFromList({
-      listName,
-      mediaInfo: {
-        id: details.id,
-        type: details.type,
-        details,
-      },
-      action: 'remove',
-    }),
-  );
+  const removeFromList = () =>
+    dispatch(
+      actions.removeItemFromList({
+        listName,
+        mediaInfo: {
+          id: details.id,
+          type: details.type,
+          details,
+        },
+        action: 'remove',
+      }),
+    );
 
   return (
     <ItemContainer onClick={navigateToDetails}>

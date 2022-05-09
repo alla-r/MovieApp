@@ -25,7 +25,9 @@ const ListPage = () => {
     // return () => dispatch(actions.clearFilteredMedia());
   }, [list]);
 
-  const items = listData?.map(({ id, details }) => <ListItem key={id} details={details} listName={list} />);
+  const items = listData?.map(({ id, details }) => (
+    <ListItem key={id} details={details} listName={list} />
+  ));
 
   return (
     <Container className="listpage container">
