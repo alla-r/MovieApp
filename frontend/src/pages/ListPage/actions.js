@@ -20,3 +20,8 @@ export const getListData = (listName) => (dispatch) => {
   const listData = StorageService.getListData(listName);
   dispatch(getListDataSuccess(listData));
 };
+
+export const removeItemFromList = (mediaInfo) => (dispatch) => {
+  const newListData = StorageService.changeMediaCustomDetails(mediaInfo);
+  dispatch(getListDataSuccess(newListData));
+};

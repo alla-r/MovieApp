@@ -41,13 +41,16 @@ class StorageService {
 
     if (action === 'remove') {
       customDetails[listName] = customDetails[listName].filter(
-        ({ id, type }) => id !== mediaInfo.id && type !== mediaInfo.type,
+        ({ id, type }) => {
+          const trigger = id.toString() === mediaInfo.id.toString() && type === mediaInfo.type;
+          return !trigger;
+        }
       );
 
       this.setItem('customDetails', customDetails);
     }
 
-    return customDetails;
+    return customDetails[listName];
   }
 
   getItem(key) {

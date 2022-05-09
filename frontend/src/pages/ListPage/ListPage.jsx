@@ -7,7 +7,7 @@ import { selectors } from './reducer';
 import withLayout from '../../global/hoc/Layout';
 import Heading from '../../components/Heading';
 import ListItem from './ListItem';
-import { Container } from './styles';
+import { Container, Info } from './styles';
 
 const ListPage = () => {
   const dispatch = useDispatch();
@@ -25,12 +25,13 @@ const ListPage = () => {
     // return () => dispatch(actions.clearFilteredMedia());
   }, [list]);
 
-  const items = listData?.map(({ id, details }) => <ListItem key={id} details={details} />);
+  const items = listData?.map(({ id, details }) => <ListItem key={id} details={details} listName={list} />);
 
   return (
     <Container className="listpage container">
       <Heading content={constants.HEADINGS[list]} />
-      {items}
+      {listData.length > 0 && <div>{items}</div>}
+      {listData.length === 0 && <Info>{constants.HEADINGS[list]} list is empty</Info>}
     </Container>
   );
 };
