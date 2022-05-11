@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Background = styled.div`
+export const Background = styled.footer`
   width: 100%;
   height: 160px;
   background: ${(props) => props.theme.colors.dark};

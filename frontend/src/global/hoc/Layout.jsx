@@ -35,11 +35,13 @@ const withLayout = (Page) => () => {
   ];
 
   return (
-    <>
+    <div className='page-container'>
       <Header headerItems={HEADER_ITEMS} profileDropdownData={PROFILE_DROPDOWN_DATA} />
-      <Page />
+      <div className='content-wrap'>
+        <Page />
+      </div>
       <Footer />
-    </>
+    </div>
   );
 };
 
