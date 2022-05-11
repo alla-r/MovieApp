@@ -52,14 +52,19 @@ export const getFilteredMedia =
     if (pageNumber === 1) {
       dispatch(clearFilteredMedia());
     }
+
     dispatch(getFilteredMediaRequest());
     try {
       const response = await TMDBservice.getFilteredMedia(mediaType, pageNumber, genreList);
 
-      const formattedData = getFormattedListData(response.data, mediaType);
-      dispatch(getFilteredMediaSuccess(formattedData));
+      if (response.data.results.length === 0) {
+        dispatch(getFilteredMediaError("Nothing was found"));
+      } else {
+        const formattedData = getFormattedListData(response.data, mediaType);
+        dispatch(getFilteredMediaSuccess(formattedData));
+      }
     } catch (error) {
-      dispatch(getFilteredMediaError(error));
+      dispatch(getFilteredMediaError("Something went wrong. Couldn't fetch data."));
     }
   };
 

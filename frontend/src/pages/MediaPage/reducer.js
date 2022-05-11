@@ -76,7 +76,7 @@ const reducer = (state = initialState, action) => {
         loading: false,
         filteredData: {
           ...state.filteredData,
-          error: action.payload.message,
+          error: action.payload.message || action.payload,
         },
       };
     case constants.CLEAR_FILTERED_MEDIA:
@@ -84,10 +84,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         isNextPageAvailable: false,
         loading: false,
-        // genres: {
-        //   data: [],
-        //   error: null,
-        // },
         filteredData: {
           data: [],
           error: null,

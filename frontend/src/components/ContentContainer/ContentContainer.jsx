@@ -28,7 +28,7 @@ const ContentContainer = ({ loading, data, error, paginationBtn, heading }) => {
     <Container className="container">
       {heading && <Heading content={heading} />}
       {data && <ItemsContainer className="items-container">{items}</ItemsContainer>}
-      {data.length === 0 && !loading && <div>Nothing was found</div>}
+      
       {loading && <Loader />}
       {error && error.status && <Error>{error.message}</Error>}
       {paginationBtn && paginationBtn.status && (
