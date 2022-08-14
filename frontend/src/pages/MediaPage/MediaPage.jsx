@@ -44,11 +44,10 @@ const MediaPage = () => {
   const onGenreClickHandler = (genreId) => {
     if (selectedGenresArr.includes(genreId.toString())) {
       selectedGenresArr = selectedGenresArr.filter((id) => id !== genreId.toString());
-      
     } else {
       selectedGenresArr.push(genreId.toString());
     }
-    
+
     setSearchParams({ genre: selectedGenresArr.join(',') });
 
     const newGenreList = genres.map((genre) => ({
@@ -83,7 +82,7 @@ const MediaPage = () => {
         loading={loading}
         error={{
           status: !!filteredDataError,
-          message: filteredDataError
+          message: filteredDataError,
         }}
         paginationBtn={{
           text: constants.paginationBtnText,
