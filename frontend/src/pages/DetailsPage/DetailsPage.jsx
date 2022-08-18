@@ -8,6 +8,7 @@ import DetailsListSection from './components/DetailsListSection';
 import HeroSection from './components/HeroSection';
 import Recommendations from './components/Recommendations';
 import * as actions from './actions';
+import * as initActions from '../InitComponent/actions';
 import * as constants from './constants';
 import { selectors } from './reducer';
 import withLayout from '../../global/hoc/Layout';
@@ -50,6 +51,35 @@ const DetailsPage = () => {
       }),
     );
 
+  const setRateCallback = (rate) => {
+    dispatch(
+      actions.changeMediaCustomDetails({
+        listName: 'rate',
+        mediaInfo: {
+          id: params.id,
+          type: params.type,
+          details: detailsData,
+          rate,
+        },
+        action: rate ? 'add' : 'remove',
+      }),
+    );
+  };
+
+  const rateCallback = () => {
+    dispatch(
+      initActions.showModal({
+        type: 'rate',
+        data: {
+          handleCloseCallBack: () => dispatch(initActions.hideModal()),
+          setRateCallback,
+          // add logic retreving from local storage
+          currentValue: null,
+        },
+      }),
+    );
+  };
+
   constants.CIRCULAR_BUTTONS_CONFIG.forEach((btnConfig) => {
     if (btnConfig.id === 'favorite') {
       btnConfig.onClickHandler = favoriteCallback;
@@ -60,7 +90,7 @@ const DetailsPage = () => {
       btnConfig.isActive = mediaCustomDetails?.isInWatchlist;
     }
     if (btnConfig.id === 'rate') {
-      // btnConfig.onClickHandler = rateCallback;
+      btnConfig.onClickHandler = rateCallback;
       btnConfig.isActive = mediaCustomDetails?.isInRatingList;
     }
   });

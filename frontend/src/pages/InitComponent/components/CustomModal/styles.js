@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import CloseIcon from '../../global/images/close-icon.svg';
+import CloseIcon from '../../../../global/images/close-icon.svg';
 
 // eslint-disable-next-line import/prefer-default-export
 export const ModalWrapper = styled.div`
