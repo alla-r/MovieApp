@@ -5,4 +5,5 @@ export const GET_LIST_DATA_ERROR = 'GET_LIST_DATA_ERROR';
 export const HEADINGS = {
   watchlist: 'Watchlist',
   favorites: 'Favorites',
+  rate: 'Ratings',
 };

@@ -16,6 +16,10 @@ const withLayout = (Page) => () => {
       onClickHandler: () => navigate('/lists/favorites'),
     },
     {
+      content: 'Ratings',
+      onClickHandler: () => navigate('/lists/rate'),
+    },
+    {
       content: 'Sign Out',
       onClickHandler: () => {
         console.log('sign out');
