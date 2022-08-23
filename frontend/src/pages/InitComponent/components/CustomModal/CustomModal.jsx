@@ -9,8 +9,15 @@ const CustomModal = () => {
   const { currentValue, handleCloseCallBack, setRateCallback } = data || {};
   const isOpen = useSelector(selectors.isModalOpen);
 
-  const [rateValue, setRateValue] = useState(currentValue);
   const [hover, setHover] = useState(-1);
+
+  const closeCallBack = () => {
+    setHover(-1);
+
+    if (handleCloseCallBack) {
+      handleCloseCallBack();
+    }
+  };
 
   const labels = {
     1: '1/10',
@@ -28,26 +35,25 @@ const CustomModal = () => {
   return (
     <>
       {type === 'rate' && (
-        <Modal open={isOpen} onClose={handleCloseCallBack}>
+        <Modal open={isOpen} onClose={closeCallBack}>
           <ModalWrapper>
             <div className="title-row">
               <p>Rate the movie</p>
               <button
                 className="close-btn"
                 type="button"
-                onClick={handleCloseCallBack}
+                onClick={closeCallBack}
                 aria-label="close"
               />
             </div>
             <div className="rating-row">
               <Rating
                 name="rate"
-                value={rateValue}
+                value={currentValue}
                 size="large"
                 max={10}
                 onChange={(event, newValue) => {
-                  setRateValue(newValue);
-                  handleCloseCallBack();
+                  closeCallBack();
                   setRateCallback(newValue);
                 }}
                 onChangeActive={(event, newHover) => {
@@ -55,7 +61,9 @@ const CustomModal = () => {
                 }}
               />
               {hover !== -1 && <div className="rating-label">{labels[hover]}</div>}
-              {rateValue && hover === -1 && <div className="rating-label">{labels[rateValue]}</div>}
+              {currentValue && hover === -1 && (
+                <div className="rating-label">{labels[currentValue]}</div>
+              )}
             </div>
           </ModalWrapper>
         </Modal>

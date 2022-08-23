@@ -16,7 +16,7 @@ const reducer = (state = initialState, action) => {
     case constants.HIDE_MODAL:
       return {
         ...state,
-        modalConfig: action.payload,
+        modalConfig: null,
         isModalOpen: false,
       };
     default:
