@@ -66,15 +66,14 @@ const DetailsPage = () => {
     );
   };
 
-  const rateCallback = () => {
+  const rateCallback = (currentValue = null) => {
     dispatch(
       initActions.showModal({
         type: 'rate',
         data: {
           handleCloseCallBack: () => dispatch(initActions.hideModal()),
           setRateCallback,
-          // add logic retreving from local storage
-          currentValue: null,
+          currentValue,
         },
       }),
     );
@@ -90,7 +89,7 @@ const DetailsPage = () => {
       btnConfig.isActive = mediaCustomDetails?.isInWatchlist;
     }
     if (btnConfig.id === 'rate') {
-      btnConfig.onClickHandler = rateCallback;
+      btnConfig.onClickHandler = rateCallback.bind(this, mediaCustomDetails?.rateMark);
       btnConfig.isActive = mediaCustomDetails?.isInRatingList;
     }
   });
