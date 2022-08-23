@@ -58,7 +58,7 @@ export const getFilteredMedia =
       const response = await TMDBservice.getFilteredMedia(mediaType, pageNumber, genreList);
 
       if (response.data.results.length === 0) {
-        dispatch(getFilteredMediaError("Nothing was found"));
+        dispatch(getFilteredMediaError('Nothing was found'));
       } else {
         const formattedData = getFormattedListData(response.data, mediaType);
         dispatch(getFilteredMediaSuccess(formattedData));

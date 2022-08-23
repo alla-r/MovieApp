@@ -13,11 +13,15 @@ class StorageService {
     const isInFavorites = this.getFilteredList(customDetails.favorites, mediaInfo).length > 0;
     const isInWatchlist = this.getFilteredList(customDetails.watchlist, mediaInfo).length > 0;
     const isInRatingList = this.getFilteredList(customDetails.rate, mediaInfo).length > 0;
+    const rateMark = customDetails.rate.find(
+      ({ id, type }) => id === mediaInfo.id && type === mediaInfo.type,
+    )?.rate;
 
     return {
       isInFavorites,
       isInWatchlist,
       isInRatingList,
+      rateMark,
     };
   }
 
@@ -35,6 +39,8 @@ class StorageService {
     const customDetails = this.getItem('customDetails') || defaultData;
 
     if (action === 'add') {
+      const listWithoutCurrent = customDetails[listName].filter((item) => item.id !== mediaInfo.id);
+      customDetails[listName] = listWithoutCurrent;
       customDetails[listName].push(mediaInfo);
       this.setItem('customDetails', customDetails);
     }
