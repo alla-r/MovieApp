@@ -54,7 +54,7 @@ const CustomModal = () => {
                 max={10}
                 onChange={(event, newValue) => {
                   closeCallBack();
-                  setRateCallback(newValue);
+                  setRateCallback(newValue || currentValue);
                 }}
                 onChangeActive={(event, newHover) => {
                   setHover(newHover);
