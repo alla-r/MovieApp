@@ -25,3 +25,8 @@ export const removeItemFromList = (mediaInfo) => (dispatch) => {
   const newListData = StorageService.changeMediaCustomDetails(mediaInfo);
   dispatch(getListDataSuccess(newListData));
 };
+
+export const changeMediaCustomDetails = (mediaInfo) => (dispatch) => {
+  StorageService.changeMediaCustomDetails(mediaInfo);
+  dispatch(getListData(mediaInfo.listName));
+};
