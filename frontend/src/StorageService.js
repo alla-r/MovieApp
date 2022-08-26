@@ -42,7 +42,7 @@ class StorageService {
       const timestamp = Date.now();
       const listWithoutCurrent = customDetails[listName].filter((item) => item.id !== mediaInfo.id);
       customDetails[listName] = listWithoutCurrent;
-      customDetails[listName].push({...mediaInfo, timestamp});
+      customDetails[listName].push({ ...mediaInfo, timestamp });
       this.setItem('customDetails', customDetails);
     }
 

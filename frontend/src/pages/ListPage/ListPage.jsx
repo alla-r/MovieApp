@@ -30,69 +30,67 @@ const ListPage = () => {
   const items = listData
     ?.sort((el1, el2) => el2.timestamp - el1.timestamp)
     .map(({ id, details, rate }) => {
-    const newDetails = {
-      ...details,
-      rate,
-    };
-    
-    const navigateToDetailsCB = () => navigate(`/${details.type}/${details.id}`);
-
-    const removeFromListCB = () => {
-      dispatch(
-        actions.removeItemFromList({
-          listName: list,
-          mediaInfo: {
-            id: details.id,
-            type: details.type,
-            details,
-          },
-          action: 'remove',
-        }),
-      );
-    }
-
-    const changeRateCB = (newRate) => {
-      const mediaInfo = {
-        listName: list,
-        mediaInfo: {
-          id,
-          type: details.type,
-          details,
-          rate: newRate,
-        },
-        action: 'add',
+      const newDetails = {
+        ...details,
+        rate,
       };
 
-      dispatch(
-        actions.changeMediaCustomDetails(mediaInfo),
-      );
-    };
+      const navigateToDetailsCB = () => navigate(`/${details.type}/${details.id}`);
 
-    const showModal = (e) => {
-      e.stopPropagation();
-      dispatch(
-        initActions.showModal({
-          type: 'rate',
-          data: {
-            handleCloseCallBack: () => dispatch(initActions.hideModal()),
-            setRateCallback: changeRateCB,
-            currentValue: newDetails.rate,
+      const removeFromListCB = () => {
+        dispatch(
+          actions.removeItemFromList({
+            listName: list,
+            mediaInfo: {
+              id: details.id,
+              type: details.type,
+              details,
+            },
+            action: 'remove',
+          }),
+        );
+      };
+
+      const changeRateCB = (newRate) => {
+        const mediaInfo = {
+          listName: list,
+          mediaInfo: {
+            id,
+            type: details.type,
+            details,
+            rate: newRate,
           },
-        }),
-      );
-    };
+          action: 'add',
+        };
 
-    return (
-      <ListItem 
-        key={id} 
-        details={newDetails} 
-        listName={list} 
-        changeRateCB={showModal} 
-        removeFromListCB={removeFromListCB}
-        navigateToDetailsCB={navigateToDetailsCB} 
-      />
-    );
-  });
+        dispatch(actions.changeMediaCustomDetails(mediaInfo));
+      };
+
+      const showModal = (e) => {
+        e.stopPropagation();
+        dispatch(
+          initActions.showModal({
+            type: 'rate',
+            data: {
+              handleCloseCallBack: () => dispatch(initActions.hideModal()),
+              setRateCallback: changeRateCB,
+              currentValue: newDetails.rate,
+            },
+          }),
+        );
+      };
+
+      return (
+        <ListItem
+          key={id}
+          details={newDetails}
+          listName={list}
+          changeRateCB={showModal}
+          removeFromListCB={removeFromListCB}
+          navigateToDetailsCB={navigateToDetailsCB}
+        />
+      );
+    });
 
   return (
     <Container className="listpage container">
