@@ -8,7 +8,7 @@ import './CircleProgressBar.scss';
 const CircleProgressBar = ({ voteAvg, percentage }) => (
   <CircularProgressbar
     value={percentage}
-    text={Number.isInteger(voteAvg) ? `${voteAvg}.0` : voteAvg}
+    text={Number.isInteger(voteAvg) ? `${voteAvg}.0` : voteAvg.toFixed(1)}
     strokeWidth={4}
     background
     backgroundPadding={4}

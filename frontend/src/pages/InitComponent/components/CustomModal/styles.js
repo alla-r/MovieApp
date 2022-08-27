@@ -9,7 +9,6 @@ export const ModalWrapper = styled.div`
   transform: translate(-50%, -50%);
   width: 450px;
   background-color: #ffffff;
-  border: 2px solid #000;
   box-shadow: 24;
   padding: 20px 20px 30px;
   font-weight: 700;

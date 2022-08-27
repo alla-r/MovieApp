@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import * as constants from './constants';
 import * as actions from './actions';
 import { selectors } from './reducer';
+import * as initActions from '../InitComponent/actions';
 import withLayout from '../../global/hoc/Layout';
 import Heading from '../../components/Heading';
 import ListItem from './ListItem';
@@ -11,6 +12,7 @@ import { Container, Info } from './styles';
 
 const ListPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { list } = useParams();
 
   const listLoading = useSelector(selectors.listLoading);
@@ -25,9 +27,70 @@ const ListPage = () => {
     // return () => dispatch(actions.clearFilteredMedia());
   }, [list]);
 
-  const items = listData?.map(({ id, details }) => (
-    <ListItem key={id} details={details} listName={list} />
-  ));
+  const items = listData
+    ?.sort((el1, el2) => el2.timestamp - el1.timestamp)
+    .map(({ id, details, rate }) => {
+      const newDetails = {
+        ...details,
+        rate,
+      };
+
+      const navigateToDetailsCB = () => navigate(`/${details.type}/${details.id}`);
+
+      const removeFromListCB = () => {
+        dispatch(
+          actions.removeItemFromList({
+            listName: list,
+            mediaInfo: {
+              id: details.id,
+              type: details.type,
+              details,
+            },
+            action: 'remove',
+          }),
+        );
+      };
+
+      const changeRateCB = (newRate) => {
+        const mediaInfo = {
+          listName: list,
+          mediaInfo: {
+            id,
+            type: details.type,
+            details,
+            rate: newRate,
+          },
+          action: 'add',
+        };
+
+        dispatch(actions.changeMediaCustomDetails(mediaInfo));
+      };
+
+      const showModal = (e) => {
+        e.stopPropagation();
+        dispatch(
+          initActions.showModal({
+            type: 'rate',
+            data: {
+              handleCloseCallBack: () => dispatch(initActions.hideModal()),
+              setRateCallback: changeRateCB,
+              currentValue: newDetails.rate,
+            },
+          }),
+        );
+      };
+
+      return (
+        <ListItem
+          key={id}
+          details={newDetails}
+          listName={list}
+          changeRateCB={showModal}
+          removeFromListCB={removeFromListCB}
+          navigateToDetailsCB={navigateToDetailsCB}
+        />
+      );
+    });
 
   return (
     <Container className="listpage container">
