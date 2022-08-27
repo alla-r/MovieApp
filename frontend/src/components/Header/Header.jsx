@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, createSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { slide as BurgerMenu } from 'react-burger-menu';
 import Logo from '../Logo';
@@ -42,8 +42,11 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
     console.log('sign in');
   };
 
-  const searchSubmitHandler = (searchedValue) => {
-    console.log(searchedValue);
+  const searchSubmitHandler = (query) => {
+    navigate({
+      pathname: `/search`,
+      search: `?${createSearchParams({ query })}`,
+    });
   };
 
   const showSearchInput = () => {

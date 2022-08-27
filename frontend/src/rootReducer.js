@@ -4,6 +4,7 @@ import { detailsPageReducer } from './pages/DetailsPage';
 import { mediaPageReducer } from './pages/MediaPage';
 import { listPageReducer } from './pages/ListPage';
 import { initComponentReducer } from './pages/InitComponent';
+import { searchPageReducer } from './pages/SearchPage';
 
 export default combineReducers({
   initComponentReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   detailsPageReducer,
   mediaPageReducer,
   listPageReducer,
+  searchPageReducer,
 });
