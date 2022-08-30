@@ -13,13 +13,13 @@ export const PanelWrapper = styled.div`
   }
 `;
 
-export const ListItem = styled.div`
+export const ListItemWrapper = styled.div`
   padding: 8px 16px;
   display: flex;
   justify-content: space-between;
-  background-color: ${(props) => props.selected ? 'rgba(0, 0, 0, 0.07)' : '#fff'};
+  background-color: ${(props) => (props.selected ? 'rgba(0, 0, 0, 0.07)' : '#fff')};
   font-size: 1em;
-  font-weight: ${(props) => props.selected ? 600 : 400};
+  font-weight: ${(props) => (props.selected ? 600 : 400)};
   line-height: 1.4em;
   cursor: pointer;
 
@@ -32,13 +32,13 @@ export const ListItem = styled.div`
   }
 
   span {
-    background-color: ${(props) => props.selected ? '#fff' : 'rgba(0, 0, 0, 0.07)'};
+    background-color: ${(props) => (props.selected ? '#fff' : 'rgba(0, 0, 0, 0.07)')};
   }
 `;
 
 export const NumberLabel = styled.span`
   padding: 0px 10px;
   border-radius: 8px;
-  font-size: .8em;
+  font-size: 0.8em;
   font-weight: 300;
 `;

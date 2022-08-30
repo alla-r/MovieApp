@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { List, ListItemButton } from '@mui/material';
-import { PanelWrapper, ListItem, NumberLabel } from './styles';
+import PropTypes from 'prop-types';
+import { List } from '@mui/material';
+import { PanelWrapper, ListItemWrapper, NumberLabel } from './styles';
 
 const NavigationPanel = () => {
   const [selectedIndex, setSelectedIndex] = useState(null);
@@ -9,32 +10,39 @@ const NavigationPanel = () => {
     setSelectedIndex(index);
   };
 
+  const data = [
+    {
+      text: 'Movies',
+      amount: 200,
+    },
+    {
+      text: 'TV Shows',
+      amount: 2200,
+    },
+    {
+      text: 'People',
+      amount: 0,
+    },
+  ];
+
+  const items = data.map((item, index) => (
+    <ListItem
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...item}
+      // eslint-disable-next-line react/no-array-index-key
+      key={index}
+      index={index}
+      onClickHandler={handleListItemClick}
+      isSelected={selectedIndex === index}
+    />
+  ));
+
   return (
     <PanelWrapper>
       <h3 className="panel--header">Search Results</h3>
       <div className="panel--list">
         <List component="nav" aria-label="secondary mailbox folder">
-          <ListItem
-            selected={selectedIndex === 0}
-            onClick={(event) => handleListItemClick(event, 0)}
-          >
-            <p>Movies</p>
-            <NumberLabel>200</NumberLabel>
-          </ListItem>
-          <ListItem
-            selected={selectedIndex === 1}
-            onClick={(event) => handleListItemClick(event, 1)}
-          >
-            <p>TV Shows</p>
-            <NumberLabel>1200</NumberLabel>
-          </ListItem>
-          <ListItem
-            selected={selectedIndex === 2}
-            onClick={(event) => handleListItemClick(event, 2)}
-          >
-            <p>People</p>
-            <NumberLabel>0</NumberLabel>
-          </ListItem>
+          {items}
         </List>
       </div>
     </PanelWrapper>
@@ -42,3 +50,18 @@ const NavigationPanel = () => {
 };
 
 export default NavigationPanel;
+
+const ListItem = ({ index, text, amount, isSelected, onClickHandler }) => (
+  <ListItemWrapper selected={isSelected} onClick={(e) => onClickHandler(e, index)}>
+    <p>{text}</p>
+    <NumberLabel>{amount}</NumberLabel>
+  </ListItemWrapper>
+);
+
+ListItem.propTypes = {
+  index: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
+  amount: PropTypes.number.isRequired,
+  isSelected: PropTypes.bool.isRequired,
+  onClickHandler: PropTypes.func.isRequired,
+};
