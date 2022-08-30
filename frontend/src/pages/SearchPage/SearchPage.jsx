@@ -29,7 +29,6 @@ const SearchPage = () => {
     // return () => dispatch(actions.clearFilteredMedia());
   }, [query]);
 
-  
   return (
     <Container className="searchPage container">
       <Heading content="search" />

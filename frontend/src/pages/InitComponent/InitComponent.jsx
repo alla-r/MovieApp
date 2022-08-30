@@ -20,7 +20,7 @@ const InitComponent = () => {
         <Route path="/:type" element={<MediaPage />} />
         <Route path="/:type/:id" element={<DetailsPage />} />
         <Route path="/lists/:list" element={<ListPage />} />
-        <Route path='/search' element={<SearchPage />} />
+        <Route path="/search" element={<SearchPage />} />
       </Routes>
     </>
   );
