@@ -7,7 +7,7 @@ import { selectors } from './reducer';
 import * as initActions from '../InitComponent/actions';
 import withLayout from '../../global/hoc/Layout';
 import Heading from '../../components/Heading';
-import ListItem from './ListItem';
+import ListItem from './components/ListItem';
 import { Container, Info } from './styles';
 
 const ListPage = () => {

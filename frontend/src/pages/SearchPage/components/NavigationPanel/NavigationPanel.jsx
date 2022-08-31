@@ -4,7 +4,7 @@ import { List } from '@mui/material';
 import { PanelWrapper, ListItemWrapper, NumberLabel } from './styles';
 
 const NavigationPanel = () => {
-  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);

@@ -5,7 +5,6 @@ import * as constants from './constants';
 import * as actions from './actions';
 import { selectors } from './reducer';
 import withLayout from '../../global/hoc/Layout';
-import Heading from '../../components/Heading';
 import NavigationPanel from './components/NavigationPanel';
 import { Container } from './styles';
 
@@ -31,7 +30,6 @@ const SearchPage = () => {
 
   return (
     <Container className="searchPage container">
-      <Heading content="search" />
       <NavigationPanel />
     </Container>
   );
