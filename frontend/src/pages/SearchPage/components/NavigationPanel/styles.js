@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const PanelWrapper = styled.div`
   width: 260px;
+  min-width: 260px;
   border: 1px solid rgb(227, 227, 227);
   border-radius: 8px;
 

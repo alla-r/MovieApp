@@ -36,16 +36,23 @@ const ListItem = ({ details, listName, changeRateCB, removeFromListCB, navigateT
           )}
         </div>
         <div>
-          <CloseButton
-            onClick={(e) => {
-              e.stopPropagation();
-              removeFromListCB();
-            }}
-          />
+          {removeFromListCB && (
+            <CloseButton
+              onClick={(e) => {
+                e.stopPropagation();
+                removeFromListCB();
+              }}
+            />
+          )}
         </div>
       </div>
     </ItemContainer>
   );
+};
+
+ListItem.defaultProps = {
+  changeRateCB: null,
+  removeFromListCB: null,
 };
 
 ListItem.propTypes = {
@@ -60,8 +67,8 @@ ListItem.propTypes = {
     rate: PropTypes.number,
   }).isRequired,
   listName: PropTypes.string.isRequired,
-  changeRateCB: PropTypes.func.isRequired,
-  removeFromListCB: PropTypes.func.isRequired,
+  changeRateCB: PropTypes.func,
+  removeFromListCB: PropTypes.func,
   navigateToDetailsCB: PropTypes.func.isRequired,
 };
 
