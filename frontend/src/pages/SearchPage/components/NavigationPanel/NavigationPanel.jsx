@@ -3,34 +3,22 @@ import PropTypes from 'prop-types';
 import { List } from '@mui/material';
 import { PanelWrapper, ListItemWrapper, NumberLabel } from './styles';
 
-const NavigationPanel = () => {
+const NavigationPanel = ({ navConfig }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
+
+    if (navConfig[index].onClickHandler) {
+      navConfig[index].onClickHandler();
+    }
   };
 
-  const data = [
-    {
-      text: 'Movies',
-      amount: 200,
-    },
-    {
-      text: 'TV Shows',
-      amount: 2200,
-    },
-    {
-      text: 'People',
-      amount: 0,
-    },
-  ];
-
-  const items = data.map((item, index) => (
+  const items = navConfig.map((item, index) => (
     <ListItem
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...item}
-      // eslint-disable-next-line react/no-array-index-key
-      key={index}
+      key={item.id}
       index={index}
       onClickHandler={handleListItemClick}
       isSelected={selectedIndex === index}
@@ -47,6 +35,16 @@ const NavigationPanel = () => {
       </div>
     </PanelWrapper>
   );
+};
+
+NavigationPanel.propTypes = {
+  navConfig: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.string.isRequired,
+      amount: PropTypes.number.isRequired,
+      onClickHandler: PropTypes.func,
+    }),
+  ).isRequired,
 };
 
 export default NavigationPanel;
