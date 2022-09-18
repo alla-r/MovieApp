@@ -62,9 +62,10 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
   };
 
   const getMobileItems = (data) => {
-    const mobileItems = data.map(({ content, onClickHandler }) => (
+    const mobileItems = data.map(({ content, onClickHandler, path }) => (
       <HeaderItem
         key={content}
+        path={path}
         content={content}
         onClickHandler={() => menuItemsClickHandler(onClickHandler)}
       />
@@ -95,7 +96,7 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
       )}
       {isMobile && !isSearchBarOpen && (
         <>
-          <div className="container">
+          <div className="logo--container">
             <Logo size={36} onClickHandler={onLogoClickHandler} />
           </div>
           <SearchIconButton onClick={showSearchInput} />
