@@ -45,7 +45,11 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
   const searchSubmitHandler = (query) => {
     navigate({
       pathname: `/search`,
-      search: `?${createSearchParams({ query })}`,
+      search: `?${createSearchParams({
+        type: 'movie',
+        page: 1,
+        query,
+      })}`,
     });
   };
 

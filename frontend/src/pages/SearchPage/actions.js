@@ -21,44 +21,22 @@ export const getSearchData =
   async (dispatch) => {
     dispatch(getSearchDataRequest());
     try {
-      let responseMovie;
-      let responseTVshows;
-      let responsePeople;
-      let temp;
+      const result = {};
 
-      if (page === 1) {
-        responseMovie = await TMDBservice.getSearchData('movie', query, page);
-        responseTVshows = await TMDBservice.getSearchData('tv', query, page);
-        responsePeople = await TMDBservice.getSearchData('person', query, page);
+      if (Number(page) === 1) {
+        const responseMovie = await TMDBservice.getSearchData('movie', query, page);
+        const responseTVshows = await TMDBservice.getSearchData('tv', query, page);
+        const responsePeople = await TMDBservice.getSearchData('person', query, page);
+
+        result.movie = getFormattedSearchData(responseMovie?.data, 'movie');
+        result.tv = getFormattedSearchData(responseTVshows?.data, 'tv');
+        result.person = getFormattedSearchData(responsePeople?.data, 'people');
       } else {
-        temp = await TMDBservice.getSearchData(mediaType, query, page);
+        const temp = await TMDBservice.getSearchData(mediaType, query, page);
+        result[mediaType] = getFormattedSearchData(temp?.data, mediaType);
       }
 
-      // add data formatting !!!!!!
-
-      const ready = {
-        movie: {
-          result: getFormattedSearchData(responseMovie?.data, 'movie').results,
-          totalPages: responseMovie?.data?.total_pages,
-          totalResults: responseMovie?.data?.total_results,
-          currentPage: page,
-        },
-        tv: {
-          result: getFormattedSearchData(responseTVshows?.data, 'tv').results,
-          totalPages: responseTVshows?.data?.total_pages,
-          totalResults: responseTVshows?.data?.total_results,
-          currentPage: page,
-        },
-        person: {
-          result: getFormattedSearchData(responsePeople?.data, 'people').results,
-          totalPages: responsePeople?.data?.total_pages,
-          totalResults: responsePeople?.data?.total_results,
-          currentPage: page,
-        },
-      };
-
-      // const formattedResponse = getFormattedSearchData(response.data.genres);
-      dispatch(getSearchDataSuccess(ready));
+      dispatch(getSearchDataSuccess(result));
     } catch (error) {
       dispatch(getSearchDataError(error));
     }

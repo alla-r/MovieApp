@@ -11,12 +11,13 @@ const reducer = (state = initialState, action) => {
     case constants.GET_SEARCH_DATA_REQUEST:
       return {
         ...state,
+        error: null,
         loading: true,
       };
     case constants.GET_SEARCH_DATA_SUCCESS:
       return {
         ...state,
-        data: action.payload,
+        data: { ...state.data, ...action.payload },
         error: null,
         loading: false,
       };

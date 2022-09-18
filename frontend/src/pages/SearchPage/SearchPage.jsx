@@ -1,23 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import * as constants from './constants';
+import Pagination from '@mui/material/Pagination';
 import * as actions from './actions';
 import { selectors } from './reducer';
 import withLayout from '../../global/hoc/Layout';
 import NavigationPanel from './components/NavigationPanel';
 import ListItem from '../ListPage/components/ListItem';
 import PersonItem from '../../components/PersonItem';
+import Loader from '../../components/Loader';
 import { Container } from './styles';
 
 const SearchPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [currentMediaType, setCurrentMediaType] = useState('movie');
-  const [pageNumber, setPageNumber] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const query = searchParams.get('query') || '';
+  const pageNumber = searchParams.get('page') || 1;
+  const type = searchParams.get('type') || 'movie';
 
   const searchLoading = useSelector(selectors.searchLoading);
   const searchData = useSelector(selectors.searchData);
@@ -26,9 +27,11 @@ const SearchPage = () => {
   console.log(searchLoading, searchData, searchError);
 
   const navClickHandler = (mediaType) => {
-    console.log(mediaType, pageNumber);
-    setCurrentMediaType(mediaType);
-    setPageNumber(1);
+    setSearchParams({
+      type: mediaType,
+      page: 1,
+      query,
+    });
   };
 
   const navConfig = [
@@ -53,11 +56,18 @@ const SearchPage = () => {
   ];
 
   useEffect(() => {
-    dispatch(actions.getSearchData(query, currentMediaType, pageNumber));
+    dispatch(actions.getSearchData(query, type, pageNumber));
     console.log(query);
 
     // return () => dispatch(actions.clearFilteredMedia());
-  }, [query]);
+  }, [query, pageNumber]);
+
+  const handleChange = (e, value) =>
+    setSearchParams({
+      type,
+      page: value,
+      query,
+    });
 
   const createMediaList = (data) =>
     data.map((details) => {
@@ -90,17 +100,28 @@ const SearchPage = () => {
   return (
     <Container className="searchPage container">
       <NavigationPanel navConfig={navConfig} />
-      {searchData?.person?.result && currentMediaType === 'person' && (
-        <div className="search-items--container">
-          {createPersonList(searchData?.person?.result)}
-        </div>
-      )}
-      {searchData?.movie?.result && currentMediaType === 'movie' && (
-        <div className="search-items--container">{createMediaList(searchData?.movie?.result)}</div>
-      )}
-      {searchData?.tv?.result && currentMediaType === 'tv' && (
-        <div className="search-items--container">{createMediaList(searchData?.tv?.result)}</div>
-      )}
+      <div className="search-items--container">
+        {searchLoading && <Loader />}
+        {!searchLoading && searchData?.person && type === 'person' && (
+          <div>{createPersonList(searchData?.person?.results)}</div>
+        )}
+        {!searchLoading && searchData?.movie && type === 'movie' && (
+          <div>{createMediaList(searchData?.movie?.results)}</div>
+        )}
+        {!searchLoading && searchData?.tv && type === 'tv' && (
+          <div>{createMediaList(searchData?.tv?.results)}</div>
+        )}
+        {!searchLoading && searchData?.[type] && (
+          <div className="pagination--wrapper">
+            <Pagination
+              count={searchData[type].totalPages}
+              size="small"
+              page={Number(pageNumber)}
+              onChange={handleChange}
+            />
+          </div>
+        )}
+      </div>
     </Container>
   );
 };

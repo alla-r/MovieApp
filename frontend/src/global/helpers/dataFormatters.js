@@ -140,20 +140,21 @@ const getFormattedSearchItem = (item, type) => {
   return formattedItem;
 };
 
-const getFormattedSearchData = ({ page, total_pages, results }, mediaType) => {
+const getFormattedSearchData = ({ page, total_pages, total_results, results }, mediaType) => {
   debugger;
   let formattedResultsList;
 
-  if (mediaType === 'people') {
+  if (mediaType === 'people' || mediaType === 'person') {
     formattedResultsList = results.map(getFormattedPersonItem);
   } else {
     formattedResultsList = results.map((item) => getFormattedSearchItem(item, mediaType));
   }
 
   const formattedData = {
-    page,
+    currentPage: page,
     totalPages: total_pages,
     results: formattedResultsList,
+    totalResults: total_results,
   };
 
   return formattedData;
