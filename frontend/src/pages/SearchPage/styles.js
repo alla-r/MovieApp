@@ -20,4 +20,14 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
   }
+
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+
+    .search-items--container {
+      padding-left: 0px;
+      margin-top: 20px;
+      width: 100%;
+    }
+  }
 `;
