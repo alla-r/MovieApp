@@ -5,15 +5,11 @@ import Heading from '../../../../components/Heading';
 import PersonItem from '../../../../components/PersonItem';
 import { Container, ItemsContainer } from './styles';
 
-const TopCastSection = ({ data, btnShowMoreContent }) => {
-  const onPersonClickHandler = (id) => {
-    console.log(id);
-  };
-
+const TopCastSection = ({ data, btnShowMoreContent, onPersonClickCallback }) => {
   const items = data
     .slice(0, 10)
     .map((item) => (
-      <PersonItem key={item.id} data={item} onClickHandler={() => onPersonClickHandler(item.id)} />
+      <PersonItem key={item.id} data={item} onClickHandler={() => onPersonClickCallback(item.id)} />
     ));
 
   return (
@@ -33,12 +29,14 @@ const TopCastSection = ({ data, btnShowMoreContent }) => {
 
 TopCastSection.defaultProps = {
   btnShowMoreContent: 'Show More',
+  onPersonClickCallback: () => {},
 };
 
 TopCastSection.propTypes = {
   btnShowMoreContent: PropTypes.string,
   // eslint-disable-next-line react/forbid-prop-types
   data: PropTypes.array.isRequired,
+  onPersonClickCallback: PropTypes.func,
 };
 
 export default TopCastSection;

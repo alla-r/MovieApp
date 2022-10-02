@@ -85,7 +85,7 @@ const SearchPage = () => {
 
   const createPersonList = (data) =>
     data.map((item) => {
-      const onPersonClickHandler = () => console.log(`${item.id}`);
+      const onPersonClickHandler = () => navigate(`/person/${item.id}`);
 
       return (
         <PersonItem
