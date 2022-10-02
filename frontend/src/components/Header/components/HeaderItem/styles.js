@@ -9,6 +9,7 @@ export const Item = styled(NavLink)`
   color: ${(props) => props.theme.colors.light};
   cursor: pointer;
   white-space: nowrap;
+  display: block;
 
   &:hover {
     color: ${(props) => props.theme.colors.secondary};

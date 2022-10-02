@@ -5,6 +5,7 @@ import HomePage from '../HomePage';
 import MediaPage from '../MediaPage';
 import DetailsPage from '../DetailsPage';
 import ListPage from '../ListPage';
+import SearchPage from '../SearchPage';
 import * as constants from './constants';
 import CustomModal from './components/CustomModal';
 
@@ -19,6 +20,7 @@ const InitComponent = () => {
         <Route path="/:type" element={<MediaPage />} />
         <Route path="/:type/:id" element={<DetailsPage />} />
         <Route path="/lists/:list" element={<ListPage />} />
+        <Route path="/search" element={<SearchPage />} />
       </Routes>
     </>
   );

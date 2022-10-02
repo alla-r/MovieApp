@@ -26,8 +26,8 @@ export const PersonContainer = styled.div`
 `;
 
 export const ImageWrapper = styled.div`
-  height: 140px;
-  width: 110px;
+  height: ${({ size }) => (size === 'big' ? '140px' : '80px')};
+  width: ${({ size }) => (size === 'big' ? '110px' : '80px')};
   overflow: hidden;
   border-radius: 10%;
   background-image: url(${({ imgSrc }) => imgSrc});

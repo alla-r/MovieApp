@@ -2,10 +2,17 @@ import {
   getFormattedMediaDetails,
   getFormattedGenreList,
   getFormattedListData,
+  getFormattedSearchData,
 } from './dataFormatters';
 import ScrollToTop from './ScrollToTop';
 
-export { getFormattedMediaDetails, ScrollToTop, getFormattedGenreList, getFormattedListData };
+export {
+  getFormattedMediaDetails,
+  ScrollToTop,
+  getFormattedGenreList,
+  getFormattedListData,
+  getFormattedSearchData,
+};
 
 export const getFormattedItem = (item) => {
   const formattedItem = {

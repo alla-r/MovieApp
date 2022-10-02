@@ -9,14 +9,17 @@ const withLayout = (Page) => () => {
   const PROFILE_DROPDOWN_DATA = [
     {
       content: 'Watchlist',
+      path: '/lists/watchlist',
       onClickHandler: () => navigate('/lists/watchlist'),
     },
     {
       content: 'Favorites',
+      path: '/lists/favorites',
       onClickHandler: () => navigate('/lists/favorites'),
     },
     {
       content: 'Ratings',
+      path: '/lists/rate',
       onClickHandler: () => navigate('/lists/rate'),
     },
     {

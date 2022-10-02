@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-const getFormattedCreditsItem = (item) => {
+const getFormattedPersonItem = (item) => {
   const formattedItem = {
     id: item.id,
     job: item.job || '',
@@ -49,8 +49,8 @@ const getFormattedMediaDetails = (type, data) => {
       budget: data.budget,
       date: data.release_date,
     };
-    formattedData.cast = data.credits.cast.map((item) => getFormattedCreditsItem(item));
-    formattedData.crew = data.credits.crew.map((item) => getFormattedCreditsItem(item));
+    formattedData.cast = data.credits.cast.map((item) => getFormattedPersonItem(item));
+    formattedData.crew = data.credits.crew.map((item) => getFormattedPersonItem(item));
     formattedData.recommendations = data.recommendations.results.map((item) =>
       getFormattedRecommendationItem(item),
     );
@@ -80,8 +80,8 @@ const getFormattedMediaDetails = (type, data) => {
       firstAirDate: data.first_air_date,
       lastAirDate: data.last_air_date,
     };
-    formattedData.cast = data.credits.cast.map((item) => getFormattedCreditsItem(item));
-    formattedData.crew = data.credits.crew.map((item) => getFormattedCreditsItem(item));
+    formattedData.cast = data.credits.cast.map((item) => getFormattedPersonItem(item));
+    formattedData.crew = data.credits.crew.map((item) => getFormattedPersonItem(item));
     formattedData.recommendations = data.recommendations.results.map((item) =>
       getFormattedRecommendationItem(item),
     );
@@ -127,4 +127,42 @@ const getFormattedListData = ({ page, total_pages, results }, mediaType) => {
   return formattedData;
 };
 
-export { getFormattedMediaDetails, getFormattedGenreList, getFormattedListData };
+const getFormattedSearchItem = (item, type) => {
+  const formattedItem = {
+    id: item.id,
+    type: item.media_type || type,
+    date: item.release_date || item.first_air_date || 'unknown',
+    title: item.title || item.name,
+    overview: item.overview,
+    poster: `https://image.tmdb.org/t/p/original${item.poster_path}`,
+  };
+
+  return formattedItem;
+};
+
+const getFormattedSearchData = ({ page, total_pages, total_results, results }, mediaType) => {
+  debugger;
+  let formattedResultsList;
+
+  if (mediaType === 'people' || mediaType === 'person') {
+    formattedResultsList = results.map(getFormattedPersonItem);
+  } else {
+    formattedResultsList = results.map((item) => getFormattedSearchItem(item, mediaType));
+  }
+
+  const formattedData = {
+    currentPage: page,
+    totalPages: total_pages,
+    results: formattedResultsList,
+    totalResults: total_results,
+  };
+
+  return formattedData;
+};
+
+export {
+  getFormattedMediaDetails,
+  getFormattedGenreList,
+  getFormattedListData,
+  getFormattedSearchData,
+};

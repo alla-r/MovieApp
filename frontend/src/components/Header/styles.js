@@ -8,8 +8,9 @@ export const Background = styled.div`
   background: ${(props) => props.theme.colors.dark};
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.42);
 
-  .container {
+  .logo--container {
     margin: 0 auto;
+    padding-left: 5%;
     height: 100%;
     display: flex;
     align-items: center;

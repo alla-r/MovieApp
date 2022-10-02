@@ -1,14 +1,13 @@
 import styled from 'styled-components';
-import CloseIcon from '../../../global/images/close-icon.svg';
+import CloseIcon from '../../../../global/images/close-icon.svg';
 
 export const ItemContainer = styled.div`
   margin-bottom: 20px;
-  height: 200px;
+  min-height: 200px;
   display: flex;
   box-shadow: 0 2px 8px rgb(0, 0, 0, 0.1);
   border: 1px solid rgba(227, 227, 227, 1);
   border-radius: 10px;
-  /* cursor: pointer; */
 
   .content--container {
     display: flex;
@@ -75,7 +74,6 @@ export const ItemContainer = styled.div`
 
 export const MediaImage = styled.img`
   width: 140px;
-  height: 100%;
   border-radius: 10px 0px 0px 10px;
   object-fit: cover;
   cursor: pointer;
