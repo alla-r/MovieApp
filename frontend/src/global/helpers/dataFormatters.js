@@ -90,6 +90,42 @@ const getFormattedMediaDetails = (type, data) => {
   return formattedData;
 };
 
+const getAge = (birthday, deathday) => {
+  let age;
+  let ageDifMs;
+  let ageDate;
+
+  if (deathday) {
+    ageDifMs = new Date(deathday).getTime() - new Date(birthday).getTime();
+    ageDate = new Date(ageDifMs);
+
+    age = Math.abs(ageDate.getUTCFullYear() - 1970);
+  } else {
+    ageDifMs = new Date() - new Date(birthday).getTime();
+    ageDate = new Date(ageDifMs);
+
+    age = Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
+
+  return age;
+}
+
+const getFormattedPersonDetails = (data = {}) => {
+  const formattedDetails = {
+    id: data.id,
+    name: data.name,
+    knownFor: data.known_for_department,
+    birthday: data.birthday,
+    deathday: data.deathday,
+    placeOfBirth: data.place_of_birth,
+    poster: `https://image.tmdb.org/t/p/original${data.profile_path}`,
+    biography: data.biography,
+    age: getAge(data.birthday, data.deathday),
+  }
+
+  return formattedDetails;
+}
+
 const getFormattedGenreList = (genreList, selectedGenresArr) => {
   const formattedGenreList = genreList.map(({ id, name }) => ({
     id,
@@ -141,7 +177,6 @@ const getFormattedSearchItem = (item, type) => {
 };
 
 const getFormattedSearchData = ({ page, total_pages, total_results, results }, mediaType) => {
-  debugger;
   let formattedResultsList;
 
   if (mediaType === 'people' || mediaType === 'person') {
@@ -165,4 +200,5 @@ export {
   getFormattedGenreList,
   getFormattedListData,
   getFormattedSearchData,
+  getFormattedPersonDetails,
 };

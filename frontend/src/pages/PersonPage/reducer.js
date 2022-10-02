@@ -20,7 +20,7 @@ const reducer = (state = initialState, action) => {
     case constants.GET_PERSON_DETAILS_SUCCESS:
       return {
         ...state,
-        details: action.payload.details,
+        details: action.payload,
         error: null,
         loading: false,
       };

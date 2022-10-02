@@ -3,6 +3,7 @@ import {
   getFormattedGenreList,
   getFormattedListData,
   getFormattedSearchData,
+  getFormattedPersonDetails,
 } from './dataFormatters';
 import ScrollToTop from './ScrollToTop';
 
@@ -12,6 +13,7 @@ export {
   getFormattedGenreList,
   getFormattedListData,
   getFormattedSearchData,
+  getFormattedPersonDetails,
 };
 
 export const getFormattedItem = (item) => {
