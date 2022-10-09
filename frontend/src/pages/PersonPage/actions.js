@@ -1,5 +1,5 @@
 import * as constants from './constants';
-import { getFormattedPersonDetails } from '../../global/helpers';
+import { getFormattedPersonDetails, getFormattedSocialMedia } from '../../global/helpers';
 import TMDBservice from '../../TMDBservice';
 
 export const getPersonDetailsSuccess = (data) => ({
@@ -21,6 +21,8 @@ export const getPersonDetails = (id) => async (dispatch) => {
   try {
     const response = await TMDBservice.getPersonDetails(id);
     const formattedData = getFormattedPersonDetails(response.data);
+    const socialMediaResponse = await TMDBservice.getPersonExternalIds(id);
+    formattedData.socialMedia = getFormattedSocialMedia(socialMediaResponse.data);
 
     dispatch(getPersonDetailsSuccess(formattedData));
   } catch (error) {

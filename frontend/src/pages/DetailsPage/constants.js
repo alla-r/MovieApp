@@ -81,10 +81,8 @@ export const CIRCULAR_BUTTONS_CONFIG = [
   {
     iconSrc: StarIcon,
     id: 'rate',
-    isActive: false,
     tooltipActive: 'Change your rating',
     tooltipInactive: 'Rate the movie',
-    onClickHandler: () => console.log('rate'),
   },
 ];
 

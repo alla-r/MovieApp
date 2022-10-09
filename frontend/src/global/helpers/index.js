@@ -4,6 +4,7 @@ import {
   getFormattedListData,
   getFormattedSearchData,
   getFormattedPersonDetails,
+  getFormattedSocialMedia,
 } from './dataFormatters';
 import ScrollToTop from './ScrollToTop';
 
@@ -14,6 +15,7 @@ export {
   getFormattedListData,
   getFormattedSearchData,
   getFormattedPersonDetails,
+  getFormattedSocialMedia,
 };
 
 export const getFormattedItem = (item) => {

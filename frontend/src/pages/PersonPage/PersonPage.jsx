@@ -21,19 +21,19 @@ const PersonPage = () => {
 
   useEffect(() => {
     dispatch(actions.getPersonDetails(params.id));
+
+    // TODO: clear data on unmount
   }, [params]);
 
-  const buttons = SOCIAL_MEDIA_BUTTONS_CONFIG.map(
-    // TODO: onClick
-    ({ id, iconSrc, tooltipMessage, onClickHandler}) => (
+  const createSocialMediaButtons = (btnConfig, links) => btnConfig.map(({ id, iconSrc, tooltipMessage}) => (
       <SocialMediaButton
         key={id}
         iconSrc={iconSrc}
-        onClickHandler={() => console.log('open link')}
+        url={links[id]}
         tooltipMessage={tooltipMessage}
       />
-    ),
-  );
+    )
+  )
 
   return (
     <div className="person--page container">
@@ -42,7 +42,7 @@ const PersonPage = () => {
         <div>
           <img src={detailsData.poster} alt="poster" className='poster' />
           <div>
-            {buttons}
+            {createSocialMediaButtons(SOCIAL_MEDIA_BUTTONS_CONFIG, detailsData.socialMedia)}
           </div>
         </div>
       )}

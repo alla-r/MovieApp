@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { Tooltip, tooltipClasses, Zoom } from '@mui/material';
-import { Image } from './styles';
+import { Image, Link } from './styles';
 
-const SocialMediaButton = ({ onClickHandler, tooltipMessage, iconSrc }) => {
+const SocialMediaButton = ({ url, tooltipMessage, iconSrc }) => {
   const StyledTooltip = styled(({ className, ...props }) => (
     <Tooltip 
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -23,15 +23,21 @@ const SocialMediaButton = ({ onClickHandler, tooltipMessage, iconSrc }) => {
     },
   });
 
-  return (
-    <StyledTooltip title={tooltipMessage} onClick={onClickHandler}>
+  return url && (
+    <StyledTooltip title={tooltipMessage}>
+      <Link href={url} target="_blank" rel="noreferrer">
         <Image src={iconSrc} />
+      </Link>    
     </StyledTooltip>
   );
 };
 
+SocialMediaButton.defaultProps = {
+  url: null,
+};
+
 SocialMediaButton.propTypes = {
-  onClickHandler: PropTypes.func.isRequired,
+  url: PropTypes.string,
   iconSrc: PropTypes.string.isRequired,
   tooltipMessage: PropTypes.string.isRequired,
 };

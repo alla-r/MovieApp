@@ -195,10 +195,17 @@ const getFormattedSearchData = ({ page, total_pages, total_results, results }, m
   return formattedData;
 };
 
+const getFormattedSocialMedia = ({instagram_id, facebook_id, twitter_id}) => ({
+    instagram: instagram_id ? `https://instagram.com/${instagram_id}` : null,
+    facebook: facebook_id ? `https://www.facebook.com/${facebook_id}` : null,
+    twitter: twitter_id ? `https://twitter.com/${twitter_id}` : null,
+});
+
 export {
   getFormattedMediaDetails,
   getFormattedGenreList,
   getFormattedListData,
   getFormattedSearchData,
   getFormattedPersonDetails,
+  getFormattedSocialMedia,
 };
