@@ -3,9 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from './actions';
 import { selectors } from './reducer';
-import { SOCIAL_MEDIA_BUTTONS_CONFIG } from './constants';
 import Loader from '../../components/Loader';
-import SocialMediaButton from '../../components/SocialMediaButton';
+import LeftSide from './components/LeftSide';
 import withLayout from '../../global/hoc/Layout';
 import './PersonPage.scss';
 
@@ -25,25 +24,12 @@ const PersonPage = () => {
     // TODO: clear data on unmount
   }, [params]);
 
-  const createSocialMediaButtons = (btnConfig, links) => btnConfig.map(({ id, iconSrc, tooltipMessage}) => (
-      <SocialMediaButton
-        key={id}
-        iconSrc={iconSrc}
-        url={links[id]}
-        tooltipMessage={tooltipMessage}
-      />
-    )
-  )
-
   return (
     <div className="person--page container">
       {detailsLoading && <Loader />}
       {detailsData && (
         <div>
-          <img src={detailsData.poster} alt="poster" className='poster' />
-          <div>
-            {createSocialMediaButtons(SOCIAL_MEDIA_BUTTONS_CONFIG, detailsData.socialMedia)}
-          </div>
+          <LeftSide data={detailsData} />
         </div>
       )}
     </div>

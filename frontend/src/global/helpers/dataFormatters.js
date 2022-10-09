@@ -108,23 +108,23 @@ const getAge = (birthday, deathday) => {
   }
 
   return age;
-}
+};
 
-const getFormattedPersonDetails = (data = {}) => {
+const getFormattedPersonDetails = (data = {}) => {  
   const formattedDetails = {
     id: data.id,
     name: data.name,
     knownFor: data.known_for_department,
-    birthday: data.birthday,
+    birthday: `${data.birthday} (${getAge(data.birthday, data.deathday)} years old)`,
     deathday: data.deathday,
     placeOfBirth: data.place_of_birth,
     poster: `https://image.tmdb.org/t/p/original${data.profile_path}`,
     biography: data.biography,
     age: getAge(data.birthday, data.deathday),
-  }
+  };
 
   return formattedDetails;
-}
+};
 
 const getFormattedGenreList = (genreList, selectedGenresArr) => {
   const formattedGenreList = genreList.map(({ id, name }) => ({
@@ -195,10 +195,10 @@ const getFormattedSearchData = ({ page, total_pages, total_results, results }, m
   return formattedData;
 };
 
-const getFormattedSocialMedia = ({instagram_id, facebook_id, twitter_id}) => ({
-    instagram: instagram_id ? `https://instagram.com/${instagram_id}` : null,
-    facebook: facebook_id ? `https://www.facebook.com/${facebook_id}` : null,
-    twitter: twitter_id ? `https://twitter.com/${twitter_id}` : null,
+const getFormattedSocialMedia = ({ instagram_id, facebook_id, twitter_id }) => ({
+  instagram: instagram_id ? `https://instagram.com/${instagram_id}` : null,
+  facebook: facebook_id ? `https://www.facebook.com/${facebook_id}` : null,
+  twitter: twitter_id ? `https://twitter.com/${twitter_id}` : null,
 });
 
 export {
