@@ -6,12 +6,12 @@ import { Image, Link } from './styles';
 
 const SocialMediaButton = ({ url, tooltipMessage, iconSrc }) => {
   const StyledTooltip = styled(({ className, ...props }) => (
-    <Tooltip 
+    <Tooltip
       // eslint-disable-next-line react/jsx-props-no-spreading
-      {...props} 
-      arrow 
+      {...props}
+      arrow
       classes={{ popper: className }}
-      TransitionComponent={Zoom} 
+      TransitionComponent={Zoom}
     />
   ))({
     [`& .${tooltipClasses.arrow}`]: {
@@ -23,12 +23,14 @@ const SocialMediaButton = ({ url, tooltipMessage, iconSrc }) => {
     },
   });
 
-  return url && (
-    <StyledTooltip title={tooltipMessage}>
-      <Link href={url} target="_blank" rel="noreferrer">
-        <Image src={iconSrc} />
-      </Link>    
-    </StyledTooltip>
+  return (
+    url && (
+      <StyledTooltip title={tooltipMessage}>
+        <Link href={url} target="_blank" rel="noreferrer">
+          <Image src={iconSrc} />
+        </Link>
+      </StyledTooltip>
+    )
   );
 };
 

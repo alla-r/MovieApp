@@ -10,7 +10,6 @@ export const Container = styled.div`
   }
 `;
 
-
 export const SocialMediaButtonsWrapper = styled.div`
   margin-top: 20px;
 

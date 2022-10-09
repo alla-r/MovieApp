@@ -29,9 +29,7 @@ class TMDBservice {
   }
 
   getPersonDetails(id) {
-    return axios.get(
-      `/person/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
-    );
+    return axios.get(`/person/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`);
   }
 
   getPersonExternalIds(id) {

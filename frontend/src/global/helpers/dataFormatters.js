@@ -110,7 +110,7 @@ const getAge = (birthday, deathday) => {
   return age;
 };
 
-const getFormattedPersonDetails = (data = {}) => {  
+const getFormattedPersonDetails = (data = {}) => {
   const formattedDetails = {
     id: data.id,
     name: data.name,
