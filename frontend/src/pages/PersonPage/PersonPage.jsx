@@ -6,6 +6,7 @@ import { selectors } from './reducer';
 import Loader from '../../components/Loader';
 import LeftSide from './components/LeftSide';
 import withLayout from '../../global/hoc/Layout';
+import { Container, Name } from './styles';
 import './PersonPage.scss';
 
 const PersonPage = () => {
@@ -25,12 +26,17 @@ const PersonPage = () => {
   }, [params]);
 
   return (
-    <div className="person--page container">
+    <div className="person-page container">
       {detailsLoading && <Loader />}
       {detailsData && (
-        <div>
+        <Container>
           <LeftSide data={detailsData} />
-        </div>
+          <div>
+            <Name>{detailsData.name}</Name>
+            <div className='person-page--title'>Biography</div>
+            <div>{detailsData.biography}</div>
+          </div>
+        </Container>
       )}
     </div>
   );

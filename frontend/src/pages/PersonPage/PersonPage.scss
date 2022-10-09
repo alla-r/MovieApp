@@ -1,3 +1,16 @@
-.person--page {
+@import '../../global/styles/palette.scss';
+
+.person-page {
   margin: 30px auto;
+
+  .person-page--title {
+    font-size: 20px;
+    font-weight: 700;
+    color: $dark;
+    margin-bottom: 20px;
+  }
+
+  .flex-row {
+    display: flex;
+  }
 }

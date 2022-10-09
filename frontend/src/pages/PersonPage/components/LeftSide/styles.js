@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 300px;
+  margin-right: 30px;
 
   .poster {
     width: 300px;
@@ -23,11 +24,6 @@ export const InfoSection = styled.div`
   font-size: 16px;
   line-height: 18px;
   color: ${(props) => props.theme.colors.dark};
-
-  h6 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
 
   @media only screen and (max-width: 760px) {
     margin-top: 10px;
