@@ -1,5 +1,5 @@
 import * as constants from './constants';
-import { getFormattedPersonDetails, getFormattedSocialMedia } from '../../global/helpers';
+import { getFormattedPersonDetails, getFormattedSocialMedia, getFormattedRecommendationItem } from '../../global/helpers';
 import TMDBservice from '../../TMDBservice';
 
 export const getPersonDetailsSuccess = (data) => ({
@@ -21,8 +21,17 @@ export const getPersonDetails = (id) => async (dispatch) => {
   try {
     const response = await TMDBservice.getPersonDetails(id);
     const formattedData = getFormattedPersonDetails(response.data);
+    
     const socialMediaResponse = await TMDBservice.getPersonExternalIds(id);
     formattedData.socialMedia = getFormattedSocialMedia(socialMediaResponse.data);
+
+    const creditsResponse = await TMDBservice.getPersonCredits(id);
+    const onlyUnique = (value, index, arr) => arr.findIndex((item) => item.id === value.id && item.media_type === value.media_type) === index;
+
+    formattedData.credits = {
+      cast: creditsResponse.data.cast.filter(onlyUnique).map(getFormattedRecommendationItem),
+      crew: creditsResponse.data.crew.filter(onlyUnique).map(getFormattedRecommendationItem),
+    };
 
     dispatch(getPersonDetailsSuccess(formattedData));
   } catch (error) {

@@ -5,6 +5,7 @@ import * as actions from './actions';
 import { selectors } from './reducer';
 import Loader from '../../components/Loader';
 import LeftSide from './components/LeftSide';
+import KnownForSection from './components/KnownForSection';
 import withLayout from '../../global/hoc/Layout';
 import { Container, Name } from './styles';
 import './PersonPage.scss';
@@ -25,6 +26,12 @@ const PersonPage = () => {
     // TODO: clear data on unmount
   }, [params]);
 
+  const getKnownForItems = (allMedia = []) => {
+    const popular = allMedia.sort((a, b) => b.voteCount - a.voteCount);
+
+    return popular.slice(0, 10);
+  }
+
   return (
     <div className="person-page container">
       {detailsLoading && <Loader />}
@@ -35,6 +42,7 @@ const PersonPage = () => {
             <Name>{detailsData.name}</Name>
             <div className='person-page--title'>Biography</div>
             <div>{detailsData.biography}</div>
+            <KnownForSection data={detailsData.knownFor === "Acting" ? getKnownForItems(detailsData.credits.cast) : getKnownForItems(detailsData.credits.crew)} />
           </div>
         </Container>
       )}

@@ -18,9 +18,10 @@ const getFormattedRecommendationItem = (item) => {
     type: item.media_type,
     title: item.title || item.name,
     overview: item.overview,
+    voteCount: item.vote_count,
     voteAvg: item.vote_average,
     date: item.release_date || item.first_air_date,
-    poster: `https://image.tmdb.org/t/p/original${item.profile_path}`,
+    poster: `https://image.tmdb.org/t/p/original${item.poster_path}`,
     backdrop: `https://image.tmdb.org/t/p/original${item.backdrop_path}`,
   };
 
@@ -208,4 +209,5 @@ export {
   getFormattedSearchData,
   getFormattedPersonDetails,
   getFormattedSocialMedia,
+  getFormattedRecommendationItem,
 };
