@@ -36,7 +36,7 @@ const LeftSide = ({ data }) => {
         {createSocialMediaButtons(SOCIAL_MEDIA_BUTTONS_CONFIG, data.socialMedia)}
       </SocialMediaButtonsWrapper>
       <InfoSection>
-        <div className='person-page--title'>Personal Info</div>
+        <div className="person-page--title">Personal Info</div>
         {items}
       </InfoSection>
     </Container>
