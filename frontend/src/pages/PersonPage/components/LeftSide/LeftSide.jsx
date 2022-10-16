@@ -22,7 +22,7 @@ const LeftSide = ({ data }) => {
       />
     ));
 
-  const items = PERSONAL_DETAILS_MAPPING.map(({ title, id }) => (
+  const items = PERSONAL_DETAILS_MAPPING.map(({ title, id }) => data[id] && (
     <ItemWrapper key={id}>
       <ItemTitle>{title}</ItemTitle>
       <ItemValue>{data[id]}</ItemValue>
@@ -36,7 +36,7 @@ const LeftSide = ({ data }) => {
         {createSocialMediaButtons(SOCIAL_MEDIA_BUTTONS_CONFIG, data.socialMedia)}
       </SocialMediaButtonsWrapper>
       <InfoSection>
-        <div className="person-page--title">Personal Info</div>
+        <div className="info-section--title">Personal Info</div>
         {items}
       </InfoSection>
     </Container>

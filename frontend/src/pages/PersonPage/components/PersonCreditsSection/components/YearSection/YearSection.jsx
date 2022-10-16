@@ -40,8 +40,8 @@ YearSection.propTypes = {
       type: PropTypes.string.isRequired,
       isCast: PropTypes.bool.isRequired,
       title: PropTypes.string.isRequired,
-      role: PropTypes.string.isRequired,
-    }),
+      role: PropTypes.string,
+    }).isRequired,
   ).isRequired,
   onItemClick: PropTypes.func,
 };

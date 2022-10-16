@@ -21,7 +21,7 @@ const KnownForSection = ({ data, onItemClick }) => {
 
   return (
     <Container>
-      {data.length > 0 && (
+      {data.length > 4 && (
         <>
           <div className="person-page--title">Known For</div>
           <Swiper

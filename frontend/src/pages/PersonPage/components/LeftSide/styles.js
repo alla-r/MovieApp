@@ -25,6 +25,11 @@ export const InfoSection = styled.div`
   line-height: 18px;
   color: ${(props) => props.theme.colors.dark};
 
+  .info-section--title {
+    margin-bottom: 20px;
+    font-size: 26px;
+  }
+
   @media only screen and (max-width: 760px) {
     margin-top: 10px;
   }
