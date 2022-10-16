@@ -12,11 +12,13 @@ const getFormattedPersonItem = (item) => {
   return formattedItem;
 };
 
-const getFormattedRecommendationItem = (item) => {
+const getFormattedRecommendationItem = (item, isCast) => {
   const formattedItem = {
     id: item.id,
     type: item.media_type,
     title: item.title || item.name,
+    isCast,
+    role: item.character || item.job,
     overview: item.overview,
     voteCount: item.vote_count,
     voteAvg: item.vote_average,
