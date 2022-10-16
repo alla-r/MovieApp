@@ -1,6 +1,5 @@
 /* eslint-disable import/no-unresolved */
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Scrollbar } from 'swiper';
@@ -8,13 +7,12 @@ import 'swiper/css';
 import 'swiper/css/scrollbar';
 import { Container, CardItem, ImageWrapper, Title } from './styles';
 
-const KnownForSection = ({ data }) => {
+const KnownForSection = ({ data, onItemClick }) => {
   SwiperCore.use([Scrollbar]);
-  const navigate = useNavigate();
 
   const slides = data.map(({ type, title, id, poster }) => (
     <SwiperSlide key={id}>
-      <CardItem onClick={() => navigate(`/${type}/${id}`)}>
+      <CardItem onClick={() => onItemClick(type, id)}>
         <ImageWrapper ImageSrc={poster} />
         <Title>{title}</Title>
       </CardItem>
@@ -25,7 +23,7 @@ const KnownForSection = ({ data }) => {
     <Container>
       {data.length > 0 && (
         <>
-          <div className='person-page--title'>Known For</div>
+          <div className="person-page--title">Known For</div>
           <Swiper
             breakpoints={{
               320: {
@@ -66,6 +64,10 @@ const KnownForSection = ({ data }) => {
   );
 };
 
+KnownForSection.defaultProps = {
+  onItemClick: () => {},
+};
+
 KnownForSection.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
@@ -74,6 +76,7 @@ KnownForSection.propTypes = {
       poster: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  onItemClick: PropTypes.func,
 };
 
 export default KnownForSection;

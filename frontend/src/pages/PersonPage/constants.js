@@ -42,3 +42,26 @@ export const PERSONAL_DETAILS_MAPPING = [
     id: 'placeOfBirth',
   },
 ];
+
+export const JOBS_CONFIG = [
+  {
+    id: 'directing',
+    title: 'Directing',
+    jobNames: ['Director'],
+  },
+  {
+    id: 'production',
+    title: 'Production',
+    jobNames: ['Executive Producer', 'Producer', 'Production Manager'],
+  },
+  {
+    id: 'writing',
+    title: 'Writing',
+    jobNames: ['Writer'],
+  },
+  {
+    id: 'creator',
+    title: 'Creator',
+    jobNames: ['Creator'],
+  },
+];

@@ -139,3 +139,5 @@ export const getDuration = ({ duration }) => {
 
   return formattedDuration;
 };
+
+export const getUniqueValues = (valuesArray) => [...new Set(valuesArray)];

@@ -2,8 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   margin-top: 35px;
-  width: 90%;
-  max-width: calc(90vw - 300px);
+  width: 100%;
 
   .swiper-scrollbar {
     background-color: rgba(133, 202, 212, 0.2);

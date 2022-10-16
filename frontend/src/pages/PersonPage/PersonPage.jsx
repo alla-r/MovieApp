@@ -1,17 +1,19 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from './actions';
 import { selectors } from './reducer';
 import Loader from '../../components/Loader';
 import LeftSide from './components/LeftSide';
 import KnownForSection from './components/KnownForSection';
+import PersonCreditsSection from './components/PersonCreditsSection';
 import withLayout from '../../global/hoc/Layout';
 import { Container, Name } from './styles';
 import './PersonPage.scss';
 
 const PersonPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const params = useParams();
 
   const detailsLoading = useSelector(selectors.detailsLoading);
@@ -22,7 +24,6 @@ const PersonPage = () => {
 
   useEffect(() => {
     dispatch(actions.getPersonDetails(params.id));
-
     // TODO: clear data on unmount
   }, [params]);
 
@@ -30,7 +31,9 @@ const PersonPage = () => {
     const popular = allMedia.sort((a, b) => b.voteCount - a.voteCount);
 
     return popular.slice(0, 10);
-  }
+  };
+
+  const navigateToDetails = (type, id) => navigate(`/${type}/${id}`);
 
   return (
     <div className="person-page container">
@@ -38,11 +41,23 @@ const PersonPage = () => {
       {detailsData && (
         <Container>
           <LeftSide data={detailsData} />
-          <div>
+          <div className="right-side">
             <Name>{detailsData.name}</Name>
-            <div className='person-page--title'>Biography</div>
-            <div>{detailsData.biography}</div>
-            <KnownForSection data={detailsData.knownFor === "Acting" ? getKnownForItems(detailsData.credits.cast) : getKnownForItems(detailsData.credits.crew)} />
+            {detailsData.biography && (
+              <div>
+                <div className="person-page--title">Biography</div>
+                <div className="biography">{detailsData.biography}</div>
+              </div>
+            )}
+            <KnownForSection
+              data={
+                detailsData.knownFor === 'Acting'
+                  ? getKnownForItems(detailsData.credits.cast)
+                  : getKnownForItems(detailsData.credits.crew)
+              }
+              onItemClick={navigateToDetails}
+            />
+            <PersonCreditsSection data={detailsData.credits} onItemClick={navigateToDetails} />
           </div>
         </Container>
       )}
