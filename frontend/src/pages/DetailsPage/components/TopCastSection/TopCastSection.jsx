@@ -21,12 +21,10 @@ const TopCastSection = ({ data, onPersonClickCallback }) => {
 };
 
 TopCastSection.defaultProps = {
-  btnShowMoreContent: 'Show More',
   onPersonClickCallback: () => {},
 };
 
 TopCastSection.propTypes = {
-  btnShowMoreContent: PropTypes.string,
   // eslint-disable-next-line react/forbid-prop-types
   data: PropTypes.array.isRequired,
   onPersonClickCallback: PropTypes.func,
