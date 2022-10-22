@@ -21,7 +21,7 @@ const KnownForSection = ({ data, onItemClick }) => {
 
   return (
     <Container>
-      {data.length > 4 && (
+      {data.length > 3 && (
         <>
           <div className="person-page--title">Known For</div>
           <Swiper
@@ -47,7 +47,7 @@ const KnownForSection = ({ data, onItemClick }) => {
                 spaceBetween: 15,
               },
               1600: {
-                slidesPerView: 7.5,
+                slidesPerView: data.length <= 7 ? data.length : 7.5,
                 spaceBetween: 20,
               },
             }}

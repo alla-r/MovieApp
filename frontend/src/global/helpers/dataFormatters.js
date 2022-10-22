@@ -118,7 +118,9 @@ const getFormattedPersonDetails = (data = {}) => {
     id: data.id,
     name: data.name,
     knownFor: data.known_for_department,
-    birthday: data.birthday ? `${data.birthday} (${getAge(data.birthday, data.deathday)} years old)` : null,
+    birthday: data.birthday
+      ? `${data.birthday} (${getAge(data.birthday, data.deathday)} years old)`
+      : null,
     deathday: data.deathday,
     placeOfBirth: data.place_of_birth,
     poster: `https://image.tmdb.org/t/p/original${data.profile_path}`,

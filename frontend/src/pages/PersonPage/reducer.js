@@ -31,6 +31,12 @@ const reducer = (state = initialState, action) => {
         loading: false,
         details: null,
       };
+    case constants.PERSON_DETAILS_CLEAR_DATA:
+      return {
+        loading: true,
+        details: null,
+        error: null,
+      };
     default:
       return state;
   }

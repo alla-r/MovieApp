@@ -49,3 +49,7 @@ export const getPersonDetails = (id) => async (dispatch) => {
     dispatch(getPersonDetailsError(error));
   }
 };
+
+export const personDetailsClearData = () => ({
+  type: constants.PERSON_DETAILS_CLEAR_DATA,
+});

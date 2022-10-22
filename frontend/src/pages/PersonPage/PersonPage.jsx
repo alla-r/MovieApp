@@ -24,7 +24,8 @@ const PersonPage = () => {
 
   useEffect(() => {
     dispatch(actions.getPersonDetails(params.id));
-    // TODO: clear data on unmount
+
+    return () => dispatch(actions.personDetailsClearData());
   }, [params]);
 
   const getKnownForItems = (allMedia = []) => {

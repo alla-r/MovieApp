@@ -22,12 +22,15 @@ const LeftSide = ({ data }) => {
       />
     ));
 
-  const items = PERSONAL_DETAILS_MAPPING.map(({ title, id }) => data[id] && (
-    <ItemWrapper key={id}>
-      <ItemTitle>{title}</ItemTitle>
-      <ItemValue>{data[id]}</ItemValue>
-    </ItemWrapper>
-  ));
+  const items = PERSONAL_DETAILS_MAPPING.map(
+    ({ title, id }) =>
+      data[id] && (
+        <ItemWrapper key={id}>
+          <ItemTitle>{title}</ItemTitle>
+          <ItemValue>{data[id]}</ItemValue>
+        </ItemWrapper>
+      ),
+  );
 
   return (
     <Container>
