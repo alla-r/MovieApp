@@ -5,7 +5,7 @@ import Heading from '../../../../components/Heading';
 import PersonItem from '../../../../components/PersonItem';
 import { Container, ItemsContainer } from './styles';
 
-const TopCastSection = ({ data, btnShowMoreContent, onPersonClickCallback }) => {
+const TopCastSection = ({ data, onPersonClickCallback }) => {
   const items = data
     .slice(0, 10)
     .map((item) => (
@@ -16,13 +16,6 @@ const TopCastSection = ({ data, btnShowMoreContent, onPersonClickCallback }) => 
     <Container>
       <Heading content="Top cast" />
       <ItemsContainer className="items-container">{items}</ItemsContainer>
-      <Link
-        className="btn-full-credits-list"
-        to="/"
-        // fullCreditsList={data}
-      >
-        {btnShowMoreContent}
-      </Link>
     </Container>
   );
 };
