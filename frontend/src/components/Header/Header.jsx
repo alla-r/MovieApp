@@ -38,10 +38,6 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
     navigate('/');
   };
 
-  const onSignInClickHandler = () => {
-    console.log('sign in');
-  };
-
   const searchSubmitHandler = (query) => {
     navigate({
       pathname: `/search`,
@@ -81,7 +77,7 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
   const signInItem = (
     <HeaderItem
       content="Sign In"
-      onClickHandler={() => menuItemsClickHandler(onSignInClickHandler)}
+      path="/auth/login"
     />
   );
 
@@ -116,9 +112,7 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
           <NavMenu>{items}</NavMenu>
           <SecondColumn>
             <SearchField submitHandler={searchSubmitHandler} />
-            {!isUserAuthorized && (
-              <HeaderItem content="Sign In" onClickHandler={onSignInClickHandler} />
-            )}
+            {!isUserAuthorized && signInItem}
             {isUserAuthorized && <ProfileDropdown avatarContent="AN" data={profileDropdownData} />}
           </SecondColumn>
         </NavContainer>
@@ -128,7 +122,7 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
 };
 
 Header.defaultProps = {
-  isUserAuthorized: true,
+  isUserAuthorized: false,
 };
 
 Header.propTypes = {
