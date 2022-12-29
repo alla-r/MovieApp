@@ -1,6 +1,6 @@
 import React, { useEffect, createRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form } from 'formik';
 import {
   INITIAL_FORM_STATE,
@@ -9,8 +9,10 @@ import {
 } from './validationSchema';
 import * as actions from './actions';
 import * as constants from './constants';
+import { selectors } from './reducer';
 import Fields from './components/Fields';
 import Button from '../../components/Button';
+import Loader from '../../components/Loader';
 import withLayout from '../../global/hoc/Layout';
 import './LoginPage.scss';
 
@@ -23,22 +25,22 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const formikRef = createRef();
 
+  const loading = useSelector(selectors.loading);
+  const isSuccess = useSelector(selectors.success);
+  const error = useSelector(selectors.error);
+
   useEffect(() => {
     formikRef.current?.resetForm();
   }, [flow]);
 
   const submitHandler = ({ username, password }, { resetForm }) => {
-    const data = {
-      username,
-      password,
-    };
 
     const flowCallbacks = {
       login: actions.registerUser,
-      signup: actions.loginUser,
+      signUp: actions.loginUser,
     };
 
-    dispatch(flowCallbacks[flow](data));
+    dispatch(flowCallbacks[flow]({ username, password }));
     resetForm();
   };
 
@@ -65,6 +67,8 @@ const LoginPage = () => {
         >
           <Form>
             <div className="form-header">{titleText[flow]}</div>
+            {/* {loading && <Loader />} */}
+            {/* {error && <p>Something went wrong</p>} */}
             {flow === 'signUp' && <Fields config={constants.REGISTER_FORM_FIELDS} />}
             {flow === 'login' && (
               <>
