@@ -3,7 +3,14 @@ import PropTypes from 'prop-types';
 import { ButtonWrapper } from './styles';
 import theme from '../../theme';
 
-const Button = ({ onClickHandler, btnText, isBtnDisabled, btnStyles, className, ...otherProps }) => {
+const Button = ({
+  onClickHandler,
+  btnText,
+  isBtnDisabled,
+  btnStyles,
+  className,
+  ...otherProps
+}) => {
   const { isFilled, color } = btnStyles;
   const classNamesArray = [isFilled ? 'filled' : 'outline'];
 
