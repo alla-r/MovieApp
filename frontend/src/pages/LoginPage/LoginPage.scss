@@ -1,6 +1,37 @@
+@import '../../global/styles/palette.scss';
+
 .page-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  .form-wrapper {
+    width: 50%;
+    max-width: 550px;
+    margin: 130px 0px;
+
+    .form-header {
+      margin-bottom: 40px;
+      text-align: center;
+      font-size: 36px;
+      font-weight: 400;
+      color: $dark;
+    }
+
+    .button {
+      margin-top: 15px;
+      width: 100%;
+    }
+
+    span {
+      margin-left: 5px;
+      color: $primary;
+      cursor: pointer;
+    }
+
+    span:hover {
+      text-decoration: underline;
+    }
+  }
 }

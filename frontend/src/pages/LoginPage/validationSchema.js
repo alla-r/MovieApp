@@ -6,7 +6,7 @@ const INITIAL_FORM_STATE = {
   passwordConfirmation: '',
 };
 
-const FORM_VALIDATION = Yup.object().shape({
+const REGISTER_FORM_VALIDATION = Yup.object().shape({
   username: Yup.string()
     .max(30, 'Name must be at most 30 characters')
     .required('This field is mandatory'),
@@ -27,4 +27,4 @@ const LOGIN_FORM_VALIDATION = Yup.object().shape({
   password: Yup.string().required('This field is mandatory'),
 });
 
-export { INITIAL_FORM_STATE, FORM_VALIDATION, LOGIN_FORM_VALIDATION };
+export { INITIAL_FORM_STATE, REGISTER_FORM_VALIDATION, LOGIN_FORM_VALIDATION };
