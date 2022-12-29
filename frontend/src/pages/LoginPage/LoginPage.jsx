@@ -17,14 +17,13 @@ import './LoginPage.scss';
 const LoginPage = () => {
   const params = useParams();
   const isLogin = params.type === 'login';
-  const flow = isLogin ? 'login' : 'sign-up';
+  const flow = isLogin ? 'login' : 'signUp';
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const formikRef = createRef();
 
   useEffect(() => {
-    console.log(flow);
     formikRef.current?.resetForm();
   }, [flow]);
 
@@ -43,9 +42,15 @@ const LoginPage = () => {
     resetForm();
   };
 
-  const title = flow === 'login' ? 'Login to your account' : 'Create an account';
+  const titleText = {
+    login: 'Login to your account',
+    signUp: 'Create an account'
+  };
 
-  const btnText = flow === 'login' ? 'Login' : 'Sign Up';
+  const btnText = {
+    login: 'Login',
+    signUp: 'Sign Up'
+  };
 
   const navigateToRegister = () => navigate('/auth/signup');
 
@@ -59,27 +64,28 @@ const LoginPage = () => {
           onSubmit={submitHandler}
         >
           <Form>
-            <div className="form-header">{title}</div>
-            {flow !== 'login' && <Fields config={constants.formFields} />}
-            {flow === 'login' && <Fields config={constants.loginFormFields} />}
+            <div className="form-header">{titleText[flow]}</div>
+            {flow === 'signUp' && <Fields config={constants.REGISTER_FORM_FIELDS} />}
             {flow === 'login' && (
-              <div>
-                If you do not have an account
-                <span
-                  role="button"
-                  tabIndex="0"
-                  onClick={navigateToRegister}
-                  onKeyDown={navigateToRegister}
-                >
-                  click here
-                </span>
-                .
-              </div>
+              <>
+                <Fields config={constants.LOGIN_FORM_FIELDS} />
+                <div>
+                  If you do not have an account
+                  <span
+                    role="button"
+                    tabIndex="0"
+                    onClick={navigateToRegister}
+                    onKeyDown={navigateToRegister}
+                  >
+                    click here
+                  </span>
+                  .
+                </div>
+              </>
             )}
-
             <Button
               className="button"
-              btnText={btnText}
+              btnText={btnText[flow]}
               btnType="primary"
               onClickHandler={() => {}}
               type="submit"
