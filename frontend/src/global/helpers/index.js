@@ -3,6 +3,9 @@ import {
   getFormattedGenreList,
   getFormattedListData,
   getFormattedSearchData,
+  getFormattedPersonDetails,
+  getFormattedSocialMedia,
+  getFormattedRecommendationItem,
 } from './dataFormatters';
 import ScrollToTop from './ScrollToTop';
 
@@ -12,6 +15,9 @@ export {
   getFormattedGenreList,
   getFormattedListData,
   getFormattedSearchData,
+  getFormattedPersonDetails,
+  getFormattedSocialMedia,
+  getFormattedRecommendationItem,
 };
 
 export const getFormattedItem = (item) => {
@@ -133,3 +139,5 @@ export const getDuration = ({ duration }) => {
 
   return formattedDuration;
 };
+
+export const getUniqueValues = (valuesArray) => [...new Set(valuesArray)];

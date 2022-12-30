@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../components/Loader';
 import TopCastSection from './components/TopCastSection';
@@ -17,6 +17,7 @@ import './DetailsPage.scss';
 const DetailsPage = () => {
   const dispatch = useDispatch();
   const params = useParams();
+  const navigate = useNavigate();
 
   const detailsLoading = useSelector(selectors.detailsLoading);
   const detailsData = useSelector(selectors.detailsData);
@@ -79,6 +80,8 @@ const DetailsPage = () => {
     );
   };
 
+  const onPersonClickCallback = (id) => navigate(`/person/${id}`);
+
   constants.CIRCULAR_BUTTONS_CONFIG.forEach((btnConfig) => {
     if (btnConfig.id === 'favorite') {
       btnConfig.onClickHandler = favoriteCallback;
@@ -113,6 +116,7 @@ const DetailsPage = () => {
             <TopCastSection
               data={detailsCastList}
               btnShowMoreContent={constants.btnShowMoreContent}
+              onPersonClickCallback={onPersonClickCallback}
             />
             <DetailsListSection
               data={detailsData}

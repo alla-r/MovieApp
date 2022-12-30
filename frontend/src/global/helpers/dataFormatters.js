@@ -12,15 +12,18 @@ const getFormattedPersonItem = (item) => {
   return formattedItem;
 };
 
-const getFormattedRecommendationItem = (item) => {
+const getFormattedRecommendationItem = (item, isCast) => {
   const formattedItem = {
     id: item.id,
     type: item.media_type,
     title: item.title || item.name,
+    isCast,
+    role: item.character || item.job,
     overview: item.overview,
+    voteCount: item.vote_count,
     voteAvg: item.vote_average,
     date: item.release_date || item.first_air_date,
-    poster: `https://image.tmdb.org/t/p/original${item.profile_path}`,
+    poster: `https://image.tmdb.org/t/p/original${item.poster_path}`,
     backdrop: `https://image.tmdb.org/t/p/original${item.backdrop_path}`,
   };
 
@@ -90,6 +93,44 @@ const getFormattedMediaDetails = (type, data) => {
   return formattedData;
 };
 
+const getAge = (birthday, deathday) => {
+  let age;
+  let ageDifMs;
+  let ageDate;
+
+  if (deathday) {
+    ageDifMs = new Date(deathday).getTime() - new Date(birthday).getTime();
+    ageDate = new Date(ageDifMs);
+
+    age = Math.abs(ageDate.getUTCFullYear() - 1970);
+  } else {
+    ageDifMs = new Date() - new Date(birthday).getTime();
+    ageDate = new Date(ageDifMs);
+
+    age = Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
+
+  return age;
+};
+
+const getFormattedPersonDetails = (data = {}) => {
+  const formattedDetails = {
+    id: data.id,
+    name: data.name,
+    knownFor: data.known_for_department,
+    birthday: data.birthday
+      ? `${data.birthday} (${getAge(data.birthday, data.deathday)} years old)`
+      : null,
+    deathday: data.deathday,
+    placeOfBirth: data.place_of_birth,
+    poster: `https://image.tmdb.org/t/p/original${data.profile_path}`,
+    biography: data.biography,
+    age: getAge(data.birthday, data.deathday),
+  };
+
+  return formattedDetails;
+};
+
 const getFormattedGenreList = (genreList, selectedGenresArr) => {
   const formattedGenreList = genreList.map(({ id, name }) => ({
     id,
@@ -141,7 +182,6 @@ const getFormattedSearchItem = (item, type) => {
 };
 
 const getFormattedSearchData = ({ page, total_pages, total_results, results }, mediaType) => {
-  debugger;
   let formattedResultsList;
 
   if (mediaType === 'people' || mediaType === 'person') {
@@ -160,9 +200,18 @@ const getFormattedSearchData = ({ page, total_pages, total_results, results }, m
   return formattedData;
 };
 
+const getFormattedSocialMedia = ({ instagram_id, facebook_id, twitter_id }) => ({
+  instagram: instagram_id ? `https://instagram.com/${instagram_id}` : null,
+  facebook: facebook_id ? `https://www.facebook.com/${facebook_id}` : null,
+  twitter: twitter_id ? `https://twitter.com/${twitter_id}` : null,
+});
+
 export {
   getFormattedMediaDetails,
   getFormattedGenreList,
   getFormattedListData,
   getFormattedSearchData,
+  getFormattedPersonDetails,
+  getFormattedSocialMedia,
+  getFormattedRecommendationItem,
 };

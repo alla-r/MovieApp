@@ -5,6 +5,8 @@ import { mediaPageReducer } from './pages/MediaPage';
 import { listPageReducer } from './pages/ListPage';
 import { initComponentReducer } from './pages/InitComponent';
 import { searchPageReducer } from './pages/SearchPage';
+import { personPageReducer } from './pages/PersonPage';
+import { loginPageReducer } from './pages/LoginPage';
 
 export default combineReducers({
   initComponentReducer,
@@ -13,4 +15,6 @@ export default combineReducers({
   mediaPageReducer,
   listPageReducer,
   searchPageReducer,
+  personPageReducer,
+  loginPageReducer,
 });
