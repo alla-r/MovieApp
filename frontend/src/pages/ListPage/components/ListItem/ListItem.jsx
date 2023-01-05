@@ -63,7 +63,7 @@ ListItem.propTypes = {
     overview: PropTypes.string,
     date: PropTypes.string,
     firstAirDate: PropTypes.string,
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     rate: PropTypes.number,
   }).isRequired,
   listName: PropTypes.string.isRequired,

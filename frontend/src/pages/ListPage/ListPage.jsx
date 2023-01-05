@@ -8,6 +8,7 @@ import * as initActions from '../InitComponent/actions';
 import withLayout from '../../global/hoc/Layout';
 import Heading from '../../components/Heading';
 import ListItem from './components/ListItem';
+import Loader from '../../components/Loader';
 import { Container, Info } from './styles';
 
 const ListPage = () => {
@@ -29,11 +30,12 @@ const ListPage = () => {
 
   const items = listData
     ?.sort((el1, el2) => el2.timestamp - el1.timestamp)
-    .map(({ id, details, rate }) => {
-      const newDetails = {
-        ...details,
-        rate,
-      };
+    .map((details) => {
+      const { id, type } = details;
+      // const newDetails = {
+      //   ...details,
+      //   rate,
+      // };
 
       const navigateToDetailsCB = () => navigate(`/${details.type}/${details.id}`);
 
@@ -74,7 +76,7 @@ const ListPage = () => {
             data: {
               handleCloseCallBack: () => dispatch(initActions.hideModal()),
               setRateCallback: changeRateCB,
-              currentValue: newDetails.rate,
+              currentValue: details.rate,
             },
           }),
         );
@@ -82,8 +84,8 @@ const ListPage = () => {
 
       return (
         <ListItem
-          key={id}
-          details={newDetails}
+          key={details.itemId}
+          details={details}
           listName={list}
           changeRateCB={showModal}
           removeFromListCB={removeFromListCB}
@@ -95,8 +97,9 @@ const ListPage = () => {
   return (
     <Container className="listpage container">
       <Heading content={constants.HEADINGS[list]} />
-      {listData.length > 0 && <div>{items}</div>}
-      {listData.length === 0 && <Info>{constants.HEADINGS[list]} list is empty</Info>}
+      {listLoading && <Loader />}
+      {!listLoading && listData.length > 0 && <div>{items}</div>}
+      {!listLoading && listData.length === 0 && <Info>{constants.HEADINGS[list]} list is empty</Info>}
     </Container>
   );
 };

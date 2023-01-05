@@ -1,5 +1,6 @@
 import * as constants from './constants';
 import StorageService from '../../StorageService';
+import DBService from '../../DBService';
 
 export const getListDataSuccess = (data) => ({
   type: constants.GET_LIST_DATA_SUCCESS,
@@ -15,10 +16,30 @@ export const getListDataRequest = () => ({
   type: constants.GET_LIST_DATA_REQUEST,
 });
 
-export const getListData = (listName) => (dispatch) => {
+export const getListData = (listName) => async (dispatch) => {
   dispatch(getListDataRequest());
-  const listData = StorageService.getListData(listName);
-  dispatch(getListDataSuccess(listData));
+  // const listData = StorageService.getListData(listName);
+
+  const listNameCB = {
+    favorites: DBService.getFavorites,
+    watchlist: DBService.getFavorites, // change
+    rate: DBService.getFavorites, // change
+  };
+  console.log(listName);
+
+  // change userId
+  const userId = "test";
+
+  const response = await listNameCB[listName](userId);
+
+  console.log(response)
+
+  if (response.status === 200) {
+    dispatch(getListDataSuccess(response.data));
+  } else {
+    dispatch(getListDataError(response));
+  }
+  
 };
 
 export const removeItemFromList = (mediaInfo) => (dispatch) => {
