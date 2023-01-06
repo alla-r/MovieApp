@@ -32,10 +32,6 @@ const ListPage = () => {
     ?.sort((el1, el2) => el2.timestamp - el1.timestamp)
     .map((details) => {
       const { id, type } = details;
-      // const newDetails = {
-      //   ...details,
-      //   rate,
-      // };
 
       const navigateToDetailsCB = () => navigate(`/${details.type}/${details.id}`);
 
@@ -43,11 +39,7 @@ const ListPage = () => {
         dispatch(
           actions.removeItemFromList({
             listName: list,
-            mediaInfo: {
-              id: details.id,
-              type: details.type,
-              details,
-            },
+            details: details,
             action: 'remove',
           }),
         );

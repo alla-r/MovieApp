@@ -17,32 +17,48 @@ export const getListDataRequest = () => ({
 });
 
 export const getListData = (listName) => async (dispatch) => {
-  dispatch(getListDataRequest());
-  // const listData = StorageService.getListData(listName);
+  try {
+    dispatch(getListDataRequest());
+    // const listData = StorageService.getListData(listName);
 
-  const listNameCB = {
-    favorites: DBService.getFavorites,
-    watchlist: DBService.getFavorites, // change
-    rate: DBService.getFavorites, // change
-  };
-  console.log(listName);
+    const listNameCB = {
+      favorites: DBService.getFavorites,
+      watchlist: DBService.getFavorites, // change
+      rate: DBService.getFavorites, // change
+    };
+    console.log(listName);
 
-  // change userId
-  const userId = "test";
+    // change userId
+    const userId = "test";
 
-  const response = await listNameCB[listName](userId);
+    const response = await listNameCB[listName](userId);
 
-  console.log(response)
+    console.log(response)
 
-  if (response.status === 200) {
-    dispatch(getListDataSuccess(response.data));
-  } else {
-    dispatch(getListDataError(response));
+    if (response.status === 200) {
+      dispatch(getListDataSuccess(response.data));
+    } else {
+      dispatch(getListDataError(response));
+    }
+  } catch (error) {
+    dispatch(getListDataError(error));
   }
-  
 };
 
-export const removeItemFromList = (mediaInfo) => (dispatch) => {
+export const removeItemFromList = ({ listName, details }) => async (dispatch) => {
+  dispatch(getListDataRequest());
+  try {
+    const response = await DBService.removeFromList(listName, details);
+
+    if (response.status === 204) {
+      dispatch(getListData(listName));
+    }
+  } catch (error) {
+    dispatch(getListDataError(error));
+  }
+};
+
+export const removeItemFromListStorage = (mediaInfo) => (dispatch) => {
   const newListData = StorageService.changeMediaCustomDetails(mediaInfo);
   dispatch(getListDataSuccess(newListData));
 };

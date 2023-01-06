@@ -32,9 +32,8 @@ const DetailsPage = () => {
       actions.changeMediaCustomDetails({
         listName: 'favorites',
         mediaInfo: {
-          id: params.id,
-          type: params.type,
-          details: detailsData,
+          ...detailsData,
+          itemId: mediaCustomDetails?.favoriteId
         },
         action: mediaCustomDetails?.isInFavorites ? 'remove' : 'add',
       }),

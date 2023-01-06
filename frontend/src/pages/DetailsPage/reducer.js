@@ -13,6 +13,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case constants.GET_MEDIA_DETAILS:
+    case constants.CHANGE_MEDIA_CUSTOM_DETAILS_REQUEST:
       return {
         ...state,
       };
@@ -30,6 +31,18 @@ const reducer = (state = initialState, action) => {
         recommendations: action.payload.recommendations,
         error: null,
         loading: false,
+      };
+    case constants.CHANGE_MEDIA_CUSTOM_DETAILS_ERROR:
+      return {
+        ...state,
+        error: action.payload.message,
+        loading: false,
+      };
+    case constants.CHANGE_MEDIA_CUSTOM_DETAILS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        customDetails: [ ...customDetails, action.payload]
       };
     case constants.GET_MEDIA_DETAILS_ERROR:
       return {
@@ -55,6 +68,14 @@ const reducer = (state = initialState, action) => {
         ...state,
         customDetails: action.payload,
       };
+    case constants.GET_MEDIA_CUSTOM_DETAILS_ERROR:
+      return {
+        ...state,
+        customDetails: {
+          ...customDetails,
+          error: action.payload
+        }
+      }
     default:
       return state;
   }
