@@ -5,18 +5,18 @@ import axios from 'axios';
 class DBService {
   getFavorites(userId) {
     return axios.get(
-      `http://localhost:3001/api/favorites`,
+      `http://localhost:3001/api/list/favorites`,
     );
   }
   addToList(list, details) {
     return axios.post(
-      `http://localhost:3001/api/${list}`,
+      `http://localhost:3001/api/list/${list}`,
       { details }
     );
   }
   removeFromList(list, details) {
     return axios.delete(
-      `http://localhost:3001/api/${list}/${details.itemId}`,
+      `http://localhost:3001/api/list/${list}/${details.itemId}`,
     );
   }
   getMediaDetails(id, type, userId) {
