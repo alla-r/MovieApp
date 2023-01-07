@@ -15,7 +15,7 @@ const ContentContainer = ({ loading, data, error, paginationBtn, heading }) => {
 
     return (
       <MovieCard
-        key={id}
+        key={`${type}/${id}`}
         data={item}
         onClickHandler={() => {
           navigate(`/${type}/${id}`);

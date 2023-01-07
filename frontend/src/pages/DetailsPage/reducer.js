@@ -71,10 +71,7 @@ const reducer = (state = initialState, action) => {
     case constants.GET_MEDIA_CUSTOM_DETAILS_ERROR:
       return {
         ...state,
-        customDetails: {
-          ...customDetails,
-          error: action.payload
-        }
+        customDetails: null
       }
     default:
       return state;

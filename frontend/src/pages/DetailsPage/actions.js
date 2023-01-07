@@ -95,7 +95,7 @@ export const changeMediaCustomDetails = ({ listName, mediaInfo, action }) => asy
 
     const response = await actionCB[action](listName, mediaInfo);
 
-    if (response.status === 200) {
+    if (response.status === 200 || response.status === 204) {
       dispatch(getMediaCustomDetails(mediaInfo));
     } else {
       dispatch(changeMediaCustomDetailsError(mediaInfo));
