@@ -3,6 +3,9 @@ const http = require('http')
 const config = require('./utils/config')
 const logger = require('./utils/logger')
 const Favorites = require('./models/favorites')
+const Watchlist = require('./models/watchlist')
+const Ratings = require('./models/ratings')
+
 
 const server = http.createServer(app)
 
@@ -20,14 +23,19 @@ app.get('/api/mediaDetails', async (request,response, next) => {
       })
     }
 
-    const favorite = await Favorites.find({ id: request.query.id, type: request.query.type });
+    const favoritesArr = await Favorites.find({ id: request.query.id, type: request.query.type });
+    const watchItemsArr = await Watchlist.find({ id: request.query.id, type: request.query.type });
+    const ratingsArr = await Ratings.find({ id: request.query.id, type: request.query.type });
 
     const mediaCustomDetails = {
-      isInFavorites: favorite.length !== 0,
-      favoriteId: favorite[0]?._id,
-      isInWatchlist: false, // change
-      isInRatingList: false, // change
-      rateMark: 5, // change
+      isInFavorites: favoritesArr.length === 1,
+      favoriteId: favoritesArr[0]?._id,
+      isInWatchlist: watchItemsArr.length === 1, // change
+      watchlistId: watchItemsArr[0]?._id,
+      isInRatingList: ratingsArr.length === 1,
+      rateMark: ratingsArr[0]?.rate,
+      rateId: ratingsArr[0]?._id,
+
     };
 
     response.json(mediaCustomDetails);

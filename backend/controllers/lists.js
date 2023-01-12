@@ -1,29 +1,42 @@
 const listRouter = require('express').Router()
-const Favorites = require('../models/favorites')
+const Favorites = require('../models/favorites');
+const Watchlist = require('../models/watchlist');
+const Ratings = require('../models/ratings');
 
-listRouter.get('/favorites', (request, response) => {
-  Favorites.find({}).then(result => {
+const LIST_MODELS = {
+  favorites: Favorites,
+  watchlist: Watchlist,
+  rate: Ratings
+}
+
+listRouter.get('/:listName', (request, response) => {
+  const list = request.params.listName;
+
+  LIST_MODELS[list].find({}).then(result => {
     response.json(result);
   })
 })
 
-listRouter.get('/favorites/:id', (request, response, next) => {
-  Favorites.findById(request.params.id)
-  .then(item => {
-    if (item) {
-      response.json(item);
-    } else {
-      response.status(404).end()
-    }
-    
-  })
-  .catch(error => {
-    next(error)
-  })
+listRouter.get('/:listName/:id', (request, response, next) => {
+  const list = request.params.listName;
+
+  LIST_MODELS[list].findById(request.params.id)
+    .then(item => {
+      if (item) {
+        response.json(item);
+      } else {
+        response.status(404).end()
+      }
+      
+    })
+    .catch(error => {
+      next(error)
+    })
 })
 
-listRouter.post('/favorites', (request, response) => {
+listRouter.post('/:listName', (request, response) => {
   const body = request.body;
+  const list = request.params.listName;
 
   if (!body.details) {
     return response.status(400).json({
@@ -31,8 +44,7 @@ listRouter.post('/favorites', (request, response) => {
     })
   }
 
-  const favoriteItem = new Favorites({
-    // ...body.details,
+  const item = new LIST_MODELS[list]({
     id: body.details.id,
     userId: body.details.userId,
     type: body.details.type,
@@ -42,38 +54,39 @@ listRouter.post('/favorites', (request, response) => {
     firstAirDate: body.details.firstAirDate,
     date: body.details.date,
     timestamp: body.details.timestamp,
+    rate: body.details.rate,
   })
 
-  favoriteItem.save().then(savedItem => {
+  item.save().then(savedItem => {
     response.json(savedItem)
   })
 })
 
-listRouter.delete('/favorites/:id', (request, response, next) => {
-  Favorites.findByIdAndRemove(request.params.id)
-  .then(item => {
-    response.status(204).end();
-  })
-  .catch(error => {
-    next(error)
-  })
+listRouter.delete('/:listName/:id', (request, response, next) => {
+  const list = request.params.listName;
+
+  LIST_MODELS[list].findByIdAndRemove(request.params.id)
+    .then(item => {
+      response.status(204).end();
+    })
+    .catch(error => {
+      next(error)
+    })
 })
 
-// listRouter.put('/api/list/favorites/:id', (request, response, next) => {
-//   const body = request.body
-//   const item = {
-//     details: body.details,
-//     rate: body.rate
-//   }
+listRouter.put('/:listName/:id', (request, response, next) => {
+  const body = request.body
+  const list = request.params.listName;
+  const { rate } = body;
 
-//   // replace model name
-//   Favorites.findByIdAndUpdate(request.params.id, item, { new: true })
-//   .then(updatedItem => {
-//     response.json(updatedItem);
-//   })
-//   .catch(error => {
-//     next(error)
-//   })
-// })
+  LIST_MODELS[list].findByIdAndUpdate(request.params.id, { rate }, { new: true })
+    .then(updatedItem => {
+      console.log(updatedItem)
+      response.json(updatedItem);
+    })
+    .catch(error => {
+      next(error)
+    })
+})
 
 module.exports = listRouter
