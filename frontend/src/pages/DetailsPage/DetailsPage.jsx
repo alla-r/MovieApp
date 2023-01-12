@@ -43,25 +43,32 @@ const DetailsPage = () => {
       actions.changeMediaCustomDetails({
         listName: 'watchlist',
         mediaInfo: {
-          id: params.id,
-          type: params.type,
-          details: detailsData,
+          ...detailsData,
+          itemId: mediaCustomDetails?.watchlistId
         },
         action: mediaCustomDetails?.isInWatchlist ? 'remove' : 'add',
       }),
     );
 
   const setRateCallback = (rate) => {
+    let action = "remove";
+
+    if (rate) {
+      action = "add"
+    }
+    if (mediaCustomDetails?.isInRatingList) {
+      action = "update"
+    }
+
     dispatch(
       actions.changeMediaCustomDetails({
         listName: 'rate',
         mediaInfo: {
-          id: params.id,
-          type: params.type,
-          details: detailsData,
+          ...detailsData,
           rate,
+          itemId: mediaCustomDetails?.rateId
         },
-        action: rate ? 'add' : 'remove',
+        action,
       }),
     );
   };

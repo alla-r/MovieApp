@@ -3,15 +3,21 @@
 import axios from 'axios';
 
 class DBService {
-  getFavorites(userId) {
+  getListData(list, userId) {
     return axios.get(
-      `http://localhost:3001/api/list/favorites`,
+      `http://localhost:3001/api/list/${list}`,
     );
   }
   addToList(list, details) {
     return axios.post(
       `http://localhost:3001/api/list/${list}`,
       { details }
+    );
+  }
+  changeRate(list, details) {
+    return axios.put(
+      `http://localhost:3001/api/list/${list}/${details.itemId}`,
+      details
     );
   }
   removeFromList(list, details) {

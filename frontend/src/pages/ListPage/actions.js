@@ -19,21 +19,11 @@ export const getListDataRequest = () => ({
 export const getListData = (listName) => async (dispatch) => {
   try {
     dispatch(getListDataRequest());
-    // const listData = StorageService.getListData(listName);
-
-    const listNameCB = {
-      favorites: DBService.getFavorites,
-      watchlist: DBService.getFavorites, // change
-      rate: DBService.getFavorites, // change
-    };
-    console.log(listName);
 
     // change userId
     const userId = "test";
 
-    const response = await listNameCB[listName](userId);
-
-    console.log(response)
+    const response = await DBService.getListData(listName, userId);
 
     if (response.status === 200) {
       dispatch(getListDataSuccess(response.data));
@@ -63,7 +53,40 @@ export const removeItemFromListStorage = (mediaInfo) => (dispatch) => {
   dispatch(getListDataSuccess(newListData));
 };
 
-export const changeMediaCustomDetails = (mediaInfo) => (dispatch) => {
+export const changeMediaCustomDetailsStorage = (mediaInfo) => (dispatch) => {
   StorageService.changeMediaCustomDetails(mediaInfo);
   dispatch(getListData(mediaInfo.listName));
+};
+
+export const changeMediaCustomDetailsSuccess = (data) => ({
+  type: constants.CHANGE_MEDIA_CUSTOM_DETAILS_SUCCESS,
+  payload: data,
+});
+
+export const changeMediaCustomDetailsError = (error) => ({
+  type: constants.CHANGE_MEDIA_CUSTOM_DETAILS_ERROR,
+  payload: error,
+});
+
+export const changeMediaCustomDetailsRequest = () => ({
+  type: constants.CHANGE_MEDIA_CUSTOM_DETAILS_REQUEST,
+});
+
+export const changeRate = ({ mediaInfo }) => async (dispatch) => {
+  dispatch(changeMediaCustomDetailsRequest())
+  try {
+    // change userId
+    mediaInfo.userId = "test";
+    mediaInfo.timestamp = Date.now();
+
+    const response = await DBService.changeRate("rate", mediaInfo);
+
+    if (response.status === 200 || response.status === 204) {
+      dispatch(getListData("rate"));
+    } else {
+      dispatch(changeMediaCustomDetailsError(mediaInfo));
+    }
+  } catch (e) {
+    dispatch(changeMediaCustomDetailsError(mediaInfo));
+  }
 };

@@ -20,8 +20,6 @@ const ListPage = () => {
   const listData = useSelector(selectors.listData);
   const listError = useSelector(selectors.listError);
 
-  console.log(listLoading, listData, listError);
-
   useEffect(() => {
     dispatch(actions.getListData(list));
 
@@ -49,15 +47,13 @@ const ListPage = () => {
         const mediaInfo = {
           listName: list,
           mediaInfo: {
-            id,
-            type: details.type,
-            details,
+            ...details,
             rate: newRate,
           },
-          action: 'add',
+          action: 'update',
         };
 
-        dispatch(actions.changeMediaCustomDetails(mediaInfo));
+        dispatch(actions.changeRate(mediaInfo));
       };
 
       const showModal = (e) => {
@@ -91,7 +87,8 @@ const ListPage = () => {
       <Heading content={constants.HEADINGS[list]} />
       {listLoading && <Loader />}
       {!listLoading && listData.length > 0 && <div>{items}</div>}
-      {!listLoading && listData.length === 0 && <Info>{constants.HEADINGS[list]} list is empty</Info>}
+      {!listLoading && listData.length === 0 && !listError && <Info>{constants.HEADINGS[list]} list is empty</Info>}
+      {!listLoading && listError && <Info>Couldn't fetch {constants.HEADINGS[list]} list</Info>}
     </Container>
   );
 };

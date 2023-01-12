@@ -86,7 +86,7 @@ export const changeMediaCustomDetails = ({ listName, mediaInfo, action }) => asy
     const actionCB = {
       add: DBService.addToList,
       remove: DBService.removeFromList,
-      // update: DBService.getFavorites,
+      update: DBService.changeRate,
     };
 
     // change userId
