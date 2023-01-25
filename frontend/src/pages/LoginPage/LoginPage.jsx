@@ -36,8 +36,8 @@ const LoginPage = () => {
   const submitHandler = ({ username, password }, { resetForm }) => {
 
     const flowCallbacks = {
-      login: actions.registerUser,
-      signUp: actions.loginUser,
+      signUp: actions.registerUser,
+      login: actions.loginUser,
     };
 
     dispatch(flowCallbacks[flow]({ username, password }));

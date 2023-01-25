@@ -52,7 +52,7 @@ export const getMediaCustomDetailsStorage = (mediaInfo) => (dispatch) => {
 export const getMediaCustomDetails = (mediaInfo) => async (dispatch) => {
   try {
     // change userId
-    const userId = "test";
+    const userId = "63c3157381900870daba5d9a";
     const mediaCustomDetails = await DBService.getMediaDetails(mediaInfo.id, mediaInfo.type, userId);
 
     dispatch(getMediaCustomDetailsSuccess(mediaCustomDetails.data));
@@ -90,7 +90,7 @@ export const changeMediaCustomDetails = ({ listName, mediaInfo, action }) => asy
     };
 
     // change userId
-    mediaInfo.userId = "test";
+    mediaInfo.userId = "63c3157381900870daba5d9a";
     mediaInfo.timestamp = Date.now();
 
     const response = await actionCB[action](listName, mediaInfo);

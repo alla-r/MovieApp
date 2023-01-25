@@ -21,7 +21,7 @@ export const getListData = (listName) => async (dispatch) => {
     dispatch(getListDataRequest());
 
     // change userId
-    const userId = "test";
+    const userId = "63c3157381900870daba5d9a";
 
     const response = await DBService.getListData(listName, userId);
 
@@ -76,7 +76,7 @@ export const changeRate = ({ mediaInfo }) => async (dispatch) => {
   dispatch(changeMediaCustomDetailsRequest())
   try {
     // change userId
-    mediaInfo.userId = "test";
+    mediaInfo.userId = "63c3157381900870daba5d9a";
     mediaInfo.timestamp = Date.now();
 
     const response = await DBService.changeRate("rate", mediaInfo);

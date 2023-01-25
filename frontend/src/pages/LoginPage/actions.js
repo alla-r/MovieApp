@@ -1,4 +1,5 @@
 import * as constants from './constants';
+import DBService from '../../DBService';
 
 export const registerUserSuccess = (data) => ({
   type: constants.REGISTER_USER_SUCCESS,
@@ -31,21 +32,20 @@ export const loginUserRequest = () => ({
 export const registerUser = (data) => async (dispatch) => {
   debugger;
   dispatch(registerUserRequest());
-  console.log('register ' + data);
-  if (data.username === 'test' && data.password === 'test') {
-    dispatch(registerUserSuccess({ status: 'success' }));
-  } else {
+
+  try {
+    const response = await DBService.registerUser(data);
+    debugger;
+
+    if (response.status === 201) {
+      dispatch(registerUserSuccess({ status: 'success' }));
+    } else {
+      dispatch(registerUserError({ status: 'error' }));
+    }
+  } catch (error) {
+    debugger;
     dispatch(registerUserError({ status: 'error' }));
   }
-
-  // try {
-  //   const response = await TMDBservice.getTrendings(pageNumber);
-
-  //   const formattedData = getFormattedListData(response.data);
-  //   dispatch(registerUserSuccess(formattedData));
-  // } catch (error) {
-  //   dispatch(registerUserError(error));
-  // }
 };
 
 export const loginUser = (data) => async (dispatch) => {

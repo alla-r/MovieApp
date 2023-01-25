@@ -31,6 +31,12 @@ class DBService {
       {params: { id, type, userId }}
     );
   }
+  registerUser(credentials) {
+    return axios.post(
+      `http://localhost:3001/api/users`,
+      credentials
+    );
+  }
 }
 
 export default new DBService();
