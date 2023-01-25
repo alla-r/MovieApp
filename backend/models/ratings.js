@@ -7,6 +7,10 @@ const listSchema = new mongoose.Schema({
   title: String,
   overview: String,
   date: String,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
   userId: String,
   firstAirDate: String,
   timestamp: Number,

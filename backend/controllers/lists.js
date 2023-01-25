@@ -2,6 +2,7 @@ const listRouter = require('express').Router()
 const Favorites = require('../models/favorites');
 const Watchlist = require('../models/watchlist');
 const Ratings = require('../models/ratings');
+const User = require("../models/user")
 
 const LIST_MODELS = {
   favorites: Favorites,
@@ -9,12 +10,24 @@ const LIST_MODELS = {
   rate: Ratings
 }
 
-listRouter.get('/:listName', (request, response) => {
+listRouter.get('/:listName', async (request, response) => {
   const list = request.params.listName;
 
-  LIST_MODELS[list].find({}).then(result => {
-    response.json(result);
-  })
+  const userId = "63c3157381900870daba5d9a"
+  const user = await User.findById(userId)
+
+  const notes = await LIST_MODELS[list].find({}).populate("user");
+  // console.log(notes)
+
+  const newNotes = notes.filter((note) => {
+    console.log(note.userId)
+    console.log(userId)
+    return note.userId === userId
+  });
+
+  console.log(newNotes)
+
+  response.json(newNotes);
 })
 
 listRouter.get('/:listName/:id', (request, response, next) => {
@@ -34,7 +47,7 @@ listRouter.get('/:listName/:id', (request, response, next) => {
     })
 })
 
-listRouter.post('/:listName', (request, response) => {
+listRouter.post('/:listName', async (request, response) => {
   const body = request.body;
   const list = request.params.listName;
 
@@ -44,8 +57,11 @@ listRouter.post('/:listName', (request, response) => {
     })
   }
 
+  const user = await User.findById(body.details.userId)
+
   const item = new LIST_MODELS[list]({
     id: body.details.id,
+    user: user._id,
     userId: body.details.userId,
     type: body.details.type,
     poster: body.details.poster,

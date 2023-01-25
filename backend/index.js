@@ -23,23 +23,21 @@ app.get('/api/mediaDetails', async (request,response, next) => {
       })
     }
 
-    const favoritesArr = await Favorites.find({ id: request.query.id, type: request.query.type });
-    const watchItemsArr = await Watchlist.find({ id: request.query.id, type: request.query.type });
-    const ratingsArr = await Ratings.find({ id: request.query.id, type: request.query.type });
+    const favoriteItem = await Favorites.findOne({ id: request.query.id, type: request.query.type });
+    const watchItem = await Watchlist.findOne({ id: request.query.id, type: request.query.type });
+    const rateItem = await Ratings.findOne({ id: request.query.id, type: request.query.type });
 
     const mediaCustomDetails = {
-      isInFavorites: favoritesArr.length === 1,
-      favoriteId: favoritesArr[0]?._id,
-      isInWatchlist: watchItemsArr.length === 1, // change
-      watchlistId: watchItemsArr[0]?._id,
-      isInRatingList: ratingsArr.length === 1,
-      rateMark: ratingsArr[0]?.rate,
-      rateId: ratingsArr[0]?._id,
-
+      isInFavorites: !!favoriteItem,
+      favoriteId: favoriteItem?._id,
+      isInWatchlist: !!watchItem,
+      watchlistId: watchItem?._id,
+      isInRatingList: !!rateItem,
+      rateMark: rateItem?.rate,
+      rateId: rateItem?._id,
     };
 
     response.json(mediaCustomDetails);
-
   } catch (error) {
     next(error);
   }
