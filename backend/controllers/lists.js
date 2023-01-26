@@ -1,13 +1,25 @@
 const listRouter = require('express').Router()
+const jwt = require('jsonwebtoken')
 const Favorites = require('../models/favorites');
 const Watchlist = require('../models/watchlist');
 const Ratings = require('../models/ratings');
 const User = require("../models/user")
+const config = require('../utils/config')
 
 const LIST_MODELS = {
   favorites: Favorites,
   watchlist: Watchlist,
   rate: Ratings
+}
+
+const getTokenFrom = request => {
+  const authorization = request.get('authorization')
+
+  if (authorization && authorization.startsWith('Bearer ')) {
+    return authorization.replace('Bearer ', '')
+  }
+
+  return null
 }
 
 listRouter.get('/:listName', async (request, response) => {
@@ -50,6 +62,11 @@ listRouter.get('/:listName/:id', (request, response, next) => {
 listRouter.post('/:listName', async (request, response) => {
   const body = request.body;
   const list = request.params.listName;
+  const decodedToken = jwt.verify(getTokenFrom(request), config.SECRET)
+
+  if (!decodedToken.id) {
+    return response.status(401).json({ error: 'token invalid' })
+  }
 
   if (!body.details) {
     return response.status(400).json({
@@ -57,12 +74,12 @@ listRouter.post('/:listName', async (request, response) => {
     })
   }
 
-  const user = await User.findById(body.details.userId)
+  const user = await User.findById(decodedToken.id)
 
   const item = new LIST_MODELS[list]({
     id: body.details.id,
-    user: user._id,
-    userId: body.details.userId,
+    user: user,
+    userId: user._id,
     type: body.details.type,
     poster: body.details.poster,
     title: body.details.title,
@@ -73,9 +90,8 @@ listRouter.post('/:listName', async (request, response) => {
     rate: body.details.rate,
   })
 
-  item.save().then(savedItem => {
-    response.json(savedItem)
-  })
+  const savedItem = await item.save()
+  response.json(savedItem)
 })
 
 listRouter.delete('/:listName/:id', (request, response, next) => {
