@@ -51,9 +51,7 @@ export const getMediaCustomDetailsStorage = (mediaInfo) => (dispatch) => {
 
 export const getMediaCustomDetails = (mediaInfo) => async (dispatch) => {
   try {
-    // change userId
-    const userId = "63c3157381900870daba5d9a";
-    const mediaCustomDetails = await DBService.getMediaDetails(mediaInfo.id, mediaInfo.type, userId);
+    const mediaCustomDetails = await DBService.getMediaDetails(mediaInfo.id, mediaInfo.type);
 
     dispatch(getMediaCustomDetailsSuccess(mediaCustomDetails.data));
   } catch(error) {
@@ -83,17 +81,13 @@ export const changeMediaCustomDetailsRequest = () => ({
 export const changeMediaCustomDetails = ({ listName, mediaInfo, action }) => async (dispatch) => {
   dispatch(changeMediaCustomDetailsRequest())
   try {
-    const actionCB = {
-      add: DBService.addToList,
-      remove: DBService.removeFromList,
-      update: DBService.changeRate,
+    const actionCBname = {
+      add: "addToList",
+      remove: "removeFromList",
+      update: "changeRate",
     };
 
-    // change userId
-    mediaInfo.userId = "63c3157381900870daba5d9a";
-    mediaInfo.timestamp = Date.now();
-
-    const response = await actionCB[action](listName, mediaInfo);
+    const response = await DBService[actionCBname[action]](listName, { ...mediaInfo, timestamp: Date.now()});
 
     if (response.status === 200 || response.status === 204) {
       dispatch(getMediaCustomDetails(mediaInfo));
