@@ -26,16 +26,17 @@ listRouter.get('/:listName', async (request, response, next) => {
   try {
     const list = request.params.listName;
 
-    const userId = "63c3157381900870daba5d9a"
-    const user = await User.findById(userId)
+    const decodedToken = jwt.verify(getTokenFrom(request), config.SECRET)
+    if (!decodedToken.id) {
+      return response.status(401).json({ error: 'token invalid' })
+    }
+    const user = await User.findById(decodedToken.id)
 
+    // Do we need populate?
+    // can we find by userid
     const notes = await LIST_MODELS[list].find({}).populate("user");
 
-    const newNotes = notes.filter((note) => {
-      console.log(note.userId)
-      console.log(userId)
-      return note.userId === userId
-    });
+    const newNotes = notes.filter((note) => note.userId === user._id.toString());
 
     console.log(newNotes)
 
@@ -102,6 +103,11 @@ listRouter.post('/:listName', async (request, response, next) => {
 
 listRouter.delete('/:listName/:id', async (request, response, next) => {
   try {
+    // const decodedToken = jwt.verify(getTokenFrom(request), config.SECRET)
+    // if (!decodedToken.id) {
+    //   return response.status(401).json({ error: 'token invalid' })
+    // }
+
     const list = request.params.listName;
     const removedItem = await LIST_MODELS[list].findByIdAndRemove(request.params.id)
 
@@ -113,6 +119,11 @@ listRouter.delete('/:listName/:id', async (request, response, next) => {
 
 listRouter.put('/:listName/:id', async (request, response, next) => {
   try {
+    // const decodedToken = jwt.verify(getTokenFrom(request), config.SECRET)
+    // if (!decodedToken.id) {
+    //   return response.status(401).json({ error: 'token invalid' })
+    // }
+
     const body = request.body
     const list = request.params.listName;
     const { rate } = body;
