@@ -1,84 +1,84 @@
-const listRouter = require('express').Router()
-const jwt = require('jsonwebtoken')
+const listRouter = require('express').Router();
+const jwt = require('jsonwebtoken');
 const Favorites = require('../models/favorites');
 const Watchlist = require('../models/watchlist');
 const Ratings = require('../models/ratings');
-const User = require("../models/user")
-const config = require('../utils/config')
+const User = require('../models/user');
+const config = require('../utils/config');
 
 const LIST_MODELS = {
   favorites: Favorites,
   watchlist: Watchlist,
-  rate: Ratings
-}
+  rate: Ratings,
+};
 
-const getTokenFrom = request => {
-  const authorization = request.get('authorization')
+const getTokenFrom = (request) => {
+  const authorization = request.get('authorization');
 
   if (authorization && authorization.startsWith('Bearer ')) {
-    return authorization.replace('Bearer ', '')
+    return authorization.replace('Bearer ', '');
   }
 
-  return null
-}
+  return null;
+};
 
 listRouter.get('/:listName', async (request, response, next) => {
   try {
     const list = request.params.listName;
 
-    const decodedToken = jwt.verify(getTokenFrom(request), config.SECRET)
+    const decodedToken = jwt.verify(getTokenFrom(request), config.SECRET);
     if (!decodedToken.id) {
-      return response.status(401).json({ error: 'token invalid' })
+      return response.status(401).json({ error: 'token invalid' });
     }
-    const user = await User.findById(decodedToken.id)
+    const user = await User.findById(decodedToken.id);
 
     // Do we need populate?
     // can we find by userid
-    const notes = await LIST_MODELS[list].find({}).populate("user");
+    const notes = await LIST_MODELS[list].find({}).populate('user');
 
     const newNotes = notes.filter((note) => note.userId === user._id.toString());
 
-    console.log(newNotes)
+    console.log(newNotes);
 
     response.json(newNotes);
-  } catch(error) {
-    next(error)
+  } catch (error) {
+    next(error);
   }
-})
+});
 
 listRouter.get('/:listName/:id', async (request, response, next) => {
   try {
     const list = request.params.listName;
 
-    const item = await LIST_MODELS[list].findById(request.params.id)
+    const item = await LIST_MODELS[list].findById(request.params.id);
 
     if (item) {
       response.json(item);
     } else {
-      response.status(404).end()
+      response.status(404).end();
     }
-  } catch(error) {
-    next(error)
+  } catch (error) {
+    next(error);
   }
-})
+});
 
 listRouter.post('/:listName', async (request, response, next) => {
   try {
     const body = request.body;
     const list = request.params.listName;
-    const decodedToken = jwt.verify(getTokenFrom(request), config.SECRET)
+    const decodedToken = jwt.verify(getTokenFrom(request), config.SECRET);
 
     if (!decodedToken.id) {
-      return response.status(401).json({ error: 'token invalid' })
+      return response.status(401).json({ error: 'token invalid' });
     }
 
     if (!body.details) {
       return response.status(400).json({
-        error: 'content is missing'
-      })
+        error: 'content is missing',
+      });
     }
 
-    const user = await User.findById(decodedToken.id)
+    const user = await User.findById(decodedToken.id);
 
     const item = new LIST_MODELS[list]({
       id: body.details.id,
@@ -92,14 +92,14 @@ listRouter.post('/:listName', async (request, response, next) => {
       date: body.details.date,
       timestamp: body.details.timestamp,
       rate: body.details.rate,
-    })
+    });
 
-    const savedItem = await item.save()
-    response.json(savedItem)
-  } catch(error) {
-    next(error)
+    const savedItem = await item.save();
+    response.json(savedItem);
+  } catch (error) {
+    next(error);
   }
-})
+});
 
 listRouter.delete('/:listName/:id', async (request, response, next) => {
   try {
@@ -109,13 +109,13 @@ listRouter.delete('/:listName/:id', async (request, response, next) => {
     // }
 
     const list = request.params.listName;
-    const removedItem = await LIST_MODELS[list].findByIdAndRemove(request.params.id)
+    const removedItem = await LIST_MODELS[list].findByIdAndRemove(request.params.id);
 
     response.status(204).end();
-  } catch(error) {
-    next(error)
+  } catch (error) {
+    next(error);
   }
-})
+});
 
 listRouter.put('/:listName/:id', async (request, response, next) => {
   try {
@@ -124,17 +124,21 @@ listRouter.put('/:listName/:id', async (request, response, next) => {
     //   return response.status(401).json({ error: 'token invalid' })
     // }
 
-    const body = request.body
+    const body = request.body;
     const list = request.params.listName;
     const { rate } = body;
 
-    const updatedItem = await LIST_MODELS[list].findByIdAndUpdate(request.params.id, { rate }, { new: true })
-    console.log(updatedItem)
+    const updatedItem = await LIST_MODELS[list].findByIdAndUpdate(
+      request.params.id,
+      { rate },
+      { new: true },
+    );
+    console.log(updatedItem);
 
     response.json(updatedItem);
   } catch (error) {
-    next(error)
+    next(error);
   }
-})
+});
 
-module.exports = listRouter
+module.exports = listRouter;
