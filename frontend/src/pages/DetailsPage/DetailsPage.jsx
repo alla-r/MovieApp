@@ -33,7 +33,7 @@ const DetailsPage = () => {
         listName: 'favorites',
         mediaInfo: {
           ...detailsData,
-          itemId: mediaCustomDetails?.favoriteId
+          itemId: mediaCustomDetails?.favoriteId,
         },
         action: mediaCustomDetails?.isInFavorites ? 'remove' : 'add',
       }),
@@ -44,20 +44,20 @@ const DetailsPage = () => {
         listName: 'watchlist',
         mediaInfo: {
           ...detailsData,
-          itemId: mediaCustomDetails?.watchlistId
+          itemId: mediaCustomDetails?.watchlistId,
         },
         action: mediaCustomDetails?.isInWatchlist ? 'remove' : 'add',
       }),
     );
 
   const setRateCallback = (rate) => {
-    let action = "remove";
+    let action = 'remove';
 
     if (rate) {
-      action = "add"
+      action = 'add';
     }
     if (mediaCustomDetails?.isInRatingList) {
-      action = "update"
+      action = 'update';
     }
 
     dispatch(
@@ -66,7 +66,7 @@ const DetailsPage = () => {
         mediaInfo: {
           ...detailsData,
           rate,
-          itemId: mediaCustomDetails?.rateId
+          itemId: mediaCustomDetails?.rateId,
         },
         action,
       }),

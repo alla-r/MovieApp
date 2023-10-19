@@ -43,19 +43,18 @@ const LoginPage = () => {
       // login: actions.loginUser,
     };
 
-    dispatch(flowCallbacks[flow]({ username, password }))
-      .then(() => navigate("/auth/login"));
+    dispatch(flowCallbacks[flow]({ username, password })).then(() => navigate('/auth/login'));
     resetForm();
   };
 
   const titleText = {
     login: 'Login to your account',
-    signUp: 'Create an account'
+    signUp: 'Create an account',
   };
 
   const btnText = {
     login: 'Login',
-    signUp: 'Sign Up'
+    signUp: 'Sign Up',
   };
 
   const navigateToRegister = () => navigate('/auth/signup');

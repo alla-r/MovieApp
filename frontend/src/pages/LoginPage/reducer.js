@@ -3,7 +3,7 @@ import * as constants from './constants';
 const initialState = {
   loading: false,
   isSuccess: false,
-  error: null
+  error: null,
 };
 
 const reducer = (state = initialState, action) => {

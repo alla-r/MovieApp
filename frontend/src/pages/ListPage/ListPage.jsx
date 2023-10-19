@@ -87,7 +87,9 @@ const ListPage = () => {
       <Heading content={constants.HEADINGS[list]} />
       {listLoading && <Loader />}
       {!listLoading && listData.length > 0 && <div>{items}</div>}
-      {!listLoading && listData.length === 0 && !listError && <Info>{constants.HEADINGS[list]} list is empty</Info>}
+      {!listLoading && listData.length === 0 && !listError && (
+        <Info>{constants.HEADINGS[list]} list is empty</Info>
+      )}
       {!listLoading && listError && <Info>Couldn't fetch {constants.HEADINGS[list]} list</Info>}
     </Container>
   );

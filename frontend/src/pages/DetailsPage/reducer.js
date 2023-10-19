@@ -42,7 +42,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        customDetails: [ ...customDetails, action.payload]
+        customDetails: [...customDetails, action.payload],
       };
     case constants.GET_MEDIA_DETAILS_ERROR:
       return {
@@ -71,8 +71,8 @@ const reducer = (state = initialState, action) => {
     case constants.GET_MEDIA_CUSTOM_DETAILS_ERROR:
       return {
         ...state,
-        customDetails: null
-      }
+        customDetails: null,
+      };
     default:
       return state;
   }

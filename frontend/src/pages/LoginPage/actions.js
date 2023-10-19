@@ -58,6 +58,6 @@ export const loginUser = (data) => async (dispatch) => {
       dispatch(loginUserError({ status: 'error' }));
     }
   } catch (error) {
-    dispatch(registerUserError({ status: 'error',  }));
+    dispatch(registerUserError({ status: 'error' }));
   }
 };

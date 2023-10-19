@@ -8,7 +8,7 @@ const defaultData = {
 
 class StorageService {
   setUser(user) {
-    this.setItem('user', user)
+    this.setItem('user', user);
   }
 
   getUser() {

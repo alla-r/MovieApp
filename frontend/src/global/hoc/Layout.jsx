@@ -29,7 +29,7 @@ const withLayout = (Page) => () => {
       onClickHandler: () => {
         console.log('sign out');
         auth.signOut();
-        navigate("/");
+        navigate('/');
       },
     },
   ];
@@ -47,8 +47,8 @@ const withLayout = (Page) => () => {
 
   return (
     <div className="page-container">
-      <Header 
-        headerItems={HEADER_ITEMS} 
+      <Header
+        headerItems={HEADER_ITEMS}
         profileDropdownData={PROFILE_DROPDOWN_DATA}
         isUserAuthorized={!!auth.user}
       />

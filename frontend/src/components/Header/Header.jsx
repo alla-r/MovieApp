@@ -74,12 +74,7 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
     <HeaderItem key={content} content={content} onClickHandler={onClickHandler} path={path} />
   ));
 
-  const signInItem = (
-    <HeaderItem
-      content="Sign In"
-      path="/auth/login"
-    />
-  );
+  const signInItem = <HeaderItem content="Sign In" path="/auth/login" />;
 
   return (
     <Background>

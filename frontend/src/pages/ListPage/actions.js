@@ -21,7 +21,7 @@ export const getListData = (listName) => async (dispatch) => {
     dispatch(getListDataRequest());
 
     // change userId
-    const userId = "63c3157381900870daba5d9a";
+    const userId = '63c3157381900870daba5d9a';
 
     const response = await DBService.getListData(listName, userId);
 
@@ -35,18 +35,20 @@ export const getListData = (listName) => async (dispatch) => {
   }
 };
 
-export const removeItemFromList = ({ listName, details }) => async (dispatch) => {
-  dispatch(getListDataRequest());
-  try {
-    const response = await DBService.removeFromList(listName, details);
+export const removeItemFromList =
+  ({ listName, details }) =>
+  async (dispatch) => {
+    dispatch(getListDataRequest());
+    try {
+      const response = await DBService.removeFromList(listName, details);
 
-    if (response.status === 204) {
-      dispatch(getListData(listName));
+      if (response.status === 204) {
+        dispatch(getListData(listName));
+      }
+    } catch (error) {
+      dispatch(getListDataError(error));
     }
-  } catch (error) {
-    dispatch(getListDataError(error));
-  }
-};
+  };
 
 export const removeItemFromListStorage = (mediaInfo) => (dispatch) => {
   const newListData = StorageService.changeMediaCustomDetails(mediaInfo);
@@ -72,21 +74,23 @@ export const changeMediaCustomDetailsRequest = () => ({
   type: constants.CHANGE_MEDIA_CUSTOM_DETAILS_REQUEST,
 });
 
-export const changeRate = ({ mediaInfo }) => async (dispatch) => {
-  dispatch(changeMediaCustomDetailsRequest())
-  try {
-    // change userId
-    mediaInfo.userId = "63c3157381900870daba5d9a";
-    mediaInfo.timestamp = Date.now();
+export const changeRate =
+  ({ mediaInfo }) =>
+  async (dispatch) => {
+    dispatch(changeMediaCustomDetailsRequest());
+    try {
+      // change userId
+      mediaInfo.userId = '63c3157381900870daba5d9a';
+      mediaInfo.timestamp = Date.now();
 
-    const response = await DBService.changeRate("rate", mediaInfo);
+      const response = await DBService.changeRate('rate', mediaInfo);
 
-    if (response.status === 200 || response.status === 204) {
-      dispatch(getListData("rate"));
-    } else {
+      if (response.status === 200 || response.status === 204) {
+        dispatch(getListData('rate'));
+      } else {
+        dispatch(changeMediaCustomDetailsError(mediaInfo));
+      }
+    } catch (e) {
       dispatch(changeMediaCustomDetailsError(mediaInfo));
     }
-  } catch (e) {
-    dispatch(changeMediaCustomDetailsError(mediaInfo));
-  }
-};
+  };
