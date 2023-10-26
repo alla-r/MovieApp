@@ -97,6 +97,7 @@ const SearchPage = () => {
       <NavigationPanel navConfig={navConfig} />
       <div className="search-items--container">
         {searchLoading && <Loader />}
+        {searchError && <div>Something went wrong. Couldn't fetch data by query</div>}
         {!searchLoading && searchData?.person && type === 'person' && (
           <div>{createPersonList(searchData?.person?.results)}</div>
         )}
