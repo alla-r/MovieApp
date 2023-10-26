@@ -37,6 +37,7 @@ const PersonPage = () => {
   return (
     <div className="person-page container">
       {detailsLoading && <Loader />}
+      {detailsError && <div>Couldn't fetch person's details</div>}
       {detailsData && (
         <Container>
           <LeftSide data={detailsData} />
