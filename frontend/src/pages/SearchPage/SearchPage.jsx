@@ -24,8 +24,6 @@ const SearchPage = () => {
   const searchData = useSelector(selectors.searchData);
   const searchError = useSelector(selectors.searchError);
 
-  console.log(searchLoading, searchData, searchError);
-
   const navClickHandler = (mediaType) => {
     setSearchParams({
       type: mediaType,
@@ -57,9 +55,6 @@ const SearchPage = () => {
 
   useEffect(() => {
     dispatch(actions.getSearchData(query, type, pageNumber));
-    console.log(query);
-
-    // return () => dispatch(actions.clearFilteredMedia());
   }, [query, pageNumber]);
 
   const handleChange = (e, value) =>
@@ -75,7 +70,7 @@ const SearchPage = () => {
 
       return (
         <ListItem
-          key={details.id}
+          key={details.id.toString()}
           details={details}
           listName="search"
           navigateToDetailsCB={navigateToDetailsCB}

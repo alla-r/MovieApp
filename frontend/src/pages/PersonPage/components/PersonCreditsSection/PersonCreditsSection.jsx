@@ -16,14 +16,12 @@ const PersonCreditsSection = ({ data, onItemClick }) => {
       upcoming: [],
     };
 
-    // add years as props to yearSections
     years.forEach((currYear) => {
       if (currYear) {
         yearSections[currYear.toString()] = [];
       }
     });
 
-    // map section data and group by year
     rowData.forEach((item) => {
       if (item.date) {
         const year = new Date(item.date).getFullYear();

@@ -40,7 +40,6 @@ const LoginPage = () => {
     const flowCallbacks = {
       signUp: actions.registerUser,
       login: auth.signIn,
-      // login: actions.loginUser,
     };
 
     dispatch(flowCallbacks[flow]({ username, password })).then(() => navigate('/auth/login'));

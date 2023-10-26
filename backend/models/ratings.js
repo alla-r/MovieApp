@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const listSchema = new mongoose.Schema({
-  id: String, // change
+  id: String,
   type: String,
   poster: String,
   title: String,

@@ -18,7 +18,7 @@ mongoose
     console.log('connected to MongoDB');
   })
   .catch((error) => {
-    console.log('error connecting to MongoDB:', error.message);
+    console.error('error connecting to MongoDB:', error.message);
   });
 
 app.use(cors());
@@ -28,10 +28,6 @@ app.use(middleware.requestLogger);
 app.use('/api/list', listRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
-// app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler);
-
-// morgan.token('body', (req, res) => JSON.stringify(req.body));
-// app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'));
 
 module.exports = app;

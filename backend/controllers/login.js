@@ -7,17 +7,12 @@ const config = require('../utils/config');
 loginRouter.post('/', async (request, response) => {
   const { username, password } = request.body;
 
-  console.log(request.body);
-
   const user = await User.findOne({ username });
-  console.log('user');
-  console.log(user);
   const passwordCorrect = user === null ? false : await bcrypt.compare(password, user.passwordHash);
-  console.log(passwordCorrect);
 
   if (!(user && passwordCorrect)) {
     return response.status(401).json({
-      error: 'invalid username or pasword',
+      error: 'invalid username or password',
     });
   }
 
@@ -26,11 +21,7 @@ loginRouter.post('/', async (request, response) => {
     id: user._id,
   };
 
-  const token = jwt.sign(
-    userForToken,
-    config.SECRET,
-    // { expiresIn: 60*60 }
-  );
+  const token = jwt.sign(userForToken, config.SECRET);
 
   response.status(200).send({ token, username: user.username });
 });

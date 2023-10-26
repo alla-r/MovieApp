@@ -20,8 +20,6 @@ const PersonPage = () => {
   const detailsData = useSelector(selectors.detailsData);
   const detailsError = useSelector(selectors.detailsError);
 
-  console.log(detailsLoading, detailsData, detailsError);
-
   useEffect(() => {
     dispatch(actions.getPersonDetails(params.id));
 

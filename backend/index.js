@@ -14,8 +14,6 @@ server.listen(config.PORT, () => {
   logger.info(`Server running on port ${config.PORT}`);
 });
 
-///////////////
-// move to a separate module
 const getTokenFrom = (request) => {
   const authorization = request.get('authorization');
 
