@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, createSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { slide as BurgerMenu } from 'react-burger-menu';
 import Logo from '../Logo';
@@ -38,12 +38,15 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
     navigate('/');
   };
 
-  const onSignInClickHandler = () => {
-    console.log('sign in');
-  };
-
-  const searchSubmitHandler = (searchedValue) => {
-    console.log(searchedValue);
+  const searchSubmitHandler = (query) => {
+    navigate({
+      pathname: `/search`,
+      search: `?${createSearchParams({
+        type: 'movie',
+        page: 1,
+        query,
+      })}`,
+    });
   };
 
   const showSearchInput = () => {
@@ -55,9 +58,10 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
   };
 
   const getMobileItems = (data) => {
-    const mobileItems = data.map(({ content, onClickHandler }) => (
+    const mobileItems = data.map(({ content, onClickHandler, path }) => (
       <HeaderItem
         key={content}
+        path={path}
         content={content}
         onClickHandler={() => menuItemsClickHandler(onClickHandler)}
       />
@@ -66,16 +70,11 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
     return mobileItems;
   };
 
-  const items = headerItems.map(({ content, onClickHandler }) => (
-    <HeaderItem key={content} content={content} onClickHandler={onClickHandler} />
+  const items = headerItems.map(({ content, onClickHandler, path }) => (
+    <HeaderItem key={content} content={content} onClickHandler={onClickHandler} path={path} />
   ));
 
-  const signInItem = (
-    <HeaderItem
-      content="Sign In"
-      onClickHandler={() => menuItemsClickHandler(onSignInClickHandler)}
-    />
-  );
+  const signInItem = <HeaderItem content="Sign In" path="/auth/login" />;
 
   return (
     <Background>
@@ -88,7 +87,7 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
       )}
       {isMobile && !isSearchBarOpen && (
         <>
-          <div className="container">
+          <div className="logo--container">
             <Logo size={36} onClickHandler={onLogoClickHandler} />
           </div>
           <SearchIconButton onClick={showSearchInput} />
@@ -108,9 +107,7 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
           <NavMenu>{items}</NavMenu>
           <SecondColumn>
             <SearchField submitHandler={searchSubmitHandler} />
-            {!isUserAuthorized && (
-              <HeaderItem content="Sign In" onClickHandler={onSignInClickHandler} />
-            )}
+            {!isUserAuthorized && signInItem}
             {isUserAuthorized && <ProfileDropdown avatarContent="AN" data={profileDropdownData} />}
           </SecondColumn>
         </NavContainer>
@@ -120,7 +117,7 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
 };
 
 Header.defaultProps = {
-  isUserAuthorized: true,
+  isUserAuthorized: false,
 };
 
 Header.propTypes = {
@@ -128,13 +125,15 @@ Header.propTypes = {
   headerItems: PropTypes.arrayOf(
     PropTypes.shape({
       content: PropTypes.string.isRequired,
-      onClickHandler: PropTypes.func.isRequired,
+      path: PropTypes.string,
+      onClickHandler: PropTypes.func,
     }),
   ).isRequired,
   profileDropdownData: PropTypes.arrayOf(
     PropTypes.shape({
       content: PropTypes.string.isRequired,
-      onClickHandler: PropTypes.func.isRequired,
+      path: PropTypes.string,
+      onClickHandler: PropTypes.func,
     }),
   ).isRequired,
 };

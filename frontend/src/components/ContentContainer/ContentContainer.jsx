@@ -6,21 +6,19 @@ import MovieCard from '../MovieCard';
 import Button from '../Button';
 import Heading from '../Heading';
 import { Container, ItemsContainer, Error } from './styles';
-import { getFormattedItem } from '../../global/helpers';
 
 const ContentContainer = ({ loading, data, error, paginationBtn, heading }) => {
   const navigate = useNavigate();
 
   const items = data?.map((item) => {
-    const formattedItem = getFormattedItem(item);
-    const { type, id } = formattedItem;
+    const { type, id } = item;
 
     return (
       <MovieCard
-        key={id}
-        data={formattedItem}
+        key={`${type}/${id}`}
+        data={item}
         onClickHandler={() => {
-          navigate(`${type}/${id}`);
+          navigate(`/${type}/${id}`);
         }}
       />
     );
@@ -30,9 +28,10 @@ const ContentContainer = ({ loading, data, error, paginationBtn, heading }) => {
     <Container className="container">
       {heading && <Heading content={heading} />}
       {data && <ItemsContainer className="items-container">{items}</ItemsContainer>}
+
       {loading && <Loader />}
-      {error.status && <Error>{error.message}</Error>}
-      {paginationBtn.status && (
+      {error && error.status && <Error>{error.message}</Error>}
+      {paginationBtn && paginationBtn.status && (
         <Button
           onClickHandler={paginationBtn.onClickHandler}
           btnText={paginationBtn.text}

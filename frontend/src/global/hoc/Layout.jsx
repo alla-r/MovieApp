@@ -1,50 +1,62 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import { useAuthContext } from './AuthContextProvider';
 
-export const PROFILE_DROPDOWN_DATA = [
-  {
-    content: 'Watchlist',
-    onClickHandler: () => {
-      console.log('watchlist');
-    },
-  },
-  {
-    content: 'Favorites',
-    onClickHandler: () => {
-      console.log('favorites');
-    },
-  },
-  {
-    content: 'Sign Out',
-    onClickHandler: () => {
-      console.log('sign out');
-    },
-  },
-];
+const withLayout = (Page) => () => {
+  const navigate = useNavigate();
+  const auth = useAuthContext();
 
-export const HEADER_ITEMS = [
-  {
-    content: 'Movies',
-    onClickHandler: () => {
-      console.log('Movies');
+  const PROFILE_DROPDOWN_DATA = [
+    {
+      content: 'Watchlist',
+      path: '/lists/watchlist',
+      onClickHandler: () => navigate('/lists/watchlist'),
     },
-  },
-  {
-    content: 'TV Shows',
-    onClickHandler: () => {
-      console.log('TV Shows');
+    {
+      content: 'Favorites',
+      path: '/lists/favorites',
+      onClickHandler: () => navigate('/lists/favorites'),
     },
-  },
-];
+    {
+      content: 'Ratings',
+      path: '/lists/rate',
+      onClickHandler: () => navigate('/lists/rate'),
+    },
+    {
+      content: 'Sign Out',
+      onClickHandler: () => {
+        auth.signOut();
+        navigate('/');
+      },
+    },
+  ];
 
-const withLayout = (Page) => () =>
-  (
-    <>
-      <Header headerItems={HEADER_ITEMS} profileDropdownData={PROFILE_DROPDOWN_DATA} />
-      <Page />
+  const HEADER_ITEMS = [
+    {
+      content: 'Movies',
+      path: '/movie',
+    },
+    {
+      content: 'TV Shows',
+      path: '/tv',
+    },
+  ];
+
+  return (
+    <div className="page-container">
+      <Header
+        headerItems={HEADER_ITEMS}
+        profileDropdownData={PROFILE_DROPDOWN_DATA}
+        isUserAuthorized={!!auth.user}
+      />
+      <div className="content-wrap">
+        <Page />
+      </div>
       <Footer />
-    </>
+    </div>
   );
+};
 
 export default withLayout;

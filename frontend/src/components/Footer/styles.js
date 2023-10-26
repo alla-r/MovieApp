@@ -1,12 +1,9 @@
 import styled from 'styled-components';
 
-export const Background = styled.div`
+export const Background = styled.footer`
   width: 100%;
   height: 160px;
   background: ${(props) => props.theme.colors.dark};
-  @media only screen and (max-width: 768px) {
-    height: 180px;
-  }
 `;
 
 export const Container = styled.div`

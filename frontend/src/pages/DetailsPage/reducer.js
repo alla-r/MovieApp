@@ -4,6 +4,7 @@ const initialState = {
   loading: false,
   error: null,
   details: null,
+  customDetails: [],
   recommendations: [],
   cast: [],
   crew: [],
@@ -12,6 +13,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case constants.GET_MEDIA_DETAILS:
+    case constants.CHANGE_MEDIA_CUSTOM_DETAILS_REQUEST:
       return {
         ...state,
       };
@@ -29,6 +31,18 @@ const reducer = (state = initialState, action) => {
         recommendations: action.payload.recommendations,
         error: null,
         loading: false,
+      };
+    case constants.CHANGE_MEDIA_CUSTOM_DETAILS_ERROR:
+      return {
+        ...state,
+        error: action.payload.message,
+        loading: false,
+      };
+    case constants.CHANGE_MEDIA_CUSTOM_DETAILS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        customDetails: [...customDetails, action.payload],
       };
     case constants.GET_MEDIA_DETAILS_ERROR:
       return {
@@ -49,6 +63,16 @@ const reducer = (state = initialState, action) => {
         cast: [],
         crew: [],
       };
+    case constants.GET_MEDIA_CUSTOM_DETAILS_SUCCESS:
+      return {
+        ...state,
+        customDetails: action.payload,
+      };
+    case constants.GET_MEDIA_CUSTOM_DETAILS_ERROR:
+      return {
+        ...state,
+        customDetails: null,
+      };
     default:
       return state;
   }
@@ -60,6 +84,7 @@ const detailsCastList = (state) => state.detailsPageReducer.cast;
 const detailsCrewList = (state) => state.detailsPageReducer.crew;
 const detailsRecommendationsList = (state) => state.detailsPageReducer.recommendations;
 const detailsError = (state) => state.detailsPageReducer.error;
+const mediaCustomDetails = (state) => state.detailsPageReducer.customDetails;
 
 const selectors = {
   detailsLoading,
@@ -68,6 +93,7 @@ const selectors = {
   detailsCrewList,
   detailsRecommendationsList,
   detailsError,
+  mediaCustomDetails,
 };
 
 export { selectors };

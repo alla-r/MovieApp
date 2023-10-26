@@ -1,23 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useMatch } from 'react-router-dom';
 import { Item, Line } from './styles';
 
-const HeaderItem = ({ content, onClickHandler, isActive }) => (
-  <Item onClick={onClickHandler}>
-    {content}
-    {isActive && <Line />}
-  </Item>
-);
+const HeaderItem = ({ content, onClickHandler, path }) => {
+  const match = useMatch(path);
+
+  return (
+    <Item onClick={onClickHandler} to={path}>
+      {content}
+      {match && <Line className="line" />}
+    </Item>
+  );
+};
 
 HeaderItem.defaultProps = {
   onClickHandler: () => {},
-  isActive: false,
+  path: '',
 };
 
 HeaderItem.propTypes = {
   content: PropTypes.string.isRequired,
+  path: PropTypes.string,
   onClickHandler: PropTypes.func,
-  isActive: PropTypes.bool,
 };
 
 export default HeaderItem;

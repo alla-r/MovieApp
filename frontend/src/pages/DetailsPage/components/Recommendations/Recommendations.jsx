@@ -17,7 +17,7 @@ const Recommendations = ({ data }) => {
 
   const slides = data.map(({ type, backdrop, title, id }) => (
     <SwiperSlide key={id}>
-      <CardItem onClick={() => navigate(`../../${type}/${id}`)}>
+      <CardItem onClick={() => navigate(`/${type}/${id}`)}>
         <ImageWrapper ImageSrc={backdrop} />
         <Title>{title}</Title>
       </CardItem>
@@ -64,8 +64,6 @@ const Recommendations = ({ data }) => {
     </Container>
   );
 };
-
-// navigate(`${type}/${id}`);
 
 Recommendations.propTypes = {
   data: PropTypes.arrayOf(

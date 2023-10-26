@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate, createSearchParams } from 'react-router-dom';
 import CircleProgressBar from '../../../../../../components/CircleProgressBar';
 import CircularButton from '../../../../../../components/CircularButton';
 import {
@@ -24,29 +25,40 @@ import {
 } from '../../../../../../global/helpers';
 
 const DetailsBlock = ({ data, circularBtnConfig }) => {
+  const navigate = useNavigate();
   const percentage = getPercentageValue(data.voteAvg, 10);
 
-  const onGenreClickHandler = (id) => console.log(id);
+  const onGenreClickHandler = (id) =>
+    navigate({
+      pathname: `/${data.type}`,
+      search: `?${createSearchParams({ genre: id })}`,
+    });
 
   const genres = data.genres.map(({ id, name }) => (
     <GenreItem key={id} genre={name} onClickHandler={() => onGenreClickHandler(id)} />
   ));
 
-  const buttons = circularBtnConfig.map(({ id, iconSrc, onClickHandler, isActive }) => (
-    <CircularButton
-      key={id}
-      iconSrc={iconSrc}
-      onClickHandler={onClickHandler}
-      isActive={isActive}
-    />
-  ));
+  const buttons = circularBtnConfig.map(
+    ({ id, iconSrc, onClickHandler, isActive, tooltipActive, tooltipInactive }) => (
+      <CircularButton
+        key={id}
+        iconSrc={iconSrc}
+        onClickHandler={onClickHandler}
+        isActive={isActive}
+        tooltipActive={tooltipActive}
+        tooltipInactive={tooltipInactive}
+      />
+    ),
+  );
+
+  const formattedYears = getFormattedYears(data);
 
   return (
     <Container>
       <Title>{data.title}</Title>
       <DetailsWrapper>
-        <Item>{getFormattedYears(data)}</Item>
-        <Divider />
+        <Item>{formattedYears}</Item>
+        {formattedYears && <Divider />}
         <Item>{getDuration(data)}</Item>
       </DetailsWrapper>
       <ButtonsWrapper>

@@ -10,8 +10,11 @@ const DetailsListSection = ({ mappingConfig, data }) => {
     let itemValues;
 
     if (type === 'array') {
-      // eslint-disable-next-line react/no-array-index-key
-      itemValues = data[value]?.map((item, i) => <ItemValue key={i}>{item}</ItemValue>);
+      itemValues =
+        data[value].length > 0
+          ? // eslint-disable-next-line react/no-array-index-key
+            data[value].map((item, i) => <ItemValue key={i}>{item}</ItemValue>)
+          : null;
     }
 
     if (type === 'text') {
@@ -27,11 +30,13 @@ const DetailsListSection = ({ mappingConfig, data }) => {
     }
 
     return (
-      // eslint-disable-next-line react/no-array-index-key
-      <ItemWrapper key={index}>
-        <ItemTitle>{title}</ItemTitle>
-        {itemValues}
-      </ItemWrapper>
+      itemValues && (
+        // eslint-disable-next-line react/no-array-index-key
+        <ItemWrapper key={index}>
+          <ItemTitle>{title}</ItemTitle>
+          {itemValues}
+        </ItemWrapper>
+      )
     );
   });
 
