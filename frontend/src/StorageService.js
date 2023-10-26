@@ -7,6 +7,14 @@ const defaultData = {
 };
 
 class StorageService {
+  setUser(user) {
+    this.setItem('user', user);
+  }
+
+  getUser() {
+    return this.getItem('user');
+  }
+
   getMediaCustomDetails(mediaInfo) {
     const customDetails = this.getItem('customDetails') || defaultData;
 

@@ -15,6 +15,7 @@ import Button from '../../components/Button';
 import Loader from '../../components/Loader';
 import withLayout from '../../global/hoc/Layout';
 import './LoginPage.scss';
+import { useAuthContext } from '../../global/hoc/AuthContextProvider';
 
 const LoginPage = () => {
   const params = useParams();
@@ -25,8 +26,10 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const formikRef = createRef();
 
+  const auth = useAuthContext();
+
   const loading = useSelector(selectors.loading);
-  const isSuccess = useSelector(selectors.success);
+  const isLoggedIn = useSelector(selectors.success);
   const error = useSelector(selectors.error);
 
   useEffect(() => {
@@ -34,24 +37,23 @@ const LoginPage = () => {
   }, [flow]);
 
   const submitHandler = ({ username, password }, { resetForm }) => {
-
     const flowCallbacks = {
-      login: actions.registerUser,
-      signUp: actions.loginUser,
+      signUp: actions.registerUser,
+      login: auth.signIn,
     };
 
-    dispatch(flowCallbacks[flow]({ username, password }));
+    dispatch(flowCallbacks[flow]({ username, password })).then(() => navigate('/auth/login'));
     resetForm();
   };
 
   const titleText = {
     login: 'Login to your account',
-    signUp: 'Create an account'
+    signUp: 'Create an account',
   };
 
   const btnText = {
     login: 'Login',
-    signUp: 'Sign Up'
+    signUp: 'Sign Up',
   };
 
   const navigateToRegister = () => navigate('/auth/signup');

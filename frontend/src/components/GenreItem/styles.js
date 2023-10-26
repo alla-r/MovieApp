@@ -25,11 +25,6 @@ export const GenreItemWrapper = styled.button`
     color: ${(props) => props.theme.colors.light};
   }
 
-  /* &.active:hover {
-    background-color: transparent;
-    color: ${(props) => props.theme.colors.secondary};
-  } */
-
   @media only screen and (max-width: 768px) {
     font-size: 12px;
     line-height: 15px;

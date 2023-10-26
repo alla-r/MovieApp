@@ -3,7 +3,7 @@ import * as constants from './constants';
 const initialState = {
   loading: false,
   isSuccess: false,
-  error: null
+  error: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -35,29 +35,6 @@ const reducer = (state = initialState, action) => {
         isSuccess: false,
         loading: false,
       };
-    // case constants.REGISTER_USER:
-    //   return {
-    //     ...state,
-    //   };
-    // case constants.REGISTER_USER_REQUEST:
-    //   return {
-    //     ...state,
-    //     loading: true,
-    //   };
-    // case constants.REGISTER_USER_SUCCESS:
-    //   return {
-    //     ...state,
-    //     isSuccess: action.payload,
-    //     error: null,
-    //     loading: false,
-    //   };
-    // case constants.REGISTER_USER_ERROR:
-    //   return {
-    //     ...state,
-    //     error: action.payload,
-    //     isSuccess: null,
-    //     loading: false,
-    //   };
     default:
       return state;
   }

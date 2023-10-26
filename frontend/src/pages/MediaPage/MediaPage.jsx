@@ -33,7 +33,7 @@ const MediaPage = () => {
 
   useEffect(() => {
     if (pageNumber !== 1) {
-      dispatch(actions.getFilteredMedia(type, pageNumber));
+      dispatch(actions.getFilteredMedia(type, pageNumber, selectedGenresArr));
     }
   }, [pageNumber]);
 

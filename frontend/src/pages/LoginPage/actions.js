@@ -1,4 +1,6 @@
 import * as constants from './constants';
+import DBService from '../../DBService';
+import StorageService from '../../StorageService';
 
 export const registerUserSuccess = (data) => ({
   type: constants.REGISTER_USER_SUCCESS,
@@ -29,40 +31,33 @@ export const loginUserRequest = () => ({
 });
 
 export const registerUser = (data) => async (dispatch) => {
-  debugger;
   dispatch(registerUserRequest());
-  console.log('register ' + data);
-  if (data.username === 'test' && data.password === 'test') {
-    dispatch(registerUserSuccess({ status: 'success' }));
-  } else {
+
+  try {
+    const response = await DBService.registerUser(data);
+
+    if (response.status === 201) {
+      dispatch(registerUserSuccess({ status: 'success' }));
+    } else {
+      dispatch(registerUserError({ status: 'error' }));
+    }
+  } catch (error) {
     dispatch(registerUserError({ status: 'error' }));
   }
-
-  // try {
-  //   const response = await TMDBservice.getTrendings(pageNumber);
-
-  //   const formattedData = getFormattedListData(response.data);
-  //   dispatch(registerUserSuccess(formattedData));
-  // } catch (error) {
-  //   dispatch(registerUserError(error));
-  // }
 };
 
 export const loginUser = (data) => async (dispatch) => {
-  debugger;
   dispatch(loginUserRequest());
-  console.log('register ' + data);
-  if (data.username === 'test' && data.password === 'test') {
-    dispatch(loginUserSuccess({ status: 'success' }));
-  } else {
-    dispatch(loginUserError({ status: 'error' }));
-  }
-  // try {
-  //   const response = await TMDBservice.loginUser(pageNumber);
+  try {
+    const response = await DBService.loginUser(data);
 
-  //   const formattedData = getFormattedListData(response.data);
-  //   dispatch(loginUserSuccess(formattedData));
-  // } catch (error) {
-  //   dispatch(loginUserError(error));
-  // }
+    if (response.status === 200) {
+      StorageService.setUser(response.data);
+      dispatch(loginUserSuccess({ status: 'success', data: response.data }));
+    } else {
+      dispatch(loginUserError({ status: 'error' }));
+    }
+  } catch (error) {
+    dispatch(registerUserError({ status: 'error' }));
+  }
 };

@@ -9,6 +9,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case constants.GET_LIST_DATA_REQUEST:
+    case constants.CHANGE_MEDIA_CUSTOM_DETAILS_REQUEST:
       return {
         ...state,
         loading: true,
@@ -21,6 +22,7 @@ const reducer = (state = initialState, action) => {
         loading: false,
       };
     case constants.GET_LIST_DATA_ERROR:
+    case constants.CHANGE_MEDIA_CUSTOM_DETAILS_ERROR:
       return {
         ...state,
         error: action.payload.message,

@@ -2,9 +2,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import { useAuthContext } from './AuthContextProvider';
 
 const withLayout = (Page) => () => {
   const navigate = useNavigate();
+  const auth = useAuthContext();
 
   const PROFILE_DROPDOWN_DATA = [
     {
@@ -25,7 +27,8 @@ const withLayout = (Page) => () => {
     {
       content: 'Sign Out',
       onClickHandler: () => {
-        console.log('sign out');
+        auth.signOut();
+        navigate('/');
       },
     },
   ];
@@ -43,7 +46,11 @@ const withLayout = (Page) => () => {
 
   return (
     <div className="page-container">
-      <Header headerItems={HEADER_ITEMS} profileDropdownData={PROFILE_DROPDOWN_DATA} />
+      <Header
+        headerItems={HEADER_ITEMS}
+        profileDropdownData={PROFILE_DROPDOWN_DATA}
+        isUserAuthorized={!!auth.user}
+      />
       <div className="content-wrap">
         <Page />
       </div>
