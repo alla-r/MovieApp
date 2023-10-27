@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
@@ -68,9 +68,11 @@ const SearchPage = () => {
     data.map((details) => {
       const navigateToDetailsCB = () => navigate(`/${details.type}/${details.id}`);
 
+      details.id = details.id.toString();
+
       return (
         <ListItem
-          key={details.id.toString()}
+          key={details.id}
           details={details}
           listName="search"
           navigateToDetailsCB={navigateToDetailsCB}

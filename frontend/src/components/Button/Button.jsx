@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { ButtonWrapper } from './styles';
 import theme from '../../theme';

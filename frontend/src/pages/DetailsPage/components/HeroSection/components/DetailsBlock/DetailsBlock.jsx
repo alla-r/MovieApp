@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate, createSearchParams } from 'react-router-dom';
 import CircleProgressBar from '../../../../../../components/CircleProgressBar';

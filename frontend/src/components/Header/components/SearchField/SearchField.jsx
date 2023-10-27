@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { IconButton, TextField, TextFieldWrapper, TextFieldMobile, CloseButton } from './styles';
 

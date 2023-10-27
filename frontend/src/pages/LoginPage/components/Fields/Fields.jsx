@@ -1,10 +1,10 @@
-import React from 'react';
+import { useState } from 'react';
 import { InputAdornment, IconButton } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import TextField from '../../../../components/TextField';
 
 const Fields = ({ config }) => {
-  const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const passwordInputProps = {
     endAdornment: (

@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { getPercentageValue, getFormattedDate } from '../../global/helpers';
 import CircleProgressBar from '../CircleProgressBar';

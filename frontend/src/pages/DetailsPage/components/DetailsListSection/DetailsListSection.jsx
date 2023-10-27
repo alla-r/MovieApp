@@ -1,5 +1,4 @@
-import React from 'react';
-import NumberFormat from 'react-number-format';
+import { NumericFormat } from 'react-number-format';
 import PropTypes from 'prop-types';
 import Loader from '../../../../components/Loader';
 import Heading from '../../../../components/Heading';
@@ -24,7 +23,7 @@ const DetailsListSection = ({ mappingConfig, data }) => {
     if (type === 'money') {
       itemValues = (
         <ItemValue>
-          <NumberFormat value={data[value]} displayType="text" thousandSeparator prefix="$ " />
+          <NumericFormat value={data[value]} displayType="text" thousandSeparator prefix="$ " />
         </ItemValue>
       );
     }

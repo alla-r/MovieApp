@@ -1,4 +1,3 @@
-import React from 'react';
 import TMDbIcon from '../../global/images/Footer/tmdb_logo.svg';
 import { Background, Container, Logo, Content } from './styles';
 

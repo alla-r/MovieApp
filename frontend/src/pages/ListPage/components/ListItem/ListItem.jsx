@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { ItemContainer, MediaImage, Title, CloseButton, ChangeRateButton } from './styles';
 import { getFormattedDate } from '../../../../global/helpers';

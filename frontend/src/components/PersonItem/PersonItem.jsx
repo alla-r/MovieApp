@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { PersonContainer, ImageWrapper, ContentWrapper, Name, Character } from './styles';
 

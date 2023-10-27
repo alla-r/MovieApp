@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -27,6 +26,7 @@ const withLayout = (Page) => () => {
     {
       content: 'Sign Out',
       onClickHandler: () => {
+        console.log('sign out');
         auth.signOut();
         navigate('/');
       },

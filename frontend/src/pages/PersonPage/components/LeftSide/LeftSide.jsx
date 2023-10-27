@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import SocialMediaButton from '../../../../components/SocialMediaButton';
 import { SOCIAL_MEDIA_BUTTONS_CONFIG, PERSONAL_DETAILS_MAPPING } from '../../constants';
