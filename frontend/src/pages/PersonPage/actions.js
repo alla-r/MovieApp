@@ -16,9 +16,7 @@ export const getPersonDetailsError = (error) => ({
   payload: error,
 });
 
-export const getPersonDetailsRequest = () => ({
-  type: constants.GET_PERSON_DETAILS_REQUEST,
-});
+export const getPersonDetailsRequest = () => ({ type: constants.GET_PERSON_DETAILS_REQUEST });
 
 export const getPersonDetails = (id) => async (dispatch) => {
   dispatch(getPersonDetailsRequest());
@@ -50,6 +48,4 @@ export const getPersonDetails = (id) => async (dispatch) => {
   }
 };
 
-export const personDetailsClearData = () => ({
-  type: constants.PERSON_DETAILS_CLEAR_DATA,
-});
+export const personDetailsClearData = () => ({ type: constants.PERSON_DETAILS_CLEAR_DATA });

@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import SocialMediaButton from '../../../../components/SocialMediaButton';
 import { SOCIAL_MEDIA_BUTTONS_CONFIG, PERSONAL_DETAILS_MAPPING } from '../../constants';
@@ -10,7 +11,7 @@ import {
   ItemValue,
 } from './styles';
 
-const LeftSide = ({ data }) => {
+function LeftSide({ data }) {
   const createSocialMediaButtons = (btnConfig, links) =>
     btnConfig.map(({ id, iconSrc, tooltipMessage }) => (
       <SocialMediaButton
@@ -43,7 +44,7 @@ const LeftSide = ({ data }) => {
       </InfoSection>
     </Container>
   );
-};
+}
 
 LeftSide.propTypes = {
   data: PropTypes.shape({

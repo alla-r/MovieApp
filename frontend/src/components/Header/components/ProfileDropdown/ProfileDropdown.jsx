@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { IconButton, Avatar, Menu, MenuItem } from '@mui/material';
 import { ProfileWrapper } from './styles';
 import './ProfileDropdown.scss';
 
-const ProfileDropdown = ({ avatarContent, data }) => {
+function ProfileDropdown({ avatarContent, data }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -45,7 +45,7 @@ const ProfileDropdown = ({ avatarContent, data }) => {
       </Menu>
     </ProfileWrapper>
   );
-};
+}
 
 ProfileDropdown.propTypes = {
   avatarContent: PropTypes.string.isRequired,

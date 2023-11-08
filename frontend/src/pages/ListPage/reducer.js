@@ -6,7 +6,7 @@ const initialState = {
   error: null,
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case constants.GET_LIST_DATA_REQUEST:
     case constants.CHANGE_MEDIA_CUSTOM_DETAILS_REQUEST:

@@ -1,3 +1,4 @@
+import React from 'react';
 import StyledEngineProvider from '@mui/material/StyledEngineProvider';
 import { ThemeProvider } from 'styled-components';
 import InitComponent from './pages/InitComponent';

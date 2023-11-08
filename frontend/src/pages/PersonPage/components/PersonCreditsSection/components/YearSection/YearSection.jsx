@@ -1,7 +1,8 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Year, Circle, Title } from './styles';
 
-const YearSection = ({ year, yearSectionData, onItemClick }) => {
+function YearSection({ year, yearSectionData, onItemClick }) {
   const rows = yearSectionData.map((item) => {
     const role = item.isCast ? item.role && `as ${item.role}` : item.role && `... ${item.role}`;
 
@@ -24,7 +25,7 @@ const YearSection = ({ year, yearSectionData, onItemClick }) => {
       </Container>
     )
   );
-};
+}
 
 YearSection.defaultProps = {
   onItemClick: () => {},

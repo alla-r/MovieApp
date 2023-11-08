@@ -1,15 +1,16 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { GenreItemWrapper } from './styles';
 
-const GenreItem = ({ onClickHandler, genre, isActive }) => (
-  <GenreItemWrapper onClick={onClickHandler} className={isActive ? 'active' : ''}>
-    {genre}
-  </GenreItemWrapper>
-);
+function GenreItem({ onClickHandler, genre, isActive }) {
+  return (
+    <GenreItemWrapper onClick={onClickHandler} className={isActive ? 'active' : ''}>
+      {genre}
+    </GenreItemWrapper>
+  );
+}
 
-GenreItem.defaultProps = {
-  isActive: false,
-};
+GenreItem.defaultProps = { isActive: false };
 
 GenreItem.propTypes = {
   onClickHandler: PropTypes.func.isRequired,

@@ -10,13 +10,11 @@ const initialState = {
   crew: [],
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case constants.GET_MEDIA_DETAILS:
     case constants.CHANGE_MEDIA_CUSTOM_DETAILS_REQUEST:
-      return {
-        ...state,
-      };
+      return { ...state };
     case constants.GET_MEDIA_DETAILS_REQUEST:
       return {
         ...state,
@@ -42,7 +40,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        customDetails: [...customDetails, action.payload],
+        customDetails: [...state.customDetails, action.payload],
       };
     case constants.GET_MEDIA_DETAILS_ERROR:
       return {

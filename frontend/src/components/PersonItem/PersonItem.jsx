@@ -1,7 +1,8 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { PersonContainer, ImageWrapper, ContentWrapper, Name, Character } from './styles';
 
-const PersonItem = ({ data, onClickHandler, size }) => {
+function PersonItem({ data, onClickHandler, size }) {
   const { name, character, department, poster } = data;
 
   return (
@@ -14,7 +15,7 @@ const PersonItem = ({ data, onClickHandler, size }) => {
       </ContentWrapper>
     </PersonContainer>
   );
-};
+}
 
 PersonItem.defaultProps = {
   onClickHandler: () => {},

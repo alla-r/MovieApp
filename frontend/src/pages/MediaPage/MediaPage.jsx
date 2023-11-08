@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useSearchParams } from 'react-router-dom';
 import ContentContainer from '../../components/ContentContainer';
@@ -9,7 +9,7 @@ import { selectors } from './reducer';
 import withLayout from '../../global/hoc/Layout';
 import './MediaPage.scss';
 
-const MediaPage = () => {
+function MediaPage() {
   const dispatch = useDispatch();
   const { type } = useParams();
   const [pageNumber, setPageNumber] = useState(1);
@@ -92,6 +92,6 @@ const MediaPage = () => {
       />
     </div>
   );
-};
+}
 
 export default withLayout(MediaPage);

@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../components/Loader';
@@ -14,7 +14,7 @@ import { selectors } from './reducer';
 import withLayout from '../../global/hoc/Layout';
 import './DetailsPage.scss';
 
-const DetailsPage = () => {
+function DetailsPage() {
   const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();
@@ -138,6 +138,6 @@ const DetailsPage = () => {
       )}
     </div>
   );
-};
+}
 
 export default withLayout(DetailsPage);

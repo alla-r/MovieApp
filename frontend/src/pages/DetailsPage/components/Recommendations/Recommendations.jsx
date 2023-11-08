@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unresolved */
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -7,7 +9,7 @@ import 'swiper/css/scrollbar';
 import Heading from '../../../../components/Heading';
 import { Container, CardItem, ImageWrapper, Title } from './styles';
 
-const Recommendations = ({ data }) => {
+function Recommendations({ data }) {
   const navigate = useNavigate();
 
   const isData = data.length > 0;
@@ -27,7 +29,7 @@ const Recommendations = ({ data }) => {
         <>
           <Heading content="More like this" />
           <Swiper
-          modules={[Scrollbar]}
+            modules={[Scrollbar]}
             breakpoints={{
               320: {
                 slidesPerView: 1.5,
@@ -61,7 +63,7 @@ const Recommendations = ({ data }) => {
       )}
     </Container>
   );
-};
+}
 
 Recommendations.propTypes = {
   data: PropTypes.arrayOf(

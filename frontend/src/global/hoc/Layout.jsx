@@ -1,3 +1,5 @@
+/* eslint-disable react/function-component-definition */
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';

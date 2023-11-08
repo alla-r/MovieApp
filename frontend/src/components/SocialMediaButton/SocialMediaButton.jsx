@@ -1,9 +1,10 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { Tooltip, tooltipClasses, Zoom } from '@mui/material';
 import { Image, Link } from './styles';
 
-const SocialMediaButton = ({ url, tooltipMessage, iconSrc }) => {
+function SocialMediaButton({ url, tooltipMessage, iconSrc }) {
   const StyledTooltip = styled(({ className, ...props }) => (
     <Tooltip
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -13,9 +14,7 @@ const SocialMediaButton = ({ url, tooltipMessage, iconSrc }) => {
       TransitionComponent={Zoom}
     />
   ))({
-    [`& .${tooltipClasses.arrow}`]: {
-      color: '#313131',
-    },
+    [`& .${tooltipClasses.arrow}`]: { color: '#313131' },
     [`& .${tooltipClasses.tooltip}`]: {
       backgroundColor: '#313131',
       padding: 7,
@@ -31,11 +30,9 @@ const SocialMediaButton = ({ url, tooltipMessage, iconSrc }) => {
       </StyledTooltip>
     )
   );
-};
+}
 
-SocialMediaButton.defaultProps = {
-  url: null,
-};
+SocialMediaButton.defaultProps = { url: null };
 
 SocialMediaButton.propTypes = {
   url: PropTypes.string,

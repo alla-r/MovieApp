@@ -67,12 +67,10 @@ class StorageService {
   }
 
   getItem(key) {
-    // eslint-disable-next-line no-undef
     return JSON.parse(localStorage.getItem(key));
   }
 
   setItem(key, value) {
-    // eslint-disable-next-line no-undef
     localStorage.setItem(key, JSON.stringify(value));
   }
 }

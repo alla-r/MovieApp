@@ -1,4 +1,5 @@
 /* eslint-disable react/forbid-prop-types */
+import React from 'react';
 import PropTypes from 'prop-types';
 import DetailsBlock from './components/DetailsBlock';
 import LinksBlock from './components/LinksBlock';
@@ -6,7 +7,7 @@ import { Background, Container, ImageWrapper } from './styles';
 import * as constants from '../../constants';
 import { getCrewListWithUniqueItems } from '../../../../global/helpers';
 
-const HeroSection = ({ data, crew }) => {
+function HeroSection({ data, crew }) {
   const { type } = data;
   const filteredCrew = crew.filter(
     ({ job }) => constants.MOVIE_JOBS_TO_DISPLAY_LIST.indexOf(job) !== -1,
@@ -22,7 +23,7 @@ const HeroSection = ({ data, crew }) => {
       </Container>
     </Background>
   );
-};
+}
 
 HeroSection.propTypes = {
   data: PropTypes.object.isRequired,

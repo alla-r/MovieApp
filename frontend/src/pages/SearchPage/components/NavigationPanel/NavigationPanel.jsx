@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { List } from '@mui/material';
 import { PanelWrapper, ListItemWrapper, NumberLabel } from './styles';
 
-const NavigationPanel = ({ navConfig }) => {
+function NavigationPanel({ navConfig }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const handleListItemClick = (event, index) => {
@@ -35,7 +35,7 @@ const NavigationPanel = ({ navConfig }) => {
       </div>
     </PanelWrapper>
   );
-};
+}
 
 NavigationPanel.propTypes = {
   navConfig: PropTypes.arrayOf(
@@ -49,12 +49,14 @@ NavigationPanel.propTypes = {
 
 export default NavigationPanel;
 
-const ListItem = ({ index, text, amount, isSelected, onClickHandler }) => (
-  <ListItemWrapper selected={isSelected} onClick={(e) => onClickHandler(e, index)}>
-    <p>{text}</p>
-    <NumberLabel>{amount}</NumberLabel>
-  </ListItemWrapper>
-);
+function ListItem({ index, text, amount, isSelected, onClickHandler }) {
+  return (
+    <ListItemWrapper selected={isSelected} onClick={(e) => onClickHandler(e, index)}>
+      <p>{text}</p>
+      <NumberLabel>{amount}</NumberLabel>
+    </ListItemWrapper>
+  );
+}
 
 ListItem.propTypes = {
   index: PropTypes.number.isRequired,

@@ -1,9 +1,10 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import Heading from '../../../../components/Heading';
 import PersonItem from '../../../../components/PersonItem';
 import { Container, ItemsContainer } from './styles';
 
-const TopCastSection = ({ data, onPersonClickCallback }) => {
+function TopCastSection({ data, onPersonClickCallback }) {
   const items = data
     .slice(0, 10)
     .map((item) => (
@@ -16,11 +17,9 @@ const TopCastSection = ({ data, onPersonClickCallback }) => {
       <ItemsContainer className="items-container">{items}</ItemsContainer>
     </Container>
   );
-};
+}
 
-TopCastSection.defaultProps = {
-  onPersonClickCallback: () => {},
-};
+TopCastSection.defaultProps = { onPersonClickCallback: () => {} };
 
 TopCastSection.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types

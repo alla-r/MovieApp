@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import axios from 'axios';
 
 class TMDBservice {
@@ -23,7 +24,9 @@ class TMDBservice {
 
   getMediaDetails(mediaType, id) {
     return axios.get(
-      `/${mediaType}/${id}?api_key=${import.meta.env.VITE_API_KEY}&language=en-US&append_to_response=recommendations,credits`,
+      `/${mediaType}/${id}?api_key=${
+        import.meta.env.VITE_API_KEY
+      }&language=en-US&append_to_response=recommendations,credits`,
     );
   }
 
@@ -45,7 +48,9 @@ class TMDBservice {
 
   getSearchData(mediaType, query, page = 1) {
     return axios.get(
-      `/search/${mediaType}?api_key=${import.meta.env.VITE_API_KEY}&language=en-US&query=${query}&page=${page}`,
+      `/search/${mediaType}?api_key=${
+        import.meta.env.VITE_API_KEY
+      }&language=en-US&query=${query}&page=${page}`,
     );
   }
 }

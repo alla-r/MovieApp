@@ -11,7 +11,7 @@ import PersonPage from '../PersonPage';
 import * as constants from './constants';
 import CustomModal from './components/CustomModal';
 
-const InitComponent = () => {
+function InitComponent() {
   axios.defaults.baseURL = constants.BASE_URL;
 
   return (
@@ -28,6 +28,6 @@ const InitComponent = () => {
       </Routes>
     </>
   );
-};
+}
 
 export default InitComponent;

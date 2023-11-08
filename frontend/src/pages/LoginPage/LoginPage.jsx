@@ -1,6 +1,6 @@
-import { useEffect, createRef } from 'react';
+import React, { useEffect, createRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
 import {
   INITIAL_FORM_STATE,
@@ -9,15 +9,15 @@ import {
 } from './validationSchema';
 import * as actions from './actions';
 import * as constants from './constants';
-import { selectors } from './reducer';
+// import { selectors } from './reducer';
 import Fields from './components/Fields';
 import Button from '../../components/Button';
-import Loader from '../../components/Loader';
+// import Loader from '../../components/Loader';
 import withLayout from '../../global/hoc/Layout';
 import './LoginPage.scss';
 import { useAuthContext } from '../../global/hoc/AuthContextProvider';
 
-const LoginPage = () => {
+function LoginPage() {
   const params = useParams();
   const isLogin = params.type === 'login';
   const flow = isLogin ? 'login' : 'signUp';
@@ -28,9 +28,9 @@ const LoginPage = () => {
 
   const auth = useAuthContext();
 
-  const loading = useSelector(selectors.loading);
-  const isLoggedIn = useSelector(selectors.success);
-  const error = useSelector(selectors.error);
+  // const loading = useSelector(selectors.loading);
+  // const isLoggedIn = useSelector(selectors.success);
+  // const error = useSelector(selectors.error);
 
   useEffect(() => {
     formikRef.current?.resetForm();
@@ -105,6 +105,6 @@ const LoginPage = () => {
       </div>
     </div>
   );
-};
+}
 
 export default withLayout(LoginPage);

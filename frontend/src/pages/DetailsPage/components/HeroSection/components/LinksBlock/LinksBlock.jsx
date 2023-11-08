@@ -1,9 +1,10 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { Container } from './styles';
 import CrewItem from './components/CrewItem';
 
-const LinksBlock = ({ crewList }) => {
+function LinksBlock({ crewList }) {
   const navigate = useNavigate();
 
   const items = crewList.map(({ id, job, name }) => (
@@ -11,7 +12,7 @@ const LinksBlock = ({ crewList }) => {
   ));
 
   return <Container>{items}</Container>;
-};
+}
 
 LinksBlock.propTypes = {
   crewList: PropTypes.arrayOf(

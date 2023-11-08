@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Modal, Rating } from '@mui/material';
 import { selectors } from '../../reducer';
 import { ModalWrapper } from './styles';
 
-const CustomModal = () => {
+function CustomModal() {
   const { type, data } = useSelector(selectors.modalConfig) || {};
   const { currentValue, handleCloseCallBack, setRateCallback } = data || {};
   const isOpen = useSelector(selectors.isModalOpen);
@@ -71,6 +71,6 @@ const CustomModal = () => {
       {type === 'default' && <ModalWrapper />}
     </>
   );
-};
+}
 
 export default CustomModal;

@@ -6,7 +6,7 @@ const initialState = {
   error: null,
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case constants.GET_SEARCH_DATA_REQUEST:
       return {

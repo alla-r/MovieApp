@@ -6,12 +6,10 @@ const initialState = {
   details: null,
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case constants.GET_PERSON_DETAILS:
-      return {
-        ...state,
-      };
+      return { ...state };
     case constants.GET_PERSON_DETAILS_REQUEST:
       return {
         ...state,

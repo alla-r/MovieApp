@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ContentContainer from '../../components/ContentContainer';
 import * as actions from './actions';
@@ -6,7 +6,7 @@ import * as constants from './constants';
 import { selectors } from './reducer';
 import withLayout from '../../global/hoc/Layout';
 
-const HomePage = () => {
+function HomePage() {
   const [pageNumber, setPageNumber] = useState(1);
 
   const dispatch = useDispatch();
@@ -43,6 +43,6 @@ const HomePage = () => {
       />
     </div>
   );
-};
+}
 
 export default withLayout(HomePage);

@@ -1,10 +1,11 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@mui/material/TextField';
 import { useField } from 'formik';
 
 import './TextField.scss';
 
-const TextFieldWrapper = ({ name, label, type, InputProps, ...otherProps }) => {
+function TextFieldWrapper({ name, label, type, InputProps, ...otherProps }) {
   const [field, meta] = useField(name);
 
   const configTextfield = {
@@ -29,7 +30,7 @@ const TextFieldWrapper = ({ name, label, type, InputProps, ...otherProps }) => {
       <TextField {...configTextfield} />
     </div>
   );
-};
+}
 
 TextFieldWrapper.defaultProps = {
   type: 'text',
@@ -40,9 +41,7 @@ TextFieldWrapper.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   type: PropTypes.string,
-  InputProps: PropTypes.shape({
-    endAdornment: PropTypes.element,
-  }),
+  InputProps: PropTypes.shape({ endAdornment: PropTypes.element }),
 };
 
 export default TextFieldWrapper;

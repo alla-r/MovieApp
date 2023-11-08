@@ -12,9 +12,7 @@ export const getListDataError = (error) => ({
   payload: error,
 });
 
-export const getListDataRequest = () => ({
-  type: constants.GET_LIST_DATA_REQUEST,
-});
+export const getListDataRequest = () => ({ type: constants.GET_LIST_DATA_REQUEST });
 
 export const getListData = (listName) => async (dispatch) => {
   try {
@@ -76,6 +74,7 @@ export const changeRate =
   async (dispatch) => {
     dispatch(changeMediaCustomDetailsRequest());
     try {
+      // eslint-disable-next-line no-param-reassign
       mediaInfo.timestamp = Date.now();
 
       const response = await DBService.changeRate('rate', mediaInfo);
