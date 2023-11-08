@@ -7,7 +7,7 @@ import Button from '../Button';
 import Heading from '../Heading';
 import { Container, ItemsContainer, Error } from './styles';
 
-const ContentContainer = ({ loading, data, error, paginationBtn, heading }) => {
+function ContentContainer({ loading, data, error, paginationBtn, heading }) {
   const navigate = useNavigate();
 
   const items = data?.map((item) => {
@@ -36,14 +36,12 @@ const ContentContainer = ({ loading, data, error, paginationBtn, heading }) => {
           onClickHandler={paginationBtn.onClickHandler}
           btnText={paginationBtn.text}
           className="pagination-btn"
-          btnStyles={{
-            color: 'secondary',
-          }}
+          btnStyles={{ color: 'secondary' }}
         />
       )}
     </Container>
   );
-};
+}
 
 ContentContainer.defaultProps = {
   heading: null,

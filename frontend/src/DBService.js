@@ -9,17 +9,13 @@ class DBService {
   }
 
   getListData(list) {
-    const config = {
-      headers: { Authorization: this.getToken() },
-    };
+    const config = { headers: { Authorization: this.getToken() } };
 
     return axios.get(`http://localhost:3001/api/list/${list}`, config);
   }
 
   addToList(list, details) {
-    const config = {
-      headers: { Authorization: this.getToken() },
-    };
+    const config = { headers: { Authorization: this.getToken() } };
 
     return axios.post(`http://localhost:3001/api/list/${list}`, { details }, config);
   }
@@ -38,15 +34,15 @@ class DBService {
       params: { id, type },
     };
 
-    return axios.get(`http://localhost:3001/api/mediaDetails`, config);
+    return axios.get('http://localhost:3001/api/mediaDetails', config);
   }
 
   registerUser(credentials) {
-    return axios.post(`http://localhost:3001/api/users`, credentials);
+    return axios.post('http://localhost:3001/api/users', credentials);
   }
 
   loginUser(credentials) {
-    return axios.post(`http://localhost:3001/api/login`, credentials);
+    return axios.post('http://localhost:3001/api/login', credentials);
   }
 }
 

@@ -24,7 +24,7 @@ import {
   getDuration,
 } from '../../../../../../global/helpers';
 
-const DetailsBlock = ({ data, circularBtnConfig }) => {
+function DetailsBlock({ data, circularBtnConfig }) {
   const navigate = useNavigate();
   const percentage = getPercentageValue(data.voteAvg, 10);
 
@@ -75,7 +75,7 @@ const DetailsBlock = ({ data, circularBtnConfig }) => {
       <GenreWrapper>{genres}</GenreWrapper>
     </Container>
   );
-};
+}
 
 DetailsBlock.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types

@@ -12,9 +12,7 @@ export const getSearchDataError = (error) => ({
   payload: error,
 });
 
-export const getSearchDataRequest = () => ({
-  type: constants.GET_SEARCH_DATA_REQUEST,
-});
+export const getSearchDataRequest = () => ({ type: constants.GET_SEARCH_DATA_REQUEST });
 
 export const getSearchData =
   (query, mediaType = 'movie', page = 1) =>

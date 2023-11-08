@@ -2,14 +2,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Scrollbar } from 'swiper';
+import { Scrollbar } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/scrollbar';
 import { Container, CardItem, ImageWrapper, Title } from './styles';
 
-const KnownForSection = ({ data, onItemClick }) => {
-  SwiperCore.use([Scrollbar]);
-
+function KnownForSection({ data, onItemClick }) {
   const slides = data.map(({ type, title, id, poster }) => (
     <SwiperSlide key={id}>
       <CardItem onClick={() => onItemClick(type, id)}>
@@ -25,6 +23,7 @@ const KnownForSection = ({ data, onItemClick }) => {
         <>
           <div className="person-page--title">Known For</div>
           <Swiper
+            modules={[Scrollbar]}
             breakpoints={{
               320: {
                 slidesPerView: 1.5,
@@ -62,11 +61,9 @@ const KnownForSection = ({ data, onItemClick }) => {
       )}
     </Container>
   );
-};
+}
 
-KnownForSection.defaultProps = {
-  onItemClick: () => {},
-};
+KnownForSection.defaultProps = { onItemClick: () => {} };
 
 KnownForSection.propTypes = {
   data: PropTypes.arrayOf(

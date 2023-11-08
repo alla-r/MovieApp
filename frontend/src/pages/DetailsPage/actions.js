@@ -14,9 +14,7 @@ export const getMediaDetailsError = (error) => ({
   payload: error,
 });
 
-export const getMediaDetailsRequest = () => ({
-  type: constants.GET_MEDIA_DETAILS_REQUEST,
-});
+export const getMediaDetailsRequest = () => ({ type: constants.GET_MEDIA_DETAILS_REQUEST });
 
 export const getMediaDetails = (mediaType, id) => async (dispatch) => {
   dispatch(getMediaDetailsRequest());
@@ -30,9 +28,7 @@ export const getMediaDetails = (mediaType, id) => async (dispatch) => {
   }
 };
 
-export const mediaDetailsClearData = () => ({
-  type: constants.MEDIA_DETAILS_CLEAR_DATA,
-});
+export const mediaDetailsClearData = () => ({ type: constants.MEDIA_DETAILS_CLEAR_DATA });
 
 export const getMediaCustomDetailsSuccess = (data) => ({
   type: constants.GET_MEDIA_CUSTOM_DETAILS_SUCCESS,

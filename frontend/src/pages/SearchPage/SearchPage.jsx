@@ -11,7 +11,7 @@ import PersonItem from '../../components/PersonItem';
 import Loader from '../../components/Loader';
 import { Container } from './styles';
 
-const SearchPage = () => {
+function SearchPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -55,7 +55,7 @@ const SearchPage = () => {
 
   useEffect(() => {
     dispatch(actions.getSearchData(query, type, pageNumber));
-  }, [query, pageNumber]);
+  }, [query, pageNumber, type]);
 
   const handleChange = (e, value) =>
     setSearchParams({
@@ -68,10 +68,15 @@ const SearchPage = () => {
     data.map((details) => {
       const navigateToDetailsCB = () => navigate(`/${details.type}/${details.id}`);
 
+      const formattedDetails = {
+        ...details,
+        id: details.id.toString(),
+      };
+
       return (
         <ListItem
-          key={details.id.toString()}
-          details={details}
+          key={formattedDetails.id}
+          details={formattedDetails}
           listName="search"
           navigateToDetailsCB={navigateToDetailsCB}
         />
@@ -97,7 +102,7 @@ const SearchPage = () => {
       <NavigationPanel navConfig={navConfig} />
       <div className="search-items--container">
         {searchLoading && <Loader />}
-        {searchError && <div>Something went wrong. Couldn't fetch data by query</div>}
+        {searchError && <div>Something went wrong. Couldn&apos;t fetch data by query</div>}
         {!searchLoading && searchData?.person && type === 'person' && (
           <div>{createPersonList(searchData?.person?.results)}</div>
         )}
@@ -120,6 +125,6 @@ const SearchPage = () => {
       </div>
     </Container>
   );
-};
+}
 
 export default withLayout(SearchPage);

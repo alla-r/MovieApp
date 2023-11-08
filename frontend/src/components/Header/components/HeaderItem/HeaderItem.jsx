@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useMatch } from 'react-router-dom';
 import { Item, Line } from './styles';
 
-const HeaderItem = ({ content, onClickHandler, path }) => {
+function HeaderItem({ content, onClickHandler, path }) {
   const match = useMatch(path);
 
   return (
@@ -12,7 +12,7 @@ const HeaderItem = ({ content, onClickHandler, path }) => {
       {match && <Line className="line" />}
     </Item>
   );
-};
+}
 
 HeaderItem.defaultProps = {
   onClickHandler: () => {},

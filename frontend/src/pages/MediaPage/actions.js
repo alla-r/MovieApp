@@ -12,9 +12,7 @@ export const getGenresError = (error) => ({
   payload: error,
 });
 
-export const getGenresRequest = () => ({
-  type: constants.GET_GENRES_REQUEST,
-});
+export const getGenresRequest = () => ({ type: constants.GET_GENRES_REQUEST });
 
 export const getGenres = (type, selectedGenresArr) => async (dispatch) => {
   dispatch(getGenresRequest());
@@ -38,16 +36,12 @@ export const getFilteredMediaError = (error) => ({
   payload: error,
 });
 
-export const getFilteredMediaRequest = () => ({
-  type: constants.GET_FILTERED_MEDIA_REQUEST,
-});
+export const getFilteredMediaRequest = () => ({ type: constants.GET_FILTERED_MEDIA_REQUEST });
 
-export const clearFilteredMedia = () => ({
-  type: constants.CLEAR_FILTERED_MEDIA,
-});
+export const clearFilteredMedia = () => ({ type: constants.CLEAR_FILTERED_MEDIA });
 
 export const getFilteredMedia =
-  (mediaType = 'movie', pageNumber, genreList = []) =>
+  (mediaType, pageNumber, genreList = []) =>
   async (dispatch) => {
     if (pageNumber === 1) {
       dispatch(clearFilteredMedia());

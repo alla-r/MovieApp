@@ -1,11 +1,11 @@
 import React from 'react';
-import NumberFormat from 'react-number-format';
+import { NumericFormat } from 'react-number-format';
 import PropTypes from 'prop-types';
 import Loader from '../../../../components/Loader';
 import Heading from '../../../../components/Heading';
 import { Container, ItemsContainer, ItemWrapper, ItemTitle, ItemValue } from './styles';
 
-const DetailsListSection = ({ mappingConfig, data }) => {
+function DetailsListSection({ mappingConfig, data }) {
   const items = mappingConfig.map(({ title, value, type }, index) => {
     let itemValues;
 
@@ -24,7 +24,7 @@ const DetailsListSection = ({ mappingConfig, data }) => {
     if (type === 'money') {
       itemValues = (
         <ItemValue>
-          <NumberFormat value={data[value]} displayType="text" thousandSeparator prefix="$ " />
+          <NumericFormat value={data[value]} displayType="text" thousandSeparator prefix="$ " />
         </ItemValue>
       );
     }
@@ -47,7 +47,7 @@ const DetailsListSection = ({ mappingConfig, data }) => {
       {data && <ItemsContainer className="items-container">{items}</ItemsContainer>}
     </Container>
   );
-};
+}
 
 DetailsListSection.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types

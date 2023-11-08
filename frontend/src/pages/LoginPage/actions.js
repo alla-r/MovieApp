@@ -12,9 +12,7 @@ export const registerUserError = (error) => ({
   payload: error,
 });
 
-export const registerUserRequest = () => ({
-  type: constants.REGISTER_USER_REQUEST,
-});
+export const registerUserRequest = () => ({ type: constants.REGISTER_USER_REQUEST });
 
 export const loginUserSuccess = (data) => ({
   type: constants.LOGIN_USER_SUCCESS,
@@ -26,9 +24,7 @@ export const loginUserError = (error) => ({
   payload: error,
 });
 
-export const loginUserRequest = () => ({
-  type: constants.LOGIN_USER_REQUEST,
-});
+export const loginUserRequest = () => ({ type: constants.LOGIN_USER_REQUEST });
 
 export const registerUser = (data) => async (dispatch) => {
   dispatch(registerUserRequest());

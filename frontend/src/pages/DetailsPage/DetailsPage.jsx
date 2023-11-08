@@ -14,7 +14,7 @@ import { selectors } from './reducer';
 import withLayout from '../../global/hoc/Layout';
 import './DetailsPage.scss';
 
-const DetailsPage = () => {
+function DetailsPage() {
   const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();
@@ -138,6 +138,6 @@ const DetailsPage = () => {
       )}
     </div>
   );
-};
+}
 
 export default withLayout(DetailsPage);

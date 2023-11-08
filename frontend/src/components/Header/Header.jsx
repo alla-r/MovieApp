@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import React, { useState, useEffect } from 'react';
 import { useNavigate, createSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -9,7 +8,7 @@ import ProfileDropdown from './components/ProfileDropdown';
 import SearchField from './components/SearchField';
 import { Background, NavContainer, NavMenu, SearchIconButton, SecondColumn } from './styles';
 
-const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
+function Header({ isUserAuthorized, headerItems, profileDropdownData }) {
   const navigate = useNavigate();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,7 +39,7 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
 
   const searchSubmitHandler = (query) => {
     navigate({
-      pathname: `/search`,
+      pathname: '/search',
       search: `?${createSearchParams({
         type: 'movie',
         page: 1,
@@ -114,11 +113,9 @@ const Header = ({ isUserAuthorized, headerItems, profileDropdownData }) => {
       )}
     </Background>
   );
-};
+}
 
-Header.defaultProps = {
-  isUserAuthorized: false,
-};
+Header.defaultProps = { isUserAuthorized: false };
 
 Header.propTypes = {
   isUserAuthorized: PropTypes.bool,

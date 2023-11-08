@@ -13,12 +13,10 @@ const initialState = {
   },
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case constants.GET_GENRES:
-      return {
-        ...state,
-      };
+      return { ...state };
     case constants.UPDATE_GENRE_LIST:
       return {
         ...state,
@@ -51,9 +49,7 @@ const reducer = (state = initialState, action) => {
         },
       };
     case constants.GET_FILTERED_MEDIA:
-      return {
-        ...state,
-      };
+      return { ...state };
     case constants.GET_FILTERED_MEDIA_REQUEST:
       return {
         ...state,

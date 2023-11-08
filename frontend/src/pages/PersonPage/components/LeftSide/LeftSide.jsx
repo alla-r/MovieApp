@@ -11,7 +11,7 @@ import {
   ItemValue,
 } from './styles';
 
-const LeftSide = ({ data }) => {
+function LeftSide({ data }) {
   const createSocialMediaButtons = (btnConfig, links) =>
     btnConfig.map(({ id, iconSrc, tooltipMessage }) => (
       <SocialMediaButton
@@ -44,7 +44,7 @@ const LeftSide = ({ data }) => {
       </InfoSection>
     </Container>
   );
-};
+}
 
 LeftSide.propTypes = {
   data: PropTypes.shape({

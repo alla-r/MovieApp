@@ -12,7 +12,7 @@ import {
   ProgressBarWrapper,
 } from './styles';
 
-const MovieCard = ({ data, onClickHandler }) => {
+function MovieCard({ data, onClickHandler }) {
   const percentage = getPercentageValue(data.voteAvg, 10);
 
   return (
@@ -30,7 +30,7 @@ const MovieCard = ({ data, onClickHandler }) => {
       </ContentContainer>
     </CardContainer>
   );
-};
+}
 
 MovieCard.defaultProps = {};
 

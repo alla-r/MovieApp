@@ -11,7 +11,7 @@ import ListItem from './components/ListItem';
 import Loader from '../../components/Loader';
 import { Container, Info } from './styles';
 
-const ListPage = () => {
+function ListPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { list } = useParams();
@@ -29,15 +29,13 @@ const ListPage = () => {
   const items = listData
     ?.sort((el1, el2) => el2.timestamp - el1.timestamp)
     .map((details) => {
-      const { id, type } = details;
-
       const navigateToDetailsCB = () => navigate(`/${details.type}/${details.id}`);
 
       const removeFromListCB = () => {
         dispatch(
           actions.removeItemFromList({
             listName: list,
-            details: details,
+            details,
             action: 'remove',
           }),
         );
@@ -90,9 +88,11 @@ const ListPage = () => {
       {!listLoading && listData.length === 0 && !listError && (
         <Info>{constants.HEADINGS[list]} list is empty</Info>
       )}
-      {!listLoading && listError && <Info>Couldn't fetch {constants.HEADINGS[list]} list</Info>}
+      {!listLoading && listError && (
+        <Info>Couldn&apos;t fetch {constants.HEADINGS[list]} list</Info>
+      )}
     </Container>
   );
-};
+}
 
 export default withLayout(ListPage);

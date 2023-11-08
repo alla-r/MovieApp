@@ -17,7 +17,7 @@ export const TextField = styled.input`
   border: 2px solid #85cad4;
   border-radius: 50px;
   color: ${(props) => props.theme.colors.light};
-  font-size: 18px;
+  font-size: 14px;
   line-height: 22px;
 
   &::placeholder {

@@ -5,16 +5,14 @@ import { getUniqueValues } from '../../../../global/helpers';
 import YearSection from './components/YearSection';
 import { Section, HeaderSection } from './styles';
 
-const PersonCreditsSection = ({ data, onItemClick }) => {
+function PersonCreditsSection({ data, onItemClick }) {
   const sortByYear = (a, b) => b - a;
 
   const getFilteredListForJob = (job, rowData) =>
     rowData.filter((item) => job.jobNames.indexOf(item.job));
 
   const getGroupedYearData = (rowData, years) => {
-    const yearSections = {
-      upcoming: [],
-    };
+    const yearSections = { upcoming: [] };
 
     years.forEach((currYear) => {
       if (currYear) {
@@ -77,11 +75,9 @@ const PersonCreditsSection = ({ data, onItemClick }) => {
       )}
     </>
   );
-};
+}
 
-PersonCreditsSection.defaultProps = {
-  onItemClick: () => {},
-};
+PersonCreditsSection.defaultProps = { onItemClick: () => {} };
 
 PersonCreditsSection.propTypes = {
   data: PropTypes.shape({

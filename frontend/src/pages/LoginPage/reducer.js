@@ -6,13 +6,11 @@ const initialState = {
   error: null,
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case constants.LOGIN_USER:
     case constants.REGISTER_USER:
-      return {
-        ...state,
-      };
+      return { ...state };
     case constants.LOGIN_USER_REQUEST:
     case constants.REGISTER_USER_REQUEST:
       return {

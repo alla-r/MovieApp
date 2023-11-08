@@ -5,7 +5,7 @@ const initialState = {
   isModalOpen: false,
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case constants.SHOW_MODAL:
       return {

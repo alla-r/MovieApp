@@ -1,3 +1,4 @@
+/* eslint-disable react/function-component-definition */
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
@@ -27,6 +28,7 @@ const withLayout = (Page) => () => {
     {
       content: 'Sign Out',
       onClickHandler: () => {
+        console.log('sign out');
         auth.signOut();
         navigate('/');
       },

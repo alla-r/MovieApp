@@ -1,14 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import ReactDOM from 'react-dom/client';
 import { ScrollToTop } from './global/helpers';
 import { AuthProvider } from './global/hoc/AuthContextProvider';
-import store from './store';
 import App from './App';
+import store from './store';
 
-ReactDOM.render(
-  // eslint-disable-next-line react/jsx-filename-extension
+ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <BrowserRouter>
       <AuthProvider>
@@ -17,6 +16,4 @@ ReactDOM.render(
       </AuthProvider>
     </BrowserRouter>
   </Provider>,
-  // eslint-disable-next-line no-undef
-  document.getElementById('root'),
 );

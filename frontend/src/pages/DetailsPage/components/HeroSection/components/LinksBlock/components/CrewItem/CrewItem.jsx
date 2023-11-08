@@ -2,12 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Title, Name } from './styles';
 
-const CrewItem = ({ name, role, onClickHandler }) => (
-  <Container>
-    <Name onClick={onClickHandler}>{name}</Name>
-    <Title>{role}</Title>
-  </Container>
-);
+function CrewItem({ name, role, onClickHandler }) {
+  return (
+    <Container>
+      <Name onClick={onClickHandler}>{name}</Name>
+      <Title>{role}</Title>
+    </Container>
+  );
+}
 
 CrewItem.propTypes = {
   onClickHandler: PropTypes.func.isRequired,

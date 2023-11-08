@@ -11,7 +11,7 @@ import withLayout from '../../global/hoc/Layout';
 import { Container, Name } from './styles';
 import './PersonPage.scss';
 
-const PersonPage = () => {
+function PersonPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();
@@ -37,7 +37,7 @@ const PersonPage = () => {
   return (
     <div className="person-page container">
       {detailsLoading && <Loader />}
-      {detailsError && <div>Couldn't fetch person's details</div>}
+      {detailsError && <div>Couldn&apos;t fetch person&apos;s details</div>}
       {detailsData && (
         <Container>
           <LeftSide data={detailsData} />
@@ -63,6 +63,6 @@ const PersonPage = () => {
       )}
     </div>
   );
-};
+}
 
 export default withLayout(PersonPage);

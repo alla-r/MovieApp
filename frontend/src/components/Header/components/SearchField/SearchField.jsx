@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { IconButton, TextField, TextFieldWrapper, TextFieldMobile, CloseButton } from './styles';
 
-const SearchField = ({ submitHandler, isMobileMode, closeBtnClickHandler }) => {
+function SearchField({ submitHandler, isMobileMode, closeBtnClickHandler }) {
   const [value, setValue] = useState('');
 
   const onSubmitHandler = (event) => {
@@ -38,7 +38,7 @@ const SearchField = ({ submitHandler, isMobileMode, closeBtnClickHandler }) => {
       )}
     </TextFieldWrapper>
   );
-};
+}
 
 SearchField.defaultProps = {
   isMobileMode: false,
