@@ -41,13 +41,6 @@ npm start
 ```
 
 To run server-side:
-vite/master branch
-```bash
-cd backend
-npm install
-npm run dev
-```
-create-react-app branch
 ```bash
 cd backend
 npm install
