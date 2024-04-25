@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/scrollbar';
 import { Container, CardItem, ImageWrapper, Title } from './styles';
 
-function KnownForSection({ data, onItemClick }) {
+const KnownForSection = ({ data, onItemClick }) => {
   const slides = data.map(({ type, title, id, poster }) => (
     <SwiperSlide key={id}>
       <CardItem onClick={() => onItemClick(type, id)}>
@@ -61,7 +61,7 @@ function KnownForSection({ data, onItemClick }) {
       )}
     </Container>
   );
-}
+};
 
 KnownForSection.defaultProps = { onItemClick: () => {} };
 
