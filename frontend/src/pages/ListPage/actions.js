@@ -1,6 +1,8 @@
 import * as constants from './constants';
+import * as initConstants from '../InitComponent/constants';
 import StorageService from '../../StorageService';
 import DBService from '../../DBService';
+import { showNotification } from '../../global/helpers/general';
 
 export const getListDataSuccess = (data) => ({
   type: constants.GET_LIST_DATA_SUCCESS,
@@ -39,9 +41,17 @@ export const removeItemFromList =
 
       if (response.status === 204) {
         dispatch(getListData(listName));
+        showNotification(
+          initConstants.NOTIFICATIONS_CONFIG.type.success,
+          `The item was successfully removed from the ${listName} list`,
+        );
       }
     } catch (error) {
       dispatch(getListDataError(error));
+      showNotification(
+        initConstants.NOTIFICATIONS_CONFIG.type.error,
+        `Something went wrong. Couldn't remove the item from the ${listName} list`,
+      );
     }
   };
 
@@ -81,10 +91,22 @@ export const changeRate =
 
       if (response.status === 200 || response.status === 204) {
         dispatch(getListData('rate'));
+        showNotification(
+          initConstants.NOTIFICATIONS_CONFIG.type.success,
+          constants.RATE_UPDATE_MESSAGE_CONFIG.success,
+        );
       } else {
-        dispatch(changeMediaCustomDetailsError(mediaInfo));
+        dispatch(changeMediaCustomDetailsError('error'));
+        showNotification(
+          initConstants.NOTIFICATIONS_CONFIG.type.error,
+          constants.RATE_UPDATE_MESSAGE_CONFIG.error,
+        );
       }
     } catch (e) {
       dispatch(changeMediaCustomDetailsError(e));
+      showNotification(
+        initConstants.NOTIFICATIONS_CONFIG.type.error,
+        constants.RATE_UPDATE_MESSAGE_CONFIG.error,
+      );
     }
   };

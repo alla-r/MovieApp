@@ -129,6 +129,7 @@ export const showNotification = (type, message) => {
     theme: 'colored',
     autoClose: false,
     transition: Slide,
+    hideProgressBar: true,
   };
 
   if (type === initConstants.NOTIFICATIONS_CONFIG.type.error) {
@@ -136,7 +137,7 @@ export const showNotification = (type, message) => {
   }
 
   if (type === initConstants.NOTIFICATIONS_CONFIG.type.success) {
-    toast.success(message, toastConfig);
+    toast.success(message, { ...toastConfig, autoClose: 3000 });
   }
 
   if (type === initConstants.NOTIFICATIONS_CONFIG.type.warning) {

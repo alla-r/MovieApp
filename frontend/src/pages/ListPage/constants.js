@@ -11,3 +11,8 @@ export const HEADINGS = {
   favorites: 'Favorites',
   rate: 'Ratings',
 };
+
+export const RATE_UPDATE_MESSAGE_CONFIG = {
+  error: "Something went wrong. Couldn't change a rate",
+  success: 'Rate was successfully changed',
+};
