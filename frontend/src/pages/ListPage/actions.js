@@ -85,6 +85,6 @@ export const changeRate =
         dispatch(changeMediaCustomDetailsError(mediaInfo));
       }
     } catch (e) {
-      dispatch(changeMediaCustomDetailsError(mediaInfo));
+      dispatch(changeMediaCustomDetailsError(e));
     }
   };

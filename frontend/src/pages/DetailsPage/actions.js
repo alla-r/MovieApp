@@ -96,6 +96,6 @@ export const changeMediaCustomDetails =
         dispatch(changeMediaCustomDetailsError(mediaInfo));
       }
     } catch (e) {
-      dispatch(changeMediaCustomDetailsError(mediaInfo));
+      dispatch(changeMediaCustomDetailsError(e));
     }
   };
