@@ -1,5 +1,6 @@
 import * as constants from './constants';
-import { getFormattedMediaDetails } from '../../global/helpers';
+import * as initConstants from '../InitComponent/constants';
+import { getFormattedMediaDetails, showNotification } from '../../global/helpers';
 import TMDBservice from '../../TMDBservice';
 import StorageService from '../../StorageService';
 import DBService from '../../DBService';
@@ -97,5 +98,7 @@ export const changeMediaCustomDetails =
       }
     } catch (e) {
       dispatch(changeMediaCustomDetailsError(e));
+
+      showNotification(initConstants.NOTIFICATIONS_CONFIG.type.error, e.message);
     }
   };

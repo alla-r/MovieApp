@@ -1,3 +1,5 @@
+import * as initConstants from '../../pages/InitComponent/constants';
+import { toast, Slide } from 'react-toastify';
 import {
   getFormattedMediaDetails,
   getFormattedGenreList,
@@ -141,3 +143,24 @@ export const getDuration = ({ duration }) => {
 };
 
 export const getUniqueValues = (valuesArray) => [...new Set(valuesArray)];
+
+export const showNotification = (type, message) => {
+  const toastConfig = {
+    position: 'top-center',
+    theme: 'colored',
+    autoClose: false,
+    transition: Slide,
+  };
+
+  if (type === initConstants.NOTIFICATIONS_CONFIG.type.error) {
+    toast.error(message, toastConfig);
+  }
+
+  if (type === initConstants.NOTIFICATIONS_CONFIG.type.success) {
+    toast.success(message, toastConfig);
+  }
+
+  if (type === initConstants.NOTIFICATIONS_CONFIG.type.warning) {
+    toast.warn(message, toastConfig);
+  }
+};
