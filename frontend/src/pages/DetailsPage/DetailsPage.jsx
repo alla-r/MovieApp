@@ -113,7 +113,7 @@ function DetailsPage() {
   return (
     <div className="detailsPage">
       {detailsLoading && <Loader />}
-      {detailsError && <div>{constants.errorMessage}</div>}
+      {detailsError && !detailsData && <div>{constants.errorMessage}</div>}
 
       {detailsData && (
         <>

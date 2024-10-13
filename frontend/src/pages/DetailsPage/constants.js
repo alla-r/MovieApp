@@ -95,3 +95,21 @@ export const MOVIE_JOBS_TO_DISPLAY_LIST = ['Characters', 'Director', 'Writer', '
 
 export const errorMessage = "Something went wrong. Couldn't fetch data.";
 export const btnShowMoreContent = 'Full Cast & Crew';
+
+export const getMessage = (action, listName, status) => {
+  const config = {
+    add: {
+      success: `Added to the ${listName}`,
+      error: `Couldn't add to the ${listName}`,
+    },
+    remove: {
+      success: `Removed from the ${listName}`,
+      error: `Couldn't remove from the ${listName}`,
+    },
+    update: {
+      success: `The rate was successfully changed`,
+      error: `Couldn't change the rate`,
+    },
+  };
+  return config[action][status];
+};

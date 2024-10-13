@@ -10,6 +10,8 @@ import SearchPage from '../SearchPage';
 import PersonPage from '../PersonPage';
 import * as constants from './constants';
 import CustomModal from './components/CustomModal';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function InitComponent() {
   axios.defaults.baseURL = constants.BASE_URL;
@@ -17,6 +19,7 @@ function InitComponent() {
   return (
     <>
       <CustomModal />
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/auth/:type" element={<LoginPage />} />
