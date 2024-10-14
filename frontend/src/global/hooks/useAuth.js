@@ -15,7 +15,7 @@ const useAuth = () => {
 
       if (authResponse.status === 200) {
         setUser(authResponse.data);
-        navigate(location.state?.from || '/');
+        navigate(location.state?.from || '/', { replace: true });
       } else {
         const errorMessage =
           authResponse.response && authResponse.response.data && authResponse.response.data.error;

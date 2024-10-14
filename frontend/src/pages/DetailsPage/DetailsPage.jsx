@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import React, { useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../components/Loader';
 import TopCastSection from './components/TopCastSection';
@@ -12,12 +12,15 @@ import * as initActions from '../InitComponent/actions';
 import * as constants from './constants';
 import { selectors } from './reducer';
 import withLayout from '../../global/hoc/Layout';
+import { useAuthContext } from '../../global/hoc/AuthContextProvider';
 import './DetailsPage.scss';
 
 function DetailsPage() {
   const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();
+  const auth = useAuthContext();
+  const location = useLocation();
 
   const detailsLoading = useSelector(selectors.detailsLoading);
   const detailsData = useSelector(selectors.detailsData);
@@ -26,6 +29,9 @@ function DetailsPage() {
   const detailsRecommendationsList = useSelector(selectors.detailsRecommendationsList);
   const detailsError = useSelector(selectors.detailsError);
   const mediaCustomDetails = useSelector(selectors.mediaCustomDetails);
+  const isUserAuthorized = !!auth.user;
+
+  const redirectToLogin = () => navigate('/auth/login', { state: { from: location } });
 
   const favoriteCallback = () =>
     dispatch(
@@ -90,15 +96,17 @@ function DetailsPage() {
 
   constants.CIRCULAR_BUTTONS_CONFIG.forEach((btnConfig) => {
     if (btnConfig.id === 'favorite') {
-      btnConfig.onClickHandler = favoriteCallback;
+      btnConfig.onClickHandler = !isUserAuthorized ? redirectToLogin : favoriteCallback;
       btnConfig.isActive = mediaCustomDetails?.isInFavorites;
     }
     if (btnConfig.id === 'watchlist') {
-      btnConfig.onClickHandler = watchlistCallback;
+      btnConfig.onClickHandler = !isUserAuthorized ? redirectToLogin : watchlistCallback;
       btnConfig.isActive = mediaCustomDetails?.isInWatchlist;
     }
     if (btnConfig.id === 'rate') {
-      btnConfig.onClickHandler = rateCallback.bind(this, mediaCustomDetails?.rateMark);
+      btnConfig.onClickHandler = !isUserAuthorized
+        ? redirectToLogin
+        : rateCallback.bind(this, mediaCustomDetails?.rateMark);
       btnConfig.isActive = mediaCustomDetails?.isInRatingList;
     }
   });
