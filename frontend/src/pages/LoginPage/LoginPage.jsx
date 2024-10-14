@@ -9,10 +9,9 @@ import {
 } from './validationSchema';
 import * as actions from './actions';
 import * as constants from './constants';
-// import { selectors } from './reducer';
 import Fields from './components/Fields';
 import Button from '../../components/Button';
-// import Loader from '../../components/Loader';
+import Loader from '../../components/Loader';
 import withLayout from '../../global/hoc/Layout';
 import './LoginPage.scss';
 import { useAuthContext } from '../../global/hoc/AuthContextProvider';
@@ -46,16 +45,6 @@ function LoginPage() {
     resetForm();
   };
 
-  const titleText = {
-    login: 'Login to your account',
-    signUp: 'Create an account',
-  };
-
-  const btnText = {
-    login: 'Login',
-    signUp: 'Sign Up',
-  };
-
   const navigateToRegister = () => navigate('/auth/signup');
 
   return (
@@ -68,7 +57,7 @@ function LoginPage() {
           onSubmit={submitHandler}
         >
           <Form>
-            <div className="form-header">{titleText[flow]}</div>
+            <div className="form-header">{constants.TITLE_TEXT[flow]}</div>
             {/* {loading && <Loader />} */}
             {/* {error && <p>Something went wrong</p>} */}
             {flow === 'signUp' && <Fields config={constants.REGISTER_FORM_FIELDS} />}
@@ -91,7 +80,7 @@ function LoginPage() {
             )}
             <Button
               className="button"
-              btnText={btnText[flow]}
+              btnText={constants.BTN_TEXT[flow]}
               btnType="primary"
               onClickHandler={() => {}}
               type="submit"
