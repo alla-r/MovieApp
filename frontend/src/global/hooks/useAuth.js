@@ -1,6 +1,8 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import DBService from '../../DBService';
 import useLocalStorage from './useLocalStorage';
+import { showNotification } from '../helpers';
+import * as initConstants from '../../pages/InitComponent/constants';
 
 const useAuth = () => {
   const [user, setUser] = useLocalStorage('user', null);
@@ -15,15 +17,25 @@ const useAuth = () => {
         setUser(authResponse.data);
         navigate(location.state?.from || '/');
       } else {
-        console.error(authResponse);
+        const errorMessage =
+          authResponse.response && authResponse.response.data && authResponse.response.data.error;
+        showNotification(
+          initConstants.NOTIFICATIONS_CONFIG.type.error,
+          errorMessage || authResponse.message,
+        );
       }
     } catch (error) {
-      console.error(error);
+      const errorMessage = error.response && error.response.data && error.response.data.error;
+      showNotification(
+        initConstants.NOTIFICATIONS_CONFIG.type.error,
+        errorMessage || error.message,
+      );
     }
   };
 
   const signOut = () => {
     setUser(null);
+    navigate('/');
   };
 
   return { user, signIn, signOut };

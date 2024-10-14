@@ -43,3 +43,10 @@ export const BTN_TEXT = {
   login: 'Login',
   signUp: 'Sign Up',
 };
+
+export const MESSAGE_CONFIG = {
+  register: {
+    success: 'User successfully created',
+    error: 'Something went wrong',
+  },
+};
