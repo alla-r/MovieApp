@@ -18,6 +18,7 @@ import {
   getDuration,
   getUniqueValues,
   showNotification,
+  getTokenDuration,
 } from './general';
 
 import ScrollToTop from './ScrollToTop';
@@ -39,5 +40,6 @@ export {
   getDuration,
   getUniqueValues,
   showNotification,
+  getTokenDuration,
   ScrollToTop,
 };

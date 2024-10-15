@@ -1,5 +1,13 @@
-import * as initConstants from '../../pages/InitComponent/constants';
 import { toast, Slide } from 'react-toastify';
+import * as initConstants from '../../pages/InitComponent/constants';
+
+export const getTokenDuration = () => {
+  const storedExpirationDate = localStorage.getItem('expiration');
+  const expirationDate = new Date(storedExpirationDate);
+  const now = new Date();
+  const duration = expirationDate.getTime() - now.getTime();
+  return duration;
+};
 
 export const getFormattedItem = (item) => {
   const formattedItem = {

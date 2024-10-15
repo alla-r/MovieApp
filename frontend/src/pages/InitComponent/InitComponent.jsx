@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import HomePage from '../HomePage';
 import LoginPage from '../LoginPage';
 import MediaPage from '../MediaPage';
@@ -10,16 +11,15 @@ import SearchPage from '../SearchPage';
 import PersonPage from '../PersonPage';
 import * as constants from './constants';
 import CustomModal from './components/CustomModal';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useAuthContext } from '../../global/hoc/AuthContextProvider';
+import 'react-toastify/dist/ReactToastify.css';
 
-const ProtectedRoute = ({ children }) => {
+function ProtectedRoute({ children }) {
   const auth = useAuthContext();
   const isUserAuthorized = !!auth.user;
 
   return isUserAuthorized ? children : <Navigate to="/auth/login" />;
-};
+}
 
 function InitComponent() {
   axios.defaults.baseURL = constants.BASE_URL;

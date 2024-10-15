@@ -1,5 +1,5 @@
 import React, { useEffect, createRef } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form } from 'formik';
 import {
@@ -29,14 +29,14 @@ function LoginPage() {
   const auth = useAuthContext();
 
   const loading = useSelector(selectors.loading);
-  const isSuccess = useSelector(selectors.success);
-  const error = useSelector(selectors.error);
+  // const isSuccess = useSelector(selectors.success);
+  // const error = useSelector(selectors.error);
 
   useEffect(() => {
     formikRef.current?.resetForm();
   }, [flow]);
 
-  const submitHandler = ({ username, password }, { resetForm }) => {
+  const submitHandler = ({ username, password }) => {
     const flowCallbacks = {
       signUp: actions.registerUser,
       login: auth.signIn,
