@@ -1,5 +1,5 @@
 import React, { useEffect, createRef } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form } from 'formik';
 import {
@@ -43,7 +43,6 @@ function LoginPage() {
     };
 
     dispatch(flowCallbacks[flow]({ username, password }, navigate));
-    // resetForm();
   };
 
   const navigateToRegister = () => navigate('/auth/signup');
