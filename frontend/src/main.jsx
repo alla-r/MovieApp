@@ -6,6 +6,7 @@ import { ScrollToTop } from './global/helpers';
 import { AuthProvider } from './global/hoc/AuthContextProvider';
 import App from './App';
 import store from './store';
+import './utils/i18n';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
