@@ -27,11 +27,7 @@ const withLayout = (Page) => () => {
     },
     {
       content: 'Sign Out',
-      onClickHandler: () => {
-        console.log('sign out');
-        auth.signOut();
-        navigate('/');
-      },
+      onClickHandler: () => auth.logout(true),
     },
   ];
 

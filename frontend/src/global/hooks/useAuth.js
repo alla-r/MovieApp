@@ -1,11 +1,48 @@
+import { useRef, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import DBService from '../../DBService';
 import useLocalStorage from './useLocalStorage';
+import { showNotification } from '../helpers';
+import * as initConstants from '../../pages/InitComponent/constants';
 
 const useAuth = () => {
   const [user, setUser] = useLocalStorage('user', null);
   const location = useLocation();
   const navigate = useNavigate();
+  const logoutTimerRef = useRef(null);
+
+  const logout = useCallback(
+    (isByUser = false) => {
+      setUser(null);
+      localStorage.removeItem('expiration');
+      if (logoutTimerRef.current) {
+        clearTimeout(logoutTimerRef.current);
+      }
+
+      if (isByUser) {
+        showNotification(
+          initConstants.NOTIFICATIONS_CONFIG.type.success,
+          'You have successfully logged out!',
+        );
+      } else {
+        navigate('/auth/login');
+
+        showNotification(
+          initConstants.NOTIFICATIONS_CONFIG.type.error,
+          'Session expired. Please, log in again',
+        );
+      }
+    },
+    [navigate],
+  );
+
+  const startLogoutTimer = useCallback(() => {
+    if (logoutTimerRef.current) {
+      clearTimeout(logoutTimerRef.current);
+    }
+
+    logoutTimerRef.current = setTimeout(logout, 1000 * 60 * 60);
+  }, [logout]);
 
   const signIn = async (data) => {
     try {
@@ -13,20 +50,31 @@ const useAuth = () => {
 
       if (authResponse.status === 200) {
         setUser(authResponse.data);
-        navigate(location.state?.from || '/');
+
+        const expiration = new Date();
+        expiration.setHours(expiration.getHours() + 1);
+        localStorage.setItem('expiration', expiration.toISOString());
+
+        navigate(location.state?.from || '/', { replace: true });
+        startLogoutTimer();
       } else {
-        console.error(authResponse);
+        const errorMessage =
+          authResponse.response && authResponse.response.data && authResponse.response.data.error;
+        showNotification(
+          initConstants.NOTIFICATIONS_CONFIG.type.error,
+          errorMessage || authResponse.message,
+        );
       }
     } catch (error) {
-      console.error(error);
+      const errorMessage = error.response && error.response.data && error.response.data.error;
+      showNotification(
+        initConstants.NOTIFICATIONS_CONFIG.type.error,
+        errorMessage || error.message,
+      );
     }
   };
 
-  const signOut = () => {
-    setUser(null);
-  };
-
-  return { user, signIn, signOut };
+  return { user, signIn, logout, logoutTimerRef };
 };
 
 export default useAuth;

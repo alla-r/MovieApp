@@ -1,6 +1,6 @@
 import React, { useEffect, createRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form } from 'formik';
 import {
   INITIAL_FORM_STATE,
@@ -9,10 +9,10 @@ import {
 } from './validationSchema';
 import * as actions from './actions';
 import * as constants from './constants';
-// import { selectors } from './reducer';
+import { selectors } from './reducer';
 import Fields from './components/Fields';
 import Button from '../../components/Button';
-// import Loader from '../../components/Loader';
+import Loader from '../../components/Loader';
 import withLayout from '../../global/hoc/Layout';
 import './LoginPage.scss';
 import { useAuthContext } from '../../global/hoc/AuthContextProvider';
@@ -28,32 +28,21 @@ function LoginPage() {
 
   const auth = useAuthContext();
 
-  // const loading = useSelector(selectors.loading);
-  // const isLoggedIn = useSelector(selectors.success);
+  const loading = useSelector(selectors.loading);
+  // const isSuccess = useSelector(selectors.success);
   // const error = useSelector(selectors.error);
 
   useEffect(() => {
     formikRef.current?.resetForm();
   }, [flow]);
 
-  const submitHandler = ({ username, password }, { resetForm }) => {
+  const submitHandler = ({ username, password }) => {
     const flowCallbacks = {
       signUp: actions.registerUser,
       login: auth.signIn,
     };
 
-    dispatch(flowCallbacks[flow]({ username, password })).then(() => navigate('/auth/login'));
-    resetForm();
-  };
-
-  const titleText = {
-    login: 'Login to your account',
-    signUp: 'Create an account',
-  };
-
-  const btnText = {
-    login: 'Login',
-    signUp: 'Sign Up',
+    dispatch(flowCallbacks[flow]({ username, password }, navigate));
   };
 
   const navigateToRegister = () => navigate('/auth/signup');
@@ -68,9 +57,8 @@ function LoginPage() {
           onSubmit={submitHandler}
         >
           <Form>
-            <div className="form-header">{titleText[flow]}</div>
-            {/* {loading && <Loader />} */}
-            {/* {error && <p>Something went wrong</p>} */}
+            <div className="form-header">{constants.TITLE_TEXT[flow]}</div>
+            {loading && <Loader />}
             {flow === 'signUp' && <Fields config={constants.REGISTER_FORM_FIELDS} />}
             {flow === 'login' && (
               <>
@@ -91,7 +79,7 @@ function LoginPage() {
             )}
             <Button
               className="button"
-              btnText={btnText[flow]}
+              btnText={constants.BTN_TEXT[flow]}
               btnType="primary"
               onClickHandler={() => {}}
               type="submit"

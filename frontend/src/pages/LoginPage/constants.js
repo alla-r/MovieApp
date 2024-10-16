@@ -33,3 +33,20 @@ export const LOGIN_FORM_FIELDS = [
     label: 'Password',
   },
 ];
+
+export const TITLE_TEXT = {
+  login: 'Login to your account',
+  signUp: 'Create an account',
+};
+
+export const BTN_TEXT = {
+  login: 'Login',
+  signUp: 'Sign Up',
+};
+
+export const MESSAGE_CONFIG = {
+  register: {
+    success: 'User successfully created',
+    error: 'Something went wrong',
+  },
+};

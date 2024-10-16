@@ -1,6 +1,8 @@
 import * as constants from './constants';
+import * as initConstants from '../InitComponent/constants';
 import DBService from '../../DBService';
 import StorageService from '../../StorageService';
+import { showNotification } from '../../global/helpers';
 
 export const registerUserSuccess = (data) => ({
   type: constants.REGISTER_USER_SUCCESS,
@@ -26,19 +28,30 @@ export const loginUserError = (error) => ({
 
 export const loginUserRequest = () => ({ type: constants.LOGIN_USER_REQUEST });
 
-export const registerUser = (data) => async (dispatch) => {
+export const registerUser = (data, navigate) => async (dispatch) => {
   dispatch(registerUserRequest());
 
   try {
     const response = await DBService.registerUser(data);
 
     if (response.status === 201) {
-      dispatch(registerUserSuccess({ status: 'success' }));
+      dispatch(registerUserSuccess({ status: 'success', action: 'register' }));
+      navigate('/auth/login');
+      showNotification(
+        initConstants.NOTIFICATIONS_CONFIG.type.success,
+        constants.MESSAGE_CONFIG.register.success,
+      );
     } else {
       dispatch(registerUserError({ status: 'error' }));
+      showNotification(
+        initConstants.NOTIFICATIONS_CONFIG.type.error,
+        constants.MESSAGE_CONFIG.register.error,
+      );
     }
   } catch (error) {
-    dispatch(registerUserError({ status: 'error' }));
+    dispatch(registerUserError({ status: 'error', message: error.message }));
+    const errorMessage = error.response && error.response.data && error.response.data.error;
+    showNotification(initConstants.NOTIFICATIONS_CONFIG.type.error, errorMessage || error.message);
   }
 };
 

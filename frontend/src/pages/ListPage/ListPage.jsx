@@ -22,8 +22,6 @@ function ListPage() {
 
   useEffect(() => {
     dispatch(actions.getListData(list));
-
-    // return () => dispatch(actions.clearFilteredMedia());
   }, [list]);
 
   const items = listData
