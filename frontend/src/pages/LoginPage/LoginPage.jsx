@@ -64,14 +64,14 @@ function LoginPage() {
               <>
                 <Fields config={constants.LOGIN_FORM_FIELDS} />
                 <div>
-                  If you do not have an account
+                  {constants.IF_YOU_DONT_HAVE_ACCOUNT}
                   <span
                     role="button"
                     tabIndex="0"
                     onClick={navigateToRegister}
                     onKeyDown={navigateToRegister}
                   >
-                    click here
+                    {constants.CLICK_HERE}
                   </span>
                   .
                 </div>

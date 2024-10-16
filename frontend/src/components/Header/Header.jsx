@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, createSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import { slide as BurgerMenu } from 'react-burger-menu';
 import Logo from '../Logo';
 import HeaderItem from './components/HeaderItem';
@@ -13,6 +14,7 @@ function Header({ isUserAuthorized, headerItems, profileDropdownData }) {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
+  const { t } = useTranslation();
 
   const menuItemsClickHandler = (customClickHandler) => {
     setIsMenuOpen(false);
@@ -73,7 +75,7 @@ function Header({ isUserAuthorized, headerItems, profileDropdownData }) {
     <HeaderItem key={content} content={content} onClickHandler={onClickHandler} path={path} />
   ));
 
-  const signInItem = <HeaderItem content="Sign In" path="/auth/login" />;
+  const signInItem = <HeaderItem content={t('login')} path="/auth/login" />;
 
   return (
     <Background>

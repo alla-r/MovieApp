@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import SocialMediaButton from '../../../../components/SocialMediaButton';
 import { SOCIAL_MEDIA_BUTTONS_CONFIG, PERSONAL_DETAILS_MAPPING } from '../../constants';
 import {
@@ -12,6 +13,7 @@ import {
 } from './styles';
 
 function LeftSide({ data }) {
+  const { t } = useTranslation();
   const createSocialMediaButtons = (btnConfig, links) =>
     btnConfig.map(({ id, iconSrc, tooltipMessage }) => (
       <SocialMediaButton
@@ -39,7 +41,7 @@ function LeftSide({ data }) {
         {createSocialMediaButtons(SOCIAL_MEDIA_BUTTONS_CONFIG, data.socialMedia)}
       </SocialMediaButtonsWrapper>
       <InfoSection>
-        <div className="info-section--title">Personal Info</div>
+        <div className="info-section--title">{t('personalInfo')}</div>
         {items}
       </InfoSection>
     </Container>

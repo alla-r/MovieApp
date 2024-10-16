@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import * as constants from './constants';
 import * as actions from './actions';
 import { selectors } from './reducer';
@@ -15,6 +16,7 @@ function ListPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { list } = useParams();
+  const { t } = useTranslation();
 
   const listLoading = useSelector(selectors.listLoading);
   const listData = useSelector(selectors.listData);
@@ -86,9 +88,7 @@ function ListPage() {
       {!listLoading && listData.length === 0 && !listError && (
         <Info>{constants.HEADINGS[list]} list is empty</Info>
       )}
-      {!listLoading && listError && (
-        <Info>Couldn&apos;t fetch {constants.HEADINGS[list]} list</Info>
-      )}
+      {!listLoading && listError && <Info>{t('errorMessage')}</Info>}
     </Container>
   );
 }

@@ -1,10 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import { IconButton, TextField, TextFieldWrapper, TextFieldMobile, CloseButton } from './styles';
 
 function SearchField({ submitHandler, isMobileMode, closeBtnClickHandler }) {
   const [value, setValue] = useState('');
+  const { t } = useTranslation();
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
@@ -18,7 +20,7 @@ function SearchField({ submitHandler, isMobileMode, closeBtnClickHandler }) {
   const inputProps = {
     value,
     type: 'text',
-    placeholder: 'Search for a movie, tv show, person ...',
+    placeholder: t('searchPlaceholder'),
     name: 'search',
     onChange: handleChange,
   };

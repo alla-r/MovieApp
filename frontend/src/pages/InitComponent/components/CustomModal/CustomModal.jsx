@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { Modal, Rating } from '@mui/material';
 import { selectors } from '../../reducer';
 import { ModalWrapper } from './styles';
 
 function CustomModal() {
+  const { t } = useTranslation();
   const { type, data } = useSelector(selectors.modalConfig) || {};
   const { currentValue, handleCloseCallBack, setRateCallback } = data || {};
   const isOpen = useSelector(selectors.isModalOpen);
@@ -38,7 +40,7 @@ function CustomModal() {
         <Modal open={isOpen} onClose={closeCallBack}>
           <ModalWrapper>
             <div className="title-row">
-              <p>Rate the movie</p>
+              <p>{t('rateMovie')}</p>
               <button
                 className="close-btn"
                 type="button"

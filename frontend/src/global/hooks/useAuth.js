@@ -4,6 +4,7 @@ import DBService from '../../DBService';
 import useLocalStorage from './useLocalStorage';
 import { showNotification } from '../helpers';
 import * as initConstants from '../../pages/InitComponent/constants';
+import i18next from '../../utils/i18n';
 
 const useAuth = () => {
   const [user, setUser] = useLocalStorage('user', null);
@@ -22,14 +23,14 @@ const useAuth = () => {
       if (isByUser) {
         showNotification(
           initConstants.NOTIFICATIONS_CONFIG.type.success,
-          'You have successfully logged out!',
+          i18next.t('logoutSuccess'),
         );
       } else {
         navigate('/auth/login');
 
         showNotification(
           initConstants.NOTIFICATIONS_CONFIG.type.error,
-          'Session expired. Please, log in again',
+          i18next.t('sessionExpired'),
         );
       }
     },

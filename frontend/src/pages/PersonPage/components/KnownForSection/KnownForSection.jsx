@@ -1,6 +1,7 @@
 /* eslint-disable import/no-unresolved */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar } from 'swiper/modules';
 import 'swiper/css';
@@ -8,6 +9,8 @@ import 'swiper/css/scrollbar';
 import { Container, CardItem, ImageWrapper, Title } from './styles';
 
 function KnownForSection({ data, onItemClick }) {
+  const { t } = useTranslation();
+
   const slides = data.map(({ type, title, id, poster }) => (
     <SwiperSlide key={id}>
       <CardItem onClick={() => onItemClick(type, id)}>
@@ -21,7 +24,7 @@ function KnownForSection({ data, onItemClick }) {
     <Container>
       {data.length > 5 && (
         <>
-          <div className="person-page--title">Known For</div>
+          <div className="person-page--title">{t('knownFor')}</div>
           <Swiper
             modules={[Scrollbar]}
             breakpoints={{
