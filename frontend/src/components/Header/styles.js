@@ -8,12 +8,19 @@ export const Background = styled.div`
   background: ${(props) => props.theme.colors.dark};
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.42);
 
-  .logo--container {
-    margin: 0 auto;
-    padding-left: 5%;
-    height: 100%;
+  .mobile-header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    width: 80%;
+    height: 100%;
+    margin-left: 5%;
+
+    & > div {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
   }
 
   .bm-overlay {
@@ -91,15 +98,19 @@ export const SearchIconButton = styled.button`
     opacity: 0.6;
   }
 
-  @media only screen and (max-width: 768px) {
-    right: 17%;
+  @media only screen and (max-width: 1080px) {
+    position: static;
   }
+`;
 
-  @media only screen and (max-width: 550px) {
-    right: 19%;
-  }
+export const LanguageButton = styled.button`
+  background: none;
+  border: none;
+  color: ${(props) => props.theme.colors.light};
+  font-size: 18px;
+  cursor: pointer;
 
-  @media only screen and (max-width: 420px) {
-    right: 20%;
+  &:hover {
+    color: ${(props) => props.theme.colors.secondary};
   }
 `;

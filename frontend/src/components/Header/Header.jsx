@@ -7,7 +7,14 @@ import Logo from '../Logo';
 import HeaderItem from './components/HeaderItem';
 import ProfileDropdown from './components/ProfileDropdown';
 import SearchField from './components/SearchField';
-import { Background, NavContainer, NavMenu, SearchIconButton, SecondColumn } from './styles';
+import {
+  Background,
+  NavContainer,
+  NavMenu,
+  SearchIconButton,
+  SecondColumn,
+  LanguageButton,
+} from './styles';
 import * as i18nConstants from '../../utils/i18n/constants';
 
 function Header({ isUserAuthorized, headerItems, profileDropdownData }) {
@@ -17,8 +24,18 @@ function Header({ isUserAuthorized, headerItems, profileDropdownData }) {
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
   const { t, i18n } = useTranslation();
 
-  const changeLanguageHandler = (locale) => {
-    i18n.changeLanguage(locale);
+  const changeLanguageHandler = () => {
+    const currentLanguage = i18n.language.toUpperCase();
+    const index = i18nConstants.LANGUAGES.findIndex((el) => el === currentLanguage);
+    let nextLanguageIndex;
+    if (index !== -1) {
+      nextLanguageIndex = index + 1 < i18nConstants.LANGUAGES.length ? index + 1 : 0;
+    } else {
+      nextLanguageIndex = 0;
+    }
+    const nextLanguage = i18nConstants.LANGUAGES[nextLanguageIndex];
+
+    i18n.changeLanguage(i18nConstants.LOCALES[nextLanguage]);
     window.location.reload(false);
   };
 
@@ -93,31 +110,36 @@ function Header({ isUserAuthorized, headerItems, profileDropdownData }) {
         />
       )}
       {isMobile && !isSearchBarOpen && (
-        <>
+        <div className="mobile-header">
           <div className="logo--container">
             <Logo size={36} onClickHandler={onLogoClickHandler} />
           </div>
-          <SearchIconButton onClick={showSearchInput} />
-          <BurgerMenu
-            right
-            isOpen={isMenuOpen}
-            onStateChange={({ isOpen }) => setIsMenuOpen(isOpen)}
-          >
-            {getMobileItems(headerItems)}
-            {isUserAuthorized ? getMobileItems(profileDropdownData) : signInItem}
-          </BurgerMenu>
-        </>
+          <div>
+            <LanguageButton onClick={changeLanguageHandler}>
+              {i18n.language.toUpperCase()}
+            </LanguageButton>
+            <SearchIconButton onClick={showSearchInput} />
+
+            <BurgerMenu
+              right
+              isOpen={isMenuOpen}
+              onStateChange={({ isOpen }) => setIsMenuOpen(isOpen)}
+            >
+              {getMobileItems(headerItems)}
+              {isUserAuthorized ? getMobileItems(profileDropdownData) : signInItem}
+            </BurgerMenu>
+          </div>
+        </div>
       )}
       {!isMobile && (
         <NavContainer>
           <Logo size={36} onClickHandler={onLogoClickHandler} />
-          <div>
-            <button onClick={() => changeLanguageHandler(i18nConstants.LOCALES.EN)}>EN</button>
-            <button onClick={() => changeLanguageHandler(i18nConstants.LOCALES.UK)}>UK</button>
-          </div>
           <NavMenu>{items}</NavMenu>
           <SecondColumn>
             <SearchField submitHandler={searchSubmitHandler} />
+            <LanguageButton onClick={changeLanguageHandler}>
+              {i18n.language.toUpperCase()}
+            </LanguageButton>
             {!isUserAuthorized && signInItem}
             {isUserAuthorized && <ProfileDropdown avatarContent="AN" data={profileDropdownData} />}
           </SecondColumn>
