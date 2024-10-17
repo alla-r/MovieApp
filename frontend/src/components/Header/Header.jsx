@@ -8,13 +8,19 @@ import HeaderItem from './components/HeaderItem';
 import ProfileDropdown from './components/ProfileDropdown';
 import SearchField from './components/SearchField';
 import { Background, NavContainer, NavMenu, SearchIconButton, SecondColumn } from './styles';
+import * as i18nConstants from '../../utils/i18n/constants';
 
 function Header({ isUserAuthorized, headerItems, profileDropdownData }) {
   const navigate = useNavigate();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  const changeLanguageHandler = (locale) => {
+    i18n.changeLanguage(locale);
+    window.location.reload(false);
+  };
 
   const menuItemsClickHandler = (customClickHandler) => {
     setIsMenuOpen(false);
@@ -105,6 +111,10 @@ function Header({ isUserAuthorized, headerItems, profileDropdownData }) {
       {!isMobile && (
         <NavContainer>
           <Logo size={36} onClickHandler={onLogoClickHandler} />
+          <div>
+            <button onClick={() => changeLanguageHandler(i18nConstants.LOCALES.EN)}>EN</button>
+            <button onClick={() => changeLanguageHandler(i18nConstants.LOCALES.UK)}>UK</button>
+          </div>
           <NavMenu>{items}</NavMenu>
           <SecondColumn>
             <SearchField submitHandler={searchSubmitHandler} />

@@ -1,27 +1,29 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
 import enLang from './locales/en/en.json';
 import ukLang from './locales/uk/uk.json';
+import * as constants from './constants';
 
 const resources = {
-  'en-US': {
+  [constants.LOCALES.EN]: {
     translation: enLang,
   },
-  'uk-UA': {
+  [constants.LOCALES.UK]: {
     translation: ukLang,
   },
 };
 
-i18n.use(initReactI18next).init({
-  resources,
-  fallbackLng: 'en-US',
-  lng: 'en-US', // language to use, more information here: https://www.i18next.com/overview/configuration-options#languages-namespaces-resources
-  // you can use the i18n.changeLanguage function to change the language manually: https://www.i18next.com/overview/api#changelanguage
-  // if you're using a language detector, do not define the lng option
+i18n
+  .use(initReactI18next)
+  .use(LanguageDetector)
+  .init({
+    resources,
+    fallbackLng: constants.LOCALES.EN,
 
-  interpolation: {
-    escapeValue: false, // react already safes from xss
-  },
-});
+    interpolation: {
+      escapeValue: false, // react already safes from xss
+    },
+  });
 
 export default i18n;
