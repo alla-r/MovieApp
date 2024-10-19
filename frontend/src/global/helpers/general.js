@@ -1,4 +1,7 @@
 import { toast, Slide } from 'react-toastify';
+import { format } from 'date-fns';
+import i18next from 'i18next';
+import { DATE_LOCALES } from '../../utils/i18n/constants';
 import * as initConstants from '../../pages/InitComponent/constants';
 
 export const getTokenDuration = () => {
@@ -52,27 +55,35 @@ export const getBarColor = (type, percentageValue) => {
   return (colors && colors[type]) || '#5B5B5B';
 };
 
-export const getFormattedDate = (dateString) => {
-  const dateArray = dateString.split('-');
-  const year = dateArray[0];
-  const month = dateArray[1];
-  const day = dateArray[2];
-  const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
+// export const getFormattedDate = (dateString) => {
+//   const dateArray = dateString.split('-');
+//   const year = dateArray[0];
+//   const month = dateArray[1];
+//   const day = dateArray[2];
+//   const months = [
+//     'January',
+//     'February',
+//     'March',
+//     'April',
+//     'May',
+//     'June',
+//     'July',
+//     'August',
+//     'September',
+//     'October',
+//     'November',
+//     'December',
+//   ];
 
-  return dateString !== 'unknown' ? `${months[month - 1].slice(0, 3)} ${day}, ${year}` : '';
+//   return dateString !== 'unknown' ? `${months[month - 1].slice(0, 3)} ${day}, ${year}` : '';
+// };
+
+export const getFormattedDate = (dateString) => {
+  const formattedDate = format(new Date(dateString), 'MMM d, yyyy', {
+    locale: DATE_LOCALES[i18next.language],
+  });
+
+  return dateString && dateString !== 'unknown' ? formattedDate : '';
 };
 
 export const getPercentageValue = (value, maxValue) => (value * 100) / maxValue;
