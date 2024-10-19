@@ -5,7 +5,13 @@ import { ItemContainer, MediaImage, Title, CloseButton, ChangeRateButton } from 
 import { getFormattedDate } from '../../../../global/helpers';
 import StarIcon from '../../../../global/images/star-icon.svg';
 
-function ListItem({ details, listName, changeRateCB, removeFromListCB, navigateToDetailsCB }) {
+function ListItem({
+  details,
+  listName,
+  changeRateCB = () => {},
+  removeFromListCB = () => {},
+  navigateToDetailsCB = () => {},
+}) {
   const { t } = useTranslation();
   const maxOverviewCharacters = 240;
   const overview =
@@ -51,11 +57,6 @@ function ListItem({ details, listName, changeRateCB, removeFromListCB, navigateT
     </ItemContainer>
   );
 }
-
-ListItem.defaultProps = {
-  changeRateCB: null,
-  removeFromListCB: null,
-};
 
 ListItem.propTypes = {
   details: PropTypes.shape({

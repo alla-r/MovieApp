@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import { ButtonWrapper, Image } from './styles';
 
-function CircularButton({ onClickHandler, isActive, tooltipActive, tooltipInactive, iconSrc }) {
+function CircularButton({ onClickHandler, isActive = false, tooltipActive, tooltipInactive, iconSrc }) {
   const classNames = isActive ? 'active' : '';
 
   const StyledTooltip = styled(({ className, ...props }) => (
@@ -26,8 +26,6 @@ function CircularButton({ onClickHandler, isActive, tooltipActive, tooltipInacti
     </StyledTooltip>
   );
 }
-
-CircularButton.defaultProps = { isActive: false };
 
 CircularButton.propTypes = {
   isActive: PropTypes.bool,

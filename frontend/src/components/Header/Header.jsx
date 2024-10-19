@@ -17,7 +17,7 @@ import {
 } from './styles';
 import * as i18nConstants from '../../utils/i18n/constants';
 
-function Header({ isUserAuthorized, headerItems, profileDropdownData }) {
+function Header({ isUserAuthorized = false, headerItems, profileDropdownData }) {
   const navigate = useNavigate();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -148,8 +148,6 @@ function Header({ isUserAuthorized, headerItems, profileDropdownData }) {
     </Background>
   );
 }
-
-Header.defaultProps = { isUserAuthorized: false };
 
 Header.propTypes = {
   isUserAuthorized: PropTypes.bool,

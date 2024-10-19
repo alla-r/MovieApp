@@ -3,7 +3,17 @@ import PropTypes from 'prop-types';
 import { ButtonWrapper } from './styles';
 import theme from '../../theme';
 
-function Button({ onClickHandler, btnText, isBtnDisabled, btnStyles, className, ...otherProps }) {
+function Button({
+  onClickHandler,
+  btnText,
+  isBtnDisabled = false,
+  btnStyles = {
+    isFilled: false,
+    color: 'primary',
+  },
+  className = '',
+  ...otherProps
+}) {
   const { isFilled, color } = btnStyles;
   const classNamesArray = [isFilled ? 'filled' : 'outline'];
 
@@ -29,15 +39,6 @@ function Button({ onClickHandler, btnText, isBtnDisabled, btnStyles, className, 
     </ButtonWrapper>
   );
 }
-
-Button.defaultProps = {
-  className: '',
-  isBtnDisabled: false,
-  btnStyles: {
-    isFilled: false,
-    color: 'primary',
-  },
-};
 
 Button.propTypes = {
   className: PropTypes.string,

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { PersonContainer, ImageWrapper, ContentWrapper, Name, Character } from './styles';
 
-function PersonItem({ data, onClickHandler, size }) {
+function PersonItem({ data, onClickHandler = () => {}, size = 'big' }) {
   const { name, character, department, poster } = data;
 
   return (
@@ -16,11 +16,6 @@ function PersonItem({ data, onClickHandler, size }) {
     </PersonContainer>
   );
 }
-
-PersonItem.defaultProps = {
-  onClickHandler: () => {},
-  size: 'big',
-};
 
 PersonItem.propTypes = {
   size: PropTypes.string,

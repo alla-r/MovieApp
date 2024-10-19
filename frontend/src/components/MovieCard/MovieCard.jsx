@@ -32,8 +32,6 @@ function MovieCard({ data, onClickHandler }) {
   );
 }
 
-MovieCard.defaultProps = {};
-
 MovieCard.propTypes = {
   onClickHandler: PropTypes.func.isRequired,
   data: PropTypes.shape({
