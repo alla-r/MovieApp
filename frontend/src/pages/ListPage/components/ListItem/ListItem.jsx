@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { ItemContainer, MediaImage, Title, CloseButton, ChangeRateButton } from './styles';
-import { getFormattedDate } from '../../../../global/helpers';
+import { getFormattedDate } from '../../../../utils/helpers';
 import StarIcon from '../../../../global/images/star-icon.svg';
 
 function ListItem({

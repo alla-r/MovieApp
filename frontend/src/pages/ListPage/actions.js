@@ -2,7 +2,7 @@ import * as constants from './constants';
 import * as initConstants from '../InitComponent/constants';
 import StorageService from '../../StorageService';
 import DBService from '../../DBService';
-import { showNotification } from '../../global/helpers/general';
+import { showNotification } from '../../utils/helpers/general';
 import i18next from '../../utils/i18n';
 
 export const getListDataSuccess = (data) => ({

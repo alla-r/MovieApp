@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { JOBS_CONFIG } from '../../constants';
-import { getUniqueValues } from '../../../../global/helpers';
+import { getUniqueValues } from '../../../../utils/helpers';
 import YearSection from './components/YearSection';
 import { Section, HeaderSection } from './styles';
 

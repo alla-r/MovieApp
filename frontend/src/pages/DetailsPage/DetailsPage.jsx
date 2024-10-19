@@ -11,8 +11,8 @@ import * as actions from './actions';
 import * as initActions from '../InitComponent/actions';
 import * as constants from './constants';
 import { selectors } from './reducer';
-import withLayout from '../../global/hoc/Layout';
-import { useAuthContext } from '../../global/hoc/AuthContextProvider';
+import withLayout from '../../utils/hoc/Layout';
+import { useAuthContext } from '../../utils/hoc/AuthContextProvider';
 import './DetailsPage.scss';
 
 function DetailsPage() {

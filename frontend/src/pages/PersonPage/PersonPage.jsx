@@ -7,7 +7,7 @@ import Loader from '../../components/Loader';
 import LeftSide from './components/LeftSide';
 import KnownForSection from './components/KnownForSection';
 import PersonCreditsSection from './components/PersonCreditsSection';
-import withLayout from '../../global/hoc/Layout';
+import withLayout from '../../utils/hoc/Layout';
 import { Container, Name } from './styles';
 import './PersonPage.scss';
 

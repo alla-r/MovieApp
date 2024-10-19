@@ -11,7 +11,7 @@ import SearchPage from '../SearchPage';
 import PersonPage from '../PersonPage';
 import * as constants from './constants';
 import CustomModal from './components/CustomModal';
-import { useAuthContext } from '../../global/hoc/AuthContextProvider';
+import { useAuthContext } from '../../utils/hoc/AuthContextProvider';
 import 'react-toastify/dist/ReactToastify.css';
 
 function ProtectedRoute({ children }) {

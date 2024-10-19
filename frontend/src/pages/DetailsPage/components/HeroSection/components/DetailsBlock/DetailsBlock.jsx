@@ -23,7 +23,7 @@ import {
   getPercentageValue,
   getFormattedYears,
   getDuration,
-} from '../../../../../../global/helpers';
+} from '../../../../../../utils/helpers';
 
 function DetailsBlock({ data, circularBtnConfig }) {
   const navigate = useNavigate();

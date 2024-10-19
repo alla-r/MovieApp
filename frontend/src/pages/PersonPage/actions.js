@@ -3,7 +3,7 @@ import {
   getFormattedPersonDetails,
   getFormattedSocialMedia,
   getFormattedRecommendationItem,
-} from '../../global/helpers';
+} from '../../utils/helpers';
 import TMDBservice from '../../TMDBservice';
 
 export const getPersonDetailsSuccess = (data) => ({

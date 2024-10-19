@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import Pagination from '@mui/material/Pagination';
 import * as actions from './actions';
 import { selectors } from './reducer';
-import withLayout from '../../global/hoc/Layout';
+import withLayout from '../../utils/hoc/Layout';
 import NavigationPanel from './components/NavigationPanel';
 import ListItem from '../ListPage/components/ListItem';
 import PersonItem from '../../components/PersonItem';

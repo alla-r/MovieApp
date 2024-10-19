@@ -4,7 +4,7 @@ import ContentContainer from '../../components/ContentContainer';
 import * as actions from './actions';
 import * as constants from './constants';
 import { selectors } from './reducer';
-import withLayout from '../../global/hoc/Layout';
+import withLayout from '../../utils/hoc/Layout';
 
 function HomePage() {
   const [pageNumber, setPageNumber] = useState(1);

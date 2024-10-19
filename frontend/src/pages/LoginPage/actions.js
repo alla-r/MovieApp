@@ -2,7 +2,7 @@ import * as constants from './constants';
 import * as initConstants from '../InitComponent/constants';
 import DBService from '../../DBService';
 import StorageService from '../../StorageService';
-import { showNotification } from '../../global/helpers';
+import { showNotification } from '../../utils/helpers';
 
 export const registerUserSuccess = (data) => ({
   type: constants.REGISTER_USER_SUCCESS,
