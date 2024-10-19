@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import i18next from '../../utils/i18n';
 
 const INITIAL_FORM_STATE = {
   username: '',
@@ -8,23 +9,22 @@ const INITIAL_FORM_STATE = {
 
 const REGISTER_FORM_VALIDATION = Yup.object().shape({
   username: Yup.string()
-    .max(30, 'Name must be at most 30 characters')
-    .required('This field is mandatory'),
+    .max(30, i18next.t('validationErrorName'))
+    .required(i18next.t('mandatoryField')),
   password: Yup.string()
-    .min(6, 'Password must contain at least 6 characters')
-    .max(50, 'Password must be at most 50 characters')
-    .matches(/[a-z]/g, 'Password must contain at least 1 lowercase')
-    .matches(/[A-Z]/g, 'Password must contain at least 1 uppercase')
-    .matches(/[^a-zA-Z0-9\s]/g, 'Password must contain at least 1 symbol')
-    .required('This field is mandatory'),
+    .min(6, i18next.t('validationErrorMinChar'))
+    .matches(/[a-z]/g, i18next.t('validationErrorLowercase'))
+    .matches(/[A-Z]/g, i18next.t('validationErrorUppercase'))
+    .matches(/[^a-zA-Z0-9\s]/g, i18next.t('validationErrorSymbol'))
+    .required(i18next.t('mandatoryField')),
   passwordConfirmation: Yup.string()
-    .oneOf([Yup.ref('password'), null], 'Passwords must match')
-    .required('This field is mandatory'),
+    .oneOf([Yup.ref('password'), null], i18next.t('passwordMatch'))
+    .required(i18next.t('mandatoryField')),
 });
 
 const LOGIN_FORM_VALIDATION = Yup.object().shape({
-  username: Yup.string().required('This field is mandatory'),
-  password: Yup.string().required('This field is mandatory'),
+  username: Yup.string().required(i18next.t('mandatoryField')),
+  password: Yup.string().required(i18next.t('mandatoryField')),
 });
 
 export { INITIAL_FORM_STATE, REGISTER_FORM_VALIDATION, LOGIN_FORM_VALIDATION };

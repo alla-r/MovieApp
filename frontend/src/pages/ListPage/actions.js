@@ -3,6 +3,7 @@ import * as initConstants from '../InitComponent/constants';
 import StorageService from '../../StorageService';
 import DBService from '../../DBService';
 import { showNotification } from '../../global/helpers/general';
+import i18next from '../../utils/i18n';
 
 export const getListDataSuccess = (data) => ({
   type: constants.GET_LIST_DATA_SUCCESS,
@@ -43,14 +44,18 @@ export const removeItemFromList =
         dispatch(getListData(listName));
         showNotification(
           initConstants.NOTIFICATIONS_CONFIG.type.success,
-          `The item was successfully removed from the ${listName} list`,
+          i18next.t('removeFromListSuccess', {
+            listName: i18next.t(`${listName}ListName`),
+          }),
         );
       }
     } catch (error) {
       dispatch(getListDataError(error));
       showNotification(
         initConstants.NOTIFICATIONS_CONFIG.type.error,
-        `Something went wrong. Couldn't remove the item from the ${listName} list`,
+        i18next.t('removeFromListError', {
+          listName: i18next.t(`${listName}ListName`),
+        }),
       );
     }
   };

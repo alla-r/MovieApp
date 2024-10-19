@@ -1,6 +1,7 @@
 import HeartIcon from '../../global/images/heart-icon.svg';
 import StarIcon from '../../global/images/star-icon.svg';
 import WatchlistIcon from '../../global/images/watchlist-icon.svg';
+import i18next from '../../utils/i18n';
 
 export const GET_MEDIA_DETAILS_REQUEST = 'GET_MEDIA_DETAILS_REQUEST';
 export const GET_MEDIA_DETAILS_SUCCESS = 'GET_MEDIA_DETAILS_SUCCESS';
@@ -16,32 +17,32 @@ export const GET_MEDIA_CUSTOM_DETAILS_ERROR = 'GET_MEDIA_CUSTOM_DETAILS_ERROR';
 
 export const DETAILS_MOVIE_LIST_MAPPING = [
   {
-    title: 'Original Title',
+    title: i18next.t('originalTitle'),
     value: 'originalTitle',
     type: 'text',
   },
   {
-    title: 'Status',
+    title: i18next.t('status'),
     value: 'status',
     type: 'text',
   },
   {
-    title: 'Production Countries',
+    title: i18next.t('productionCountries'),
     value: 'productionCountries',
     type: 'array',
   },
   {
-    title: 'Production Companies',
+    title: i18next.t('productionCompanies'),
     value: 'productionCompanies',
     type: 'array',
   },
   {
-    title: 'Budget',
+    title: i18next.t('budget'),
     value: 'budget',
     type: 'money',
   },
   {
-    title: 'Revenue',
+    title: i18next.t('revenue'),
     value: 'revenue',
     type: 'money',
   },
@@ -49,22 +50,22 @@ export const DETAILS_MOVIE_LIST_MAPPING = [
 
 export const DETAILS_TV_LIST_MAPPING = [
   {
-    title: 'Original Title',
+    title: i18next.t('originalTitle'),
     value: 'originalTitle',
     type: 'text',
   },
   {
-    title: 'Status',
+    title: i18next.t('status'),
     value: 'status',
     type: 'text',
   },
   {
-    title: 'Production Countries',
+    title: i18next.t('productionCountries'),
     value: 'productionCountries',
     type: 'array',
   },
   {
-    title: 'Production Companies',
+    title: i18next.t('productionCompanies'),
     value: 'productionCompanies',
     type: 'array',
   },
@@ -74,20 +75,20 @@ export const CIRCULAR_BUTTONS_CONFIG = [
   {
     iconSrc: HeartIcon,
     id: 'favorite',
-    tooltipActive: 'Remove from favorites',
-    tooltipInactive: 'Add to favorites',
+    tooltipActive: i18next.t('removeFromFavorites'),
+    tooltipInactive: i18next.t('addToFavorites'),
   },
   {
     iconSrc: WatchlistIcon,
     id: 'watchlist',
-    tooltipActive: 'Remove from watchlist',
-    tooltipInactive: 'Add to watchlist',
+    tooltipActive: i18next.t('removeFromWatchlist'),
+    tooltipInactive: i18next.t('addToWatchlist'),
   },
   {
     iconSrc: StarIcon,
     id: 'rate',
-    tooltipActive: 'Change your rating',
-    tooltipInactive: 'Rate the movie',
+    tooltipActive: i18next.t('changeYourRating'),
+    tooltipInactive: i18next.t('rateMovie'),
   },
 ];
 
@@ -99,16 +100,24 @@ export const btnShowMoreContent = 'Full Cast & Crew';
 export const getMessage = (action, listName, status) => {
   const config = {
     add: {
-      success: `Added to the ${listName}`,
-      error: `Couldn't add to the ${listName}`,
+      success: i18next.t('addToListSuccess', {
+        listName: i18next.t(`${listName}ListName`),
+      }),
+      error: i18next.t('addToListError', {
+        listName: i18next.t(`${listName}ListName`),
+      }),
     },
     remove: {
-      success: `Removed from the ${listName}`,
-      error: `Couldn't remove from the ${listName}`,
+      success: i18next.t('removeFromListSuccess', {
+        listName: i18next.t(`${listName}ListName`),
+      }),
+      error: i18next.t('removeFromListError', {
+        listName: i18next.t(`${listName}ListName`),
+      }),
     },
     update: {
-      success: `The rate was successfully changed`,
-      error: `Couldn't change the rate`,
+      success: i18next.t('updateRateSuccess'),
+      error: i18next.t('updateRateError'),
     },
   };
   return config[action][status];

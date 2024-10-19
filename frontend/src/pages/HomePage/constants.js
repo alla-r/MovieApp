@@ -1,9 +1,10 @@
+import i18next from '../../utils/i18n';
 export const GET_TRENDINGS_REQUEST = 'GET_TRENDINGS_REQUEST';
 export const GET_TRENDINGS_SUCCESS = 'GET_TRENDINGS_SUCCESS';
 export const GET_TRENDINGS_ERROR = 'GET_TRENDINGS_ERROR';
 export const GET_TRENDINGS_MEDIA = 'GET_TRENDINGS_MEDIA';
 export const TRENDINGS_CLEAR_DATA = 'TRENDINGS_CLEAR_DATA';
 
-export const trendingsHeading = 'What’s Popular';
-export const errorMessage = "Something went wrong. Couldn't fetch data.";
-export const paginationBtnText = 'Load More';
+export const trendingsHeading = i18next.t('popular');
+export const errorMessage = i18next.t('errorMessage');
+export const paginationBtnText = i18next.t('loadMore');

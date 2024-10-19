@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Pagination from '@mui/material/Pagination';
 import * as actions from './actions';
 import { selectors } from './reducer';
@@ -15,6 +16,7 @@ function SearchPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
+  const { t } = useTranslation();
 
   const query = searchParams.get('query') || '';
   const pageNumber = searchParams.get('page') || 1;
@@ -35,19 +37,19 @@ function SearchPage() {
   const navConfig = [
     {
       id: 'movie',
-      text: 'Movies',
+      text: t('movies'),
       amount: searchData?.movie?.totalResults || 0,
       onClickHandler: () => navClickHandler('movie'),
     },
     {
       id: 'tv',
-      text: 'TV Shows',
+      text: t('tvShows'),
       amount: searchData?.tv?.totalResults || 0,
       onClickHandler: () => navClickHandler('tv'),
     },
     {
       id: 'person',
-      text: 'People',
+      text: t('people'),
       amount: searchData?.person?.totalResults || 0,
       onClickHandler: () => navClickHandler('person'),
     },

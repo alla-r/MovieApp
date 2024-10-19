@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import { JOBS_CONFIG } from '../../constants';
 import { getUniqueValues } from '../../../../global/helpers';
 import YearSection from './components/YearSection';
 import { Section, HeaderSection } from './styles';
 
 function PersonCreditsSection({ data, onItemClick }) {
+  const { t } = useTranslation();
   const sortByYear = (a, b) => b - a;
 
   const getFilteredListForJob = (job, rowData) =>
@@ -66,7 +68,7 @@ function PersonCreditsSection({ data, onItemClick }) {
 
   return (
     <>
-      {createSection({ title: 'Acting', sectionData: data.cast })}
+      {createSection({ title: t('acting'), sectionData: data.cast })}
       {JOBS_CONFIG.map((job) =>
         createSection({
           title: job.title,

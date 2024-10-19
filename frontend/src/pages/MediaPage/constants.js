@@ -1,3 +1,5 @@
+import i18next from '../../utils/i18n';
+
 export const GET_GENRES_REQUEST = 'GET_GENRES_REQUEST';
 export const GET_GENRES_SUCCESS = 'GET_GENRES_SUCCESS';
 export const GET_GENRES_ERROR = 'GET_GENRES_ERROR';
@@ -11,5 +13,5 @@ export const CLEAR_FILTERED_MEDIA = 'CLEAR_FILTERED_MEDIA';
 
 export const UPDATE_GENRE_LIST = 'UPDATE_GENRE_LIST';
 
-export const errorMessage = "Something went wrong. Couldn't fetch data.";
-export const paginationBtnText = 'Load More';
+export const errorMessage = i18next.t('errorMessage');
+export const paginationBtnText = i18next.t('loadMore');

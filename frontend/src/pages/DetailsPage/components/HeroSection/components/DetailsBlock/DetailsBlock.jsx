@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate, createSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import CircleProgressBar from '../../../../../../components/CircleProgressBar';
 import CircularButton from '../../../../../../components/CircularButton';
 import {
@@ -26,6 +27,7 @@ import {
 
 function DetailsBlock({ data, circularBtnConfig }) {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const percentage = getPercentageValue(data.voteAvg, 10);
 
   const onGenreClickHandler = (id) =>
@@ -65,11 +67,11 @@ function DetailsBlock({ data, circularBtnConfig }) {
         <ProgressBarWrapper>
           <CircleProgressBar voteAvg={data.voteAvg} percentage={percentage} />
         </ProgressBarWrapper>
-        <ProgressBarDescription>Vote Average</ProgressBarDescription>
+        <ProgressBarDescription>{t('voteAverage')}</ProgressBarDescription>
         {buttons}
       </ButtonsWrapper>
       <OverviewWrapper>
-        <OverviewTitle>Overview</OverviewTitle>
+        <OverviewTitle>{t('overview')}</OverviewTitle>
         <OverviewContent>{data.overview}</OverviewContent>
       </OverviewWrapper>
       <GenreWrapper>{genres}</GenreWrapper>

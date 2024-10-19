@@ -1,6 +1,7 @@
 import InstaIcon from '../../global/images/instagram-icon.svg';
 import FacebookIcon from '../../global/images/facebook-icon.svg';
 import TwitterIcon from '../../global/images/twitter-icon.svg';
+import i18next from '../../utils/i18n';
 
 export const GET_PERSON_DETAILS_REQUEST = 'GET_PERSON_DETAILS_REQUEST';
 export const GET_PERSON_DETAILS_SUCCESS = 'GET_PERSON_DETAILS_SUCCESS';
@@ -31,15 +32,15 @@ export const SOCIAL_MEDIA_BUTTONS_CONFIG = [
 
 export const PERSONAL_DETAILS_MAPPING = [
   {
-    title: 'Known For',
+    title: i18next.t('knownFor'),
     id: 'knownFor',
   },
   {
-    title: 'Birthday',
+    title: i18next.t('birthday'),
     id: 'birthday',
   },
   {
-    title: 'Place of Birth',
+    title: i18next.t('placeOfBirth'),
     id: 'placeOfBirth',
   },
 ];
@@ -47,22 +48,22 @@ export const PERSONAL_DETAILS_MAPPING = [
 export const JOBS_CONFIG = [
   {
     id: 'directing',
-    title: 'Directing',
+    title: i18next.t('directing'),
     jobNames: ['Director'],
   },
   {
     id: 'production',
-    title: 'Production',
+    title: i18next.t('production'),
     jobNames: ['Executive Producer', 'Producer', 'Production Manager'],
   },
   {
     id: 'writing',
-    title: 'Writing',
+    title: i18next.t('writing'),
     jobNames: ['Writer'],
   },
   {
     id: 'creator',
-    title: 'Creator',
+    title: i18next.t('creator'),
     jobNames: ['Creator'],
   },
 ];

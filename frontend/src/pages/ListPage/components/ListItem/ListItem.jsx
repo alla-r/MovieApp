@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import { ItemContainer, MediaImage, Title, CloseButton, ChangeRateButton } from './styles';
 import { getFormattedDate } from '../../../../global/helpers';
 import StarIcon from '../../../../global/images/star-icon.svg';
 
 function ListItem({ details, listName, changeRateCB, removeFromListCB, navigateToDetailsCB }) {
+  const { t } = useTranslation();
   const maxOverviewCharacters = 240;
   const overview =
     details.overview.length > maxOverviewCharacters
@@ -30,7 +32,7 @@ function ListItem({ details, listName, changeRateCB, removeFromListCB, navigateT
                 className="change-rate--btn"
                 onClick={(e) => changeRateCB(e, details)}
               >
-                Change rate
+                {t('changeYourRating')}
               </ChangeRateButton>
             </div>
           )}

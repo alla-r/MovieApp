@@ -1,7 +1,12 @@
 /* eslint-disable class-methods-use-this */
 import axios from 'axios';
+import i18next from 'i18next';
 
 class TMDBservice {
+  getLanguage() {
+    return i18next.language || 'en-US';
+  }
+
   getTrendings(pageNumber) {
     return axios.get(
       `/trending/all/day?api_key=${import.meta.env.VITE_API_KEY}&page=${pageNumber}`,
@@ -9,14 +14,16 @@ class TMDBservice {
   }
 
   getGenres(type) {
-    return axios.get(`/genre/${type}/list?api_key=${import.meta.env.VITE_API_KEY}&language=en-US`);
+    return axios.get(
+      `/genre/${type}/list?api_key=${import.meta.env.VITE_API_KEY}&language=${this.getLanguage()}`,
+    );
   }
 
   getFilteredMedia(mediaType, pageNumber, genreList) {
     return axios.get(
       `/discover/${mediaType}?api_key=${
         import.meta.env.VITE_API_KEY
-      }&language=en-US&sort_by=popularity.desc&page=${pageNumber}&with_genres=${genreList.join(
+      }&language=${this.getLanguage()}&sort_by=popularity.desc&page=${pageNumber}&with_genres=${genreList.join(
         ', ',
       )}`,
     );
@@ -26,23 +33,29 @@ class TMDBservice {
     return axios.get(
       `/${mediaType}/${id}?api_key=${
         import.meta.env.VITE_API_KEY
-      }&language=en-US&append_to_response=recommendations,credits`,
+      }&language=${this.getLanguage()}&append_to_response=recommendations,credits`,
     );
   }
 
   getPersonDetails(id) {
-    return axios.get(`/person/${id}?api_key=${import.meta.env.VITE_API_KEY}&language=en-US`);
+    return axios.get(
+      `/person/${id}?api_key=${import.meta.env.VITE_API_KEY}&language=${this.getLanguage()}`,
+    );
   }
 
   getPersonExternalIds(id) {
     return axios.get(
-      `/person/${id}/external_ids?api_key=${import.meta.env.VITE_API_KEY}&language=en-US`,
+      `/person/${id}/external_ids?api_key=${
+        import.meta.env.VITE_API_KEY
+      }&language=${this.getLanguage()}`,
     );
   }
 
   getPersonCredits(id) {
     return axios.get(
-      `/person/${id}/combined_credits?api_key=${import.meta.env.VITE_API_KEY}&language=en-US`,
+      `/person/${id}/combined_credits?api_key=${
+        import.meta.env.VITE_API_KEY
+      }&language=${this.getLanguage()}`,
     );
   }
 
@@ -50,7 +63,7 @@ class TMDBservice {
     return axios.get(
       `/search/${mediaType}?api_key=${
         import.meta.env.VITE_API_KEY
-      }&language=en-US&query=${query}&page=${page}`,
+      }&language=${this.getLanguage()}&query=${query}&page=${page}`,
     );
   }
 }

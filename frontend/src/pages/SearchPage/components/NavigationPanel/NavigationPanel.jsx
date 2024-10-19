@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { List } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import { PanelWrapper, ListItemWrapper, NumberLabel } from './styles';
 
 function NavigationPanel({ navConfig }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const { t } = useTranslation();
 
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
@@ -27,7 +29,7 @@ function NavigationPanel({ navConfig }) {
 
   return (
     <PanelWrapper>
-      <h3 className="panel--header">Search Results</h3>
+      <h3 className="panel--header">{t('searchResult')}</h3>
       <div className="panel--list">
         <List component="nav" aria-label="secondary mailbox folder">
           {items}
