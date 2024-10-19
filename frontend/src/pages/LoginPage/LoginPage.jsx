@@ -13,9 +13,9 @@ import { selectors } from './reducer';
 import Fields from './components/Fields';
 import Button from '../../components/Button';
 import Loader from '../../components/Loader';
-import withLayout from '../../global/hoc/Layout';
+import withLayout from '../../utils/hoc/Layout';
 import './LoginPage.scss';
-import { useAuthContext } from '../../global/hoc/AuthContextProvider';
+import { useAuthContext } from '../../utils/hoc/AuthContextProvider';
 
 function LoginPage() {
   const params = useParams();

@@ -1,7 +1,7 @@
 import { toast, Slide } from 'react-toastify';
 import { format } from 'date-fns';
 import i18next from 'i18next';
-import { DATE_LOCALES } from '../../utils/i18n/constants';
+import { DATE_LOCALES } from '../i18n/constants';
 import * as initConstants from '../../pages/InitComponent/constants';
 
 export const getTokenDuration = () => {

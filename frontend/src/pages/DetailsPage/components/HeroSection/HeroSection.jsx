@@ -5,7 +5,7 @@ import DetailsBlock from './components/DetailsBlock';
 import LinksBlock from './components/LinksBlock';
 import { Background, Container, ImageWrapper } from './styles';
 import * as constants from '../../constants';
-import { getCrewListWithUniqueItems } from '../../../../global/helpers';
+import { getCrewListWithUniqueItems } from '../../../../utils/helpers';
 
 function HeroSection({ data, crew }) {
   const { type } = data;

@@ -1,6 +1,6 @@
 import * as constants from './constants';
 import * as initConstants from '../InitComponent/constants';
-import { getFormattedMediaDetails, showNotification } from '../../global/helpers';
+import { getFormattedMediaDetails, showNotification } from '../../utils/helpers';
 import TMDBservice from '../../TMDBservice';
 import StorageService from '../../StorageService';
 import DBService from '../../DBService';

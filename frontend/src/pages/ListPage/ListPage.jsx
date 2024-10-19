@@ -6,7 +6,7 @@ import * as constants from './constants';
 import * as actions from './actions';
 import { selectors } from './reducer';
 import * as initActions from '../InitComponent/actions';
-import withLayout from '../../global/hoc/Layout';
+import withLayout from '../../utils/hoc/Layout';
 import Heading from '../../components/Heading';
 import ListItem from './components/ListItem';
 import Loader from '../../components/Loader';

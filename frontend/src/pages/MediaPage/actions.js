@@ -1,5 +1,5 @@
 import * as constants from './constants';
-import { getFormattedGenreList, getFormattedListData } from '../../global/helpers';
+import { getFormattedGenreList, getFormattedListData } from '../../utils/helpers';
 import TMDBservice from '../../TMDBservice';
 
 export const getGenresSuccess = (data) => ({

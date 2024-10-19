@@ -1,6 +1,6 @@
 import * as constants from './constants';
 import TMDBservice from '../../TMDBservice';
-import { getFormattedSearchData } from '../../global/helpers';
+import { getFormattedSearchData } from '../../utils/helpers';
 
 export const getSearchDataSuccess = (data) => ({
   type: constants.GET_SEARCH_DATA_SUCCESS,

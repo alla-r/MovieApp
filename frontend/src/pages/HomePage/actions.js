@@ -1,5 +1,5 @@
 import * as constants from './constants';
-import { getFormattedListData } from '../../global/helpers';
+import { getFormattedListData } from '../../utils/helpers';
 import TMDBservice from '../../TMDBservice';
 
 export const getTrendingsSuccess = (data) => ({

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import { getBarColor } from '../../global/helpers';
+import { getBarColor } from '../../utils/helpers';
 import theme from '../../theme';
 import './CircleProgressBar.scss';
 
