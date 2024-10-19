@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { LogoContainer, LogoFirstPart, LogoColor } from './styles';
 
-function Logo({ size, onClickHandler }) {
+function Logo({ size = 24, onClickHandler }) {
   return (
     <LogoContainer onClick={onClickHandler}>
       <LogoFirstPart size={size}>
@@ -12,8 +12,6 @@ function Logo({ size, onClickHandler }) {
     </LogoContainer>
   );
 }
-
-Logo.defaultProps = { size: 24 };
 
 Logo.propTypes = {
   size: PropTypes.number,

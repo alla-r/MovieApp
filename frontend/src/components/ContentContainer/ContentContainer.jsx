@@ -7,7 +7,13 @@ import Button from '../Button';
 import Heading from '../Heading';
 import { Container, ItemsContainer, Error } from './styles';
 
-function ContentContainer({ loading, data, error, paginationBtn, heading }) {
+function ContentContainer({
+  loading = false,
+  data = [],
+  error = null,
+  paginationBtn = null,
+  heading = null,
+}) {
   const navigate = useNavigate();
 
   const items = data?.map((item) => {
@@ -42,14 +48,6 @@ function ContentContainer({ loading, data, error, paginationBtn, heading }) {
     </Container>
   );
 }
-
-ContentContainer.defaultProps = {
-  heading: null,
-  loading: false,
-  data: [],
-  error: null,
-  paginationBtn: null,
-};
 
 ContentContainer.propTypes = {
   heading: PropTypes.string,

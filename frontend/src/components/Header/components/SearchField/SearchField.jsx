@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { IconButton, TextField, TextFieldWrapper, TextFieldMobile, CloseButton } from './styles';
 
-function SearchField({ submitHandler, isMobileMode, closeBtnClickHandler }) {
+function SearchField({ submitHandler, isMobileMode = false, closeBtnClickHandler = () => {} }) {
   const [value, setValue] = useState('');
   const { t } = useTranslation();
 
@@ -41,11 +41,6 @@ function SearchField({ submitHandler, isMobileMode, closeBtnClickHandler }) {
     </TextFieldWrapper>
   );
 }
-
-SearchField.defaultProps = {
-  isMobileMode: false,
-  closeBtnClickHandler: () => {},
-};
 
 SearchField.propTypes = {
   submitHandler: PropTypes.func.isRequired,

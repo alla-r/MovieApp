@@ -6,7 +6,7 @@ import { getUniqueValues } from '../../../../global/helpers';
 import YearSection from './components/YearSection';
 import { Section, HeaderSection } from './styles';
 
-function PersonCreditsSection({ data, onItemClick }) {
+function PersonCreditsSection({ data, onItemClick = () => {} }) {
   const { t } = useTranslation();
   const sortByYear = (a, b) => b - a;
 
@@ -78,8 +78,6 @@ function PersonCreditsSection({ data, onItemClick }) {
     </>
   );
 }
-
-PersonCreditsSection.defaultProps = { onItemClick: () => {} };
 
 PersonCreditsSection.propTypes = {
   data: PropTypes.shape({

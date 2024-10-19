@@ -5,7 +5,7 @@ import { useField } from 'formik';
 
 import './TextField.scss';
 
-function TextFieldWrapper({ name, label, type, InputProps, ...otherProps }) {
+function TextFieldWrapper({ name, label, type = 'text', InputProps = null, ...otherProps }) {
   const [field, meta] = useField(name);
 
   const configTextfield = {
@@ -32,10 +32,6 @@ function TextFieldWrapper({ name, label, type, InputProps, ...otherProps }) {
   );
 }
 
-TextFieldWrapper.defaultProps = {
-  type: 'text',
-  InputProps: null,
-};
 
 TextFieldWrapper.propTypes = {
   name: PropTypes.string.isRequired,

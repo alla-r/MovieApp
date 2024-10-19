@@ -8,7 +8,7 @@ import 'swiper/css';
 import 'swiper/css/scrollbar';
 import { Container, CardItem, ImageWrapper, Title } from './styles';
 
-function KnownForSection({ data, onItemClick }) {
+function KnownForSection({ data, onItemClick = () => {} }) {
   const { t } = useTranslation();
 
   const slides = data.map(({ type, title, id, poster }) => (
@@ -65,8 +65,6 @@ function KnownForSection({ data, onItemClick }) {
     </Container>
   );
 }
-
-KnownForSection.defaultProps = { onItemClick: () => {} };
 
 KnownForSection.propTypes = {
   data: PropTypes.arrayOf(

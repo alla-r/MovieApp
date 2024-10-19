@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useMatch } from 'react-router-dom';
 import { Item, Line } from './styles';
 
-function HeaderItem({ content, onClickHandler, path }) {
+function HeaderItem({ content, onClickHandler = () => {}, path = '' }) {
   const match = useMatch(path);
 
   return (
@@ -13,11 +13,6 @@ function HeaderItem({ content, onClickHandler, path }) {
     </Item>
   );
 }
-
-HeaderItem.defaultProps = {
-  onClickHandler: () => {},
-  path: '',
-};
 
 HeaderItem.propTypes = {
   content: PropTypes.string.isRequired,
