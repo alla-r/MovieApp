@@ -9,7 +9,7 @@ class TMDBservice {
 
   getTrendings(pageNumber) {
     return axios.get(
-      `/trending/all/day?api_key=${import.meta.env.VITE_API_KEY}&page=${pageNumber}`,
+      `/trending/all/week?api_key=${import.meta.env.VITE_API_KEY}&page=${pageNumber}`,
     );
   }
 
