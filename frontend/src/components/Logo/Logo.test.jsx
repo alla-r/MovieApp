@@ -24,7 +24,7 @@ describe('<Logo />', () => {
     const element = screen.getByTestId('logo-container');
     await user.click(element);
 
-    console.log(mockHandler.mock);
+    // console.log(mockHandler.mock);
 
     expect(mockHandler.mock.calls).toHaveLength(1);
   });

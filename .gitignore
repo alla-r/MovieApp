@@ -25,3 +25,5 @@ dist-ssr
 
 # remove after finish developing
 .env
+
+coverage/
