@@ -1,5 +1,8 @@
 import { render } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
+import store from '../../store';
 
 const mockTheme = {
   colors: {
@@ -11,7 +14,13 @@ const mockTheme = {
 };
 
 function AllProviders({ children }) {
-  return <ThemeProvider theme={mockTheme}>{children}</ThemeProvider>;
+  return (
+    <Router>
+      <Provider store={store}>
+        <ThemeProvider theme={mockTheme}>{children}</ThemeProvider>
+      </Provider>
+    </Router>
+  );
 }
 
 const customRender = (ui, options) => render(ui, { wrapper: AllProviders, ...options });

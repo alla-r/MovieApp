@@ -33,15 +33,20 @@ function ContentContainer({
   return (
     <Container className="container">
       {heading && <Heading content={heading} />}
-      {data && <ItemsContainer className="items-container">{items}</ItemsContainer>}
+      {data && data.length > 0 && (
+        <ItemsContainer data-testid="items-container" className="items-container">
+          {items}
+        </ItemsContainer>
+      )}
 
       {loading && <Loader />}
-      {error && error.status && <Error>{error.message}</Error>}
+      {error && error.status && <Error data-testid="error">{error.message}</Error>}
       {paginationBtn && paginationBtn.status && (
         <Button
           onClickHandler={paginationBtn.onClickHandler}
           btnText={paginationBtn.text}
           className="pagination-btn"
+          data-testid="pagination-btn"
           btnStyles={{ color: 'secondary' }}
         />
       )}
