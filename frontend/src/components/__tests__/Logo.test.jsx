@@ -1,6 +1,6 @@
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '../../utils/helpers/test-utils';
-import Logo from './Logo';
+import Logo from '../Logo/Logo';
 
 describe('<Logo />', () => {
   let container;
