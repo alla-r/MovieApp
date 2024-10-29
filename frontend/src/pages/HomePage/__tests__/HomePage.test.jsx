@@ -104,6 +104,7 @@ describe('<HomePage />', () => {
     // Page title should be in the document
     expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(i18next.t('popular'));
     // Error message should be in the document
+    expect(screen.getByTestId('error')).toBeInTheDocument();
     expect(screen.getByTestId('error')).toHaveTextContent(i18next.t('errorMessage'));
   });
 
@@ -154,5 +155,26 @@ describe('<HomePage />', () => {
 
     // Page title should be in the document
     expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(i18next.t('popular'));
+  });
+
+  it('should navigate to Movie Details page by clicking on movie item', async () => {
+    render(<HomePage />);
+
+    await screen.findByTestId('items-container');
+
+    // HomePage should have path "/"
+    expect(window.location.pathname).toEqual('/');
+
+    const container = screen.getByTestId('items-container');
+
+    const title = trendingsResultPage1.results[0].title || trendingsResultPage1.results[0].name;
+    const movieItem = within(container).getByText(title);
+    const user = userEvent.setup();
+
+    await user.click(movieItem);
+    const newPath = `/${trendingsResultPage1.results[0].media_type}/${trendingsResultPage1.results[0].id}`;
+
+    // After click on item should navigate to a new page with path "/type/id"
+    expect(window.location.pathname).toEqual(newPath);
   });
 });
