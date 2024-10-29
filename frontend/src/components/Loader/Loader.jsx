@@ -4,7 +4,7 @@ import './Loader.scss';
 
 function Loader() {
   return (
-    <div className="loader-container">
+    <div data-testid="loader" className="loader-container">
       <CircularProgress />
     </div>
   );

@@ -4,6 +4,7 @@ module.exports = {
     browser: true,
     node: true,
     es2020: true,
+    'vitest-globals/env': true,
   },
   extends: ['airbnb', 'prettier'],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
