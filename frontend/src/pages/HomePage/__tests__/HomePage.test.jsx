@@ -2,7 +2,7 @@ import { http, HttpResponse, delay } from 'msw';
 import { setupServer } from 'msw/node';
 import userEvent from '@testing-library/user-event';
 import i18next from '../../../utils/i18n';
-import { render, screen, waitFor, within } from '../../../utils/helpers/test-utils';
+import { render, screen, within } from '../../../utils/helpers/test-utils';
 import HomePage from '../HomePage';
 import trendingsResultPage1 from '../../../__mocks__/HomePage/trendings_page1';
 import trendingsResultPage2 from '../../../__mocks__/HomePage/trendings_page2';
@@ -41,8 +41,6 @@ vi.mock('../../../utils/hoc/AuthContextProvider', () => ({
 // });
 
 describe('<HomePage />', () => {
-  let container;
-
   beforeAll(() => server.listen());
 
   afterEach(() => server.resetHandlers());
