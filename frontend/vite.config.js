@@ -14,4 +14,11 @@ export default defineConfig({
       exclude: [...configDefaults.exclude, 'src/**/*.test.{js,jsx}', 'src/**/index.js'],
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
+      },
+    },
+  },
 });
