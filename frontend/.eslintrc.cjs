@@ -6,7 +6,7 @@ module.exports = {
     es2020: true,
     'vitest-globals/env': true,
   },
-  extends: ['airbnb', 'prettier'],
+  extends: ['airbnb', 'prettier', 'plugin:vitest-globals/recommended'],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parserOptions: {
     ecmaVersion: 'latest',

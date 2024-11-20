@@ -11,6 +11,7 @@ export default defineConfig({
     setupFiles: './testSetup.js',
     exclude: [...configDefaults.exclude, 'src/**/index.js'],
     coverage: {
+      include: ['src/**/*.{js,jsx}'],
       exclude: [...configDefaults.exclude, 'src/**/*.test.{js,jsx}', 'src/**/index.js'],
     },
   },
