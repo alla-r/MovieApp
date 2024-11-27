@@ -1,4 +1,5 @@
 import i18next from '../../utils/i18n';
+
 export const GET_TRENDINGS_REQUEST = 'GET_TRENDINGS_REQUEST';
 export const GET_TRENDINGS_SUCCESS = 'GET_TRENDINGS_SUCCESS';
 export const GET_TRENDINGS_ERROR = 'GET_TRENDINGS_ERROR';

@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import Loader from '../../components/Loader';
 import TopCastSection from './components/TopCastSection';
 import DetailsListSection from './components/DetailsListSection';
@@ -21,6 +22,7 @@ function DetailsPage() {
   const navigate = useNavigate();
   const auth = useAuthContext();
   const location = useLocation();
+  const { i18n } = useTranslation();
 
   const detailsLoading = useSelector(selectors.detailsLoading);
   const detailsData = useSelector(selectors.detailsData);
@@ -116,7 +118,7 @@ function DetailsPage() {
     dispatch(actions.getMediaCustomDetails({ id: params.id, type: params.type }));
 
     return () => dispatch(actions.mediaDetailsClearData());
-  }, [params]);
+  }, [params, i18n.language]);
 
   return (
     <div className="detailsPage">
