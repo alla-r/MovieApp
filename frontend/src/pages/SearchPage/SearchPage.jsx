@@ -16,7 +16,7 @@ function SearchPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const query = searchParams.get('query') || '';
   const pageNumber = searchParams.get('page') || 1;
@@ -57,7 +57,7 @@ function SearchPage() {
 
   useEffect(() => {
     dispatch(actions.getSearchData(query, type, pageNumber));
-  }, [query, pageNumber, type]);
+  }, [query, pageNumber, type, i18n.language]);
 
   const handleChange = (e, value) =>
     setSearchParams({

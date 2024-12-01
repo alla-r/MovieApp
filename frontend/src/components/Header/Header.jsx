@@ -16,6 +16,7 @@ import {
   LanguageButton,
 } from './styles';
 import * as i18nConstants from '../../utils/i18n/constants';
+import TMDBservice from '../../TMDBservice';
 
 function Header({ isUserAuthorized = false, headerItems, profileDropdownData }) {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ function Header({ isUserAuthorized = false, headerItems, profileDropdownData }) 
     const nextLanguage = i18nConstants.LANGUAGES[nextLanguageIndex];
 
     i18n.changeLanguage(i18nConstants.LOCALES[nextLanguage]);
-    window.location.reload(false);
+    TMDBservice.setLocale(i18nConstants.LOCALES[nextLanguage]);
   };
 
   const menuItemsClickHandler = (customClickHandler) => {

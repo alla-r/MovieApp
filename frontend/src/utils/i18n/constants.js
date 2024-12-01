@@ -7,6 +7,8 @@ export const LOCALES = {
 
 export const LANGUAGES = ['EN', 'UK'];
 
+export const DEFAULT_LANGUAGE = 'en';
+
 export const DATE_LOCALES = {
   en: enUS,
   uk: uk,

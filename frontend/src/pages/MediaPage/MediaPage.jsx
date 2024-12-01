@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import ContentContainer from '../../components/ContentContainer';
 import GenreItem from '../../components/GenreItem';
 import * as actions from './actions';
@@ -14,6 +15,7 @@ function MediaPage() {
   const { type } = useParams();
   const [pageNumber, setPageNumber] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
+  const { i18n } = useTranslation();
 
   const selectedGenres = searchParams.get('genre') || '';
   let selectedGenresArr = selectedGenres ? selectedGenres.split(',') : [];
@@ -29,13 +31,13 @@ function MediaPage() {
     dispatch(actions.getFilteredMedia(type, pageNumber, selectedGenresArr));
 
     return () => dispatch(actions.clearFilteredMedia());
-  }, [type]);
+  }, [type, i18n.language]);
 
   useEffect(() => {
     if (pageNumber !== 1) {
       dispatch(actions.getFilteredMedia(type, pageNumber, selectedGenresArr));
     }
-  }, [pageNumber]);
+  }, [pageNumber, i18n.language]);
 
   const paginationBtnClickHandler = () => {
     setPageNumber(pageNumber + 1);

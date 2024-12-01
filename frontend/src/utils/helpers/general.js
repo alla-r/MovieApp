@@ -79,11 +79,15 @@ export const getBarColor = (type, percentageValue) => {
 // };
 
 export const getFormattedDate = (dateString) => {
-  const formattedDate = format(new Date(dateString), 'MMM d, yyyy', {
-    locale: DATE_LOCALES[i18next.language],
-  });
+  let formattedDate = '';
 
-  return dateString && dateString !== 'unknown' ? formattedDate : '';
+  if (dateString && dateString !== 'unknown') {
+    formattedDate = format(new Date(dateString), 'MMM d, yyyy', {
+      locale: DATE_LOCALES[i18next.language],
+    });
+  }
+
+  return formattedDate;
 };
 
 export const getPercentageValue = (value, maxValue) => (value * 100) / maxValue;

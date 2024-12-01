@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import * as actions from './actions';
 import { selectors } from './reducer';
 import Loader from '../../components/Loader';
@@ -15,6 +16,7 @@ function PersonPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();
+  const { i18n } = useTranslation();
 
   const detailsLoading = useSelector(selectors.detailsLoading);
   const detailsData = useSelector(selectors.detailsData);
@@ -24,7 +26,7 @@ function PersonPage() {
     dispatch(actions.getPersonDetails(params.id));
 
     return () => dispatch(actions.personDetailsClearData());
-  }, [params]);
+  }, [params, i18n.language]);
 
   const getKnownForItems = (allMedia = []) => {
     const popular = allMedia.sort((a, b) => b.voteCount - a.voteCount);
