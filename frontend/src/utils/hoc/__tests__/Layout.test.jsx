@@ -1,6 +1,6 @@
 import userEvent from '@testing-library/user-event';
-import i18next from '../../../utils/i18n';
-import { render, screen } from '../../../utils/helpers/test-utils';
+import i18next from "../../i18n";
+import { render, screen } from "../../helpers/test-utils";
 import { useAuthContext } from '../AuthContextProvider';
 import withLayout from '../Layout';
 
@@ -8,7 +8,9 @@ vi.mock('../AuthContextProvider', () => ({
   useAuthContext: vi.fn(),
 }));
 
-const DummyComponent = () => <div>Content</div>;
+function DummyComponent() {
+  return <div>Content</div>
+}
 
 const WrappedComponent = withLayout(DummyComponent);
 
@@ -27,7 +29,7 @@ describe('HOC withLayout', () => {
   });
 
   it('should navigate to Login screen by clicking on Login menu item', async () => {
-    let signInMock = vi.fn();
+    const signInMock = vi.fn();
     useAuthContext.mockImplementation(() => ({
       user: null,
       signIn: signInMock,
@@ -62,7 +64,7 @@ describe('HOC withLayout', () => {
   });
 
   it('should call logout method by clicking on Logout menu item', async () => {
-    let logoutMock = vi.fn();
+    const logoutMock = vi.fn();
     useAuthContext.mockImplementation(() => ({
       user: 'test',
       signIn: vi.fn(),

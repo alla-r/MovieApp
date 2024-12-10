@@ -4,7 +4,7 @@ import { LogoContainer, LogoFirstPart, LogoColor } from './styles';
 
 function Logo({ size = 24, onClickHandler }) {
   return (
-    <LogoContainer data-testid={'logo-container'} onClick={onClickHandler}>
+    <LogoContainer data-testid="logo-container" onClick={onClickHandler}>
       <LogoFirstPart size={size}>
         Movie
         <LogoColor>APP</LogoColor>

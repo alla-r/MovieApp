@@ -4,7 +4,7 @@ import DBService from '../../DBService';
 import useLocalStorage from './useLocalStorage';
 import { showNotification } from '../helpers';
 import * as initConstants from '../../pages/InitComponent/constants';
-import i18next from '../../utils/i18n';
+import i18next from "../i18n";
 
 const useAuth = () => {
   const [user, setUser] = useLocalStorage('user', null);

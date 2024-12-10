@@ -32,7 +32,6 @@ function TextFieldWrapper({ name, label, type = 'text', InputProps = null, ...ot
   );
 }
 
-
 TextFieldWrapper.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
