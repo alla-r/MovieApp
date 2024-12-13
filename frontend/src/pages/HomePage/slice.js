@@ -39,7 +39,7 @@ const homeSlice = createSlice({
         state.isNextPageAvailable = false;
       })
       .addCase(getTrendingsMedia.fulfilled, (state, action) => {
-        state.data = action.payload.results;
+        state.data.push(...action.payload.results);
         state.isNextPageAvailable = action.payload.page < action.payload.totalPages;
         state.error = null;
         state.loading = false;
