@@ -9,7 +9,7 @@ import DetailsListSection from './components/DetailsListSection';
 import HeroSection from './components/HeroSection';
 import Recommendations from './components/Recommendations';
 import * as actions from './actions';
-import * as initActions from '../InitComponent/actions';
+import { initActions } from '../InitComponent/slice';
 import * as constants from './constants';
 import { selectors } from './reducer';
 import withLayout from '../../utils/hoc/Layout';

@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import * as constants from './constants';
 import * as actions from './actions';
 import { selectors } from './reducer';
-import * as initActions from '../InitComponent/actions';
+import { initActions } from '../InitComponent/slice';
 import withLayout from '../../utils/hoc/Layout';
 import Heading from '../../components/Heading';
 import ListItem from './components/ListItem';
