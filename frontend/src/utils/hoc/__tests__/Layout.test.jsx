@@ -1,6 +1,6 @@
 import userEvent from '@testing-library/user-event';
-import i18next from "../../i18n";
-import { render, screen } from "../../helpers/test-utils";
+import i18next from '../../i18n';
+import { render, screen } from '../../helpers/test-utils';
 import { useAuthContext } from '../AuthContextProvider';
 import withLayout from '../Layout';
 
@@ -9,7 +9,7 @@ vi.mock('../AuthContextProvider', () => ({
 }));
 
 function DummyComponent() {
-  return <div>Content</div>
+  return <div>Content</div>;
 }
 
 const WrappedComponent = withLayout(DummyComponent);

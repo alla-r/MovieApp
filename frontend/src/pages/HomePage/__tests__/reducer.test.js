@@ -71,7 +71,8 @@ describe('HomePage reducer', () => {
 });
 
 describe('HomePage selectors', () => {
-  let mockState; let store;
+  let mockState;
+  let store;
 
   mockState = {
     isNextPageAvailable: true,
