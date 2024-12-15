@@ -8,10 +8,9 @@ import TopCastSection from './components/TopCastSection';
 import DetailsListSection from './components/DetailsListSection';
 import HeroSection from './components/HeroSection';
 import Recommendations from './components/Recommendations';
-import * as actions from './actions';
 import { initActions } from '../InitComponent/slice';
 import * as constants from './constants';
-import { selectors } from './reducer';
+import { selectors, actions } from './slice';
 import withLayout from '../../utils/hoc/Layout';
 import { useAuthContext } from '../../utils/hoc/AuthContextProvider';
 import './DetailsPage.scss';
@@ -114,10 +113,20 @@ function DetailsPage() {
   });
 
   useEffect(() => {
-    dispatch(actions.getMediaDetails(params.type, params.id));
-    dispatch(actions.getMediaCustomDetails({ id: params.id, type: params.type }));
+    dispatch(
+      actions.getMediaDetails({
+        mediaType: params.type,
+        id: params.id,
+      }),
+    );
+    dispatch(
+      actions.getMediaCustomDetails({
+        id: params.id,
+        type: params.type,
+      }),
+    );
 
-    return () => dispatch(actions.mediaDetailsClearData());
+    // return () => dispatch(actions.mediaDetailsClearData());
   }, [params, i18n.language]);
 
   return (
