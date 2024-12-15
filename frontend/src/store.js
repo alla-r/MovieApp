@@ -4,6 +4,9 @@ import { homePageReducer } from './pages/HomePage';
 import { mediaPageReducer } from './pages/MediaPage';
 import { detailsPageReducer } from './pages/DetailsPage';
 import { listPageReducer } from './pages/ListPage';
+import { loginPageReducer } from './pages/LoginPage';
+import { personPageReducer } from './pages/PersonPage';
+import { searchPageReducer } from './pages/SearchPage';
 
 const store = configureStore({
   reducer: {
@@ -12,6 +15,9 @@ const store = configureStore({
     mediaPageReducer,
     detailsPageReducer,
     listPageReducer,
+    loginPageReducer,
+    personPageReducer,
+    searchPageReducer,
   },
 });
 

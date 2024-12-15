@@ -3,12 +3,6 @@ import FacebookIcon from '../../global/images/facebook-icon.svg';
 import TwitterIcon from '../../global/images/twitter-icon.svg';
 import i18next from '../../utils/i18n';
 
-export const GET_PERSON_DETAILS_REQUEST = 'GET_PERSON_DETAILS_REQUEST';
-export const GET_PERSON_DETAILS_SUCCESS = 'GET_PERSON_DETAILS_SUCCESS';
-export const GET_PERSON_DETAILS_ERROR = 'GET_PERSON_DETAILS_ERROR';
-export const GET_PERSON_DETAILS = 'GET_PERSON_DETAILS';
-export const PERSON_DETAILS_CLEAR_DATA = 'PERSON_DETAILS_CLEAR_DATA';
-
 export const SOCIAL_MEDIA_BUTTONS_CONFIG = [
   {
     iconSrc: InstaIcon,
