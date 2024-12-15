@@ -29,7 +29,10 @@ const homeSlice = createSlice({
   initialState,
   reducers: {
     trendingsClearData: (state) => {
-      state = initialState;
+      state.isNextPageAvailable = false;
+      state.loading = false;
+      state.data = [];
+      state.error = null;
     },
   },
   extraReducers: (builder) => {
