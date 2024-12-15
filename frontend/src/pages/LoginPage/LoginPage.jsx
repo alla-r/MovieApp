@@ -7,9 +7,8 @@ import {
   REGISTER_FORM_VALIDATION,
   LOGIN_FORM_VALIDATION,
 } from './validationSchema';
-import * as actions from './actions';
 import * as constants from './constants';
-import { selectors } from './reducer';
+import { selectors, actions } from './slice';
 import Fields from './components/Fields';
 import Button from '../../components/Button';
 import Loader from '../../components/Loader';
@@ -42,7 +41,16 @@ function LoginPage() {
       login: auth.signIn,
     };
 
-    dispatch(flowCallbacks[flow]({ username, password }, navigate));
+    const data = {
+      username,
+      password,
+    };
+
+    if (flow === 'login') {
+      auth.signIn(data, navigate);
+    } else {
+      dispatch(flowCallbacks[flow]({ data, navigate }));
+    }
   };
 
   const navigateToRegister = () => navigate('/auth/signup');
