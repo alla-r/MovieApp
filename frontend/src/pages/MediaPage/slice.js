@@ -36,6 +36,10 @@ const getFilteredMedia = createAsyncThunk(
     try {
       const response = await TMDBservice.getFilteredMedia(type, pageNumber, selectedGenresArr);
 
+      if (!response.data.results.length) {
+        return thunkApi.rejectWithValue('Nothing found');
+      }
+
       return getFormattedListData(response.data, type);
     } catch (error) {
       // TODO check thunkAPI
