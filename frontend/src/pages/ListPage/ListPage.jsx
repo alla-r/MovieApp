@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import * as constants from './constants';
-import * as actions from './actions';
-import { selectors } from './reducer';
+import { selectors, actions } from './slice';
 import { initActions } from '../InitComponent/slice';
 import withLayout from '../../utils/hoc/Layout';
 import Heading from '../../components/Heading';
@@ -27,7 +26,8 @@ function ListPage() {
   }, [list]);
 
   const items = listData
-    ?.sort((el1, el2) => el2.timestamp - el1.timestamp)
+    ?.slice()
+    .sort((el1, el2) => el2.timestamp - el1.timestamp)
     .map((details) => {
       const navigateToDetailsCB = () => navigate(`/${details.type}/${details.id}`);
 

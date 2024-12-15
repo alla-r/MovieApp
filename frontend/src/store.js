@@ -3,6 +3,7 @@ import { initComponentReducer } from './pages/InitComponent';
 import { homePageReducer } from './pages/HomePage';
 import { mediaPageReducer } from './pages/MediaPage';
 import { detailsPageReducer } from './pages/DetailsPage';
+import { listPageReducer } from './pages/ListPage';
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     homePageReducer,
     mediaPageReducer,
     detailsPageReducer,
+    listPageReducer,
   },
 });
 
