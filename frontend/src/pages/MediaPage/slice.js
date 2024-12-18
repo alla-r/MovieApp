@@ -24,7 +24,6 @@ const getGenres = createAsyncThunk(
 
       return getFormattedGenreList(response.data.genres, selectedGenresArr);
     } catch (error) {
-      // TODO check thunkAPI
       return thunkApi.rejectWithValue(error);
     }
   },
@@ -42,7 +41,6 @@ const getFilteredMedia = createAsyncThunk(
 
       return getFormattedListData(response.data, type);
     } catch (error) {
-      // TODO check thunkAPI
       return thunkApi.rejectWithValue(error);
     }
   },

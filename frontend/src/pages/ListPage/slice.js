@@ -23,7 +23,6 @@ const getListData = createAsyncThunk('list/getListData', async (listName, thunkA
 
     return response.data;
   } catch (error) {
-    // TODO check thunkAPI
     return thunkApi.rejectWithValue(error);
   }
 });
@@ -60,7 +59,7 @@ const removeItemFromList = createAsyncThunk(
           listName: i18next.t(`${listName}ListName`),
         }),
       );
-      // TODO check thunkAPI
+
       return thunkApi.rejectWithValue(error);
     }
   },
@@ -92,7 +91,6 @@ const changeRate = createAsyncThunk('list/changeRate', async ({ mediaInfo }, thu
       initConstants.NOTIFICATIONS_CONFIG.type.error,
       constants.RATE_UPDATE_MESSAGE_CONFIG.error,
     );
-    // TODO check thunkAPI
     return thunkApi.rejectWithValue(error);
   }
 });

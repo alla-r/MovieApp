@@ -24,7 +24,6 @@ const getMediaDetails = createAsyncThunk(
 
       return getFormattedMediaDetails(mediaType, response.data);
     } catch (error) {
-      // TODO check thunkAPI
       return thunkApi.rejectWithValue(error);
     }
   },
@@ -38,7 +37,6 @@ const getMediaCustomDetails = createAsyncThunk(
 
       return mediaCustomDetails.data;
     } catch (error) {
-      // TODO check thunkAPI
       return thunkApi.rejectWithValue(error);
     }
   },
@@ -76,7 +74,6 @@ const changeMediaCustomDetails = createAsyncThunk(
       return thunkApi.rejectWithValue(mediaInfo);
     } catch (error) {
       showNotification(initConstants.NOTIFICATIONS_CONFIG.type.error, error.message);
-      // TODO check thunkAPI
       return thunkApi.rejectWithValue(error.message);
     }
   },
