@@ -1,5 +1,5 @@
 import PersonPage from './PersonPage';
-import personPageReducer from './reducer';
+import personPageReducer from './slice';
 
 export { personPageReducer };
 export default PersonPage;

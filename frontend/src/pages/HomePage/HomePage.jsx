@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import ContentContainer from '../../components/ContentContainer';
-import * as actions from './actions';
 import * as constants from './constants';
-import { selectors } from './reducer';
+import { selectors, actions } from './slice';
 import withLayout from '../../utils/hoc/Layout';
 import i18next from '../../utils/i18n';
 

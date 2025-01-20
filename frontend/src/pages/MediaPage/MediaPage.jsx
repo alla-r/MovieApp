@@ -4,9 +4,8 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ContentContainer from '../../components/ContentContainer';
 import GenreItem from '../../components/GenreItem';
-import * as actions from './actions';
 import * as constants from './constants';
-import { selectors } from './reducer';
+import { selectors, actions } from './slice';
 import withLayout from '../../utils/hoc/Layout';
 import './MediaPage.scss';
 
@@ -27,15 +26,15 @@ function MediaPage() {
   const isNextPageAvailable = useSelector(selectors.isNextPageAvailable);
 
   useEffect(() => {
-    dispatch(actions.getGenres(type, selectedGenresArr));
-    dispatch(actions.getFilteredMedia(type, pageNumber, selectedGenresArr));
+    dispatch(actions.getGenres({ type, selectedGenresArr }));
+    dispatch(actions.getFilteredMedia({ type, pageNumber, selectedGenresArr }));
 
     return () => dispatch(actions.clearFilteredMedia());
   }, [type, i18n.language]);
 
   useEffect(() => {
     if (pageNumber !== 1) {
-      dispatch(actions.getFilteredMedia(type, pageNumber, selectedGenresArr));
+      dispatch(actions.getFilteredMedia({ type, pageNumber, selectedGenresArr }));
     }
   }, [pageNumber, i18n.language]);
 
@@ -59,7 +58,7 @@ function MediaPage() {
 
     dispatch(actions.updateGenreList(newGenreList));
     setPageNumber(1);
-    dispatch(actions.getFilteredMedia(type, pageNumber, selectedGenresArr));
+    dispatch(actions.getFilteredMedia({ type, pageNumber, selectedGenresArr }));
   };
 
   const genreItems = genres.map(({ id, name, isChosen }) => (

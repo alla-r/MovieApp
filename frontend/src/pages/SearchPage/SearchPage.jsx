@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Pagination from '@mui/material/Pagination';
-import * as actions from './actions';
-import { selectors } from './reducer';
+import { selectors, actions } from './slice';
 import withLayout from '../../utils/hoc/Layout';
 import NavigationPanel from './components/NavigationPanel';
 import ListItem from '../ListPage/components/ListItem';
@@ -56,7 +55,7 @@ function SearchPage() {
   ];
 
   useEffect(() => {
-    dispatch(actions.getSearchData(query, type, pageNumber));
+    dispatch(actions.getSearchData({ query, type, pageNumber }));
   }, [query, pageNumber, type, i18n.language]);
 
   const handleChange = (e, value) =>

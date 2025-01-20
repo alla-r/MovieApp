@@ -11,5 +11,5 @@ export const DEFAULT_LANGUAGE = 'en';
 
 export const DATE_LOCALES = {
   en: enUS,
-  uk: uk,
+  uk,
 };

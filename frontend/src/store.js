@@ -1,14 +1,24 @@
-import { createStore, compose, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import rootReducer from './rootReducer';
+import { configureStore } from '@reduxjs/toolkit';
+import { initComponentReducer } from './pages/InitComponent';
+import { homePageReducer } from './pages/HomePage';
+import { mediaPageReducer } from './pages/MediaPage';
+import { detailsPageReducer } from './pages/DetailsPage';
+import { listPageReducer } from './pages/ListPage';
+import { loginPageReducer } from './pages/LoginPage';
+import { personPageReducer } from './pages/PersonPage';
+import { searchPageReducer } from './pages/SearchPage';
 
-const store = createStore(
-  rootReducer,
-  compose(
-    applyMiddleware(thunk),
-    // eslint-disable-next-line no-underscore-dangle
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  ),
-);
+const store = configureStore({
+  reducer: {
+    initComponentReducer,
+    homePageReducer,
+    mediaPageReducer,
+    detailsPageReducer,
+    listPageReducer,
+    loginPageReducer,
+    personPageReducer,
+    searchPageReducer,
+  },
+});
 
 export default store;

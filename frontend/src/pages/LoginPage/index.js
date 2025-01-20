@@ -1,5 +1,5 @@
 import LoginPage from './LoginPage';
-import loginPageReducer from './reducer';
+import loginPageReducer from './slice';
 
 export { loginPageReducer };
 export default LoginPage;

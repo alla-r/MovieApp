@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import * as actions from './actions';
-import { selectors } from './reducer';
+import { selectors, actions } from './slice';
 import Loader from '../../components/Loader';
 import LeftSide from './components/LeftSide';
 import KnownForSection from './components/KnownForSection';
@@ -29,7 +28,7 @@ function PersonPage() {
   }, [params, i18n.language]);
 
   const getKnownForItems = (allMedia = []) => {
-    const popular = allMedia.sort((a, b) => b.voteCount - a.voteCount);
+    const popular = allMedia.slice().sort((a, b) => b.voteCount - a.voteCount);
 
     return popular.slice(0, 10);
   };
